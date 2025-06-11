@@ -1,35 +1,24 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:login_page/google_sign_in.dart';
-import 'package:flutter_signin_button/flutter_signin_button.dart';
 
 class LoginPage extends StatelessWidget{
   const LoginPage({super.key});
 
   @override
   Widget build(context){
-
-    final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
-
-
-
     return MaterialApp(
         home: Scaffold(
           backgroundColor: Color.fromARGB(255, 143, 0, 34),
           body: Column(
             mainAxisSize: MainAxisSize.max,
-            //crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Stack(
                   children: [
                     Image.asset(
                       'assets/images/Frame.png',
                       width: double.infinity,
-                      fit: BoxFit.fitWidth, // Ensures full width without cropping height
+                      fit: BoxFit.fitWidth,
                     ),
                     Positioned(
                       top: 80, // Adjust this based on how low you want the logo
