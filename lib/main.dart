@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:login_page/home_page.dart';
 import 'package:login_page/login_page.dart';
 
 
@@ -19,7 +20,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'LNMIIT Login Page',
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      home: //LoginPage()
+      HomePage(),
     );
   }
 }
