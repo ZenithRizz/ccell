@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:login_page/home_page.dart';
 
 Future<void> signInWithCollegeGoogleAccount(BuildContext context) async {
     final GoogleSignIn googleSignIn = GoogleSignIn();
@@ -64,9 +65,16 @@ Future<void> signInWithCollegeGoogleAccount(BuildContext context) async {
         await FirebaseAuth.instance.signInWithCredential(credential);
         print('Sign-in Successful');
 
+        UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
 
+        String userName = userCredential.user?.displayName ?? 'User';
 
-        //add homescreen navigation here
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) => HomePage(userName: userName,)
+            ),
+        );
 
     } catch (e) {
     print('Sign-in failed: $e');

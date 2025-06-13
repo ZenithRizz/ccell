@@ -1,18 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatelessWidget{
 
-  HomePage({super.key});
+  HomePage({super.key, required this.userName});
 
-  final Map<String, String> buttonData = {
-    'Academic Calender': 'academic_calender.png',
-    'Lost & Found': 'lost_found.png',
-    'Find The Location': 'find_location.png',
-    'Bus Timetable': 'bus_timetable.png',
-    'Mess Menu': 'mess_menu.png',
-    'Profile': 'profile.png'
+  final Map<String,Map<String, String>> buttonData = {
+    'Academic Calender': {
+      'image' :'academic_calender.png',
+      'url': 'https://lnmiit.ac.in/academics/academic-documents/#pdf-academic-calendar-2025/1/'
+    },
+    'Lost & Found': {
+      'image' : 'lost_found.png',
+    },
+    'Find The Location': {
+      'image': 'find_location.png'
+    },
+    'Bus Timetable': {
+      'image': 'bus_timetable.png',
+      'url': 'https://raw.githubusercontent.com/Counselling-Cell-LNMIIT/appResources/main/pdf/Bus_Time_Table.pdf'
+    },
+    'Mess Menu': {
+      'image': 'mess_menu.png',
+      'url': 'https://raw.githubusercontent.com/Counselling-Cell-LNMIIT/appResources/main/pdf/Mess_Menu.pdf'
+    },
+    'Profile': {
+      'image' : 'profile.png'
+    }
   };
+  final String userName;
 
   @override
   Widget build (context) {
@@ -33,7 +50,7 @@ class HomePage extends StatelessWidget{
                     width: 30,
                   ),
                   Text(
-                      'Hi Name !',
+                      'Hi $userName !',
                       style: GoogleFonts.lilitaOne(
                         fontSize: 40,
                         fontWeight: FontWeight.bold,
@@ -54,11 +71,17 @@ class HomePage extends StatelessWidget{
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    _ButtonHomeScreen(title: 'Test 1'),
+                    _ButtonHomeScreen(
+                      buttonData['Academic Calender']!['url'],
+                      title: 'Academic Calender',
+                      imageName: buttonData['Academic Calender']!['image']!),
                     SizedBox(
                       width: 20,
                     ),
-                    _ButtonHomeScreen(title: 'Test 1'),
+                    _ButtonHomeScreen(
+                      '',
+                        title: 'Profile',
+                        imageName: buttonData['Profile']!['image']!),
                   ],
                 ),
                 SizedBox(
@@ -68,11 +91,17 @@ class HomePage extends StatelessWidget{
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    _ButtonHomeScreen(title: 'Test 1'),
+                    _ButtonHomeScreen(
+                      '',
+                        title: 'Find The Location',
+                        imageName: buttonData['Find The Location']!['image']!),
                     SizedBox(
                       width: 20,
                     ),
-                    _ButtonHomeScreen(title: 'Test 1'),
+                    _ButtonHomeScreen(
+                        buttonData['Bus Timetable']!['url'],
+                        title: 'Bus Timetable',
+                        imageName: buttonData['Bus Timetable']!['image']!),
                   ],
                 ),
                 SizedBox(
@@ -82,11 +111,17 @@ class HomePage extends StatelessWidget{
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    _ButtonHomeScreen(title: 'Test 1'),
+                    _ButtonHomeScreen(
+                        buttonData['Mess Menu']!['url'],
+                        title: 'Mess Menu',
+                        imageName: buttonData['Mess Menu']!['image']!),
                     SizedBox(
                       width: 20,
                     ),
-                    _ButtonHomeScreen(title: 'Test 1'),
+                    _ButtonHomeScreen(
+                      '',
+                        title: 'Lost & Found',
+                        imageName: buttonData['Lost & Found']!['image']!),
                   ],
                 )
               ],
@@ -100,9 +135,11 @@ class HomePage extends StatelessWidget{
 }
 
 class _ButtonHomeScreen extends StatelessWidget {
-  const _ButtonHomeScreen({super.key, required this.title});
+  const _ButtonHomeScreen(this.url, {super.key, required this.title, required this.imageName});
 
   final String title;
+  final String imageName;
+  final String? url;
   
   @override
   Widget build (context){
@@ -120,34 +157,55 @@ class _ButtonHomeScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            if(url != null && url!.isNotEmpty){
+              _Urllauncher(url!);
+            }
+          },
           style: ElevatedButton.styleFrom(
                   minimumSize: const Size(166, 166),
+                  maximumSize: const Size(166, 166),
                   backgroundColor: Colors.transparent,
                   shadowColor: Colors.transparent,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16)
                   )
           ),
-          child: Column(
-            children: [
-              SizedBox(
-                height: 120,
-                width: 120,
-                child: Image.asset(
-                    'assets/images/ccell_logo.png',
-                  fit: BoxFit.contain,
+          child: Center(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 100,
+                  width: 120,
+                  child: Image.asset(
+                      'assets/images/$imageName',
+                    fit: BoxFit.contain,
+                  ),
                 ),
-              ),
-              Text(
-                  title,
-                style: GoogleFonts.lilitaOne(
-                  fontSize: 16,
-                  color: Colors.white,
-                )
-              ),
-            ],
+                Flexible(
+                  child: Text(
+                      title,
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                    style: GoogleFonts.lilitaOne(
+                      fontSize: 16,
+                      color: Colors.white,
+                    ),
+
+                  ),
+                ),
+              ],
+            ),
           )),
     );
+  }
+
+
+  Future<void> _Urllauncher(String urlString) async {
+    final Uri url = Uri.parse(urlString);
+    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+      throw Exception('Could not launch $url');
+    }
   }
 }

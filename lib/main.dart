@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:login_page/home_page.dart';
@@ -12,16 +13,33 @@ void main() async {
 
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
 
-  // This widget is the root of your application.
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'LNMIIT Login Page',
+      title: 'LNMIIT C-Cell App',
       debugShowCheckedModeBanner: false,
       home: //LoginPage()
-      HomePage(),
+      StreamBuilder<User?>(
+          stream: _auth.authStateChanges(),
+          builder: (context, snapshot){
+           if(snapshot.connectionState == ConnectionState.waiting){
+             return const Center (
+               child: CircularProgressIndicator(),
+             );
+           } else if (snapshot.hasData) {
+             final userName = snapshot.data?.displayName ?? 'User';
+
+             return HomePage(userName: userName);
+           }
+          else {
+             return LoginPage();
+           }
+      }
+          ),
     );
   }
 }
