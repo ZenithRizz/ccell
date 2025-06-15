@@ -1,86 +1,81 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:login_page/home_page.dart';
+import 'package:login_page/loading_screen.dart';
 
 Future<void> signInWithCollegeGoogleAccount(BuildContext context) async {
-    final GoogleSignIn googleSignIn = GoogleSignIn();
+  final GoogleSignIn googleSignIn = GoogleSignIn();
 
-      try {
-        await googleSignIn.signOut();
-        final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+  try {
+    // Sign out previous sessions just in case
+    await googleSignIn.signOut();
 
-        if (googleUser == null) {
-          //user cancelled sign in or process terminated or smth
-          return;
-        }
+    final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+    if (googleUser == null) {
+      // User cancelled sign-in
+      return;
+    }
 
-        final String email = googleUser.email;
-        if (!email.endsWith('@lnmiit.ac.in')) {
-          await googleSignIn.signOut();
+    final String email = googleUser.email;
+    if (!email.endsWith('@lnmiit.ac.in')) {
+      await googleSignIn.signOut();
 
-          await showDialog(
-            context: context,
-            builder: (BuildContext dialogContext) {
-              return AlertDialog(
-                backgroundColor: Color.fromARGB(255, 245, 245, 245),
-                title: Text('Used an Invalid Email'),
-
-                content: Text('Please use your LNMIIT Email ID to Sign In.'),
-                actions: [
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(dialogContext).pop();
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 239, 210, 210),
-                      side: BorderSide(
-                        color: Color.fromARGB(255, 86, 3, 3),
-                        width: 2,
-                      )
-                    ),
-                    child:  Text(
-                        'Retry',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 86, 3, 3),
-                      )
-
-                    ),
+      await showDialog(
+        context: context,
+        builder: (BuildContext dialogContext) {
+          return AlertDialog(
+            backgroundColor: const Color.fromARGB(255, 245, 245, 245),
+            title: const Text('Used an Invalid Email'),
+            content: const Text('Please use your LNMIIT Email ID to Sign In.'),
+            actions: [
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(dialogContext).pop();
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 239, 210, 210),
+                  side: const BorderSide(
+                    color: Color.fromARGB(255, 86, 3, 3),
+                    width: 2,
                   ),
-                ],
-              );
-            },
+                ),
+                child: const Text(
+                  'Retry',
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 86, 3, 3),
+                  ),
+                ),
+              ),
+            ],
           );
+        },
+      );
+      return;
+    }
 
-          throw Exception('Use your Official College Email ID to Sign In.');
-        }
+    final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
 
-        final GoogleSignInAuthentication googleAuth = await googleUser
-            .authentication;
-        final credential = GoogleAuthProvider.credential(
-          accessToken: googleAuth.accessToken,
-          idToken: googleAuth.idToken,
-        );
+    UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+    final String userName = userCredential.user?.displayName ?? 'User';
 
-        await FirebaseAuth.instance.signInWithCredential(credential);
-        print('Sign-in Successful');
-
-        UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
-
-        String userName = userCredential.user?.displayName ?? 'User';
-
-        Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-                builder: (context) => HomePage(userName: userName,)
-            ),
-        );
-
-    } catch (e) {
+    // Navigate to loading screen, then to home screen
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => LoadingScreen(userName: userName),
+      ),
+    );
+  } catch (e) {
     print('Sign-in failed: $e');
-    return;
-    }
-
-    }
-
-
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Login failed. Please try again.'),
+        backgroundColor: Colors.red,
+      ),
+    );
+  }
+}

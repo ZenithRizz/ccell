@@ -2,210 +2,158 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class HomePage extends StatelessWidget{
-
+class HomePage extends StatelessWidget {
   HomePage({super.key, required this.userName});
 
-  final Map<String,Map<String, String>> buttonData = {
-    'Academic Calender': {
-      'image' :'academic_calender.png',
-      'url': 'https://lnmiit.ac.in/academics/academic-documents/#pdf-academic-calendar-2025/1/'
+  final String userName;
+
+  final Map<String, Map<String, dynamic>> buttonData = {
+    'Academic Calendar': {
+      'image': 'academic_calender.png',
+      'url':
+      'https://lnmiit.ac.in/academics/academic-documents/#pdf-academic-calendar-2025/1/',
     },
     'Lost & Found': {
-      'image' : 'lost_found.png',
+      'image': 'lost_found.png',
     },
-    'Find The Location': {
-      'image': 'find_location.png'
+    'Find the Location': {
+      'image': 'find_location.png',
     },
     'Bus Timetable': {
       'image': 'bus_timetable.png',
-      'url': 'https://raw.githubusercontent.com/Counselling-Cell-LNMIIT/appResources/main/pdf/Bus_Time_Table.pdf'
+      'url':
+      'https://raw.githubusercontent.com/Counselling-Cell-LNMIIT/appResources/main/pdf/Bus_Time_Table.pdf',
     },
     'Mess Menu': {
       'image': 'mess_menu.png',
-      'url': 'https://raw.githubusercontent.com/Counselling-Cell-LNMIIT/appResources/main/pdf/Mess_Menu.pdf'
+      'url':
+      'https://raw.githubusercontent.com/Counselling-Cell-LNMIIT/appResources/main/pdf/Mess_Menu.pdf',
     },
     'Profile': {
-      'image' : 'profile.png'
+      'image': 'profile.png',
+      'route': 'profile',
     }
   };
-  final String userName;
 
   @override
-  Widget build (context) {
+  Widget build(context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 0, 18, 25),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: 70,
-            ),
-            Align(
-              alignment: Alignment.topLeft,
-              child: Row(
-                children: [
-                  SizedBox(
-                    width: 30,
-                  ),
-                  Text(
-                      'Hi $userName !',
-                      style: GoogleFonts.lilitaOne(
-                        fontSize: 40,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      )
-                  ),
-                ],
+      backgroundColor: const Color(0xFF001219),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 70),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: Text(
+              'Hi $userName!',
+              style: GoogleFonts.lilitaOne(
+                fontSize: 36,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
               ),
             ),
-            SizedBox(
-              height: 60,
+          ),
+          const SizedBox(height: 60),
+          Expanded(
+            child: GridView.count(
+              crossAxisCount: 2,
+              mainAxisSpacing: 20,
+              crossAxisSpacing: 20,
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              children: buttonData.entries.map((entry) {
+                return _ButtonHomeScreen(
+                  title: entry.key,
+                  imageName: entry.value['image'],
+                  url: entry.value['url'],
+                  route: entry.value['route'],
+                );
+              }).toList(),
             ),
-            Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _ButtonHomeScreen(
-                      buttonData['Academic Calender']!['url'],
-                      title: 'Academic Calender',
-                      imageName: buttonData['Academic Calender']!['image']!),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    _ButtonHomeScreen(
-                      '',
-                        title: 'Profile',
-                        imageName: buttonData['Profile']!['image']!),
-                  ],
-                ),
-                SizedBox(
-                  width: 20,
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _ButtonHomeScreen(
-                      '',
-                        title: 'Find The Location',
-                        imageName: buttonData['Find The Location']!['image']!),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    _ButtonHomeScreen(
-                        buttonData['Bus Timetable']!['url'],
-                        title: 'Bus Timetable',
-                        imageName: buttonData['Bus Timetable']!['image']!),
-                  ],
-                ),
-                SizedBox(
-                  width: 20,
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _ButtonHomeScreen(
-                        buttonData['Mess Menu']!['url'],
-                        title: 'Mess Menu',
-                        imageName: buttonData['Mess Menu']!['image']!),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    _ButtonHomeScreen(
-                      '',
-                        title: 'Lost & Found',
-                        imageName: buttonData['Lost & Found']!['image']!),
-                  ],
-                )
-              ],
-                    ),
-            ),
-          ],
-        ),
+          ),
+        ],
+      ),
     );
   }
-
 }
 
 class _ButtonHomeScreen extends StatelessWidget {
-  const _ButtonHomeScreen(this.url, {super.key, required this.title, required this.imageName});
+  const _ButtonHomeScreen({
+    super.key,
+    required this.title,
+    required this.imageName,
+    this.url,
+    this.route,
+  });
 
   final String title;
   final String imageName;
   final String? url;
-  
+  final String? route;
+
   @override
-  Widget build (context){
+  Widget build(context) {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-            colors: [
-              Colors.white.withOpacity(0.4),
-              Color.fromARGB(255, 199, 198, 198).withOpacity(0.3),
-              Colors.black.withOpacity(0.2),
-            ],
+          colors: [
+            Colors.white.withOpacity(0.4),
+            const Color(0xFFC7C6C6).withOpacity(0.3),
+            Colors.black.withOpacity(0.2),
+          ],
           begin: Alignment.topLeft,
-          end: Alignment.bottomRight
+          end: Alignment.bottomRight,
         ),
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(12),
       ),
       child: ElevatedButton(
-          onPressed: () {
-            if(url != null && url!.isNotEmpty){
-              _Urllauncher(url!);
-            }
-          },
-          style: ElevatedButton.styleFrom(
-                  minimumSize: const Size(166, 166),
-                  maximumSize: const Size(166, 166),
-                  backgroundColor: Colors.transparent,
-                  shadowColor: Colors.transparent,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16)
-                  )
+        onPressed: () async {
+          if (route != null && route!.isNotEmpty) {
+            Navigator.pushNamed(context, '/$route');
+          } else if (url != null && url!.isNotEmpty) {
+            await _launchUrl(url!);
+          }
+        },
+        style: ElevatedButton.styleFrom(
+          minimumSize: const Size(166, 166),
+          backgroundColor: Colors.transparent,
+          shadowColor: Colors.transparent,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
           ),
-          child: Center(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 100,
-                  width: 120,
-                  child: Image.asset(
-                      'assets/images/$imageName',
-                    fit: BoxFit.contain,
-                  ),
-                ),
-                Flexible(
-                  child: Text(
-                      title,
-                    textAlign: TextAlign.center,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                    style: GoogleFonts.lilitaOne(
-                      fontSize: 16,
-                      color: Colors.white,
-                    ),
-
-                  ),
-                ),
-              ],
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              'assets/images/$imageName',
+              width: 100,
+              height: 100,
+              fit: BoxFit.contain,
             ),
-          )),
+            const SizedBox(height: 8),
+            Flexible(
+              child: Text(
+                title,
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
+                style: GoogleFonts.lilitaOne(
+                  fontSize: 16,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
-
-  Future<void> _Urllauncher(String urlString) async {
-    final Uri url = Uri.parse(urlString);
-    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
-      throw Exception('Could not launch $url');
+  Future<void> _launchUrl(String urlString) async {
+    final Uri uri = Uri.parse(urlString);
+    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+      throw Exception('Could not launch $uri');
     }
   }
 }
