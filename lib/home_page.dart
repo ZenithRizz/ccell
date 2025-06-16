@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:login_page/gymkhana.dart';
+import 'package:login_page/more_page.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'main.dart';
 
-class HomePage extends StatelessWidget {
-  HomePage({super.key, required this.userName});
+class HomeDashboard extends StatelessWidget {
+  HomeDashboard({super.key, required this.userName});
 
   final String userName;
 
   final Map<String, Map<String, dynamic>> buttonData = {
     'Academic Calendar': {
       'image': 'academic_calender.png',
-      'url':
-      'https://lnmiit.ac.in/academics/academic-documents/#pdf-academic-calendar-2025/1/',
+      'url': 'https://lnmiit.ac.in/academics/academic-documents/#pdf-academic-calendar-2025/1/',
     },
     'Lost & Found': {
       'image': 'lost_found.png',
@@ -21,13 +23,11 @@ class HomePage extends StatelessWidget {
     },
     'Bus Timetable': {
       'image': 'bus_timetable.png',
-      'url':
-      'https://raw.githubusercontent.com/Counselling-Cell-LNMIIT/appResources/main/pdf/Bus_Time_Table.pdf',
+      'url': 'https://raw.githubusercontent.com/Counselling-Cell-LNMIIT/appResources/main/pdf/Bus_Time_Table.pdf',
     },
     'Mess Menu': {
       'image': 'mess_menu.png',
-      'url':
-      'https://raw.githubusercontent.com/Counselling-Cell-LNMIIT/appResources/main/pdf/Mess_Menu.pdf',
+      'url': 'https://raw.githubusercontent.com/Counselling-Cell-LNMIIT/appResources/main/pdf/Mess_Menu.pdf',
     },
     'Profile': {
       'image': 'profile.png',
@@ -155,5 +155,67 @@ class _ButtonHomeScreen extends StatelessWidget {
     if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
       throw Exception('Could not launch $uri');
     }
+  }
+}
+
+class HomePage extends StatefulWidget {
+  final String userName;
+  const HomePage({super.key, required this.userName});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int _selectedIndex = 0;
+
+  late final List<Widget> _pages = [
+    HomeDashboard(userName: widget.userName),
+    const GymkhanaPage(),
+    const SimplePage(title: 'Notifications Page'),
+    MorePage(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 300),
+        child: _pages[_selectedIndex],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.black,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.grey,
+        showUnselectedLabels: true,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.sports),
+            label: 'Gymkhana',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.notifications),
+            label: 'Notifications',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.more_horiz),
+            label: 'More',
+          ),
+        ],
+      ),
+    );
   }
 }
