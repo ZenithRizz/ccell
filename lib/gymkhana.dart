@@ -177,6 +177,7 @@ class GymkhanaPage extends StatelessWidget {
                   ),
                 ],
               ),
+              SizedBox(height: 64,)
             ],
           ),
         ),

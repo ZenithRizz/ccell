@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:login_page/google_sign_in.dart';
+import 'package:login_page/main.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -49,7 +50,7 @@ class LoginPage extends StatelessWidget {
               color: Colors.white,
             ),
           ),
-          const SizedBox(height: 170),
+          const SizedBox(height: 140),
           GestureDetector(
             onTap: () {
               signInWithCollegeGoogleAccount(context);
@@ -68,6 +69,7 @@ class LoginPage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
+          TextButton(onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (_) => MyHomePage()));}, child: Text("Click for quick access")),
           TextButton(
             onPressed: () {},
             style: TextButton.styleFrom(
