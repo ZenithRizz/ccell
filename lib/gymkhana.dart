@@ -11,7 +11,7 @@ class GymkhanaPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF0E1A23),
+      backgroundColor: const Color(0xFF001219),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
@@ -26,23 +26,42 @@ class GymkhanaPage extends StatelessWidget {
                   fontSize: 40,
                 )
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 40),
               Text(
-                'About student gymkhana',
-                style: GoogleFonts.poppins()
+                "Every college works on the efforts that its student masses put in it to make the college for the students, of the students, and by the students. The LNMIIT Students’ Gymkhana, under the Director of the Institute's patronage, acts as a communication service and facilitates decision-making in the greater interest of the students on The LNMIIT",
+                style: GoogleFonts.poppins(color: Color.fromRGBO(255, 255, 255, 1))
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 36),
               Container(
+                height: 80,
+                width: 380,
                 padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(24),
+                  borderRadius: BorderRadius.circular(20),
                   gradient: const LinearGradient(
-                    colors: [Color(0xFF6CD4F3), Color(0xFF0E90B8)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [Color.fromRGBO(53, 63, 84, 1), Color.fromRGBO(34, 40, 52, 1)],
                   ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.white,
+                      offset: Offset(-1, -1),
+                      blurRadius: 1
+                    ),
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.7),
+                      blurRadius: 12,
+                      offset: Offset(6, 6),
+                    ),
+                  ]
                 ),
-                child: const Text(
-                  'PRESIDENTIAL COUNCIL',
-                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                child: Center(
+                  child: Text(
+                    'PRESIDENTIAL COUNCIL',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.lilitaOne(color: Color.fromRGBO(255, 255, 255, 1), fontSize: 24)
+                  ),
                 ),
               ),
               const SizedBox(height: 16),
@@ -51,6 +70,7 @@ class GymkhanaPage extends StatelessWidget {
                 crossAxisCount: 2,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
+                childAspectRatio: 0.85,
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
                   squareCard(
@@ -79,79 +99,50 @@ class GymkhanaPage extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 24),
-              const Text(
+              const SizedBox(height: 40),
+              Text(
                 'STUDENT FESTS',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
+                style: GoogleFonts.lilitaOne(
+                  color: Color.fromRGBO(255, 255, 255, 1),
+                  fontSize: 26
+                )
               ),
-              const SizedBox(height: 16),
-              SizedBox(
-                height: 160,
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Positioned(
-                      left: 40,
-                      top: 0,
-                      child: triangleCard(
-                        color: const LinearGradient(
-                          colors: [Color(0xFF6CD4F3), Color(0xFF0E90B8)],
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                        ),
-                        isInverted: true,
-                        size: 120,
-                        label: 'name',
-                        context: context,
-                        targetScreen: const BlueFestScreen(),
-                      ),
-                    ),
-                    Positioned(
-                      right: 40,
-                      top: 0,
-                      child: triangleCard(
-                        color: const LinearGradient(
-                          colors: [Color(0xFFEDE6DB), Color(0xFFB7ADA3)],
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                        ),
-                        isInverted: true,
-                        size: 120,
-                        label: 'name',
-                        context: context,
-                        targetScreen: const GreyFestScreen(),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 0,
-                      child: triangleCard(
-                        color: const LinearGradient(
-                          colors: [Color(0xFFD45A5A), Color(0xFF8A3E3E)],
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                        ),
-                        isInverted: false,
-                        size: 120,
-                        label: 'name',
-                        context: context,
-                        targetScreen: const RedFestScreen(),
-                      ),
-                    ),
-                  ],
-                ),
+              SizedBox(height: 20,),
+              GridView.count(
+                shrinkWrap: true,
+                crossAxisCount: 2,
+                crossAxisSpacing: 16,
+                mainAxisSpacing: 16,
+                childAspectRatio: 0.85,
+                physics: const NeverScrollableScrollPhysics(),
+                children: [
+                  squareCard(
+                    [Colors.lightBlueAccent, Colors.blueAccent],
+                    "Desportivos",
+                    context,
+                    const StudentEventScreen(),
+                  ),
+                  squareCard(
+                    [Colors.grey.shade300, Colors.grey.shade600],
+                    "Plinth",
+                    context,
+                    const StudentEventScreen(),
+                  ),
+                  squareCard(
+                    [Colors.grey.shade300, Colors.grey.shade600],
+                    "Vivacity",
+                    context,
+                    const StudentEventScreen(),
+                  ),
+                ],
               ),
-              const SizedBox(height: 24),
-              const Text(
+              const SizedBox(height: 40),
+              Text(
                 'STUDENT EVENTS',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
+                style: GoogleFonts.lilitaOne(
+                  color: Color.fromRGBO(255, 255, 255, 1),
+                  fontSize: 26
+                )
               ),
               const SizedBox(height: 16),
               GridView.count(
@@ -159,17 +150,18 @@ class GymkhanaPage extends StatelessWidget {
                 crossAxisCount: 2,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
+                childAspectRatio: 0.85,
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
                   squareCard(
                     [Colors.lightBlueAccent, Colors.blueAccent],
-                    "name",
+                    "TEDX LNMIIT",
                     context,
                     const StudentEventScreen(),
                   ),
                   squareCard(
                     [Colors.grey.shade300, Colors.grey.shade600],
-                    "name",
+                    "E-Summit",
                     context,
                     const StudentEventScreen(),
                   ),
@@ -213,8 +205,8 @@ Widget squareCard(List<Color> gradientColors, String label, BuildContext context
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const CircleAvatar(radius: 24, backgroundColor: Colors.white),
-            const SizedBox(height: 8),
-            Text(label, textAlign: TextAlign.center, style: const TextStyle(color: Colors.white, fontSize: 12)),
+            const SizedBox(height: 15),
+            Text(label, textAlign: TextAlign.center, style: GoogleFonts.lilitaOne(color: Color.fromRGBO(255, 255, 255, 1), fontSize: 20, height: 1.1)),
           ],
         ),
       ),
@@ -356,3 +348,51 @@ class StudentEventScreen extends StatelessWidget {
     );
   }
 }
+
+// Positioned(
+//                       left: 40,
+//                       top: 0,
+//                       child: triangleCard(
+//                         color: const LinearGradient(
+//                           colors: [Color(0xFF6CD4F3), Color(0xFF0E90B8)],
+//                           begin: Alignment.topCenter,
+//                           end: Alignment.bottomCenter,
+//                         ),
+//                         isInverted: true,
+//                         size: 120,
+//                         label: 'name',
+//                         context: context,
+//                         targetScreen: const BlueFestScreen(),
+//                       ),
+//                     ),
+//                     Positioned(
+//                       right: 40,
+//                       top: 0,
+//                       child: triangleCard(
+//                         color: const LinearGradient(
+//                           colors: [Color(0xFFEDE6DB), Color(0xFFB7ADA3)],
+//                           begin: Alignment.topCenter,
+//                           end: Alignment.bottomCenter,
+//                         ),
+//                         isInverted: true,
+//                         size: 120,
+//                         label: 'name',
+//                         context: context,
+//                         targetScreen: const GreyFestScreen(),
+//                       ),
+//                     ),
+//                     Positioned(
+//                       bottom: 0,
+//                       child: triangleCard(
+//                         color: const LinearGradient(
+//                           colors: [Color(0xFFD45A5A), Color(0xFF8A3E3E)],
+//                           begin: Alignment.topCenter,
+//                           end: Alignment.bottomCenter,
+//                         ),
+//                         isInverted: false,
+//                         size: 120,
+//                         label: 'name',
+//                         context: context,
+//                         targetScreen: const RedFestScreen(),
+//                       ),
+//                     ),
