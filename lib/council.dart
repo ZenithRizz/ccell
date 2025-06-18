@@ -101,6 +101,9 @@ class CouncilDetailScreen extends StatelessWidget {
                 },
               ),
             ),
+            SizedBox(height: 20,),
+            Text("Connect with us"),
+            // IconButton(onPressed: () {}, icon: Icon(Icons.))
           ],
         ),
       ),

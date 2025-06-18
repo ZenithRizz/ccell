@@ -1,3 +1,4 @@
+import 'package:google_fonts/google_fonts.dart';
 import 'package:login_page/cosha.dart';
 import 'package:login_page/cultural.dart';
 import 'package:login_page/sports.dart';
@@ -17,21 +18,18 @@ class GymkhanaPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Text(
+              Text(
                 'STUDENT GYMKHANA',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
+                textAlign:TextAlign.center,
+                style: GoogleFonts.lilitaOne(
+                  color: Color.fromRGBO(255, 255, 255, 1),
+                  fontSize: 40,
+                )
               ),
               const SizedBox(height: 8),
-              const Text(
+              Text(
                 'About student gymkhana',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.white70,
-                ),
+                style: GoogleFonts.poppins()
               ),
               const SizedBox(height: 16),
               Container(

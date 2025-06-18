@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       title: 'LNMIIT C-Cell App',
       debugShowCheckedModeBanner: false,
       routes: {
-        '/profile': (context) => const MyHomePage(),
+        '/profile': (context) => const ProfilePage(),
       },
       home: StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
