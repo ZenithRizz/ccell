@@ -62,9 +62,9 @@ class SportsCouncil extends StatelessWidget {
                     "Basketball",
                     context,
                     const PresidentialCouncilScreen(),
-                    'assets/images/cosha.png',
+                    'https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/pexels-souvenirpixels-414612.jpg',
                     [
-                      "https://example.com/gallery1.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/pexels-souvenirpixels-414612.jpg",
                       "https://example.com/gallery2.jpg",
                     ],
                     [
