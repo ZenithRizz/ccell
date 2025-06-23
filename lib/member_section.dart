@@ -1,0 +1,45 @@
+import 'package:flutter/material.dart';
+import 'member.dart';
+import 'member_card.dart';
+
+
+class MemberSection extends StatelessWidget {
+  final String title;
+  final List<Member> members;
+
+  const MemberSection({
+    super.key,
+    required this.title,
+    required this.members,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          title,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(height: 10),
+        SizedBox(
+          height: 220,
+          width: double.infinity,
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            itemCount: members.length,
+            separatorBuilder: (_, __) => const SizedBox(width: 8),
+            itemBuilder: (context, index) {
+              return MemberCard(member: members[index]);
+            },
+          ),
+        ),
+      ],
+    );
+  }
+}

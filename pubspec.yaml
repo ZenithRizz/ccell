@@ -89,6 +89,16 @@ flutter:
       - assets/images/y24.jpg
       - assets/images/gmail.png
       - assets/images/phone_icon.png
+      - assets/images/atharv_shah.jpg
+      - assets/images/kunal_sharma.png
+      - assets/images/yash_raj.jpg
+      - assets/images/neha_raniwala.jpg
+      - assets/images/vibha_gupta.jpg
+      - assets/images/mudit_img.jpg
+      - assets/images/aditya_kansal.webp
+      - assets/images/rahul_sharma.jpg
+      - assets/images/lakshita.jpeg
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
