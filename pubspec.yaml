@@ -99,6 +99,7 @@ flutter:
       - assets/images/rahul_sharma.jpg
       - assets/images/lakshita.jpeg
 
+      - assets/images/Instagram.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

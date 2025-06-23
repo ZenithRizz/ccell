@@ -1,3 +1,13 @@
+import java.io.FileInputStream
+import java.util.Properties
+
+val keystoreProperties = Properties()
+val keystorePropertiesFile = rootProject.file("key.properties")
+
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+}
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -30,12 +40,28 @@ android {
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
+    signingConfigs {
+    create("release") {
+        val storeFilePath = keystoreProperties["storeFile"]?.toString()
+        if (storeFilePath != null) {
+            storeFile = file(storeFilePath)
+        }
+
+        storePassword = keystoreProperties["storePassword"]?.toString()
+        keyAlias = keystoreProperties["keyAlias"]?.toString()
+        keyPassword = keystoreProperties["keyPassword"]?.toString()
+    }
+}
 
     buildTypes {
-        release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+        getByName("release") {
+            isMinifyEnabled = false
+            isShrinkResources = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+            signingConfig = signingConfigs.getByName("release")
         }
     }
 }

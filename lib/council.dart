@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CouncilDetailScreen extends StatelessWidget {
   final String imageUrl;
   final List<String> galleryImages;
   final List<Map<String, String>> cordies;
+  final String instaUrl;
 
   const CouncilDetailScreen({
     super.key,
     required this.imageUrl,
     required this.galleryImages,
     required this.cordies,
+    required this.instaUrl,
   });
 
   void _launchPhone(String phone) async {
@@ -30,6 +33,22 @@ class CouncilDetailScreen extends StatelessWidget {
       await launchUrl(uri);
     }
   }
+
+
+  Future<void> _launchInstagram() async {
+  if (instaUrl.trim().isEmpty) {
+    debugPrint('Instagram URL is empty.');
+    return;
+  }
+
+  final Uri url = Uri.parse(instaUrl);
+
+  if (await canLaunchUrl(url)) {
+    await launchUrl(url, mode: LaunchMode.externalApplication);
+  } else {
+    debugPrint('Could not launch $url');
+  }
+}
 
 
   @override
@@ -101,6 +120,30 @@ class CouncilDetailScreen extends StatelessWidget {
                 },
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "Connect with us",
+                style: GoogleFonts.poppins(
+                  color: Color.fromRGBO(255, 255, 255, 1),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 26
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: () async {
+                try {
+                  await _launchInstagram();
+                } catch (e) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Unable to open Instagram'))
+                  );
+                }
+              },
+              child: Image.asset('assets/images/Instagram.png'),
+            ),
+            SizedBox(height: 150,)
           ],
         ),
       ),

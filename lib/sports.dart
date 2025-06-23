@@ -55,15 +55,16 @@ class SportsCouncil extends StatelessWidget {
                       {"name": "Cordie 2"},
                       {"name": "Cordie 3"},
                     ],
+                    ""
                   ),
                   squareCard(
                     [Colors.grey.shade300, Colors.blueAccent],
                     "Basketball",
                     context,
                     const PresidentialCouncilScreen(),
-                    'assets/images/cosha.png',
+                    'https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/pexels-souvenirpixels-414612.jpg',
                     [
-                      "https://example.com/gallery1.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/pexels-souvenirpixels-414612.jpg",
                       "https://example.com/gallery2.jpg",
                     ],
                     [
@@ -71,6 +72,7 @@ class SportsCouncil extends StatelessWidget {
                       {"name": "Cordie 2"},
                       {"name": "Cordie 3"},
                     ],
+                    'https://www.instagram.com/p_moradiya_07/'
                   ),
                   squareCard(
                     [Colors.grey.shade300, Colors.blueAccent],
@@ -87,6 +89,7 @@ class SportsCouncil extends StatelessWidget {
                       {"name": "Cordie 2"},
                       {"name": "Cordie 3"},
                     ],
+                    ""
                   ),
                   squareCard(
                     [const Color.fromRGBO(224, 224, 224, 1), Colors.blueAccent],
@@ -103,6 +106,7 @@ class SportsCouncil extends StatelessWidget {
                       {"name": "Cordie 2"},
                       {"name": "Cordie 3"},
                     ],
+                    ""
                   ),
                   squareCard(
                     [Colors.grey.shade300, Colors.blueAccent],
@@ -119,6 +123,7 @@ class SportsCouncil extends StatelessWidget {
                       {"name": "Cordie 2"},
                       {"name": "Cordie 3"},
                     ],
+                    ""
                   ),
                   squareCard(
                     [Colors.grey.shade300, Colors.blueAccent],
@@ -135,6 +140,7 @@ class SportsCouncil extends StatelessWidget {
                       {"name": "Cordie 2"},
                       {"name": "Cordie 3"},
                     ],
+                    ""
                   ),
                   squareCard(
                     [Colors.grey.shade300, Colors.blueAccent],
@@ -151,6 +157,7 @@ class SportsCouncil extends StatelessWidget {
                       {"name": "Cordie 2"},
                       {"name": "Cordie 3"},
                     ],
+                    ""
                   ),
                   squareCard(
                     [Colors.grey.shade300, Colors.blueAccent],
@@ -167,6 +174,7 @@ class SportsCouncil extends StatelessWidget {
                       {"name": "Cordie 2"},
                       {"name": "Cordie 3"},
                     ],
+                    ""
                   ),
                   squareCard(
                     [Colors.grey.shade300, Colors.blueAccent],
@@ -182,7 +190,7 @@ class SportsCouncil extends StatelessWidget {
                       {"name": "Cordie 1"},
                       {"name": "Cordie 2"},
                       {"name": "Cordie 3"},
-                    ],
+                    ], ""
                   ),
                   squareCard(
                     [Colors.grey.shade300, Colors.blueAccent],
@@ -201,6 +209,7 @@ class SportsCouncil extends StatelessWidget {
                       {"name": "Saurav Rathi", "phone": "9821723636"},
                       {"name": "Vishesh Jain"},
                     ],
+                    ""
                   ),
                 ],
               ),
@@ -214,7 +223,7 @@ class SportsCouncil extends StatelessWidget {
 }
 
 // Square Card Widget
-Widget squareCard(List<Color> gradientColors, String label, BuildContext context, Widget targetScreen, String imageUrl, List<String> galleryImages, List<Map<String, String>> cordies) {
+Widget squareCard(List<Color> gradientColors, String label, BuildContext context, Widget targetScreen, String imageUrl, List<String> galleryImages, List<Map<String, String>> cordies, String instaUrl) {
   return Material(
     elevation: 6,
     borderRadius: BorderRadius.circular(16),
@@ -227,7 +236,8 @@ Widget squareCard(List<Color> gradientColors, String label, BuildContext context
             builder: (context) => CouncilDetailScreen(
                 imageUrl: imageUrl,
                 galleryImages: galleryImages,
-                cordies: cordies
+                cordies: cordies,
+                instaUrl: instaUrl,
             ),
           ),
         );

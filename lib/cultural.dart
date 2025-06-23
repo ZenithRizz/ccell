@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_page/council.dart';
 
 class CulturalCouncil extends StatelessWidget {
   const CulturalCouncil({super.key});
@@ -39,63 +40,143 @@ class CulturalCouncil extends StatelessWidget {
                 children: [
                   squareCard(
                     [Colors.grey.shade300, Colors.blueAccent],
-                    "Badminton",
+                    "AAVEG, The Nukkad Mandali",
                     context,
-                    const PresidentialCouncilScreen(),
+                    '',
+                    [],
+                    [
+                      {"name": "Hitesh Shee", "phone": "9311546859"},
+                      {"name": "Prachi Saxena", "phone": "8690497223"},
+                      {"name": "Shaurya Agarwal", "phone": "7827347353"},
+                      {"name": "Shravan Goyal", "phone": "9528133169"},
+                    ],
+                    ''
                   ),
                   squareCard(
                     [Colors.grey.shade300, Colors.blueAccent],
-                    "Basketball",
+                    "Capriccio, The Music Club",
                     context,
-                    const PresidentialCouncilScreen(),
+                    '',
+                    [],
+                    [
+                      {"name": "Atharva Chhaparwal", "phone": "9352129177"},
+                      {"name": "Ayush Verma", "phone": "9654524461"},
+                      {"name": "Shyamsundar Paramasivam", "phone": "8015610714"},
+                    ],
+                    ''
                   ),
                   squareCard(
                     [Colors.grey.shade300, Colors.blueAccent],
-                    "Chess",
+                    "Eminence, The Fashion Club",
                     context,
-                    const CulturalCouncil(),
+                    '',
+                    [],
+                    [
+                      {"name": "Gagan Gaur", "phone": "7689990636"},
+                      {"name": "Manasvi Methi", "phone": "8852075880"},
+                      {"name": "Shivam Agarwal", "phone": "9386292461"},
+                    ],
+                    ''
                   ),
                   squareCard(
                     [Colors.grey.shade300, Colors.blueAccent],
-                    "Cricket",
+                    "Fundoo Club",
                     context,
-                    const PresidentialCouncilScreen(),
+                    '',
+                    [],
+                    [],
+                    ''
                   ),
                   squareCard(
                     [Colors.grey.shade300, Colors.blueAccent],
-                    "Football",
+                    "Imagination",
                     context,
-                    const PresidentialCouncilScreen(),
+                    '',
+                    [],
+                    [
+                      {"name": "Dhairya Chhabra", "phone": "9560149823"},
+                      {"name": "Kartikeya Singh Gaur", "phone": "9026178103"},
+                      {"name": "Kriti Jindal", "phone": "7973049747"},
+                      {"name": "Prasoon Agrawal", "phone": "9413922975"},
+                    ],
+                    ''
                   ),
                   squareCard(
                     [Colors.grey.shade300, Colors.blueAccent],
-                    "Kabaddi",
+                    "Insignia, The Dance Club",
                     context,
-                    const PresidentialCouncilScreen(),
+                    '',
+                    [],
+                    [],
+                    ''
                   ),
                   squareCard(
                     [Colors.grey.shade300, Colors.blueAccent],
-                    "Lawn Tennis",
+                    "Literary Committee",
                     context,
-                    const CulturalCouncil(),
+                    '',
+                    [],
+                    [
+                      {"name": "Atharv Shah", "phone": "9315394135"},
+                      {"name": "Alakshendra Bhardwaj", "phone": "8299433225"},
+                    ],
+                    ''
                   ),
                   squareCard(
                     [Colors.grey.shade300, Colors.blueAccent],
-                    "Squash",
+                    "Media Cell",
                     context,
-                    const PresidentialCouncilScreen(),
+                    '',
+                    [],
+                    [
+                      {"name": "Abdul Hadi Siddiqui", "phone": "8107210700"},
+                      {"name": "Anshika Agrawal", "phone": "8826256810"},
+                      {"name": "Parv Khandelwal", "phone": "8306595368"},
+                      {"name": "Vihaan Malik", "phone": "8445893879"},
+                    ],
+                    ''
                   ),
                   squareCard(
                     [Colors.grey.shade300, Colors.blueAccent],
-                    "Table Tennis",
+                    "Rendition, The Dramatics Club",
                     context,
-                    const CulturalCouncil(),
+                    '',
+                    [],
+                    [
+                      {"name": "Devansh Pareek", "phone": "7677333444"},
+                      {"name": "Harshita Devnani", "phone": "9351023881"},
+                      {"name": "Rahul Sharma", "phone": "9899007236"},
+                    ],
+                    ''
                   ),
                   squareCard(
                     [Colors.grey.shade300, Colors.blueAccent],
-                    "Volleyball",
+                    "Sankalp Club",
                     context,
-                    const PresidentialCouncilScreen(),
+                    'https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/pexels-souvenirpixels-414612.jpg',
+                    [],
+                    [
+                      {"name": "Anshika Agarwal", "phone": "9462568459"},
+                      {"name": "Garvit Jain", "phone": "9518824626"},
+                      {"name": "Kushagra Garg", "phone": "9588519915"},
+                      {"name": "Paramveer Singh", "phone": "8948000075"},
+                      {"name": "Rithvik Bansal", "phone": "9510040865"},
+                    ],
+                    ""
+                  ),
+                  squareCard(
+                    [Colors.grey.shade300, Colors.blueAccent],
+                    "Vignette, The Art Club",
+                    context,
+                    '',
+                    [],
+                    [
+                      {"name": "Tanay Singhvi", "phone": "6375954622"},
+                      {"name": "Amritanshu Kumar Shandilya", "phone": "9461326773"},
+                      {"name": "Manasvi Agrawal", "phone": "6367787902"},
+                      {"name": "Titiksha Gupta", "phone": "9589433182"},
+                    ],
+                    ''
                   ),
                 ],
               ),
@@ -109,7 +190,7 @@ class CulturalCouncil extends StatelessWidget {
 }
 
 // Square Card Widget
-Widget squareCard(List<Color> gradientColors, String label, BuildContext context, Widget targetScreen) {
+Widget squareCard(List<Color> gradientColors, String label, BuildContext context, String imageUrl, List<String> galleryImages, List<Map<String, String>> cordies, String instaUrl) {
   return Material(
     elevation: 6,
     borderRadius: BorderRadius.circular(16),
@@ -118,7 +199,14 @@ Widget squareCard(List<Color> gradientColors, String label, BuildContext context
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (_) => targetScreen),
+          MaterialPageRoute(
+            builder: (context) => CouncilDetailScreen(
+                imageUrl: imageUrl,
+                galleryImages: galleryImages,
+                cordies: cordies,
+                instaUrl: instaUrl,
+            ),
+          ),
         );
       },
       child: Container(

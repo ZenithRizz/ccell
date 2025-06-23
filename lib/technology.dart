@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_page/council.dart';
 
 class TechnologyCouncil extends StatelessWidget {
   const TechnologyCouncil({super.key});
@@ -40,63 +41,78 @@ class TechnologyCouncil extends StatelessWidget {
                 children: [
                   squareCard(
                     [Colors.grey.shade300, Colors.blueAccent],
-                    "Badminton",
+                    "Astronomy",
                     context,
-                    const PresidentialCouncilScreen(),
+                    '',
+                    [],
+                    [],
+                    ''
                   ),
                   squareCard(
                     [Colors.grey.shade300, Colors.blueAccent],
-                    "Basketball",
+                    "Cipher",
                     context,
-                    const PresidentialCouncilScreen(),
+                    '',
+                    [],
+                    [
+                      {"name": "Lakshya Jain", "phone": "7568245339"},
+                      {"name": "Amartya Vikram Singh", "phone": "6268818288"},
+                      {"name": "Siddhartha Swarnkar", "phone": "9831224418"},
+                    ],
+                    ''
                   ),
                   squareCard(
                     [Colors.grey.shade300, Colors.blueAccent],
-                    "Chess",
+                    "Cybros",
                     context,
-                    const TechnologyCouncil(),
+                    '',
+                    [],
+                    [],
+                    ''
                   ),
                   squareCard(
                     [Colors.grey.shade300, Colors.blueAccent],
-                    "Cricket",
+                    "Debsoc",
                     context,
-                    const PresidentialCouncilScreen(),
+                    '',
+                    [],
+                    [],
+                    ''
                   ),
                   squareCard(
                     [Colors.grey.shade300, Colors.blueAccent],
-                    "Football",
+                    "E Cell",
                     context,
-                    const PresidentialCouncilScreen(),
+                    '',
+                    [],
+                    [],
+                    ''
                   ),
                   squareCard(
                     [Colors.grey.shade300, Colors.blueAccent],
-                    "Kabaddi",
+                    "Phoenix",
                     context,
-                    const PresidentialCouncilScreen(),
+                    '',
+                    [],
+                    [
+                      {"name": "Akshat Mehta", "phone": "9521593891"},
+                      {"name": "Dhruv Gupta", "phone": "8005681519"},
+                      {"name": "Utkarsh Kumar", "phone": "8840566896"},
+                    ],
+                    ''
                   ),
                   squareCard(
                     [Colors.grey.shade300, Colors.blueAccent],
-                    "Lawn Tennis",
+                    "Quizzinga",
                     context,
-                    const TechnologyCouncil(),
-                  ),
-                  squareCard(
-                    [Colors.grey.shade300, Colors.blueAccent],
-                    "Squash",
-                    context,
-                    const PresidentialCouncilScreen(),
-                  ),
-                  squareCard(
-                    [Colors.grey.shade300, Colors.blueAccent],
-                    "Table Tennis",
-                    context,
-                    const TechnologyCouncil(),
-                  ),
-                  squareCard(
-                    [Colors.grey.shade300, Colors.blueAccent],
-                    "Volleyball",
-                    context,
-                    const PresidentialCouncilScreen(),
+                    '',
+                    [],
+                    [
+                      {"name": "Akshit Bansal", "phone": "8604944254"},
+                      {"name": "Shubh Shresth", "phone": "8887922448"},
+                      {"name": "Toshit P. Kumar", "phone": "8107733891"},
+                    ],
+                    ''
                   ),
                 ],
               ),
@@ -110,7 +126,7 @@ class TechnologyCouncil extends StatelessWidget {
 }
 
 // Square Card Widget
-Widget squareCard(List<Color> gradientColors, String label, BuildContext context, Widget targetScreen) {
+Widget squareCard(List<Color> gradientColors, String label, BuildContext context, String imageUrl, List<String> galleryImages, List<Map<String, String>> cordies, String instaUrl) {
   return Material(
     elevation: 6,
     borderRadius: BorderRadius.circular(16),
@@ -119,7 +135,14 @@ Widget squareCard(List<Color> gradientColors, String label, BuildContext context
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (_) => targetScreen),
+          MaterialPageRoute(
+            builder: (context) => CouncilDetailScreen(
+                imageUrl: imageUrl,
+                galleryImages: galleryImages,
+                cordies: cordies,
+                instaUrl: instaUrl,
+            ),
+          ),
         );
       },
       child: Container(
