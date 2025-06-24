@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:login_page/council.dart';
 
 class CulturalCouncil extends StatelessWidget {
@@ -43,27 +44,46 @@ class CulturalCouncil extends StatelessWidget {
                     "AAVEG, The Nukkad Mandali",
                     context,
                     "Aaveg is the Nukkad Natak (street play) club of our college, dedicated to creating social awareness through powerful performances. With a team of 20–25 members, we bring important societal issues to life through impactful street plays.We perform not only at various inter-college events but also in public with flashmobs at crowded places",
-                    [],
+                    [
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/aaveg/aaeg4.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/aaveg/aaveg1.JPG",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/aaveg/aaveg2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/aaveg/aaveg4.JPG",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/aaveg/aaveg5.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/aaveg/aaveg6.JPG",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/aaveg/aaveg7.jpg",
+                    ],
                     [
                       {"name": "Hitesh Shee", "phone": "9311546859"},
                       {"name": "Prachi Saxena", "phone": "8690497223"},
                       {"name": "Shaurya Agarwal", "phone": "7827347353"},
                       {"name": "Shravan Goyal", "phone": "9528133169"},
                     ],
-                    ''
+                    "https://www.instagram.com/aaveg_lnmiit/"
                   ),
                   squareCard(
                     "assets/images/cultural/capriccio/capriccio_logo.jpg",
                     "Capriccio, The Music Club",
                     context,
                     "Step into a world where melodies speak, rhythms connect, and music becomes a way of life. At Capriccio, we’re a tight-knit crew of singers, instrumentalists, and producers who vibe, jam, and grow together. With every session, we create memories, share knowledge, and build bonds that last far beyond college. It’s more than music—it’s family!",
-                    [],
+                    [
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/capriccio/cap1.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/capriccio/cap2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/capriccio/cap3.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/capriccio/cap4.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/capriccio/cap5.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/capriccio/cap6.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/capriccio/cap7.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/capriccio/cap8.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/capriccio/cap9.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/capriccio/cap10.jpg",
+                    ],
                     [
                       {"name": "Atharva Chhaparwal", "phone": "9352129177"},
                       {"name": "Ayush Verma", "phone": "9654524461"},
                       {"name": "Shyamsundar Paramasivam", "phone": "8015610714"},
                     ],
-                    ''
+                    "https://www.instagram.com/capriccio.lnmiit/"
                   ),
                   squareCard(
                     "assets/images/cultural/eminence/eminence_logo.jpg",
@@ -230,7 +250,7 @@ Widget squareCard(String logoUrl, String label, BuildContext context, String des
           children: [
             CircleAvatar(backgroundImage: AssetImage(logoUrl), radius: 50, backgroundColor: Colors.transparent),
             const SizedBox(height: 8),
-            Text(label, textAlign: TextAlign.center, style: const TextStyle(color: Colors.white, fontSize: 12)),
+            Text(label, textAlign: TextAlign.center, style: GoogleFonts.lilitaOne(color: Colors.white, fontSize: 18)),
           ],
         ),
       ),

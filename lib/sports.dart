@@ -1,3 +1,4 @@
+import 'package:google_fonts/google_fonts.dart';
 import 'package:login_page/council.dart';
 import 'package:flutter/material.dart';
 
@@ -141,15 +142,19 @@ class SportsCouncil extends StatelessWidget {
                     context,
                     "Ready to bring the heat on the mat? LNMIIT Kabaddi is where passion meets power. With consistent podium finishes at Despo and Udghosh, we’re building legends — one tackle at a time. Join us and #LePanga! ",
                     [
-                      "https://example.com/gallery1.jpg",
-                      "https://example.com/gallery2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/kabaddi/kabaddi1.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/kabaddi/kabaddi2.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/kabaddi/kabaddi3.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/kabaddi/kabaddi4.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/kabaddi/kabaddi5.jpeg",
                     ],
                     [
-                      {"name": "Cordie 1"},
-                      {"name": "Cordie 2"},
-                      {"name": "Cordie 3"},
+                      {"name": "Arpit Singh", "phone": "7988039741", "email": "23ucc519@lnmiit.ac.in"},
+                      {"name": "Bhavesh Rode", "phone": "9307502610", "email": "23ucc531@lnmiit.ac.in"},
+                      {"name": "Ishan Bansal", "phone": "6375492739", "email": "23uec553@lnmiit.ac.in"},
+                      {"name": "Naveen Kumawat", "phone": "7569619441", "email": ""},
                     ],
-                    ""
+                    "https://www.instagram.com/lnmiit_kabaddi/"
                   ),
                   squareCard(
                     "assets/images/sports/lawn_tennis/lawnt_logo.png",
@@ -163,9 +168,8 @@ class SportsCouncil extends StatelessWidget {
                       "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/lawn_tennis/lawn4.jpeg",
                     ],
                     [
-                      {"name": "Cordie 1"},
-                      {"name": "Cordie 2"},
-                      {"name": "Cordie 3"},
+                      {"name": "Aditya Vyas", "phone": "9079255992", "email": "23ucs519@lnmiit.ac.in"},
+                      {"name": "Krishna Prabhav", "phone": "9550725780", "email": "23ucs640@lnmiit.ac.in"},
                     ],
                     ""
                   ),
@@ -199,10 +203,12 @@ class SportsCouncil extends StatelessWidget {
                       "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/table_tennis/tablt7.jpg",
                     ],
                     [
-                      {"name": "Cordie 1"},
-                      {"name": "Cordie 2"},
-                      {"name": "Cordie 3"},
-                    ], ""
+                      {"name": "Charu Arora", "phone": "", "email": "23uec530@lnmiit.ac.in"},
+                      {"name": "Pratham Kala", "phone": "6376665781", "email": "23ucs675@lnmiit.ac.in"},
+                      {"name": "Soumya Jain", "phone": "7877318802", "email": "23ucs717@lnmiit.ac.in"},
+                      {"name": "Urvi Salecha", "phone": "", "email": ""},
+                    ], 
+                    ""
                   ),
                   squareCard(
                     "",
@@ -274,7 +280,7 @@ Widget squareCard(String logoUrl, String label, BuildContext context, String des
           children: [
             CircleAvatar(backgroundImage: AssetImage(logoUrl), radius: 50, backgroundColor: Colors.transparent),
             const SizedBox(height: 8),
-            Text(label, textAlign: TextAlign.center, style: const TextStyle(color: Colors.white, fontSize: 12)),
+            Text(label, textAlign: TextAlign.center, style: GoogleFonts.lilitaOne(color: Colors.white, fontSize: 22)),
           ],
         ),
       ),

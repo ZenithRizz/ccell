@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:login_page/council.dart';
 
 class TechnologyCouncil extends StatelessWidget {
@@ -53,13 +54,17 @@ class TechnologyCouncil extends StatelessWidget {
                     "Cipher",
                     context,
                     "With the mission to empower and educate, CIPHER is the Cybersecurity and Blockchain club focused on fostering awareness, innovation, and a strong technical culture. It provides a space for students to explore digital security and decentralized technologies, grow through collaboration, and engage with two of the most impactful domains shaping the future.",
-                    [],
                     [
-                      {"name": "Lakshya Jain", "phone": "7568245339"},
-                      {"name": "Amartya Vikram Singh", "phone": "6268818288"},
-                      {"name": "Siddhartha Swarnkar", "phone": "9831224418"},
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/cipherclub/cipher1.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/cipherclub/cipher2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/cipherclub/cipher3.jpeg",
                     ],
-                    ''
+                    [
+                      {"name": "Lakshya Jain", "phone": "7568245339", "email": "23ucs633@lnmiit.ac.in"},
+                      {"name": "Amartya Vikram Singh", "phone": "6268818288", "email": "23ume513@lnmiit.ac.in"},
+                      {"name": "Siddhartha Swarnkar", "phone": "9831224418", "email": "23dcs510@lnmiit.ac.in"},
+                    ],
+                    "https://www.instagram.com/cipher.lnmiit/"
                   ),
                   squareCard(
                     "",
@@ -93,26 +98,46 @@ class TechnologyCouncil extends StatelessWidget {
                     "Phoenix",
                     context,
                     "Phoenix , The Robotics club of LNMIIT Jaipur is a vibrant community of tech enthusiasts committed to hands-on innovation, collaborative problem-solving, and excellence in robotics. We actively design, build, and program intelligent systems while proudly representing our institution in prestigious nationwide competitions, fostering both technical expertise and a spirit of innovation.",
-                    [],
                     [
-                      {"name": "Akshat Mehta", "phone": "9521593891"},
-                      {"name": "Dhruv Gupta", "phone": "8005681519"},
-                      {"name": "Utkarsh Kumar", "phone": "8840566896"},
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/phoenix/phoenix1.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/phoenix/phoenix2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/phoenix/phoenix3.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/phoenix/phoenix4.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/phoenix/phoenix5.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/phoenix/phoenix6.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/phoenix/phoenix7.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/phoenix/phoenix8.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/phoenix/phoenix9.jpg",
                     ],
-                    ''
+                    [
+                      {"name": "Akshat Mehta", "phone": "9521593891", "email": "23ucs525@lnmiit.ac.in"},
+                      {"name": "Dhruv Gupta", "phone": "8005681519", "email": "23ume519@lnmiit.ac.in"},
+                      {"name": "Utkarsh Kumar", "phone": "8840566896", "email": "23uec637@lnmiit.ac.in"},
+                    ],
+                    "https://www.instagram.com/phoenix.lnmiit/"
                   ),
                   squareCard(
                     "assets/images/tech/quizzinga/quizzinga_logo.png",
                     "Quizzinga",
                     context,
                     "We are Quizzinga, The official quizzing club of LNMIIT. Some consider us a cult of nerds (may or may not be true), while others call us a buzzing hivemind of trivia enthusiasts. If you like trivia nights, auctions or winning big prizes, Quizzinga might just be your turf. VENI VIDI VICI!!!",
-                    [],
                     [
-                      {"name": "Akshit Bansal", "phone": "8604944254"},
-                      {"name": "Shubh Shresth", "phone": "8887922448"},
-                      {"name": "Toshit P. Kumar", "phone": "8107733891"},
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/quizzinga/quizzinga1.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/quizzinga/quizzinga2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/quizzinga/quizzinga3.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/quizzinga/quizzinga4.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/quizzinga/quizzinga5.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/quizzinga/quizzinga6.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/quizzinga/quizzinga7.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/quizzinga/quizzinga8.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/quizzinga/quizzinga9.jpg",
                     ],
-                    ''
+                    [
+                      {"name": "Akshit Bansal", "phone": "8604944254", "email": "23ucs529@lnmiit.ac.in"},
+                      {"name": "Shubh Shresth", "phone": "8887922448", "email": "23ucs746@lnmiit.ac.in"},
+                      {"name": "Toshit P. Kumar", "phone": "8107733891", "email": "23uec632@lnmiit.ac.in"},
+                    ],
+                    "https://www.instagram.com/quizzingalnm/"
                   ),
                 ],
               ),
@@ -166,7 +191,7 @@ Widget squareCard(String logoUrl, String label, BuildContext context, String des
           children: [
             CircleAvatar(backgroundImage: AssetImage(logoUrl), radius: 50, backgroundColor: Colors.transparent),
             const SizedBox(height: 8),
-            Text(label, textAlign: TextAlign.center, style: const TextStyle(color: Colors.white, fontSize: 12)),
+            Text(label, textAlign: TextAlign.center, style: GoogleFonts.lilitaOne(color: Colors.white, fontSize: 22)),
           ],
         ),
       ),

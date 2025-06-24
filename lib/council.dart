@@ -60,7 +60,7 @@ class CouncilDetailScreen extends StatelessWidget {
       body: Container(
         child: SingleChildScrollView(
           child: Column(
-            children: [
+            children: <Widget>[
               const SizedBox(height: 50),
               CircleAvatar(radius: 80, backgroundImage: AssetImage(imageUrl), backgroundColor: Colors.transparent,),
               const SizedBox(height: 15),
@@ -93,7 +93,7 @@ class CouncilDetailScreen extends StatelessWidget {
                       contentPadding: const EdgeInsets.symmetric(horizontal: 16),
                       title: Text(
                         cordie['name'] ?? '',
-                        style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                        style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.bold),
                       ),
                       trailing: Wrap(
                         spacing: 12,
@@ -112,31 +112,35 @@ class CouncilDetailScreen extends StatelessWidget {
                   );
                 },
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "Connect with us",
-                  style: GoogleFonts.poppins(
-                    color: Color.fromRGBO(255, 255, 255, 1),
-                    fontWeight: FontWeight.bold,
-                    fontSize: 26
+              if (instaUrl.trim().isNotEmpty)
+                ...[
+                  Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "Connect with us",
+                    style: GoogleFonts.poppins(
+                      color: Color.fromRGBO(255, 255, 255, 1),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 26
+                    ),
                   ),
                 ),
-              ),
-              GestureDetector(
-                onTap: () async {
-                  try {
-                    await _launchInstagram();
-                  } catch (e) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Unable to open Instagram'))
-                    );
-                  }
-                },
-                child: Image.asset('assets/images/Instagram.png'),
-              ),
-              SizedBox(height: 30,)
-            ],
+                GestureDetector(
+                  onTap: () async {
+                    try {
+                      await _launchInstagram();
+                    } catch (e) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Unable to open Instagram'))
+                      );
+                    }
+                  },
+                  child: Image.asset('assets/images/Instagram.png'),
+                ),
+                SizedBox(height: 30,)
+              ],
+              SizedBox(height: 50,)
+            ]
           ),
         ),
       ),
@@ -229,7 +233,7 @@ class _GalleryCarouselState extends State<GalleryCarousel> {
                         borderRadius: BorderRadius.circular(12),
                         child: Image.network(
                           widget.galleryImages[index],
-                          fit: BoxFit.contain,
+                          fit: BoxFit.cover,
                           loadingBuilder: (context, child, progress) {
                             if (progress == null) return child;
                             return const Center(child: CircularProgressIndicator(color: Colors.white,));
