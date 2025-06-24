@@ -195,7 +195,7 @@ class _GalleryCarouselState extends State<GalleryCarousel> {
         children: [
           // Arrows + gallery area
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //mainAxisAlignment: MainAxisAlignment.start,
             children: [
               // Left arrow button
               IconButton(
@@ -215,7 +215,7 @@ class _GalleryCarouselState extends State<GalleryCarousel> {
               // Gallery image display
               Expanded(
                 child: Container(
-                  height: 200,
+                  height: 210,
                   margin: const EdgeInsets.symmetric(horizontal: 8),
                   decoration: BoxDecoration(
                     color: const Color(0xFF2B3948),
@@ -229,7 +229,7 @@ class _GalleryCarouselState extends State<GalleryCarousel> {
                         borderRadius: BorderRadius.circular(12),
                         child: Image.network(
                           widget.galleryImages[index],
-                          fit: BoxFit.cover,
+                          fit: BoxFit.contain,
                           loadingBuilder: (context, child, progress) {
                             if (progress == null) return child;
                             return const Center(child: CircularProgressIndicator(color: Colors.white,));

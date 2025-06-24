@@ -46,15 +46,18 @@ class SportsCouncil extends StatelessWidget {
                     context,
                     "The Badminton Club is where ambition meets discipline — a court for those who play to win and train to dominate. Every match is a test, every session a step toward becoming unbeatable. It’s not just about playing; it’s about proving you’re better than yesterday.",
                     [
-                      "https://example.com/gallery1.jpg",
-                      "https://example.com/gallery2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/badminton/bad1.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/badminton/bad2.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/badminton/bad3.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/badminton/bad4.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/badminton/bad5.jpeg",
                     ],
                     [
-                      {"name": "Cordie 1"},
-                      {"name": "Cordie 2"},
-                      {"name": "Cordie 3"},
+                      {"name": "Abhas Chaudhary", "phone": "9411453707", "email": "23uec502@lnmiit.ac.in"},
+                      {"name": "Raman Kumar Singh", "phone": "8591708702", "email": "23ucs689@lnmiit.ac.in"},
+                      {"name": "Vanshika Garg", "phone": "7509004321", "email": "v23ume552@lnmiit.ac.in"},
                     ],
-                    ""
+                    "https://www.instagram.com/badminton_lnmiit/"
                   ),
                   squareCard(
                     "assets/images/sports/basketball/basketball_logo.png",
@@ -62,15 +65,18 @@ class SportsCouncil extends StatelessWidget {
                     context,
                     "Our Basketball Club is a place for students who love the game. We practice regularly, play matches, and grow as a team. Whether you’re a beginner or experienced, everyone’s welcome to join.",
                     [
-                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/pexels-souvenirpixels-414612.jpg",
-                      "https://example.com/gallery2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/basketball/basket1.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/basketball/basket2.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/basketball/basket3.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/basketball/basket4.jpeg",
                     ],
                     [
-                      {"name": "Cordie 1", "phone": "9979901008", "email": "panthmoradiya7@gmail.com"},
-                      {"name": "Cordie 2"},
-                      {"name": "Cordie 3"},
+                      {"name": "Deepanshu Sharma", "phone": "9509014105", "email": "23ucs561@lnmiit.ac.in"},
+                      {"name": "Hiitesh Gour", "phone": "7878431617", "email": "23ucs590@lnmiit.ac.in"},
+                      {"name": "Shreyansh Agarwal", "phone": "8005681982", "email": "23ucs709@lnmiit.ac.in"},
+                      {"name": "Umang Jindal", "phone": "8619029605", "email": "23ucs727@lnmiit.ac.in"},
                     ],
-                    'https://www.instagram.com/p_moradiya_07/'
+                    'https://www.instagram.com/lnmiit_basketball/'
                   ),
                   squareCard(
                     "",
@@ -94,15 +100,22 @@ class SportsCouncil extends StatelessWidget {
                     context,
                     "At LNMIIT, cricket is more than just a game-its a shared passion that brings students across batches. The cricket culture here fosters not only teamwork and competitiveness but also creates a homely bond with seniors and its a place where memories are made beyond scorecard.",
                     [
-                      "https://example.com/gallery1.jpg",
-                      "https://example.com/gallery2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/cricket/cricket1.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/cricket/cricket2.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/cricket/cricket3.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/cricket/cricket4.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/cricket/cricket5.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/cricket/cricket6.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/cricket/cricket7.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/cricket/cricket8.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/cricket/cricket9.jpeg",
                     ],
                     [
-                      {"name": "Cordie 1"},
-                      {"name": "Cordie 2"},
-                      {"name": "Cordie 3"},
+                      {"name": "Akshat Tyagi", "phone": "7611879965", "email": "23uec510@lnmiit.ac.in"},
+                      {"name": "Parth Pandey", "phone": "9023973958", "email": "23ucs662@lnmiit.ac.in"},
+                      {"name": "Vijay Kumar Bijarnia", "phone": "6280833211", "email": "23ume554@lnmiit.ac.in"},
                     ],
-                    ""
+                    "https://www.instagram.com/_cricket_lnmiit/"
                   ),
                   squareCard(
                     "assets/images/sports/football/football_logo.jpg",
@@ -110,15 +123,17 @@ class SportsCouncil extends StatelessWidget {
                     context,
                     "Just a bunch of football fanatics who live for the game – whether it's sweating it out on the field or supporting their favourite clubs. LNMFC is all about teamwork, passion, and having a blast while playing the sport we love. Everyone’s welcome, from casual kickers to future pros!",
                     [
-                      "https://example.com/gallery1.jpg",
-                      "https://example.com/gallery2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/football/foot1.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/football/foot2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/football/foot3.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/football/foot4.jpg",
                     ],
                     [
-                      {"name": "Cordie 1"},
-                      {"name": "Cordie 2"},
-                      {"name": "Cordie 3"},
+                      {"name": "Anurag Tomar", "phone": "9354892101", "email": "23ucs542@lnmiit.ac.in"},
+                      {"name": "Kartikeya Swami", "phone": "6350619239", "email": "23ume527@lnmiit.ac.in"},
+                      {"name": "Priyangshu Saha", "phone": "8597641998", "email": "23ucc587@lnmiit.ac.in"},
                     ],
-                    ""
+                    "https://www.instagram.com/football.lnmiit/"
                   ),
                   squareCard(
                     "assets/images/sports/kabaddi/kabaddi_logo.jpeg",
@@ -142,8 +157,10 @@ class SportsCouncil extends StatelessWidget {
                     context,
                     "The Lawn Tennis Club welcomes everyone, whether you’re a complete beginner or an experienced player. We hold regular practice sessions, friendly matches, and competitive tournaments throughout the year. It’s a great space to improve your game, stay active, and be part of a supportive tennis community",
                     [
-                      "https://example.com/gallery1.jpg",
-                      "https://example.com/gallery2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/lawn_tennis/lawn3.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/lawn_tennis/lawn1.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/lawn_tennis/lawn2.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/lawn_tennis/lawn4.jpeg",
                     ],
                     [
                       {"name": "Cordie 1"},
