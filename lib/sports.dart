@@ -41,11 +41,10 @@ class SportsCouncil extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
                   squareCard(
-                    [Colors.grey.shade300, Colors.blueAccent],
+                    "assets/images/sports/badminton/badminton_logo.jpeg",
                     "Badminton",
                     context,
-                    const PresidentialCouncilScreen(),
-                    'assets/images/cosha.png',
+                    "The Badminton Club is where ambition meets discipline — a court for those who play to win and train to dominate. Every match is a test, every session a step toward becoming unbeatable. It’s not just about playing; it’s about proving you’re better than yesterday.",
                     [
                       "https://example.com/gallery1.jpg",
                       "https://example.com/gallery2.jpg",
@@ -58,11 +57,10 @@ class SportsCouncil extends StatelessWidget {
                     ""
                   ),
                   squareCard(
-                    [Colors.grey.shade300, Colors.blueAccent],
+                    "assets/images/sports/basketball/basketball_logo.png",
                     "Basketball",
                     context,
-                    const PresidentialCouncilScreen(),
-                    'https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/pexels-souvenirpixels-414612.jpg',
+                    "Our Basketball Club is a place for students who love the game. We practice regularly, play matches, and grow as a team. Whether you’re a beginner or experienced, everyone’s welcome to join.",
                     [
                       "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/pexels-souvenirpixels-414612.jpg",
                       "https://example.com/gallery2.jpg",
@@ -75,11 +73,10 @@ class SportsCouncil extends StatelessWidget {
                     'https://www.instagram.com/p_moradiya_07/'
                   ),
                   squareCard(
-                    [Colors.grey.shade300, Colors.blueAccent],
+                    "",
                     "Chess",
                     context,
-                    const PresidentialCouncilScreen(),
-                    'assets/images/cosha.png',
+                    "",
                     [
                       "https://example.com/gallery1.jpg",
                       "https://example.com/gallery2.jpg",
@@ -92,11 +89,10 @@ class SportsCouncil extends StatelessWidget {
                     ""
                   ),
                   squareCard(
-                    [const Color.fromRGBO(224, 224, 224, 1), Colors.blueAccent],
+                    "assets/images/sports/cricket/cricket_logo.jpeg",
                     "Cricket",
                     context,
-                    const PresidentialCouncilScreen(),
-                    'assets/images/cosha.png',
+                    "At LNMIIT, cricket is more than just a game-its a shared passion that brings students across batches. The cricket culture here fosters not only teamwork and competitiveness but also creates a homely bond with seniors and its a place where memories are made beyond scorecard.",
                     [
                       "https://example.com/gallery1.jpg",
                       "https://example.com/gallery2.jpg",
@@ -109,11 +105,10 @@ class SportsCouncil extends StatelessWidget {
                     ""
                   ),
                   squareCard(
-                    [Colors.grey.shade300, Colors.blueAccent],
+                    "assets/images/sports/football/football_logo.jpg",
                     "Football",
                     context,
-                    const PresidentialCouncilScreen(),
-                    'assets/images/cosha.png',
+                    "Just a bunch of football fanatics who live for the game – whether it's sweating it out on the field or supporting their favourite clubs. LNMFC is all about teamwork, passion, and having a blast while playing the sport we love. Everyone’s welcome, from casual kickers to future pros!",
                     [
                       "https://example.com/gallery1.jpg",
                       "https://example.com/gallery2.jpg",
@@ -126,11 +121,10 @@ class SportsCouncil extends StatelessWidget {
                     ""
                   ),
                   squareCard(
-                    [Colors.grey.shade300, Colors.blueAccent],
+                    "assets/images/sports/kabaddi/kabaddi_logo.jpeg",
                     "Kabaddi",
                     context,
-                    const PresidentialCouncilScreen(),
-                    'assets/images/cosha.png',
+                    "Ready to bring the heat on the mat? LNMIIT Kabaddi is where passion meets power. With consistent podium finishes at Despo and Udghosh, we’re building legends — one tackle at a time. Join us and #LePanga! ",
                     [
                       "https://example.com/gallery1.jpg",
                       "https://example.com/gallery2.jpg",
@@ -143,11 +137,10 @@ class SportsCouncil extends StatelessWidget {
                     ""
                   ),
                   squareCard(
-                    [Colors.grey.shade300, Colors.blueAccent],
+                    "assets/images/sports/lawn_tennis/lawnt_logo.png",
                     "Lawn Tennis",
                     context,
-                    const PresidentialCouncilScreen(),
-                    'assets/images/cosha.png',
+                    "The Lawn Tennis Club welcomes everyone, whether you’re a complete beginner or an experienced player. We hold regular practice sessions, friendly matches, and competitive tournaments throughout the year. It’s a great space to improve your game, stay active, and be part of a supportive tennis community",
                     [
                       "https://example.com/gallery1.jpg",
                       "https://example.com/gallery2.jpg",
@@ -160,11 +153,10 @@ class SportsCouncil extends StatelessWidget {
                     ""
                   ),
                   squareCard(
-                    [Colors.grey.shade300, Colors.blueAccent],
+                    "",
                     "Squash",
                     context,
-                    const PresidentialCouncilScreen(),
-                    'assets/images/cosha.png',
+                    "",
                     [
                       "https://example.com/gallery1.jpg",
                       "https://example.com/gallery2.jpg",
@@ -177,11 +169,10 @@ class SportsCouncil extends StatelessWidget {
                     ""
                   ),
                   squareCard(
-                    [Colors.grey.shade300, Colors.blueAccent],
+                    "assets/images/sports/table_tennis/tablet_logo.png",
                     "Table Tennis",
                     context,
-                    const PresidentialCouncilScreen(),
-                    'assets/images/cosha.png',
+                    "The Table Tennis Club is a passionate and competitive group dedicated to learning and improving the sport. With a history of securing top positions in past competitions, the club proudly includes state-level players who lead by example. Members train rigorously and regularly participate in friendly matches with other colleges to gain experience and build camaraderie.",
                     [
                       "https://example.com/gallery1.jpg",
                       "https://example.com/gallery2.jpg",
@@ -193,11 +184,10 @@ class SportsCouncil extends StatelessWidget {
                     ], ""
                   ),
                   squareCard(
-                    [Colors.grey.shade300, Colors.blueAccent],
+                    "",
                     "Volleyball",
                     context,
-                    const PresidentialCouncilScreen(),
-                    'assets/images/cosha.png',
+                    "",
                     [
                       "https://example.com/gallery1.jpg",
                       "https://example.com/gallery2.jpg",
@@ -223,7 +213,7 @@ class SportsCouncil extends StatelessWidget {
 }
 
 // Square Card Widget
-Widget squareCard(List<Color> gradientColors, String label, BuildContext context, Widget targetScreen, String imageUrl, List<String> galleryImages, List<Map<String, String>> cordies, String instaUrl) {
+Widget squareCard(String logoUrl, String label, BuildContext context, String description, List<String> galleryImages, List<Map<String, String>> cordies, String instaUrl) {
   return Material(
     elevation: 6,
     borderRadius: BorderRadius.circular(16),
@@ -234,10 +224,11 @@ Widget squareCard(List<Color> gradientColors, String label, BuildContext context
           context,
           MaterialPageRoute(
             builder: (context) => CouncilDetailScreen(
-                imageUrl: imageUrl,
+                imageUrl: logoUrl,
                 galleryImages: galleryImages,
                 cordies: cordies,
                 instaUrl: instaUrl,
+                description: description,
             ),
           ),
         );
@@ -245,7 +236,10 @@ Widget squareCard(List<Color> gradientColors, String label, BuildContext context
       child: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: gradientColors,
+            colors: [
+              Color.fromRGBO(123, 127, 139, 1),
+              Colors.black,
+            ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -257,7 +251,7 @@ Widget squareCard(List<Color> gradientColors, String label, BuildContext context
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const CircleAvatar(radius: 24, backgroundColor: Colors.white),
+            CircleAvatar(backgroundImage: AssetImage(logoUrl), radius: 50, backgroundColor: Colors.transparent),
             const SizedBox(height: 8),
             Text(label, textAlign: TextAlign.center, style: const TextStyle(color: Colors.white, fontSize: 12)),
           ],

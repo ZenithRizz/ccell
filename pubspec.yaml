@@ -98,8 +98,27 @@ flutter:
       - assets/images/aditya_kansal.webp
       - assets/images/rahul_sharma.jpg
       - assets/images/lakshita.jpeg
-
       - assets/images/Instagram.png
+      - assets/images/tech/cipherclub/cipher_logo.png
+      - assets/images/tech/phoenix/phoenix_logo.png
+      - assets/images/tech/quizzinga/quizzinga_logo.png
+      - assets/images/sports/badminton/badminton_logo.jpeg
+      - assets/images/sports/basketball/basketball_logo.png
+      - assets/images/sports/cricket/cricket_logo.jpeg
+      - assets/images/sports/football/football_logo.jpg
+      - assets/images/sports/kabaddi/kabaddi_logo.jpeg
+      - assets/images/sports/lawn_tennis/lawnt_logo.png
+      - assets/images/sports/table_tennis/tablet_logo.png
+      - assets/images/cultural/aaveg/aaveg_logo.png
+      - assets/images/cultural/capriccio/capriccio_logo.jpg
+      - assets/images/cultural/eminence/eminence_logo.jpg
+      - assets/images/cultural/imagination/imagination_logo.jpeg
+      - assets/images/cultural/insignia/insignia_logo.jpg
+      - assets/images/cultural/lc/lc_logo.jpg
+      - assets/images/cultural/mediacell/media_logo.jpg
+      - assets/images/cultural/rendition/rendition_logo.png
+      - assets/images/cultural/sankalp/sankalp_logo.jpg
+      - assets/images/cultural/vignette/vignette_logo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

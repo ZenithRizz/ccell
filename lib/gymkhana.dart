@@ -74,25 +74,21 @@ class GymkhanaPage extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
                   squareCard(
-                    [Colors.lightBlueAccent, Colors.blueAccent],
                     "Cultural Council",
                     context,
                     const CulturalCouncil(),
                   ),
                   squareCard(
-                    [Colors.grey.shade300, Colors.grey.shade600],
                     "Science & Technology Council",
                     context,
                     const TechnologyCouncil(),
                   ),
                   squareCard(
-                    [Colors.lightBlueAccent, Colors.blueAccent],
                     "Sports Council",
                     context,
                     const SportsCouncil(),
                   ),
                   squareCard(
-                    [Colors.grey.shade300, Colors.grey.shade600],
                     "COSHA Committee",
                     context,
                     const COSHAScreen(),
@@ -117,19 +113,16 @@ class GymkhanaPage extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
                   squareCard(
-                    [Colors.lightBlueAccent, Colors.blueAccent],
                     "Desportivos",
                     context,
                     const StudentEventScreen(),
                   ),
                   squareCard(
-                    [Colors.grey.shade300, Colors.grey.shade600],
                     "Plinth",
                     context,
                     const StudentEventScreen(),
                   ),
                   squareCard(
-                    [Colors.grey.shade300, Colors.grey.shade600],
                     "Vivacity",
                     context,
                     const StudentEventScreen(),
@@ -154,13 +147,11 @@ class GymkhanaPage extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
                   squareCard(
-                    [Colors.lightBlueAccent, Colors.blueAccent],
                     "TEDX LNMIIT",
                     context,
                     const StudentEventScreen(),
                   ),
                   squareCard(
-                    [Colors.grey.shade300, Colors.grey.shade600],
                     "E-Summit",
                     context,
                     const StudentEventScreen(),
@@ -177,7 +168,7 @@ class GymkhanaPage extends StatelessWidget {
 }
 
 // Square Card Widget
-Widget squareCard(List<Color> gradientColors, String label, BuildContext context, Widget targetScreen) {
+Widget squareCard(String label, BuildContext context, Widget targetScreen) {
   return Material(
     elevation: 6,
     borderRadius: BorderRadius.circular(16),
@@ -192,11 +183,15 @@ Widget squareCard(List<Color> gradientColors, String label, BuildContext context
       child: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: gradientColors,
+            colors: [
+              Color.fromRGBO(123, 127, 139, 1),
+              //Color(0xFFC7C6C6).withOpacity(0.8),
+              Colors.black,
+            ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-          ),
-          borderRadius: BorderRadius.circular(16),
+            ),
+          borderRadius: BorderRadius.circular(12),
         ),
         width: 100,
         height: 100,

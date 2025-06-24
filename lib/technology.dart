@@ -40,19 +40,19 @@ class TechnologyCouncil extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
                   squareCard(
-                    [Colors.grey.shade300, Colors.blueAccent],
+                    "",
                     "Astronomy",
                     context,
-                    '',
+                    "",
                     [],
                     [],
                     ''
                   ),
                   squareCard(
-                    [Colors.grey.shade300, Colors.blueAccent],
+                    "assets/images/tech/cipherclub/cipher_logo.png",
                     "Cipher",
                     context,
-                    '',
+                    "With the mission to empower and educate, CIPHER is the Cybersecurity and Blockchain club focused on fostering awareness, innovation, and a strong technical culture. It provides a space for students to explore digital security and decentralized technologies, grow through collaboration, and engage with two of the most impactful domains shaping the future.",
                     [],
                     [
                       {"name": "Lakshya Jain", "phone": "7568245339"},
@@ -62,37 +62,37 @@ class TechnologyCouncil extends StatelessWidget {
                     ''
                   ),
                   squareCard(
-                    [Colors.grey.shade300, Colors.blueAccent],
+                    "",
                     "Cybros",
                     context,
-                    '',
+                    "",
                     [],
                     [],
                     ''
                   ),
                   squareCard(
-                    [Colors.grey.shade300, Colors.blueAccent],
+                    "",
                     "Debsoc",
                     context,
-                    '',
+                    "",
                     [],
                     [],
                     ''
                   ),
                   squareCard(
-                    [Colors.grey.shade300, Colors.blueAccent],
+                    "",
                     "E Cell",
                     context,
-                    '',
+                    "",
                     [],
                     [],
                     ''
                   ),
                   squareCard(
-                    [Colors.grey.shade300, Colors.blueAccent],
+                    "assets/images/tech/phoenix/phoenix_logo.png",
                     "Phoenix",
                     context,
-                    '',
+                    "Phoenix , The Robotics club of LNMIIT Jaipur is a vibrant community of tech enthusiasts committed to hands-on innovation, collaborative problem-solving, and excellence in robotics. We actively design, build, and program intelligent systems while proudly representing our institution in prestigious nationwide competitions, fostering both technical expertise and a spirit of innovation.",
                     [],
                     [
                       {"name": "Akshat Mehta", "phone": "9521593891"},
@@ -102,10 +102,10 @@ class TechnologyCouncil extends StatelessWidget {
                     ''
                   ),
                   squareCard(
-                    [Colors.grey.shade300, Colors.blueAccent],
+                    "assets/images/tech/quizzinga/quizzinga_logo.png",
                     "Quizzinga",
                     context,
-                    '',
+                    "We are Quizzinga, The official quizzing club of LNMIIT. Some consider us a cult of nerds (may or may not be true), while others call us a buzzing hivemind of trivia enthusiasts. If you like trivia nights, auctions or winning big prizes, Quizzinga might just be your turf. VENI VIDI VICI!!!",
                     [],
                     [
                       {"name": "Akshit Bansal", "phone": "8604944254"},
@@ -126,7 +126,7 @@ class TechnologyCouncil extends StatelessWidget {
 }
 
 // Square Card Widget
-Widget squareCard(List<Color> gradientColors, String label, BuildContext context, String imageUrl, List<String> galleryImages, List<Map<String, String>> cordies, String instaUrl) {
+Widget squareCard(String logoUrl, String label, BuildContext context, String description, List<String> galleryImages, List<Map<String, String>> cordies, String instaUrl) {
   return Material(
     elevation: 6,
     borderRadius: BorderRadius.circular(16),
@@ -137,10 +137,11 @@ Widget squareCard(List<Color> gradientColors, String label, BuildContext context
           context,
           MaterialPageRoute(
             builder: (context) => CouncilDetailScreen(
-                imageUrl: imageUrl,
+                imageUrl: logoUrl,
                 galleryImages: galleryImages,
                 cordies: cordies,
                 instaUrl: instaUrl,
+                description: description,
             ),
           ),
         );
@@ -148,7 +149,10 @@ Widget squareCard(List<Color> gradientColors, String label, BuildContext context
       child: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: gradientColors,
+            colors: [
+              Color.fromRGBO(123, 127, 139, 1),
+              Colors.black,
+            ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -160,7 +164,7 @@ Widget squareCard(List<Color> gradientColors, String label, BuildContext context
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const CircleAvatar(radius: 24, backgroundColor: Colors.white),
+            CircleAvatar(backgroundImage: AssetImage(logoUrl), radius: 50, backgroundColor: Colors.transparent),
             const SizedBox(height: 8),
             Text(label, textAlign: TextAlign.center, style: const TextStyle(color: Colors.white, fontSize: 12)),
           ],
