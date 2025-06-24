@@ -174,8 +174,12 @@ class SportsCouncil extends StatelessWidget {
                     context,
                     "The Table Tennis Club is a passionate and competitive group dedicated to learning and improving the sport. With a history of securing top positions in past competitions, the club proudly includes state-level players who lead by example. Members train rigorously and regularly participate in friendly matches with other colleges to gain experience and build camaraderie.",
                     [
-                      "https://example.com/gallery1.jpg",
-                      "https://example.com/gallery2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/table_tennis/tablt1.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/table_tennis/tablt3.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/table_tennis/tablt4.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/table_tennis/tablt5.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/table_tennis/tablt6.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/table_tennis/tablt7.jpg",
                     ],
                     [
                       {"name": "Cordie 1"},

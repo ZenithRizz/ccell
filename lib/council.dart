@@ -68,24 +68,9 @@ class CouncilDetailScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 10, right: 10),
                 child: Text(description, style: GoogleFonts.poppins(color: Colors.white, fontSize: 12), ),
               ),
+              SizedBox(height: 20,),
               // Gallery Carousel
-              Container(
-                height: 160,
-                margin: const EdgeInsets.symmetric(horizontal: 16),
-                child: PageView.builder(
-                  itemCount: galleryImages.length,
-                  controller: PageController(viewportFraction: 0.8),
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(15),
-                        child: Image.network(galleryImages[index], fit: BoxFit.cover),
-                      ),
-                    );
-                  },
-                ),
-              ),
+              GalleryCarousel(galleryImages: galleryImages),
           
               const SizedBox(height: 16),
               const Divider(color: Colors.white38),
@@ -154,6 +139,132 @@ class CouncilDetailScreen extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class GalleryCarousel extends StatefulWidget {
+  final List<String> galleryImages;
+
+  const GalleryCarousel({super.key, required this.galleryImages});
+
+  @override
+  State<GalleryCarousel> createState() => _GalleryCarouselState();
+}
+
+class _GalleryCarouselState extends State<GalleryCarousel> {
+  final PageController _pageController = PageController(viewportFraction: 1.0);
+  int _currentIndex = 0;
+
+  void _goToPrevious() {
+    if (_currentIndex > 0) {
+      _currentIndex--;
+      _pageController.animateToPage(
+        _currentIndex,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+      setState(() {});
+    }
+  }
+
+  void _goToNext() {
+    if (_currentIndex < widget.galleryImages.length - 1) {
+      _currentIndex++;
+      _pageController.animateToPage(
+        _currentIndex,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+      setState(() {});
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 250,
+      decoration: BoxDecoration(
+        color: const Color(0xFF1C2834),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Arrows + gallery area
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              // Left arrow button
+              IconButton(
+                icon: Container(
+                  padding: const EdgeInsets.all(6),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: const LinearGradient(
+                      colors: [Color(0xFF6A85F1), Color(0xFF7AC5FF)],
+                    ),
+                  ),
+                  child: const Icon(Icons.arrow_left, color: Colors.white),
+                ),
+                onPressed: _goToPrevious,
+              ),
+
+              // Gallery image display
+              Expanded(
+                child: Container(
+                  height: 200,
+                  margin: const EdgeInsets.symmetric(horizontal: 8),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF2B3948),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: PageView.builder(
+                    controller: _pageController,
+                    itemCount: widget.galleryImages.length,
+                    itemBuilder: (context, index) {
+                      return ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: Image.network(
+                          widget.galleryImages[index],
+                          fit: BoxFit.cover,
+                          loadingBuilder: (context, child, progress) {
+                            if (progress == null) return child;
+                            return const Center(child: CircularProgressIndicator(color: Colors.white,));
+                          },
+                          errorBuilder: (context, error, stackTrace) =>
+                              const Center(child: Icon(Icons.broken_image, color: Colors.white)),
+                        ),
+                      );
+                    },
+                    onPageChanged: (index) {
+                      setState(() {
+                        _currentIndex = index;
+                      });
+                    },
+                  ),
+                ),
+              ),
+
+              // Right arrow button
+              IconButton(
+                icon: Container(
+                  padding: const EdgeInsets.all(6),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: const LinearGradient(
+                      colors: [Color(0xFF6A85F1), Color(0xFF7AC5FF)],
+                    ),
+                  ),
+                  child: const Icon(Icons.arrow_right, color: Colors.white),
+                ),
+                onPressed: _goToNext,
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
