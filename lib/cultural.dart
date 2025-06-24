@@ -54,10 +54,10 @@ class CulturalCouncil extends StatelessWidget {
                       "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/aaveg/aaveg7.jpg",
                     ],
                     [
-                      {"name": "Hitesh Shee", "phone": "9311546859"},
-                      {"name": "Prachi Saxena", "phone": "8690497223"},
-                      {"name": "Shaurya Agarwal", "phone": "7827347353"},
-                      {"name": "Shravan Goyal", "phone": "9528133169"},
+                      {"name": "Hitesh Shee", "phone": "9311546859", "email": "23ucs594@lnmiit.ac.in"},
+                      {"name": "Prachi Saxena", "phone": "8690497223", "email": "23ucc581@lnmiit.ac.in"},
+                      {"name": "Shaurya Agarwal", "phone": "7827347353", "email": "23ucs703@lnmiit.ac.in"},
+                      {"name": "Shravan Goyal", "phone": "9528133169", "email": "23ucs708@lnmiit.ac.in"},
                     ],
                     "https://www.instagram.com/aaveg_lnmiit/"
                   ),
@@ -79,9 +79,9 @@ class CulturalCouncil extends StatelessWidget {
                       "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/capriccio/cap10.jpg",
                     ],
                     [
-                      {"name": "Atharva Chhaparwal", "phone": "9352129177"},
-                      {"name": "Ayush Verma", "phone": "9654524461"},
-                      {"name": "Shyamsundar Paramasivam", "phone": "8015610714"},
+                      {"name": "Atharva Chhaparwal", "phone": "9352129177", "email": "23ucs550@lnmiit.ac.in"},
+                      {"name": "Ayush Verma", "phone": "9654524461", "email": "23ucs552@lnmiit.ac.in"},
+                      {"name": "Shyamsundar Paramasivam", "phone": "8015610714", "email": "23ucs712@lnmiit.ac.in"},
                     ],
                     "https://www.instagram.com/capriccio.lnmiit/"
                   ),
@@ -90,13 +90,21 @@ class CulturalCouncil extends StatelessWidget {
                     "Eminence, The Fashion Club",
                     context,
                     "Eminence is a fashion-forward club where style meets passion. From choreographed ramp walks to fashion-themed events, we explore all aspects of fashion. Our club is a space for aspiring models, stylists, and fashion enthusiasts to grow and shine. We believe fashion is not just about clothes — it’s about attitude and identity.",
-                    [],
                     [
-                      {"name": "Gagan Gaur", "phone": "7689990636"},
-                      {"name": "Manasvi Methi", "phone": "8852075880"},
-                      {"name": "Shivam Agarwal", "phone": "9386292461"},
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/eminence/emin1.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/eminence/emin2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/eminence/emin3.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/eminence/emin4.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/eminence/emin5.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/eminence/emin6.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/eminence/emin7.jpg",
                     ],
-                    ''
+                    [
+                      {"name": "Gagan Gaur", "phone": "7689990636", "email": "23uec538@lnmiit.ac.in"},
+                      {"name": "Manasvi Methi", "phone": "8852075880", "email": "23uec568@lnmiit.ac.in"},
+                      {"name": "Shivam Agarwal", "phone": "9386292461", "email": "23uec621@lnmiit.ac.in"},
+                    ],
+                    "https://www.instagram.com/eminence.lnmiit/"
                   ),
                   squareCard(
                     "",
@@ -112,91 +120,145 @@ class CulturalCouncil extends StatelessWidget {
                     "Imagination",
                     context,
                     "IMAGINATION is the creative photography and cinematography club of The LNM Institute of Information Technology. It is a vibrant community of passionate individuals who explore the world through lenses, pixels, and ideas — turning vision into impactful visuals.",
-                    [],
                     [
-                      {"name": "Dhairya Chhabra", "phone": "9560149823"},
-                      {"name": "Kartikeya Singh Gaur", "phone": "9026178103"},
-                      {"name": "Kriti Jindal", "phone": "7973049747"},
-                      {"name": "Prasoon Agrawal", "phone": "9413922975"},
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/imagination/imagi1.png",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/imagination/imagi3.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/imagination/imagi5.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/imagination/imagi8.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/imagination/imagi10.jpg",
                     ],
-                    ''
+                    [
+                      {"name": "Dhairya Chhabra", "phone": "9560149823", "email": "23ucs564@lnmiit.ac.in"},
+                      {"name": "Kartikeya Singh Gaur", "phone": "9026178103", "email": "23ucs612@lnmiit.ac.in"},
+                      {"name": "Kriti Jindal", "phone": "7973049747", "email": "23ucs623@lnmiit.ac.in"},
+                      {"name": "Prasoon Agrawal", "phone": "9413922975", "email": "23ume540@lnmiit.ac.in"},
+                    ],
+                    "https://www.instagram.com/imagination.lnmiit/"
                   ),
                   squareCard(
                     "assets/images/cultural/insignia/insignia_logo.jpg",
                     "Insignia, The Dance Club",
                     context,
                     "INSIGNIA, the official dance club of LNMIIT, is a powerhouse of passion, rhythm, and relentless dedication. We pour our heart and soul into every move, crafting performances that leave a mark. Winning doesn't matter—shining is.",
-                    [],
-                    [],
-                    ''
+                    [
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/insignia/insignia1.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/insignia/insignia2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/insignia/insignia3.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/insignia/insignia4.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/insignia/insignia5.jpg",
+                    ],
+                    [
+                      {"name": "Harita Paliwal", "phone": "7239947589", "email": "23ucs584@lnmiit.ac.in"},
+                      {"name": "Khushi Tyagi", "phone": "9289869124", "email": "23ucs618@lnmiit.ac.in"},
+                      {"name": "Pratham Gupta", "phone": "7088992992", "email": "23ucs674@lnmiit.ac.in"},
+                      {"name": "Vedang Dixit", "phone": "8290956788", "email": "23uec641@lnmiit.ac.in"},   
+                    ],
+                    "https://www.instagram.com/insignia_lnm/"
                   ),
                   squareCard(
                     "assets/images/cultural/lc/lc_logo.jpg",
                     "Literary Committee",
                     context,
                     "Putting the CULT in culture, the Literary Committee is a mosh pit fueled by caffeine-riddled fanatics who walk on walls and drink up aquariums. An isle of those who romanticize Sisyphean suffering while thinking of nostalgia as the closest thing to a home. The Literary Committee does it all—with flair and a touch of melancholy.",
-                    [],
                     [
-                      {"name": "Atharv Shah", "phone": "9315394135"},
-                      {"name": "Alakshendra Bhardwaj", "phone": "8299433225"},
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/lc/lc1.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/lc/lc2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/lc/lc3.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/lc/lc4.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/lc/lc5.jpg",
                     ],
-                    ''
+                    [
+                      {"name": "Atharv Shah", "phone": "9315394135", "email": "23ucc525@lnmiit.ac.in"},
+                      {"name": "Alakshendra Bhardwaj", "phone": "8299433225", "email": "23ucc622@lnmiit.ac.in"},
+                    ],
+                    "https://www.instagram.com/literary_lnmiit/"
                   ),
                   squareCard(
                     "assets/images/cultural/mediacell/media_logo.jpg",
                     "Media Cell",
                     context,
                     "Media Cell isn’t just a club—it’s a platform for expression. Rooted in the idea of “media” as a medium, it offers students a space to build confidence, stage presence, and spontaneous speaking skills through interactive events. From anchoring major college fests to hosting formats like Doulogue and Knockout Ads, it ensures every voice is heard. At its core, Media Cell turns communication into connection—and gives every voice its medium",
-                    [],
                     [
-                      {"name": "Abdul Hadi Siddiqui", "phone": "8107210700"},
-                      {"name": "Anshika Agrawal", "phone": "8826256810"},
-                      {"name": "Parv Khandelwal", "phone": "8306595368"},
-                      {"name": "Vihaan Malik", "phone": "8445893879"},
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/mediacell/media1.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/mediacell/media2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/mediacell/media3.jpg",
                     ],
-                    ''
+                    [
+                      {"name": "Abdul Hadi Siddiqui", "phone": "8107210700", "email": "23ucs503@lnmiit.ac.in"},
+                      {"name": "Anshika Agrawal", "phone": "8826256810", "email": "23ucs538@lnmiit.ac.in"},
+                      {"name": "Parv Khandelwal", "phone": "8306595368", "email": "23uec588@lnmiit.ac.in"},
+                      {"name": "Vihaan Malik", "phone": "8445893879", "email": "23ume553@lnmiit.ac.in"},
+                    ],
+                    "https://www.instagram.com/mediacell_lnmiit/"
                   ),
                   squareCard(
                     "assets/images/cultural/rendition/rendition_logo.png",
                     "Rendition, The Dramatics Club",
                     context,
                     "Rendition is the theatre club of LNMIIT, where stories come alive on stage. From expressive mime performances and powerful monoacts to engaging stage plays, the club celebrates the art of acting in all its forms. We believe in the magic of live performance and the ability of theatre to connect, inspire, and transform. Whether through silent gestures or commanding dialogues, Rendition gives voice to creativity and passion.",
-                    [],
                     [
-                      {"name": "Devansh Pareek", "phone": "7677333444"},
-                      {"name": "Harshita Devnani", "phone": "9351023881"},
-                      {"name": "Rahul Sharma", "phone": "9899007236"},
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/rendition/rendition1.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/rendition/rendition2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/rendition/rendition3.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/rendition/rendition4.jpg",
                     ],
-                    ''
+                    [
+                      {"name": "Devansh Pareek", "phone": "7677333444", "email": "23ume518@lnmiit.ac.in"},
+                      {"name": "Harshita Devnani", "phone": "9351023881", "email": "23ucc546@lnmiit.ac.in"},
+                      {"name": "Rahul Sharma", "phone": "9899007236", "email": "23ucs686@lnmiit.ac.in"},
+                    ],
+                    "https://www.instagram.com/rendition_lnmiit/"
                   ),
                   squareCard(
                     "assets/images/cultural/sankalp/sankalp_logo.jpg",
                     "Sankalp Club",
                     context,
-                    "",
-                    [],
+                    "Sankalp is the social club of our college, driven by the spirit of service and compassion. We work to educate underprivileged children in nearby villages, uplift mess workers through literacy programs, and lead initiatives like cloth distribution. At Sankalp, we believe in turning intentions into actions and building a better tomorrow—one life at a time.",
                     [
-                      {"name": "Anshika Agarwal", "phone": "9462568459"},
-                      {"name": "Garvit Jain", "phone": "9518824626"},
-                      {"name": "Kushagra Garg", "phone": "9588519915"},
-                      {"name": "Paramveer Singh", "phone": "8948000075"},
-                      {"name": "Rithvik Bansal", "phone": "9510040865"},
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/sankalp/sankalp1.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/sankalp/sankalp2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/sankalp/sankalp3.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/sankalp/sankalp4.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/sankalp/sankalp5.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/sankalp/sankalp6.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/sankalp/sankalp7.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/sankalp/sankalp8.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/sankalp/sankalp9.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/sankalp/sankalp10.jpg",
                     ],
-                    ""
+                    [
+                      {"name": "Anshika Agarwal", "phone": "9462568459", "email": "23ucs538@lnmiit.ac.in"},
+                      {"name": "Garvit Jain", "phone": "9518824626", "email": "23ucs578@lnmiit.ac.in"},
+                      {"name": "Kushagra Garg", "phone": "9588519915", "email": "23ucc564@lnmiit.ac.in"},
+                      {"name": "Paramveer Singh", "phone": "8948000075", "email": "23ucs743@lnmiit.ac.in"},
+                      {"name": "Rithvik Bansal", "phone": "9510040865", "email": "23dcs508@lnmiit.ac.in"},
+                    ],
+                    "https://www.instagram.com/sankalp.lnmiit/"
                   ),
                   squareCard(
                     "assets/images/cultural/vignette/vignette_logo.png",
                     "Vignette, The Art Club",
                     context,
                     "Vignette - the Art and Craft Club of LNMIIT, is the creative heart of the campus. It's vibrant artworks bring the campus to life, adding color, energy, and character to every corner. From sketching on sheets to painting walls and even faces, it’s a space where imagination feels at home. With a canvas, a piece of fabric, or just an idea, you're free to create, in your own way.",
-                    [],
+                    [
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/vignette/vign1.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/vignette/vign2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/vignette/vign3.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/vignette/vign4.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/vignette/vign5.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/vignette/vign6.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/vignette/vign7.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/vignette/vign8.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/vignette/vign9.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/vignette/vign10.jpg",
+                    ],
                     [
                       {"name": "Tanay Singhvi", "phone": "6375954622"},
                       {"name": "Amritanshu Kumar Shandilya", "phone": "9461326773"},
                       {"name": "Manasvi Agrawal", "phone": "6367787902"},
                       {"name": "Titiksha Gupta", "phone": "9589433182"},
                     ],
-                    ''
+                    "https://www.instagram.com/vignette_lnmiit/"
                   ),
                 ],
               ),
