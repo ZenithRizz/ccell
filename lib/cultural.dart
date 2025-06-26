@@ -127,7 +127,7 @@ class CulturalCouncil extends StatelessWidget {
                     'https://www.instagram.com/fundoo.lnmiit/'
                   ),
                   squareCard(
-                    "assets/images/cultural/imagination/imagination_logo.jpeg",
+                    "assets/images/cultural/imagination/imagi_logo.jpg",
                     "Imagination",
                     context,
                     "IMAGINATION is the creative photography and cinematography club of The LNM Institute of Information Technology. It is a vibrant community of passionate individuals who explore the world through lenses, pixels, and ideas — turning vision into impactful visuals.",
@@ -247,7 +247,7 @@ class CulturalCouncil extends StatelessWidget {
                     "https://www.instagram.com/sankalp.lnmiit/"
                   ),
                   squareCard(
-                    "assets/images/cultural/vignette/vignette_logo.png",
+                    "assets/images/cultural/vignette/vignette_logo.jpg",
                     "Vignette, The Art Club",
                     context,
                     "Vignette - the Art and Craft Club of LNMIIT, is the creative heart of the campus. It's vibrant artworks bring the campus to life, adding color, energy, and character to every corner. From sketching on sheets to painting walls and even faces, it’s a space where imagination feels at home. With a canvas, a piece of fabric, or just an idea, you're free to create, in your own way.",
