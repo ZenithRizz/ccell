@@ -107,13 +107,24 @@ class CulturalCouncil extends StatelessWidget {
                     "https://www.instagram.com/eminence.lnmiit/"
                   ),
                   squareCard(
-                    "",
+                    "assets/images/cultural/fundoo/fundoo_logo.jpg",
                     "Fundoo Club",
                     context,
-                    "",
-                    [],
-                    [],
-                    ''
+                    "FUNDOO : Cultivating a Home Away from Home. From sparkling Diwali nights to the craziest Holi bashes, the events of the Fundoo club are more than just spectacles. They are immersive experiences, inviting you to dance, laugh, and savor the rich palette of world cultures",
+                    [
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/fundoo/fundoo1.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/fundoo/fundoo3.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/fundoo/fundoo4.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/fundoo/fundoo6.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/fundoo/fundoo7.jpg",
+                    ],
+                    [
+                      {"name": "Ansh Dubey", "phone": "9555078768", "email": "23uec517@lnmiit.ac.in"},
+                      {"name": "Sanvi Mittal", "phone": "7428261097", "email": "23uec614@lnmiit.ac.in"},
+                      {"name": "Satvik Gupta", "phone": "7727001785", "email": "23ucs698@lnmiit.ac.in"},
+                      {"name": "Yuvika Gupta", "phone": "9216746454", "email": "23ume560@lnmiit.ac.in"},
+                    ],
+                    'https://www.instagram.com/fundoo.lnmiit/'
                   ),
                   squareCard(
                     "assets/images/cultural/imagination/imagination_logo.jpeg",
