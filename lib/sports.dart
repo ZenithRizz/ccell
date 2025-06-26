@@ -2,7 +2,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:login_page/council.dart';
 import 'package:flutter/material.dart';
 
-import 'council.dart';
 
 class SportsCouncil extends StatelessWidget {
   const SportsCouncil({super.key});
@@ -83,7 +82,7 @@ class SportsCouncil extends StatelessWidget {
                     "assets/images/sports/chess/chess_logo.jpg",
                     "Chess",
                     context,
-                    "",
+                    "The Chess Club brings together students who share an interest in chess. It’s a space for strategic thinking, friendly competition, and continuous learning. Open to all skill levels, the club promotes a love for the game and a sense of community.",
                     [
                       "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/chess/chess1.jpg",
                       "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/chess/chess2.jpg",
