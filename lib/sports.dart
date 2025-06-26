@@ -227,7 +227,7 @@ class SportsCouncil extends StatelessWidget {
                       {"name": "Anisha Khandelwal", "phone": "9828881138", "email": "23ucs526@lnmiit.ac.in"},
                       {"name": "Anvesh Gupta", "phone": "9045488096", "email": "23ucc517@lnmiit.ac.in"},
                       {"name": "Priyanshi Kadian", "phone": "8950016880", "email": "23uec594@lnmiit.ac.in"},
-                      {"name": "Saurav Rathi", "phone": "9821723636", "email": "23ucs738@lnmiit.ac.in"},
+                      {"name": "Saurav Rathi", "phone": "9821723636", "email": "23ucc597@lnmiit.ac.in"},
                       {"name": "Vishesh Jain", "phone": "7742567202", "email": "23ucs738@lnmiit.ac.in"},
                     ],
                     "https://www.instagram.com/lnmiit.volleyball/"
