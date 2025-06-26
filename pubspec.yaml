@@ -119,6 +119,9 @@ flutter:
       - assets/images/cultural/rendition/rendition_logo.png
       - assets/images/cultural/sankalp/sankalp_logo.jpg
       - assets/images/cultural/vignette/vignette_logo.png
+      - assets/images/sports/squash/squash_logo.jpeg
+      - assets/images/sports/chess/chess_logo.jpg
+      - assets/images/cultural/fundoo/fundoo_logo.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
