@@ -68,7 +68,7 @@ class COSHAScreen extends StatelessWidget {
                         ),
                         IconButton(
                           onPressed: () => _launchEmail("cosha@lnmiit.ac.in"), 
-                          icon: Icon(Icons.mail, color: Colors.blueAccent,)
+                          icon: Icon(Icons.mail, color: Colors.lightBlueAccent,)
                         ),
                       ],
                     ),
