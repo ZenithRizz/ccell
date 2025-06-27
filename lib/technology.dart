@@ -21,7 +21,7 @@ class TechnologyCouncil extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: GoogleFonts.lilitaOne(
                   color: Colors.white,
-                  fontSize: 40
+                  fontSize: 30
                 )
               ),
               const SizedBox(height: 8),

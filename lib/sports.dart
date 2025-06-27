@@ -22,7 +22,7 @@ class SportsCouncil extends StatelessWidget {
                 'SPORTS COUNCIL',
                 style: GoogleFonts.lilitaOne(
                   color: Colors.white,
-                  fontSize: 40
+                  fontSize: 30
                 )
               ),
               const SizedBox(height: 8),
