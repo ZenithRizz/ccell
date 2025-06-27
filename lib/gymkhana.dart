@@ -1,6 +1,7 @@
 import 'package:google_fonts/google_fonts.dart';
 import 'package:login_page/cosha.dart';
 import 'package:login_page/cultural.dart';
+import 'package:login_page/fest_card.dart';
 import 'package:login_page/sports.dart';
 import 'package:login_page/technology.dart';
 import 'package:flutter/material.dart';
@@ -75,23 +76,27 @@ class GymkhanaPage extends StatelessWidget {
                 children: [
                   squareCard(
                     "Cultural Council",
+                    '',
                     context,
                     const CulturalCouncil(),
                   ),
                   squareCard(
                     "Science & Technology Council",
+                    '',
                     context,
                     const TechnologyCouncil(),
                   ),
                   squareCard(
                     "Sports Council",
+                    '',
                     context,
                     const SportsCouncil(),
                   ),
                   squareCard(
                     "COSHA Committee",
+                    "assets/images/cosha_logo.jpg",
                     context,
-                    const COSHAScreen(),
+                    COSHAScreen(),
                   ),
                 ],
               ),
@@ -114,18 +119,54 @@ class GymkhanaPage extends StatelessWidget {
                 children: [
                   squareCard(
                     "Desportivos",
+                    "assets/images/despo_logo.jpeg",
                     context,
-                    const StudentEventScreen(),
+                    const StudentEventScreen(
+                      imageUrl: "assets/images/despo_logo.jpeg",
+                      description: "",
+                      festHeads: [
+                        {"name": "Head 1"},
+                        {"name": "Head 2"},
+                      ],
+                      galleryImages: [],
+                      instaUrl: 'https://www.instagram.com/desportivos.lnmiit/',
+                      emailUrl: "desportivos@lnmiit.ac.in",
+                      youtubeUrl: "https://www.youtube.com/@desportivoslnmiit2733",
+                    ),
                   ),
                   squareCard(
                     "Plinth",
+                    "assets/images/plinth_logo.jpg",
                     context,
-                    const StudentEventScreen(),
+                    const StudentEventScreen(
+                      imageUrl: "assets/images/plinth_logo.jpg",
+                      description: "",
+                      festHeads: [
+                        {"name": "Head 1"},
+                        {"name": "Head 2"},
+                      ],
+                      galleryImages: [],
+                      instaUrl: 'https://www.instagram.com/plinth.lnmiit/',
+                      emailUrl: "plinth@lnmiit.ac.in",
+                      youtubeUrl: "https://www.youtube.com/@plinth.lnmiit",
+                    ),
                   ),
                   squareCard(
                     "Vivacity",
+                    'assets/images/viva_logo.png',
                     context,
-                    const StudentEventScreen(),
+                    const StudentEventScreen(
+                      imageUrl: "assets/images/viva_logo.png",
+                      description: "",
+                      festHeads: [
+                        {"name": "Head 1"},
+                        {"name": "Head 2"},
+                      ],
+                      galleryImages: [],
+                      instaUrl: 'https://www.instagram.com/vivacity_lnmiit/',
+                      emailUrl: "vivacity@lnmiit.ac.in",
+                      youtubeUrl: "https://www.youtube.com/@VivacityLNMIIT",
+                    ),
                   ),
                 ],
               ),
@@ -148,13 +189,31 @@ class GymkhanaPage extends StatelessWidget {
                 children: [
                   squareCard(
                     "TEDX LNMIIT",
+                    'assets/images/ted_logo.jpg',
                     context,
-                    const StudentEventScreen(),
+                    const StudentEventScreen(
+                      imageUrl: "assets/images/ted_logo.jpg",
+                      description: "",
+                      festHeads: [],
+                      galleryImages: [],
+                      instaUrl: 'https://www.instagram.com/tedxlnmiit/',
+                      emailUrl: "",
+                      youtubeUrl: "",
+                    ),
                   ),
                   squareCard(
                     "E-Summit",
+                    'assets/images/esummit_logo.jpg',
                     context,
-                    const StudentEventScreen(),
+                    const StudentEventScreen(
+                      imageUrl: "assets/images/esummit_logo.jpg",
+                      description: "",
+                      festHeads: [],
+                      galleryImages: [],
+                      instaUrl: '',
+                      emailUrl: "",
+                      youtubeUrl: "",
+                    ),
                   ),
                 ],
               ),
@@ -168,7 +227,7 @@ class GymkhanaPage extends StatelessWidget {
 }
 
 // Square Card Widget
-Widget squareCard(String label, BuildContext context, Widget targetScreen) {
+Widget squareCard(String label, String imageUrl, BuildContext context, Widget targetScreen) {
   return Material(
     elevation: 6,
     borderRadius: BorderRadius.circular(16),
@@ -199,7 +258,7 @@ Widget squareCard(String label, BuildContext context, Widget targetScreen) {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const CircleAvatar(radius: 24, backgroundColor: Colors.white),
+            CircleAvatar(backgroundImage: AssetImage(imageUrl), radius: 50, backgroundColor: Colors.white),
             const SizedBox(height: 15),
             Text(label, textAlign: TextAlign.center, style: GoogleFonts.lilitaOne(color: Color.fromRGBO(255, 255, 255, 1), fontSize: 20, height: 1.1)),
           ],
@@ -209,14 +268,3 @@ Widget squareCard(String label, BuildContext context, Widget targetScreen) {
   );
 }
 
-class StudentEventScreen extends StatelessWidget {
-  const StudentEventScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Student Event")),
-      body: const Center(child: Text("Welcome to Student Event")),
-    );
-  }
-}
