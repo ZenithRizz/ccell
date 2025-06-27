@@ -5,6 +5,7 @@ import 'package:login_page/fest_card.dart';
 import 'package:login_page/sports.dart';
 import 'package:login_page/technology.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class GymkhanaPage extends StatelessWidget {
   const GymkhanaPage({super.key});
@@ -33,6 +34,10 @@ class GymkhanaPage extends StatelessWidget {
                 style: GoogleFonts.poppins(color: Color.fromRGBO(255, 255, 255, 1))
               ),
               const SizedBox(height: 36),
+              presidentTile("Mr. President", "President", "", ""),
+              presidentTile("Mr. Vice President", "Vice-President", "", ""),
+              presidentTile("Mr. Finance Convener", "Finance Convener", "", ""),
+              SizedBox(height: 20,),
               Container(
                 height: 80,
                 width: 380,
@@ -263,6 +268,63 @@ Widget squareCard(String label, String imageUrl, BuildContext context, Widget ta
             Text(label, textAlign: TextAlign.center, style: GoogleFonts.lilitaOne(color: Color.fromRGBO(255, 255, 255, 1), fontSize: 20, height: 1.1)),
           ],
         ),
+      ),
+    ),
+  );
+}
+  void _launchPhone(String phone) async {
+    final Uri uri = Uri.parse('tel:$phone');
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    }
+  }
+
+  void _launchEmail(String email) async {
+    final Uri uri = Uri(
+      scheme: 'mailto',
+      path: email,
+    );
+
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    }
+  }
+
+Widget presidentTile(String name, String post, String phoneUrl, String mailUrl) {
+  return Container(
+    decoration: BoxDecoration(
+      color: const Color(0xFF1C2834),
+      borderRadius: BorderRadius.circular(12),
+    ),
+    margin: const EdgeInsets.only(bottom: 12),
+    child: ListTile(
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      title: Text(
+        name,
+        style: GoogleFonts.poppins(
+          color: Colors.white,
+          fontWeight: FontWeight.bold
+        )
+      ),
+      subtitle: Text(
+        post,
+        style: GoogleFonts.poppins(
+          color: Colors.white,
+          fontSize: 12
+        )
+      ),
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          IconButton(
+            icon: const Icon(Icons.phone, color: Colors.greenAccent),
+            onPressed: () => _launchPhone(phoneUrl)
+          ),
+          IconButton(
+            icon: const Icon(Icons.email, color: Colors.lightBlueAccent),
+            onPressed: () => _launchEmail(mailUrl)
+          ),
+        ],
       ),
     ),
   );
