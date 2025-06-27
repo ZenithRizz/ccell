@@ -386,8 +386,8 @@ Widget _buildGSecTile(String name, String post, String phoneUrl, String mailUrl)
       subtitle: Text(
         post,
         style: GoogleFonts.poppins(
-          color: Colors.white,
-          fontSize: 12
+          color: Color.fromARGB(255, 192, 190, 190),
+          fontSize: 10
         )
       ),
       trailing: Row(
