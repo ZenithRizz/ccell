@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:login_page/NewMember.dart';
+import 'package:login_page/convenerMessage.dart';
 import 'package:login_page/member_section.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'member.dart';
 
@@ -10,7 +12,7 @@ class AboutCCellPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.deepPurple,
+      backgroundColor: const Color(0xFF0E1A23),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -32,7 +34,10 @@ class AboutCCellPage extends StatelessWidget {
                   bottom: -40,
                   child: CircleAvatar(
                     radius: 40,
-                    backgroundImage: AssetImage('assets/images/ccell_logo.png'),
+                    backgroundColor: Colors.white,
+                    backgroundImage: AssetImage(
+                      'assets/images/ccell_logo_c.png',
+                    ),
                   ),
                 ),
               ],
@@ -134,9 +139,19 @@ class AboutCCellPage extends StatelessWidget {
 
             const SizedBox(height: 20),
 
+            convenerMessageSection(),
+
             NewSection(
               title: "App Developers",
               members: [
+                  NewMember(
+                  name: "Praneel",
+                  imagePath: 'assets/images/praneel.jpg'
+                ),
+                  NewMember(
+                  name: "Armaan Jain",
+                  imagePath: 'assets/images/armaan.heic'
+                ),
                 NewMember(
                   name: "Nikhila S Hari",
                   imagePath: 'assets/images/nikhila.jpg',
@@ -151,11 +166,127 @@ class AboutCCellPage extends StatelessWidget {
                 ),
               ],
             ),
+
+            const SizedBox(height: 20),
+
+            Text(
+              "API Developer",
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
+
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Container(
+                height: 120,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(18),
+                ),
+
+                child: Row(
+                  children: [
+                     const SizedBox(width: 20),
+                    CircleAvatar(
+                      radius: 50,
+                      backgroundImage: AssetImage('assets/images/praneel.jpg'),
+                    ),
+                    const SizedBox(width: 20),
+                    Text(
+                      "Praneel",
+                      style: const TextStyle(color: Colors.black, fontSize: 16),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            Text(
+              "UI/UX",
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
+
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Container(
+                height: 120,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(18),
+                ),
+
+                child: Row(
+                  children: [
+                     const SizedBox(width: 20),
+                    CircleAvatar(
+                      radius: 50,
+                      backgroundImage: AssetImage('assets/images/nikhila.jpg'),
+                    ),
+                    const SizedBox(width: 20),
+                    Text(
+                      "Nikhila S Hari",
+                      style: const TextStyle(color: Colors.black, fontSize: 16),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+             Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Container(
+                height: 120,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(18),
+                ),
+
+                child: Row(
+                  children: [
+                     const SizedBox(width: 20),
+                    CircleAvatar(
+                      radius: 50,
+                      backgroundImage: AssetImage('assets/images/praneel.jpg'),
+                    ),
+                    const SizedBox(width: 20),
+                    Text(
+                      "Praneel",
+                      style: const TextStyle(color: Colors.black, fontSize: 16),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            ElevatedButton(
+              onPressed: () => signOutUser(context),
+              child: Text(
+                "Sign Out",
+                style: TextStyle(color: Colors.white),
+              ),
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.red),
+              ),
+            ),
           ],
         ),
       ),
     );
   }
+}
+
+void signOutUser(BuildContext context) async {
+  await FirebaseAuth.instance.signOut();
+  Navigator.of(context).pushReplacementNamed('lib/login_page');
 }
 
 class NewSection extends StatelessWidget {
@@ -181,7 +312,7 @@ class NewSection extends StatelessWidget {
           child: Container(
             height: 120,
             decoration: BoxDecoration(
-              color: Colors.white70,
+              color: Colors.white,
               borderRadius: BorderRadius.circular(18),
             ),
             child: Row(
@@ -207,7 +338,7 @@ class NewSection extends StatelessWidget {
                           vertical: 4,
                         ),
                         decoration: BoxDecoration(
-                          color: Color(0xFFB388EB),
+                          color: Color(0xFF48cae4),
                           borderRadius: BorderRadius.circular(18),
                         ),
                         child: Text(
@@ -243,7 +374,7 @@ class NewSection extends StatelessWidget {
           child: Container(
             height: 120,
             decoration: BoxDecoration(
-              color: Colors.white70,
+              color: Colors.white,
               borderRadius: BorderRadius.circular(18),
             ),
             child: Row(
@@ -269,7 +400,7 @@ class NewSection extends StatelessWidget {
                           vertical: 4,
                         ),
                         decoration: BoxDecoration(
-                          color: Color(0xFFB388EB),
+                          color: Color(0xFF48cae4),
                           borderRadius: BorderRadius.circular(18),
                         ),
                         child: Text(
@@ -329,7 +460,7 @@ class NewCard extends StatelessWidget {
       width: 150,
       height: 200,
       decoration: BoxDecoration(
-        color: Colors.white70,
+        color: Colors.white,
         borderRadius: BorderRadius.circular(18),
       ),
       child: Column(
