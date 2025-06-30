@@ -221,7 +221,7 @@ class StudentEventScreen extends StatelessWidget {
               }
             },
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Image.asset(
                 'assets/images/youtube_logo.png',
                 width: 50,

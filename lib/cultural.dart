@@ -340,17 +340,6 @@ Widget squareCard(String logoUrl, String label, BuildContext context, String des
   );
 }
 
-class PresidentialCouncilScreen extends StatelessWidget {
-  const PresidentialCouncilScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Presidential Council")),
-      body: const Center(child: Text("Welcome to Presidential Council")),
-    );
-  }
-}
   void _launchPhone(String phone) async {
     final Uri uri = Uri.parse('tel:$phone');
     if (await canLaunchUrl(uri)) {
