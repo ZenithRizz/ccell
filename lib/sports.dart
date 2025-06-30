@@ -1,6 +1,7 @@
 import 'package:google_fonts/google_fonts.dart';
 import 'package:login_page/council.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 class SportsCouncil extends StatelessWidget {
@@ -16,28 +17,36 @@ class SportsCouncil extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Text(
+              Text(
+                textAlign: TextAlign.center,
                 'SPORTS COUNCIL',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
+                style: GoogleFonts.poppins(
                   color: Colors.white,
-                ),
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold
+                )
               ),
               const SizedBox(height: 8),
               CircleAvatar(),
               SizedBox(height: 20),
-              Text("About the COUNCIL", style: TextStyle(color: Colors.white),),
+              Text(
+                "About the COUNCIL", 
+                style: GoogleFonts.inter(
+                  color: Colors.white,
+                  fontSize: 12
+                ) 
+              ),
               SizedBox(height: 20,),
-              _buildGSecTile("name", "General Secretary"),
+              _buildGSecTile("G Sec", "General Secretary", "", ""),
               SizedBox(height: 12,),
-              _buildGSecTile("name", "Associate General Secretary"),
+              _buildGSecTile("A GSec", "Associate General Secretary", "", ""),
               SizedBox(height: 12,),
               GridView.count(
                 shrinkWrap: true,
                 crossAxisCount: 2,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
+                childAspectRatio: 0.90,
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
                   squareCard(
@@ -224,7 +233,7 @@ class SportsCouncil extends StatelessWidget {
                       "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/volleyball/volley9.jpg",
                     ],
                     [
-                      {"name": "Anisha Khandelwal", "phone": "9828881138", "email": "23ucs526@lnmiit.ac.in"},
+                      {"name": "Anisha Khandelwal", "phone": "9828881138", "email": "23ucs536@lnmiit.ac.in"},
                       {"name": "Anvesh Gupta", "phone": "9045488096", "email": "23ucc517@lnmiit.ac.in"},
                       {"name": "Priyanshi Kadian", "phone": "8950016880", "email": "23uec594@lnmiit.ac.in"},
                       {"name": "Saurav Rathi", "phone": "9821723636", "email": "23ucc597@lnmiit.ac.in"},
@@ -284,7 +293,15 @@ Widget squareCard(String logoUrl, String label, BuildContext context, String des
           children: [
             CircleAvatar(backgroundImage: AssetImage(logoUrl), radius: 50, backgroundColor: Colors.transparent),
             const SizedBox(height: 8),
-            Text(label, textAlign: TextAlign.center, style: GoogleFonts.lilitaOne(color: Colors.white, fontSize: 22)),
+            Text(
+              label, 
+              textAlign: TextAlign.center, 
+              style: GoogleFonts.poppins(
+                color: Colors.white, 
+                fontSize: 20, 
+                fontWeight: FontWeight.bold
+              )
+            ),
           ],
         ),
       ),
@@ -292,19 +309,25 @@ Widget squareCard(String logoUrl, String label, BuildContext context, String des
   );
 }
 
-class PresidentialCouncilScreen extends StatelessWidget {
-  const PresidentialCouncilScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Presidential Council")),
-      body: const Center(child: Text("Welcome to Presidential Council")),
-    );
+  void _launchPhone(String phone) async {
+    final Uri uri = Uri.parse('tel:$phone');
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    }
   }
-}
 
-Widget _buildGSecTile(String name, String post) {
+  void _launchEmail(String email) async {
+    final Uri uri = Uri(
+      scheme: 'mailto',
+      path: email,
+    );
+
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    }
+  }
+
+Widget _buildGSecTile(String name, String post, String phoneUrl, String mailUrl) {
   return Container(
     decoration: BoxDecoration(
       color: const Color(0xFF1C2834),
@@ -315,42 +338,28 @@ Widget _buildGSecTile(String name, String post) {
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       title: Text(
         name,
-        style: const TextStyle(
+        style: GoogleFonts.inter(
           color: Colors.white,
-          fontWeight: FontWeight.bold,
-        ),
+          fontWeight: FontWeight.bold
+        )
       ),
       subtitle: Text(
         post,
-        style: const TextStyle(
-          fontSize: 12,
-          color: Color.fromARGB(133, 255, 255, 255),
-        ),
+        style: GoogleFonts.inter(
+          color: Color.fromARGB(255, 192, 190, 190),
+          fontSize: 10
+        )
       ),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           IconButton(
-            icon: const Icon(Icons.phone, color: Colors.white),
-            onPressed: () async {
-              // final Uri url = Uri.parse('tel:${cordie['phone']}');
-              // if (await canLaunchUrl(url)) {
-              //   await launchUrl(url);
-              // } else {
-              //   throw 'Could not launch $url';
-              // }
-            },
+            icon: const Icon(Icons.phone, color: Colors.greenAccent),
+            onPressed: () => _launchPhone(phoneUrl),
           ),
           IconButton(
-            icon: const Icon(Icons.email, color: Colors.white),
-            onPressed: () async {
-              // final Uri url = Uri.parse('mailto:${cordie['email']}');
-              // if (await canLaunchUrl(url)) {
-              //   await launchUrl(url);
-              // } else {
-              //   throw 'Could not launch $url';
-              // }
-            },
+            icon: const Icon(Icons.email, color: Colors.lightBlueAccent),
+            onPressed: () => _launchEmail(mailUrl)
           ),
         ],
       ),

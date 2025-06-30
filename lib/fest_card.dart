@@ -2,21 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class CouncilDetailScreen extends StatelessWidget {
+class StudentEventScreen extends StatelessWidget {
+
   final String imageUrl;
   final List<String> galleryImages;
-  final List<Map<String, String>> cordies;
+  final List<Map<String, String>> festHeads;
   final String instaUrl;
   final String description;
+  final String emailUrl;
+  final String youtubeUrl;
 
-  const CouncilDetailScreen({
+  const StudentEventScreen({
     super.key,
     required this.imageUrl,
     required this.galleryImages,
-    required this.cordies,
+    required this.festHeads,
     required this.instaUrl,
     required this.description,
-  });
+    required this.emailUrl,
+    required this.youtubeUrl
+  });  
 
   void _launchPhone(String phone) async {
     final Uri uri = Uri.parse('tel:$phone');
@@ -52,6 +57,33 @@ class CouncilDetailScreen extends StatelessWidget {
   }
 }
 
+  Future<void> _launchYouTube(String url) async {
+  if (url.trim().isEmpty) {
+    debugPrint('YouTube URL is empty.');
+    return;
+  }
+
+  final Uri youtubeUri = Uri.parse(url);
+
+  if (await canLaunchUrl(youtubeUri)) {
+    await launchUrl(youtubeUri, mode: LaunchMode.externalApplication);
+  } else {
+    debugPrint('Could not launch $youtubeUri');
+  }
+}
+
+  Future<void> _launchGmail(String gmailUrl) async {
+  final Uri emailLaunchUri = Uri(
+    scheme: 'mailto',
+    path: gmailUrl, // replace with your email
+  );
+
+  if (await canLaunchUrl(emailLaunchUri)) {
+    await launchUrl(emailLaunchUri);
+  } else {
+    throw 'Could not launch Gmail';
+  }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -70,13 +102,19 @@ class CouncilDetailScreen extends StatelessWidget {
               ),
               SizedBox(height: 20,),
               // Gallery Carousel
+              GalleryCarousel(galleryImages: galleryImages),
+          
+              const SizedBox(height: 16),
+              const Divider(color: Colors.white38),
+          
+              // Cordies List
               ListView.builder(
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 padding: const EdgeInsets.all(12),
-                itemCount: cordies.length,
+                itemCount: festHeads.length,
                 itemBuilder: (context, index) {
-                  final cordie = cordies[index];
+                  final cordie = festHeads[index];
                   return Container(
                     margin: const EdgeInsets.only(bottom: 12),
                     decoration: BoxDecoration(
@@ -88,6 +126,10 @@ class CouncilDetailScreen extends StatelessWidget {
                       title: Text(
                         cordie['name'] ?? '',
                         style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text(
+                        "Fest Head",
+                        style: GoogleFonts.inter(color: Color.fromARGB(255, 192, 190, 190), fontSize: 10),
                       ),
                       trailing: Wrap(
                         spacing: 12,
@@ -107,38 +149,91 @@ class CouncilDetailScreen extends StatelessWidget {
                 },
               ),
               
-              const Divider(color: Colors.white38),
-              const SizedBox(height: 16),
-              GalleryCarousel(galleryImages: galleryImages),
-              SizedBox(height: 50,),
-              if (instaUrl.trim().isNotEmpty)
-                ...[
-                  Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    "Connect with us",
-                    style: GoogleFonts.poppins(
-                      color: Color.fromRGBO(255, 255, 255, 1),
-                      fontWeight: FontWeight.bold,
-                      fontSize: 26
-                    ),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () async {
-                    try {
-                      await _launchInstagram();
-                    } catch (e) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Unable to open Instagram'))
-                      );
-                    }
-                  },
-                  child: Image.asset('assets/images/Instagram.png'),
-                ),
-                SizedBox(height: 30,)
-              ],
-              SizedBox(height: 50,)
+    if (instaUrl.trim().isNotEmpty ||
+    emailUrl.trim().isNotEmpty ||
+    youtubeUrl.trim().isNotEmpty)
+  ...[
+    Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Text(
+        "Connect with us",
+        style: GoogleFonts.poppins(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+          fontSize: 26,
+        ),
+      ),
+    ),
+    Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        if (instaUrl.trim().isNotEmpty)
+          GestureDetector(
+            onTap: () async {
+              try {
+                await _launchInstagram();
+              } catch (e) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Unable to open Instagram')),
+                );
+              }
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Image.asset(
+                'assets/images/Instagram.png',
+                width: 60,
+                height: 60,
+              ),
+            ),
+          ),
+
+        if (emailUrl.trim().isNotEmpty)
+          GestureDetector(
+            onTap: () async {
+              try {
+                await _launchGmail(emailUrl);
+              } catch (e) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Unable to open Gmail')),
+                );
+              }
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Image.asset(
+                'assets/images/gmail.png',
+                width: 40,
+                height: 40,
+              ),
+            ),
+          ),
+
+        if (youtubeUrl.trim().isNotEmpty)
+          GestureDetector(
+            onTap: () async {
+              try {
+                await _launchYouTube(youtubeUrl);
+              } catch (e) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Unable to open YouTube')),
+                );
+              }
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Image.asset(
+                'assets/images/youtube_logo.png',
+                width: 50,
+                height: 50,
+              ),
+            ),
+          ),
+      ],
+    ),
+    const SizedBox(height: 30),
+  ],
+
             ]
           ),
         ),

@@ -161,7 +161,7 @@ class AboutCCellPage extends StatelessWidget {
                   imagePath: 'assets/images/ishita.jpg',
                 ),
                 NewMember(
-                  name: "Panth Moradiya",
+                  name: "Panth Moradia",
                   imagePath: 'assets/images/panth_moradiya.jpg',
                 ),
               ],
