@@ -19,9 +19,10 @@ class CulturalCouncil extends StatelessWidget {
               Text(
                 textAlign: TextAlign.center,
                 'CULTURAL COUNCIL',
-                style: GoogleFonts.lilitaOne(
+                style: GoogleFonts.poppins(
                   color: Colors.white,
-                  fontSize: 30
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold
                 )
               ),
               const SizedBox(height: 8),
@@ -29,7 +30,7 @@ class CulturalCouncil extends StatelessWidget {
               SizedBox(height: 20),
               Text(
                 "About the COUNCIL", 
-                style: GoogleFonts.poppins(
+                style: GoogleFonts.inter(
                   color: Colors.white,
                   fontSize: 12
                 ) 
@@ -44,6 +45,7 @@ class CulturalCouncil extends StatelessWidget {
                 crossAxisCount: 2,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
+                childAspectRatio: 0.90,
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
                   squareCard(
@@ -330,7 +332,7 @@ Widget squareCard(String logoUrl, String label, BuildContext context, String des
           children: [
             CircleAvatar(backgroundImage: AssetImage(logoUrl), radius: 50, backgroundColor: Colors.transparent),
             const SizedBox(height: 8),
-            Text(label, textAlign: TextAlign.center, style: GoogleFonts.lilitaOne(color: Colors.white, fontSize: 18)),
+            Text(label, textAlign: TextAlign.center, style: GoogleFonts.poppins(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
           ],
         ),
       ),
@@ -378,14 +380,14 @@ Widget _buildGSecTile(String name, String post, String phoneUrl, String mailUrl)
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       title: Text(
         name,
-        style: GoogleFonts.poppins(
+        style: GoogleFonts.inter(
           color: Colors.white,
           fontWeight: FontWeight.bold
         )
       ),
       subtitle: Text(
         post,
-        style: GoogleFonts.poppins(
+        style: GoogleFonts.inter(
           color: Color.fromARGB(255, 192, 190, 190),
           fontSize: 10
         )

@@ -88,7 +88,7 @@ class StudentEventScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF001219),
+      backgroundColor: Color(0xFF0E1A23),
       body: Container(
         child: SingleChildScrollView(
           child: Column(
@@ -98,7 +98,7 @@ class StudentEventScreen extends StatelessWidget {
               const SizedBox(height: 15),
               Padding(
                 padding: const EdgeInsets.only(left: 10, right: 10),
-                child: Text(description, style: GoogleFonts.poppins(color: Colors.white, fontSize: 12), ),
+                child: Text(description, style: GoogleFonts.inter(color: Colors.white, fontSize: 12), ),
               ),
               SizedBox(height: 20,),
               // Gallery Carousel
@@ -125,11 +125,11 @@ class StudentEventScreen extends StatelessWidget {
                       contentPadding: const EdgeInsets.symmetric(horizontal: 16),
                       title: Text(
                         cordie['name'] ?? '',
-                        style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.bold),
+                        style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.bold),
                       ),
                       subtitle: Text(
                         "Fest Head",
-                        style: GoogleFonts.poppins(color: Color.fromARGB(255, 192, 190, 190), fontSize: 10),
+                        style: GoogleFonts.inter(color: Color.fromARGB(255, 192, 190, 190), fontSize: 10),
                       ),
                       trailing: Wrap(
                         spacing: 12,

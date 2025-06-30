@@ -19,9 +19,10 @@ class TechnologyCouncil extends StatelessWidget {
               Text(
                 'SCIENCE & TECHNOLOGY COUNCIL',
                 textAlign: TextAlign.center,
-                style: GoogleFonts.lilitaOne(
+                style: GoogleFonts.poppins(
                   color: Colors.white,
-                  fontSize: 30
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold
                 )
               ),
               const SizedBox(height: 8),
@@ -29,7 +30,7 @@ class TechnologyCouncil extends StatelessWidget {
               SizedBox(height: 20),
               Text(
                 "About the COUNCIL", 
-                style: GoogleFonts.poppins(
+                style: GoogleFonts.inter(
                   color: Colors.white,
                   fontSize: 12
                 ) 
@@ -44,6 +45,7 @@ class TechnologyCouncil extends StatelessWidget {
                 crossAxisCount: 2,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
+                childAspectRatio: 0.85,
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
                   squareCard(
@@ -196,25 +198,13 @@ Widget squareCard(String logoUrl, String label, BuildContext context, String des
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CircleAvatar(backgroundImage: AssetImage(logoUrl), radius: 50, backgroundColor: Colors.transparent),
-            const SizedBox(height: 8),
-            Text(label, textAlign: TextAlign.center, style: GoogleFonts.lilitaOne(color: Colors.white, fontSize: 22)),
+            const SizedBox(height: 10),
+            Text(label, textAlign: TextAlign.center, style: GoogleFonts.poppins(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
           ],
         ),
       ),
     ),
   );
-}
-
-class PresidentialCouncilScreen extends StatelessWidget {
-  const PresidentialCouncilScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Presidential Council")),
-      body: const Center(child: Text("Welcome to Presidential Council")),
-    );
-  }
 }
 
   void _launchPhone(String phone) async {
@@ -246,14 +236,14 @@ Widget _buildGSecTile(String name, String post, String phoneUrl, String mailUrl)
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       title: Text(
         name,
-        style: GoogleFonts.poppins(
+        style: GoogleFonts.inter(
           color: Colors.white,
           fontWeight: FontWeight.bold
         )
       ),
       subtitle: Text(
         post,
-        style: GoogleFonts.poppins(
+        style: GoogleFonts.inter(
           color: Color.fromARGB(255, 192, 190, 190),
           fontSize: 10
         )

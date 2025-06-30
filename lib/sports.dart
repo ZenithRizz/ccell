@@ -20,9 +20,10 @@ class SportsCouncil extends StatelessWidget {
               Text(
                 textAlign: TextAlign.center,
                 'SPORTS COUNCIL',
-                style: GoogleFonts.lilitaOne(
+                style: GoogleFonts.poppins(
                   color: Colors.white,
-                  fontSize: 30
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold
                 )
               ),
               const SizedBox(height: 8),
@@ -30,7 +31,7 @@ class SportsCouncil extends StatelessWidget {
               SizedBox(height: 20),
               Text(
                 "About the COUNCIL", 
-                style: GoogleFonts.poppins(
+                style: GoogleFonts.inter(
                   color: Colors.white,
                   fontSize: 12
                 ) 
@@ -45,6 +46,7 @@ class SportsCouncil extends StatelessWidget {
                 crossAxisCount: 2,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
+                childAspectRatio: 0.90,
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
                   squareCard(
@@ -231,7 +233,7 @@ class SportsCouncil extends StatelessWidget {
                       "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/volleyball/volley9.jpg",
                     ],
                     [
-                      {"name": "Anisha Khandelwal", "phone": "9828881138", "email": "23ucs526@lnmiit.ac.in"},
+                      {"name": "Anisha Khandelwal", "phone": "9828881138", "email": "23ucs536@lnmiit.ac.in"},
                       {"name": "Anvesh Gupta", "phone": "9045488096", "email": "23ucc517@lnmiit.ac.in"},
                       {"name": "Priyanshi Kadian", "phone": "8950016880", "email": "23uec594@lnmiit.ac.in"},
                       {"name": "Saurav Rathi", "phone": "9821723636", "email": "23ucc597@lnmiit.ac.in"},
@@ -291,7 +293,15 @@ Widget squareCard(String logoUrl, String label, BuildContext context, String des
           children: [
             CircleAvatar(backgroundImage: AssetImage(logoUrl), radius: 50, backgroundColor: Colors.transparent),
             const SizedBox(height: 8),
-            Text(label, textAlign: TextAlign.center, style: GoogleFonts.lilitaOne(color: Colors.white, fontSize: 22)),
+            Text(
+              label, 
+              textAlign: TextAlign.center, 
+              style: GoogleFonts.poppins(
+                color: Colors.white, 
+                fontSize: 20, 
+                fontWeight: FontWeight.bold
+              )
+            ),
           ],
         ),
       ),
@@ -340,14 +350,14 @@ Widget _buildGSecTile(String name, String post, String phoneUrl, String mailUrl)
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       title: Text(
         name,
-        style: GoogleFonts.poppins(
+        style: GoogleFonts.inter(
           color: Colors.white,
           fontWeight: FontWeight.bold
         )
       ),
       subtitle: Text(
         post,
-        style: GoogleFonts.poppins(
+        style: GoogleFonts.inter(
           color: Color.fromARGB(255, 192, 190, 190),
           fontSize: 10
         )

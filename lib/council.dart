@@ -56,7 +56,7 @@ class CouncilDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF001219),
+      backgroundColor: Color(0xFF0E1A23),
       body: Container(
         child: SingleChildScrollView(
           child: Column(
@@ -66,16 +66,10 @@ class CouncilDetailScreen extends StatelessWidget {
               const SizedBox(height: 15),
               Padding(
                 padding: const EdgeInsets.only(left: 10, right: 10),
-                child: Text(description, style: GoogleFonts.poppins(color: Colors.white, fontSize: 12), ),
+                child: Text(description, style: GoogleFonts.inter(color: Colors.white, fontSize: 12), ),
               ),
               SizedBox(height: 20,),
               // Gallery Carousel
-              GalleryCarousel(galleryImages: galleryImages),
-          
-              const SizedBox(height: 16),
-              const Divider(color: Colors.white38),
-          
-              // Cordies List
               ListView.builder(
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
@@ -93,7 +87,7 @@ class CouncilDetailScreen extends StatelessWidget {
                       contentPadding: const EdgeInsets.symmetric(horizontal: 16),
                       title: Text(
                         cordie['name'] ?? '',
-                        style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.bold),
+                        style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.bold),
                       ),
                       trailing: Wrap(
                         spacing: 12,
@@ -112,6 +106,11 @@ class CouncilDetailScreen extends StatelessWidget {
                   );
                 },
               ),
+              
+              const Divider(color: Colors.white38),
+              const SizedBox(height: 16),
+              GalleryCarousel(galleryImages: galleryImages),
+              SizedBox(height: 50,),
               if (instaUrl.trim().isNotEmpty)
                 ...[
                   Padding(

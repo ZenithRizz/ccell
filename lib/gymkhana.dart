@@ -23,15 +23,16 @@ class GymkhanaPage extends StatelessWidget {
               Text(
                 'STUDENT GYMKHANA',
                 textAlign:TextAlign.center,
-                style: GoogleFonts.lilitaOne(
+                style: GoogleFonts.poppins(
                   color: Color.fromRGBO(255, 255, 255, 1),
                   fontSize: 40,
+                  fontWeight: FontWeight.bold
                 )
               ),
               const SizedBox(height: 40),
               Text(
                 "Every college works on the efforts that its student masses put in it to make the college for the students, of the students, and by the students. The LNMIIT Students’ Gymkhana, under the Director of the Institute's patronage, acts as a communication service and facilitates decision-making in the greater interest of the students on The LNMIIT",
-                style: GoogleFonts.poppins(color: Color.fromRGBO(255, 255, 255, 1))
+                style: GoogleFonts.inter(color: Color.fromRGBO(255, 255, 255, 1))
               ),
               const SizedBox(height: 36),
               presidentTile("Mr. President", "President", "", ""),
@@ -66,7 +67,7 @@ class GymkhanaPage extends StatelessWidget {
                   child: Text(
                     'PRESIDENTIAL COUNCIL',
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.lilitaOne(color: Color.fromRGBO(255, 255, 255, 1), fontSize: 24)
+                    style: GoogleFonts.poppins(color: Color.fromRGBO(255, 255, 255, 1), fontSize: 22, fontWeight: FontWeight.bold)
                   ),
                 ),
               ),
@@ -76,7 +77,7 @@ class GymkhanaPage extends StatelessWidget {
                 crossAxisCount: 2,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
-                childAspectRatio: 0.85,
+                childAspectRatio: 0.75,
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
                   squareCard(
@@ -108,9 +109,10 @@ class GymkhanaPage extends StatelessWidget {
               const SizedBox(height: 40),
               Text(
                 'STUDENT FESTS',
-                style: GoogleFonts.lilitaOne(
+                style: GoogleFonts.poppins(
                   color: Color.fromRGBO(255, 255, 255, 1),
-                  fontSize: 26
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold
                 )
               ),
               SizedBox(height: 20,),
@@ -156,31 +158,35 @@ class GymkhanaPage extends StatelessWidget {
                       youtubeUrl: "https://www.youtube.com/@plinth.lnmiit",
                     ),
                   ),
-                  squareCard(
-                    "Vivacity",
-                    'assets/images/viva_logo.png',
-                    context,
-                    const StudentEventScreen(
-                      imageUrl: "assets/images/viva_logo.png",
-                      description: "",
-                      festHeads: [
-                        {"name": "Head 1"},
-                        {"name": "Head 2"},
-                      ],
-                      galleryImages: [],
-                      instaUrl: 'https://www.instagram.com/vivacity_lnmiit/',
-                      emailUrl: "vivacity@lnmiit.ac.in",
-                      youtubeUrl: "https://www.youtube.com/@VivacityLNMIIT",
-                    ),
-                  ),
                 ],
+              ),
+              SizedBox(height: 15,),
+              Positioned(
+                child: squareCard(
+                      "Vivacity",
+                      'assets/images/viva_logo.png',
+                      context,
+                      const StudentEventScreen(
+                        imageUrl: "assets/images/viva_logo.png",
+                        description: "",
+                        festHeads: [
+                          {"name": "Head 1"},
+                          {"name": "Head 2"},
+                        ],
+                        galleryImages: [],
+                        instaUrl: 'https://www.instagram.com/vivacity_lnmiit/',
+                        emailUrl: "vivacity@lnmiit.ac.in",
+                        youtubeUrl: "https://www.youtube.com/@VivacityLNMIIT",
+                      ),
+                    ),
               ),
               const SizedBox(height: 40),
               Text(
                 'STUDENT EVENTS',
-                style: GoogleFonts.lilitaOne(
+                style: GoogleFonts.poppins(
                   color: Color.fromRGBO(255, 255, 255, 1),
-                  fontSize: 26
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold
                 )
               ),
               const SizedBox(height: 16),
@@ -257,15 +263,15 @@ Widget squareCard(String label, String imageUrl, BuildContext context, Widget ta
             ),
           borderRadius: BorderRadius.circular(12),
         ),
-        width: 100,
-        height: 100,
+        width: 195,
+        height: 225,
         padding: const EdgeInsets.all(8),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CircleAvatar(backgroundImage: AssetImage(imageUrl), radius: 50, backgroundColor: Colors.white),
             const SizedBox(height: 15),
-            Text(label, textAlign: TextAlign.center, style: GoogleFonts.lilitaOne(color: Color.fromRGBO(255, 255, 255, 1), fontSize: 20, height: 1.1)),
+            Text(label, textAlign: TextAlign.center, style: GoogleFonts.poppins(color: Color.fromRGBO(255, 255, 255, 1), fontSize: 20, height: 1.2, fontWeight: FontWeight.bold)),
           ],
         ),
       ),
@@ -301,15 +307,16 @@ Widget presidentTile(String name, String post, String phoneUrl, String mailUrl) 
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       title: Text(
         name,
-        style: GoogleFonts.poppins(
+        style: GoogleFonts.inter(
           color: Colors.white,
-          fontWeight: FontWeight.bold
+          fontWeight: FontWeight.bold,
+          fontSize: 17
         )
       ),
       subtitle: Text(
         post,
-        style: GoogleFonts.poppins(
-          color: Colors.white,
+        style: GoogleFonts.inter(
+          color: const Color.fromARGB(255, 193, 191, 191),
           fontSize: 12
         )
       ),
