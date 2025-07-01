@@ -1,7 +1,8 @@
+import 'package:google_fonts/google_fonts.dart';
 import 'package:login_page/council.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-import 'council.dart';
 
 class SportsCouncil extends StatelessWidget {
   const SportsCouncil({super.key});
@@ -16,191 +17,229 @@ class SportsCouncil extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Text(
+              Text(
+                textAlign: TextAlign.center,
                 'SPORTS COUNCIL',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
+                style: GoogleFonts.poppins(
                   color: Colors.white,
-                ),
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold
+                )
               ),
               const SizedBox(height: 8),
               CircleAvatar(),
               SizedBox(height: 20),
-              Text("About the COUNCIL", style: TextStyle(color: Colors.white),),
+              Text(
+                "About the COUNCIL", 
+                style: GoogleFonts.inter(
+                  color: Colors.white,
+                  fontSize: 12
+                ) 
+              ),
               SizedBox(height: 20,),
-              _buildGSecTile("name", "General Secretary"),
+              _buildGSecTile("G Sec", "General Secretary", "", ""),
               SizedBox(height: 12,),
-              _buildGSecTile("name", "Associate General Secretary"),
+              _buildGSecTile("A GSec", "Associate General Secretary", "", ""),
               SizedBox(height: 12,),
               GridView.count(
                 shrinkWrap: true,
                 crossAxisCount: 2,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
+                childAspectRatio: 0.90,
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
                   squareCard(
-                    [Colors.grey.shade300, Colors.blueAccent],
+                    "assets/images/sports/badminton/badminton_logo.jpeg",
                     "Badminton",
                     context,
-                    const PresidentialCouncilScreen(),
-                    'assets/images/cosha.png',
+                    "The Badminton Club is where ambition meets discipline — a court for those who play to win and train to dominate. Every match is a test, every session a step toward becoming unbeatable. It’s not just about playing; it’s about proving you’re better than yesterday.",
                     [
-                      "https://example.com/gallery1.jpg",
-                      "https://example.com/gallery2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/badminton/bad1.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/badminton/bad2.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/badminton/bad3.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/badminton/bad4.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/badminton/bad5.jpeg",
                     ],
                     [
-                      {"name": "Cordie 1"},
-                      {"name": "Cordie 2"},
-                      {"name": "Cordie 3"},
+                      {"name": "Abhas Chaudhary", "phone": "9411453707", "email": "23uec502@lnmiit.ac.in"},
+                      {"name": "Raman Kumar Singh", "phone": "8591708702", "email": "23ucs689@lnmiit.ac.in"},
+                      {"name": "Vanshika Garg", "phone": "7509004321", "email": "v23ume552@lnmiit.ac.in"},
                     ],
+                    "https://www.instagram.com/badminton_lnmiit/"
                   ),
                   squareCard(
-                    [Colors.grey.shade300, Colors.blueAccent],
+                    "assets/images/sports/basketball/basketball_logo.png",
                     "Basketball",
                     context,
-                    const PresidentialCouncilScreen(),
-                    'assets/images/cosha.png',
+                    "Our Basketball Club is a place for students who love the game. We practice regularly, play matches, and grow as a team. Whether you’re a beginner or experienced, everyone’s welcome to join.",
                     [
-                      "https://example.com/gallery1.jpg",
-                      "https://example.com/gallery2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/basketball/basket1.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/basketball/basket2.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/basketball/basket3.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/basketball/basket4.jpeg",
                     ],
                     [
-                      {"name": "Cordie 1", "phone": "9979901008", "email": "panthmoradiya7@gmail.com"},
-                      {"name": "Cordie 2"},
-                      {"name": "Cordie 3"},
+                      {"name": "Deepanshu Sharma", "phone": "9509014105", "email": "23ucs561@lnmiit.ac.in"},
+                      {"name": "Hiitesh Gour", "phone": "7878431617", "email": "23ucs590@lnmiit.ac.in"},
+                      {"name": "Shreyansh Agarwal", "phone": "8005681982", "email": "23ucs709@lnmiit.ac.in"},
+                      {"name": "Umang Jindal", "phone": "8619029605", "email": "23ucs727@lnmiit.ac.in"},
                     ],
+                    'https://www.instagram.com/lnmiit_basketball/'
                   ),
                   squareCard(
-                    [Colors.grey.shade300, Colors.blueAccent],
+                    "assets/images/sports/chess/chess_logo.jpg",
                     "Chess",
                     context,
-                    const PresidentialCouncilScreen(),
-                    'assets/images/cosha.png',
+                    "The Chess Club brings together students who share an interest in chess. It’s a space for strategic thinking, friendly competition, and continuous learning. Open to all skill levels, the club promotes a love for the game and a sense of community.",
                     [
-                      "https://example.com/gallery1.jpg",
-                      "https://example.com/gallery2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/chess/chess1.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/chess/chess2.jpg",
                     ],
                     [
-                      {"name": "Cordie 1"},
-                      {"name": "Cordie 2"},
-                      {"name": "Cordie 3"},
+                      {"name": "Akshat Pandey", "phone": "8303253024", "email": "23ucc512@lnmiit.ac.in"},
+                      {"name": "Aditya Shukla", "phone": "9023502669", "email": "23ucc508@lnmiit.ac.in"},
+                      {"name": "Kapil Rajpurohit ", "phone": "9589454999", "email": "23ucs606@lnmiit.ac.in"},
+                      {"name": "Kriti Bhambhani", "phone": "8076707955", "email": "23ucs624@lnmiit.ac.in"},
                     ],
+                    "https://www.instagram.com/chess_lnmiit/"
                   ),
                   squareCard(
-                    [const Color.fromRGBO(224, 224, 224, 1), Colors.blueAccent],
+                    "assets/images/sports/cricket/cricket_logo.jpeg",
                     "Cricket",
                     context,
-                    const PresidentialCouncilScreen(),
-                    'assets/images/cosha.png',
+                    "At LNMIIT, cricket is more than just a game-its a shared passion that brings students across batches. The cricket culture here fosters not only teamwork and competitiveness but also creates a homely bond with seniors and its a place where memories are made beyond scorecard.",
                     [
-                      "https://example.com/gallery1.jpg",
-                      "https://example.com/gallery2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/cricket/cricket1.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/cricket/cricket2.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/cricket/cricket3.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/cricket/cricket4.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/cricket/cricket5.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/cricket/cricket6.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/cricket/cricket7.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/cricket/cricket8.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/cricket/cricket9.jpeg",
                     ],
                     [
-                      {"name": "Cordie 1"},
-                      {"name": "Cordie 2"},
-                      {"name": "Cordie 3"},
+                      {"name": "Akshat Tyagi", "phone": "7611879965", "email": "23uec510@lnmiit.ac.in"},
+                      {"name": "Parth Pandey", "phone": "9023973958", "email": "23ucs662@lnmiit.ac.in"},
+                      {"name": "Vijay Kumar Bijarnia", "phone": "6280833211", "email": "23ume554@lnmiit.ac.in"},
                     ],
+                    "https://www.instagram.com/_cricket_lnmiit/"
                   ),
                   squareCard(
-                    [Colors.grey.shade300, Colors.blueAccent],
+                    "assets/images/sports/football/football_logo.jpg",
                     "Football",
                     context,
-                    const PresidentialCouncilScreen(),
-                    'assets/images/cosha.png',
+                    "Just a bunch of football fanatics who live for the game – whether it's sweating it out on the field or supporting their favourite clubs. LNMFC is all about teamwork, passion, and having a blast while playing the sport we love. Everyone’s welcome, from casual kickers to future pros!",
                     [
-                      "https://example.com/gallery1.jpg",
-                      "https://example.com/gallery2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/football/foot1.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/football/foot2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/football/foot3.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/football/foot4.jpg",
                     ],
                     [
-                      {"name": "Cordie 1"},
-                      {"name": "Cordie 2"},
-                      {"name": "Cordie 3"},
+                      {"name": "Anurag Tomar", "phone": "9354892101", "email": "23ucs542@lnmiit.ac.in"},
+                      {"name": "Kartikeya Swami", "phone": "6350619239", "email": "23ume527@lnmiit.ac.in"},
+                      {"name": "Priyangshu Saha", "phone": "8597641998", "email": "23ucc587@lnmiit.ac.in"},
                     ],
+                    "https://www.instagram.com/football.lnmiit/"
                   ),
                   squareCard(
-                    [Colors.grey.shade300, Colors.blueAccent],
+                    "assets/images/sports/kabaddi/kabaddi_logo.jpeg",
                     "Kabaddi",
                     context,
-                    const PresidentialCouncilScreen(),
-                    'assets/images/cosha.png',
+                    "Ready to bring the heat on the mat? LNMIIT Kabaddi is where passion meets power. With consistent podium finishes at Despo and Udghosh, we’re building legends — one tackle at a time. Join us and #LePanga! ",
                     [
-                      "https://example.com/gallery1.jpg",
-                      "https://example.com/gallery2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/kabaddi/kabaddi1.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/kabaddi/kabaddi2.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/kabaddi/kabaddi3.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/kabaddi/kabaddi4.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/kabaddi/kabaddi5.jpeg",
                     ],
                     [
-                      {"name": "Cordie 1"},
-                      {"name": "Cordie 2"},
-                      {"name": "Cordie 3"},
+                      {"name": "Arpit Singh", "phone": "7988039741", "email": "23ucc519@lnmiit.ac.in"},
+                      {"name": "Bhavesh Rode", "phone": "9307502610", "email": "23ucc531@lnmiit.ac.in"},
+                      {"name": "Ishan Bansal", "phone": "6375492739", "email": "23uec553@lnmiit.ac.in"},
+                      {"name": "Naveen Kumawat", "phone": "7569619441", "email": ""},
                     ],
+                    "https://www.instagram.com/lnmiit_kabaddi/"
                   ),
                   squareCard(
-                    [Colors.grey.shade300, Colors.blueAccent],
+                    "assets/images/sports/lawn_tennis/lawnt_logo.png",
                     "Lawn Tennis",
                     context,
-                    const PresidentialCouncilScreen(),
-                    'assets/images/cosha.png',
+                    "The Lawn Tennis Club welcomes everyone, whether you’re a complete beginner or an experienced player. We hold regular practice sessions, friendly matches, and competitive tournaments throughout the year. It’s a great space to improve your game, stay active, and be part of a supportive tennis community",
                     [
-                      "https://example.com/gallery1.jpg",
-                      "https://example.com/gallery2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/lawn_tennis/lawn3.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/lawn_tennis/lawn1.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/lawn_tennis/lawn2.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/lawn_tennis/lawn4.jpeg",
                     ],
                     [
-                      {"name": "Cordie 1"},
-                      {"name": "Cordie 2"},
-                      {"name": "Cordie 3"},
+                      {"name": "Aditya Vyas", "phone": "9079255992", "email": "23ucs519@lnmiit.ac.in"},
+                      {"name": "Krishna Prabhav", "phone": "9550725780", "email": "23ucs640@lnmiit.ac.in"},
                     ],
+                    ""
                   ),
                   squareCard(
-                    [Colors.grey.shade300, Colors.blueAccent],
+                    "assets/images/sports/squash/squash_logo.jpeg",
                     "Squash",
                     context,
-                    const PresidentialCouncilScreen(),
-                    'assets/images/cosha.png',
+                    "The Squash Club is a fun and energetic space for anyone who loves the game or wants to try something new. We play regularly, help each other improve, and enjoy a bit of friendly competition along the way. Whether you're just starting out or have been playing for years, you're always welcome to join us. It's all about staying active, meeting people, and having a great time on court!",
                     [
-                      "https://example.com/gallery1.jpg",
-                      "https://example.com/gallery2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/squash/squash1.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/squash/squash2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/squash/squash3.jpg",
                     ],
                     [
-                      {"name": "Cordie 1"},
-                      {"name": "Cordie 2"},
-                      {"name": "Cordie 3"},
+                      {"name": "Prasann Dewan", "phone": "9116640830", "email": "23ume539@lnmiit.ac.in"},
+                      {"name": "Rohit Bondada", "phone": "9618112529", "email": "23ucs558@lnmiit.ac.in"},
                     ],
+                    ""
                   ),
                   squareCard(
-                    [Colors.grey.shade300, Colors.blueAccent],
+                    "assets/images/sports/table_tennis/tablet_logo.png",
                     "Table Tennis",
                     context,
-                    const PresidentialCouncilScreen(),
-                    'assets/images/cosha.png',
+                    "The Table Tennis Club is a passionate and competitive group dedicated to learning and improving the sport. With a history of securing top positions in past competitions, the club proudly includes state-level players who lead by example. Members train rigorously and regularly participate in friendly matches with other colleges to gain experience and build camaraderie.",
                     [
-                      "https://example.com/gallery1.jpg",
-                      "https://example.com/gallery2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/table_tennis/tablt1.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/table_tennis/tablt3.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/table_tennis/tablt4.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/table_tennis/tablt5.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/table_tennis/tablt6.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/table_tennis/tablt7.jpg",
                     ],
                     [
-                      {"name": "Cordie 1"},
-                      {"name": "Cordie 2"},
-                      {"name": "Cordie 3"},
-                    ],
+                      {"name": "Charu Arora", "phone": "", "email": "23uec530@lnmiit.ac.in"},
+                      {"name": "Pratham Kala", "phone": "6376665781", "email": "23ucs675@lnmiit.ac.in"},
+                      {"name": "Soumya Jain", "phone": "7877318802", "email": "23ucs717@lnmiit.ac.in"},
+                      {"name": "Urvi Salecha", "phone": "", "email": ""},
+                    ], 
+                    ""
                   ),
                   squareCard(
-                    [Colors.grey.shade300, Colors.blueAccent],
+                    "assets/images/sports/volleyball/volleyball_logo.jpg",
                     "Volleyball",
                     context,
-                    const PresidentialCouncilScreen(),
-                    'assets/images/cosha.png',
+                    "The Volleyball Club at LNMIIT is a vibrant and competitive community for sports enthusiasts who are passionate about the game. As one of the institute's official sports clubs, we aim to promote physical fitness, teamwork, and sportsmanship through regular practice sessions, friendly matches, and participation in inter-college tournaments. Whether you're a beginner or an experienced player, the club welcomes everyone with a love for volleyball. Join us to bump, set, and spike your way into a spirited sports culture!",
                     [
-                      "https://example.com/gallery1.jpg",
-                      "https://example.com/gallery2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/volleyball/volley1.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/volleyball/volley2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/volleyball/volley5.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/volleyball/volley6.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/volleyball/volley7.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/volleyball/volley9.jpg",
                     ],
                     [
-                      {"name": "Anisha Khandelwal"},
-                      {"name": "Anvesh Gupta", "phone": "9045488096"},
-                      {"name": "Priyanshi Kadian"},
-                      {"name": "Saurav Rathi", "phone": "9821723636"},
-                      {"name": "Vishesh Jain"},
+                      {"name": "Anisha Khandelwal", "phone": "9828881138", "email": "23ucs536@lnmiit.ac.in"},
+                      {"name": "Anvesh Gupta", "phone": "9045488096", "email": "23ucc517@lnmiit.ac.in"},
+                      {"name": "Priyanshi Kadian", "phone": "8950016880", "email": "23uec594@lnmiit.ac.in"},
+                      {"name": "Saurav Rathi", "phone": "9821723636", "email": "23ucc597@lnmiit.ac.in"},
+                      {"name": "Vishesh Jain", "phone": "7742567202", "email": "23ucs738@lnmiit.ac.in"},
                     ],
+                    "https://www.instagram.com/lnmiit.volleyball/"
                   ),
                 ],
               ),
@@ -214,7 +253,7 @@ class SportsCouncil extends StatelessWidget {
 }
 
 // Square Card Widget
-Widget squareCard(List<Color> gradientColors, String label, BuildContext context, Widget targetScreen, String imageUrl, List<String> galleryImages, List<Map<String, String>> cordies) {
+Widget squareCard(String logoUrl, String label, BuildContext context, String description, List<String> galleryImages, List<Map<String, String>> cordies, String instaUrl) {
   return Material(
     elevation: 6,
     borderRadius: BorderRadius.circular(16),
@@ -225,9 +264,11 @@ Widget squareCard(List<Color> gradientColors, String label, BuildContext context
           context,
           MaterialPageRoute(
             builder: (context) => CouncilDetailScreen(
-                imageUrl: imageUrl,
+                imageUrl: logoUrl,
                 galleryImages: galleryImages,
-                cordies: cordies
+                cordies: cordies,
+                instaUrl: instaUrl,
+                description: description,
             ),
           ),
         );
@@ -235,7 +276,10 @@ Widget squareCard(List<Color> gradientColors, String label, BuildContext context
       child: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: gradientColors,
+            colors: [
+              Color.fromRGBO(123, 127, 139, 1),
+              Colors.black,
+            ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -247,9 +291,17 @@ Widget squareCard(List<Color> gradientColors, String label, BuildContext context
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const CircleAvatar(radius: 24, backgroundColor: Colors.white),
+            CircleAvatar(backgroundImage: AssetImage(logoUrl), radius: 50, backgroundColor: Colors.transparent),
             const SizedBox(height: 8),
-            Text(label, textAlign: TextAlign.center, style: const TextStyle(color: Colors.white, fontSize: 12)),
+            Text(
+              label, 
+              textAlign: TextAlign.center, 
+              style: GoogleFonts.poppins(
+                color: Colors.white, 
+                fontSize: 20, 
+                fontWeight: FontWeight.bold
+              )
+            ),
           ],
         ),
       ),
@@ -257,19 +309,25 @@ Widget squareCard(List<Color> gradientColors, String label, BuildContext context
   );
 }
 
-class PresidentialCouncilScreen extends StatelessWidget {
-  const PresidentialCouncilScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Presidential Council")),
-      body: const Center(child: Text("Welcome to Presidential Council")),
-    );
+  void _launchPhone(String phone) async {
+    final Uri uri = Uri.parse('tel:$phone');
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    }
   }
-}
 
-Widget _buildGSecTile(String name, String post) {
+  void _launchEmail(String email) async {
+    final Uri uri = Uri(
+      scheme: 'mailto',
+      path: email,
+    );
+
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    }
+  }
+
+Widget _buildGSecTile(String name, String post, String phoneUrl, String mailUrl) {
   return Container(
     decoration: BoxDecoration(
       color: const Color(0xFF1C2834),
@@ -280,42 +338,28 @@ Widget _buildGSecTile(String name, String post) {
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       title: Text(
         name,
-        style: const TextStyle(
+        style: GoogleFonts.inter(
           color: Colors.white,
-          fontWeight: FontWeight.bold,
-        ),
+          fontWeight: FontWeight.bold
+        )
       ),
       subtitle: Text(
         post,
-        style: const TextStyle(
-          fontSize: 12,
-          color: Color.fromARGB(133, 255, 255, 255),
-        ),
+        style: GoogleFonts.inter(
+          color: Color.fromARGB(255, 192, 190, 190),
+          fontSize: 10
+        )
       ),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           IconButton(
-            icon: const Icon(Icons.phone, color: Colors.white),
-            onPressed: () async {
-              // final Uri url = Uri.parse('tel:${cordie['phone']}');
-              // if (await canLaunchUrl(url)) {
-              //   await launchUrl(url);
-              // } else {
-              //   throw 'Could not launch $url';
-              // }
-            },
+            icon: const Icon(Icons.phone, color: Colors.greenAccent),
+            onPressed: () => _launchPhone(phoneUrl),
           ),
           IconButton(
-            icon: const Icon(Icons.email, color: Colors.white),
-            onPressed: () async {
-              // final Uri url = Uri.parse('mailto:${cordie['email']}');
-              // if (await canLaunchUrl(url)) {
-              //   await launchUrl(url);
-              // } else {
-              //   throw 'Could not launch $url';
-              // }
-            },
+            icon: const Icon(Icons.email, color: Colors.lightBlueAccent),
+            onPressed: () => _launchEmail(mailUrl)
           ),
         ],
       ),

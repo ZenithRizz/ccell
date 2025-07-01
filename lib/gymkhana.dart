@@ -1,8 +1,11 @@
+import 'package:google_fonts/google_fonts.dart';
 import 'package:login_page/cosha.dart';
 import 'package:login_page/cultural.dart';
+import 'package:login_page/fest_card.dart';
 import 'package:login_page/sports.dart';
 import 'package:login_page/technology.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class GymkhanaPage extends StatelessWidget {
   const GymkhanaPage({super.key});
@@ -10,41 +13,62 @@ class GymkhanaPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF0E1A23),
+      backgroundColor: const Color(0xFF001219),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Text(
+              Text(
                 'STUDENT GYMKHANA',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
+                textAlign:TextAlign.center,
+                style: GoogleFonts.poppins(
+                  color: Color.fromRGBO(255, 255, 255, 1),
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold
+                )
               ),
-              const SizedBox(height: 8),
-              const Text(
-                'About student gymkhana',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.white70,
-                ),
+              const SizedBox(height: 40),
+              Text(
+                "Every college works on the efforts that its student masses put in it to make the college for the students, of the students, and by the students. The LNMIIT Students’ Gymkhana, under the Director of the Institute's patronage, acts as a communication service and facilitates decision-making in the greater interest of the students on The LNMIIT",
+                style: GoogleFonts.inter(color: Color.fromRGBO(255, 255, 255, 1))
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 36),
+              presidentTile("Mr. President", "President", "", ""),
+              presidentTile("Mr. Vice President", "Vice-President", "", ""),
+              presidentTile("Mr. Finance Convener", "Finance Convener", "", ""),
+              SizedBox(height: 20,),
               Container(
+                height: 80,
+                width: 380,
                 padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(24),
+                  borderRadius: BorderRadius.circular(20),
                   gradient: const LinearGradient(
-                    colors: [Color(0xFF6CD4F3), Color(0xFF0E90B8)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [Color.fromRGBO(53, 63, 84, 1), Color.fromRGBO(34, 40, 52, 1)],
                   ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.white,
+                      offset: Offset(-1, -1),
+                      blurRadius: 1
+                    ),
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.7),
+                      blurRadius: 12,
+                      offset: Offset(6, 6),
+                    ),
+                  ]
                 ),
-                child: const Text(
-                  'PRESIDENTIAL COUNCIL',
-                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                child: Center(
+                  child: Text(
+                    'PRESIDENTIAL COUNCIL',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.poppins(color: Color.fromRGBO(255, 255, 255, 1), fontSize: 22, fontWeight: FontWeight.bold)
+                  ),
                 ),
               ),
               const SizedBox(height: 16),
@@ -53,107 +77,117 @@ class GymkhanaPage extends StatelessWidget {
                 crossAxisCount: 2,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
+                childAspectRatio: 0.75,
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
                   squareCard(
-                    [Colors.lightBlueAccent, Colors.blueAccent],
                     "Cultural Council",
+                    '',
                     context,
                     const CulturalCouncil(),
                   ),
                   squareCard(
-                    [Colors.grey.shade300, Colors.grey.shade600],
                     "Science & Technology Council",
+                    '',
                     context,
                     const TechnologyCouncil(),
                   ),
                   squareCard(
-                    [Colors.lightBlueAccent, Colors.blueAccent],
                     "Sports Council",
+                    '',
                     context,
                     const SportsCouncil(),
                   ),
                   squareCard(
-                    [Colors.grey.shade300, Colors.grey.shade600],
                     "COSHA Committee",
+                    "assets/images/cosha_logo.jpg",
                     context,
-                    const COSHAScreen(),
+                    COSHAScreen(),
                   ),
                 ],
               ),
-              const SizedBox(height: 24),
-              const Text(
+              const SizedBox(height: 40),
+              Text(
                 'STUDENT FESTS',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
+                style: GoogleFonts.poppins(
+                  color: Color.fromRGBO(255, 255, 255, 1),
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold
+                )
               ),
-              const SizedBox(height: 16),
-              SizedBox(
-                height: 160,
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Positioned(
-                      left: 40,
-                      top: 0,
-                      child: triangleCard(
-                        color: const LinearGradient(
-                          colors: [Color(0xFF6CD4F3), Color(0xFF0E90B8)],
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                        ),
-                        isInverted: true,
-                        size: 120,
-                        label: 'name',
-                        context: context,
-                        targetScreen: const BlueFestScreen(),
-                      ),
+              SizedBox(height: 20,),
+              GridView.count(
+                shrinkWrap: true,
+                crossAxisCount: 2,
+                crossAxisSpacing: 16,
+                mainAxisSpacing: 16,
+                childAspectRatio: 0.85,
+                physics: const NeverScrollableScrollPhysics(),
+                children: [
+                  squareCard(
+                    "Desportivos",
+                    "assets/images/despo_logo.jpeg",
+                    context,
+                    const StudentEventScreen(
+                      imageUrl: "assets/images/despo_logo.jpeg",
+                      description: "",
+                      festHeads: [
+                        {"name": "Head 1"},
+                        {"name": "Head 2"},
+                      ],
+                      galleryImages: [],
+                      instaUrl: 'https://www.instagram.com/desportivos.lnmiit/',
+                      emailUrl: "desportivos@lnmiit.ac.in",
+                      youtubeUrl: "https://www.youtube.com/@desportivoslnmiit2733",
                     ),
-                    Positioned(
-                      right: 40,
-                      top: 0,
-                      child: triangleCard(
-                        color: const LinearGradient(
-                          colors: [Color(0xFFEDE6DB), Color(0xFFB7ADA3)],
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                        ),
-                        isInverted: true,
-                        size: 120,
-                        label: 'name',
-                        context: context,
-                        targetScreen: const GreyFestScreen(),
-                      ),
+                  ),
+                  squareCard(
+                    "Plinth",
+                    "assets/images/plinth_logo.jpg",
+                    context,
+                    const StudentEventScreen(
+                      imageUrl: "assets/images/plinth_logo.jpg",
+                      description: "",
+                      festHeads: [
+                        {"name": "Head 1"},
+                        {"name": "Head 2"},
+                      ],
+                      galleryImages: [],
+                      instaUrl: 'https://www.instagram.com/plinth.lnmiit/',
+                      emailUrl: "plinth@lnmiit.ac.in",
+                      youtubeUrl: "https://www.youtube.com/@plinth.lnmiit",
                     ),
-                    Positioned(
-                      bottom: 0,
-                      child: triangleCard(
-                        color: const LinearGradient(
-                          colors: [Color(0xFFD45A5A), Color(0xFF8A3E3E)],
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                        ),
-                        isInverted: false,
-                        size: 120,
-                        label: 'name',
-                        context: context,
-                        targetScreen: const RedFestScreen(),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              const SizedBox(height: 24),
-              const Text(
+              SizedBox(height: 15,),
+              Positioned(
+                child: squareCard(
+                      "Vivacity",
+                      'assets/images/viva_logo.png',
+                      context,
+                      const StudentEventScreen(
+                        imageUrl: "assets/images/viva_logo.png",
+                        description: "",
+                        festHeads: [
+                          {"name": "Head 1"},
+                          {"name": "Head 2"},
+                        ],
+                        galleryImages: [],
+                        instaUrl: 'https://www.instagram.com/vivacity_lnmiit/',
+                        emailUrl: "vivacity@lnmiit.ac.in",
+                        youtubeUrl: "https://www.youtube.com/@VivacityLNMIIT",
+                      ),
+                    ),
+              ),
+              const SizedBox(height: 40),
+              Text(
                 'STUDENT EVENTS',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
+                style: GoogleFonts.poppins(
+                  color: Color.fromRGBO(255, 255, 255, 1),
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold
+                )
               ),
               const SizedBox(height: 16),
               GridView.count(
@@ -161,19 +195,36 @@ class GymkhanaPage extends StatelessWidget {
                 crossAxisCount: 2,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
+                childAspectRatio: 0.85,
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
                   squareCard(
-                    [Colors.lightBlueAccent, Colors.blueAccent],
-                    "name",
+                    "TEDX LNMIIT",
+                    'assets/images/ted_logo.jpg',
                     context,
-                    const StudentEventScreen(),
+                    const StudentEventScreen(
+                      imageUrl: "assets/images/ted_logo.jpg",
+                      description: "",
+                      festHeads: [],
+                      galleryImages: [],
+                      instaUrl: 'https://www.instagram.com/tedxlnmiit/',
+                      emailUrl: "",
+                      youtubeUrl: "",
+                    ),
                   ),
                   squareCard(
-                    [Colors.grey.shade300, Colors.grey.shade600],
-                    "name",
+                    "E-Summit",
+                    'assets/images/esummit_logo.jpg',
                     context,
-                    const StudentEventScreen(),
+                    const StudentEventScreen(
+                      imageUrl: "assets/images/esummit_logo.jpg",
+                      description: "",
+                      festHeads: [],
+                      galleryImages: [],
+                      instaUrl: '',
+                      emailUrl: "",
+                      youtubeUrl: "",
+                    ),
                   ),
                 ],
               ),
@@ -187,7 +238,7 @@ class GymkhanaPage extends StatelessWidget {
 }
 
 // Square Card Widget
-Widget squareCard(List<Color> gradientColors, String label, BuildContext context, Widget targetScreen) {
+Widget squareCard(String label, String imageUrl, BuildContext context, Widget targetScreen) {
   return Material(
     elevation: 6,
     borderRadius: BorderRadius.circular(16),
@@ -202,159 +253,87 @@ Widget squareCard(List<Color> gradientColors, String label, BuildContext context
       child: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: gradientColors,
+            colors: [
+              Color.fromRGBO(123, 127, 139, 1),
+              //Color(0xFFC7C6C6).withOpacity(0.8),
+              Colors.black,
+            ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-          ),
-          borderRadius: BorderRadius.circular(16),
+            ),
+          borderRadius: BorderRadius.circular(12),
         ),
-        width: 100,
-        height: 100,
+        width: 195,
+        height: 225,
         padding: const EdgeInsets.all(8),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const CircleAvatar(radius: 24, backgroundColor: Colors.white),
-            const SizedBox(height: 8),
-            Text(label, textAlign: TextAlign.center, style: const TextStyle(color: Colors.white, fontSize: 12)),
+            CircleAvatar(backgroundImage: AssetImage(imageUrl), radius: 50, backgroundColor: Colors.white),
+            const SizedBox(height: 15),
+            Text(label, textAlign: TextAlign.center, style: GoogleFonts.poppins(color: Color.fromRGBO(255, 255, 255, 1), fontSize: 20, height: 1.2, fontWeight: FontWeight.bold)),
           ],
         ),
       ),
     ),
   );
 }
+  void _launchPhone(String phone) async {
+    final Uri uri = Uri.parse('tel:$phone');
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    }
+  }
 
-// Triangle Card Widget
-Widget triangleCard({
-  required Gradient color,
-  required bool isInverted,
-  required double size,
-  required String label,
-  required BuildContext context,
-  required Widget targetScreen,
-}) {
-  return GestureDetector(
-    onTap: () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (_) => targetScreen),
-      );
-    },
-    child: ClipPath(
-      clipper: EquilateralTriangleClipper(
-        inverted: isInverted,
-        cornerRadius: 12,
+  void _launchEmail(String email) async {
+    final Uri uri = Uri(
+      scheme: 'mailto',
+      path: email,
+    );
+
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    }
+  }
+
+Widget presidentTile(String name, String post, String phoneUrl, String mailUrl) {
+  return Container(
+    decoration: BoxDecoration(
+      color: const Color(0xFF1C2834),
+      borderRadius: BorderRadius.circular(12),
+    ),
+    margin: const EdgeInsets.only(bottom: 12),
+    child: ListTile(
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      title: Text(
+        name,
+        style: GoogleFonts.inter(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+          fontSize: 17
+        )
       ),
-      child: Container(
-        width: size,
-        height: size,
-        decoration: BoxDecoration(
-          gradient: color,
-        ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const CircleAvatar(radius: 20, backgroundColor: Colors.white),
-              const SizedBox(height: 8),
-              Text(label, style: const TextStyle(color: Colors.white, fontSize: 12)),
-            ],
+      subtitle: Text(
+        post,
+        style: GoogleFonts.inter(
+          color: const Color.fromARGB(255, 193, 191, 191),
+          fontSize: 12
+        )
+      ),
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          IconButton(
+            icon: const Icon(Icons.phone, color: Colors.greenAccent),
+            onPressed: () => _launchPhone(phoneUrl)
           ),
-        ),
+          IconButton(
+            icon: const Icon(Icons.email, color: Colors.lightBlueAccent),
+            onPressed: () => _launchEmail(mailUrl)
+          ),
+        ],
       ),
     ),
   );
 }
 
-// Triangle Clipper
-class EquilateralTriangleClipper extends CustomClipper<Path> {
-  final bool inverted;
-  final double cornerRadius;
-
-  EquilateralTriangleClipper({this.inverted = false, this.cornerRadius = 12});
-
-  @override
-  Path getClip(Size size) {
-    final Path path = Path();
-
-    final double height = size.height;
-    final double width = size.width;
-
-    if (inverted) {
-      path.moveTo(width / 2, height);
-      path.lineTo(0, 0);
-      path.lineTo(width, 0);
-    } else {
-      path.moveTo(width / 2, 0);
-      path.lineTo(0, height);
-      path.lineTo(width, height);
-    }
-
-    path.close();
-    return path;
-  }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
-}
-
-// Dummy Target Screens
-class BlueFestScreen extends StatelessWidget {
-  const BlueFestScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Blue Fest")),
-      body: const Center(child: Text("Welcome to Blue Fest")),
-    );
-  }
-}
-
-class GreyFestScreen extends StatelessWidget {
-  const GreyFestScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Grey Fest")),
-      body: const Center(child: Text("Welcome to Grey Fest")),
-    );
-  }
-}
-
-class RedFestScreen extends StatelessWidget {
-  const RedFestScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Red Fest")),
-      body: const Center(child: Text("Welcome to Red Fest")),
-    );
-  }
-}
-
-class PresidentialCouncilScreen extends StatelessWidget {
-  const PresidentialCouncilScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Presidential Council")),
-      body: const Center(child: Text("Welcome to Presidential Council")),
-    );
-  }
-}
-
-class StudentEventScreen extends StatelessWidget {
-  const StudentEventScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Student Event")),
-      body: const Center(child: Text("Welcome to Student Event")),
-    );
-  }
-}

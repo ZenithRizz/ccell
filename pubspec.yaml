@@ -38,6 +38,7 @@ dependencies:
   url_launcher: ^6.3.1
   image_picker: ^1.1.2
   shared_preferences: ^2.5.3
+  animated_bottom_navigation_bar: ^1.4.0
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -75,6 +76,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
       - assets/images/ccell_logo.png
+      - assets/images/ccell_logo_c.png
       - assets/images/Frame.png
       - assets/images/google_logo.png
       - assets/images/academic_calender.png
@@ -89,6 +91,56 @@ flutter:
       - assets/images/y24.jpg
       - assets/images/gmail.png
       - assets/images/phone_icon.png
+      - assets/images/usha_mam.jpg
+      - assets/images/arpit_joshi.jpg
+      - assets/images/Harshita.jpg
+      - assets/images/naman.jpg
+      - assets/images/atharv_shah.jpg
+      - assets/images/kunal_sharma.png
+      - assets/images/nikhila.jpg
+      - assets/images/ishita.jpg
+      - assets/images/praneel.jpg
+      - assets/images/armaan.png
+      - assets/images/panth_moradiya.jpg
+      - assets/images/yash_raj.jpg
+      - assets/images/neha_raniwala.jpg
+      - assets/images/vibha_gupta.jpg
+      - assets/images/mudit_img.jpg
+      - assets/images/aditya_kansal.webp
+      - assets/images/rahul_sharma.jpg
+      - assets/images/lakshita.jpeg
+      - assets/images/Instagram.png
+      - assets/images/tech/cipherclub/cipher_logo.png
+      - assets/images/tech/phoenix/phoenix_logo.png
+      - assets/images/tech/quizzinga/quizzinga_logo.png
+      - assets/images/sports/badminton/badminton_logo.jpeg
+      - assets/images/sports/basketball/basketball_logo.png
+      - assets/images/sports/cricket/cricket_logo.jpeg
+      - assets/images/sports/football/football_logo.jpg
+      - assets/images/sports/kabaddi/kabaddi_logo.jpeg
+      - assets/images/sports/lawn_tennis/lawnt_logo.png
+      - assets/images/sports/table_tennis/tablet_logo.png
+      - assets/images/cultural/aaveg/aaveg_logo.png
+      - assets/images/cultural/capriccio/capriccio_logo.jpg
+      - assets/images/cultural/eminence/eminence_logo.jpg
+      - assets/images/cultural/imagination/imagi_logo.jpg
+      - assets/images/cultural/insignia/insignia_logo.jpg
+      - assets/images/cultural/lc/lc_logo.jpg
+      - assets/images/cultural/mediacell/media_logo.jpg
+      - assets/images/cultural/rendition/rendition_logo.png
+      - assets/images/cultural/sankalp/sankalp_logo.jpg
+      - assets/images/cultural/vignette/vignette_logo.jpg
+      - assets/images/sports/squash/squash_logo.jpeg
+      - assets/images/sports/chess/chess_logo.jpg
+      - assets/images/cultural/fundoo/fundoo_logo.jpg
+      - assets/images/sports/volleyball/volleyball_logo.jpg
+      - assets/images/plinth_logo.jpg
+      - assets/images/despo_logo.jpeg
+      - assets/images/viva_logo.png
+      - assets/images/ted_logo.jpg
+      - assets/images/esummit_logo.jpg
+      - assets/images/cosha_logo.jpg
+      - assets/images/youtube_logo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
