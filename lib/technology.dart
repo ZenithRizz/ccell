@@ -80,10 +80,19 @@ class TechnologyCouncil extends StatelessWidget {
                     context,
                     "Cybros is a competitive programming club dedicated to fostering a strong coding culture within the college. We promote algorithmic thinking, conduct regular contests, and help students build problem-solving skills through consistent practice and collaboration.",
                     [
-
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/cybros/cybros1.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/cybros/cybros2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/cybros/cybros3.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/cybros/cybros4.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/cybros/cybros5.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/cybros/cybros6.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/cybros/cybros7.jpg",
                     ],
-                    [],
-                    ''
+                    [
+                      {"name": "Naman Jain", "phone": "8890061881", "email": "22ucs133@lnmiit.ac.in"},
+                      {"name": "Romit Sovakar", "phone": "8436915546", "email": "22ucs168@lnmiit.ac.in"},
+                    ],
+                    'https://www.instagram.com/cybros_lnmiit/'
                   ),
                   squareCard(
                     "",
@@ -127,7 +136,7 @@ class TechnologyCouncil extends StatelessWidget {
                     "https://www.instagram.com/phoenix.lnmiit/"
                   ),
                   squareCard(
-                    "assets/images/tech/quizzinga/quizzinga_logo.png",
+                    "assets/images/tech/quizzinga/quizzinga_logo.jpg",
                     "Quizzinga",
                     context,
                     "We are Quizzinga, The official quizzing club of LNMIIT. Some consider us a cult of nerds (may or may not be true), while others call us a buzzing hivemind of trivia enthusiasts. If you like trivia nights, auctions or winning big prizes, Quizzinga might just be your turf. VENI VIDI VICI!!!",
