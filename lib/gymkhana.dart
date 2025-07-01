@@ -256,7 +256,7 @@ Widget squareCard(String label, String imageUrl, BuildContext context, Widget ta
             colors: [
               Color.fromRGBO(123, 127, 139, 1),
               //Color(0xFFC7C6C6).withOpacity(0.8),
-              Colors.black,
+            const Color(0xFF001219)
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,

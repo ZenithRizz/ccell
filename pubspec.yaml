@@ -141,6 +141,7 @@ flutter:
       - assets/images/esummit_logo.jpg
       - assets/images/cosha_logo.jpg
       - assets/images/youtube_logo.png
+      - assets/images/tech/cybros/cybros_logo.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

@@ -75,11 +75,13 @@ class TechnologyCouncil extends StatelessWidget {
                     "https://www.instagram.com/cipher.lnmiit/"
                   ),
                   squareCard(
-                    "",
+                    "assets/images/tech/cybros/cybros_logo.jpg",
                     "Cybros",
                     context,
-                    "",
-                    [],
+                    "Cybros is a competitive programming club dedicated to fostering a strong coding culture within the college. We promote algorithmic thinking, conduct regular contests, and help students build problem-solving skills through consistent practice and collaboration.",
+                    [
+
+                    ],
                     [],
                     ''
                   ),
