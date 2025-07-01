@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login_page/NewMember.dart';
+import 'package:login_page/TeamMentors.dart';
 import 'package:login_page/convenerMessage.dart';
 import 'package:login_page/member_section.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -139,26 +140,38 @@ class AboutCCellPage extends StatelessWidget {
 
             const SizedBox(height: 20),
 
+            TeamMentors(
+               title: "Team Mentors Y-22",
+              members: [
+                NewMember(
+                  name: "Harshita Sharma",
+                  imagePath: 'assets/images/Harshita.jpg'
+                ),
+
+                NewMember(
+                  name: "Arpit Joshi",
+                  imagePath: 'assets/images/arpit_joshi.jpg'
+                ),
+                NewMember(
+                  name: "Naman Agarwal",
+                  imagePath: 'assets/images/naman.jpg',
+                ),
+                
+              ],
+            ),
+
             convenerMessageSection(),
 
             NewSection(
               title: "App Developers",
               members: [
-                  NewMember(
-                  name: "Praneel",
-                  imagePath: 'assets/images/praneel.jpg'
-                ),
-                  NewMember(
-                  name: "Armaan Jain",
-                  imagePath: 'assets/images/armaan.heic'
-                ),
-                NewMember(
-                  name: "Nikhila S Hari",
-                  imagePath: 'assets/images/nikhila.jpg',
-                ),
                 NewMember(
                   name: "Ishita Agarwal",
                   imagePath: 'assets/images/ishita.jpg',
+                ),
+                NewMember(
+                  name: "Armaan Jain",
+                  imagePath: 'assets/images/armaan.png',
                 ),
                 NewMember(
                   name: "Panth Moradia",
@@ -190,7 +203,7 @@ class AboutCCellPage extends StatelessWidget {
 
                 child: Row(
                   children: [
-                     const SizedBox(width: 20),
+                    const SizedBox(width: 20),
                     CircleAvatar(
                       radius: 50,
                       backgroundImage: AssetImage('assets/images/praneel.jpg'),
@@ -226,7 +239,7 @@ class AboutCCellPage extends StatelessWidget {
 
                 child: Row(
                   children: [
-                     const SizedBox(width: 20),
+                    const SizedBox(width: 20),
                     CircleAvatar(
                       radius: 50,
                       backgroundImage: AssetImage('assets/images/nikhila.jpg'),
@@ -241,38 +254,9 @@ class AboutCCellPage extends StatelessWidget {
               ),
             ),
 
-             Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Container(
-                height: 120,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(18),
-                ),
-
-                child: Row(
-                  children: [
-                     const SizedBox(width: 20),
-                    CircleAvatar(
-                      radius: 50,
-                      backgroundImage: AssetImage('assets/images/praneel.jpg'),
-                    ),
-                    const SizedBox(width: 20),
-                    Text(
-                      "Praneel",
-                      style: const TextStyle(color: Colors.black, fontSize: 16),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-
             ElevatedButton(
               onPressed: () => signOutUser(context),
-              child: Text(
-                "Sign Out",
-                style: TextStyle(color: Colors.white),
-              ),
+              child: Text("Sign Out", style: TextStyle(color: Colors.white)),
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(Colors.red),
               ),
