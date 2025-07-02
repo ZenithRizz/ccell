@@ -4,6 +4,9 @@ import 'package:login_page/gymkhana.dart';
 import 'package:login_page/more_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:login_page/notifications_screen.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+import 'package:fluid_background/fluid_background.dart';
+
 
 
 class HomeDashboard extends StatelessWidget {
@@ -40,39 +43,53 @@ class HomeDashboard extends StatelessWidget {
   Widget build(context) {
     return Scaffold(
       backgroundColor: const Color(0xFF001219),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: 70),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
-            child: Text(
-              'Hi $userName!',
-              style: GoogleFonts.lilitaOne(
-                fontSize: 36,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+      body: FluidBackground(
+        initialColors: InitialColors.custom([
+          Color.fromRGBO(255, 255, 255, 0.15), // Soft white
+          Color.fromRGBO(173, 216, 230, 0.10), // Light blue
+          Color.fromRGBO(144, 238, 144, 0.08), // Pale green
+          Color.fromRGBO(211, 211, 211, 0.12), // Light gray
+        ],),
+        initialPositions: InitialOffsets.predefined(),
+        velocity: 40,
+        bubblesSize: 400,
+        sizeChangingRange: const [300, 600],
+        allowColorChanging: true,
+        bubbleMutationDuration: const Duration(seconds: 4),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 70),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: Text(
+                'Hi $userName!',
+                style: GoogleFonts.lilitaOne(
+                  fontSize: 36,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 60),
-          Expanded(
-            child: GridView.count(
-              crossAxisCount: 2,
-              mainAxisSpacing: 20,
-              crossAxisSpacing: 20,
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              children: buttonData.entries.map((entry) {
-                return _ButtonHomeScreen(
-                  title: entry.key,
-                  imageName: entry.value['image'],
-                  url: entry.value['url'],
-                  route: entry.value['route'],
-                );
-              }).toList(),
+            const SizedBox(height: 60),
+            Expanded(
+              child: GridView.count(
+                crossAxisCount: 2,
+                mainAxisSpacing: 20,
+                crossAxisSpacing: 20,
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                children: buttonData.entries.map((entry) {
+                  return _ButtonHomeScreen(
+                    title: entry.key,
+                    imageName: entry.value['image'],
+                    url: entry.value['url'],
+                    route: entry.value['route'],
+                  );
+                }).toList(),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -159,64 +176,114 @@ class _ButtonHomeScreen extends StatelessWidget {
   }
 }
 
-class HomePage extends StatefulWidget {
-  final String userName;
-  const HomePage({super.key, required this.userName});
+  class HomePage extends StatefulWidget {
+    final String userName;
+    const HomePage({super.key, required this.userName});
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 0;
-
-  late final List<Widget> _pages = [
-    HomeDashboard(userName: widget.userName),
-    GymkhanaPage(),
-    NotificationsPage(),
-    MorePage(),
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    @override
+    State<HomePage> createState() => _HomePageState();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 300),
-        child: _pages[_selectedIndex],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.black,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.grey,
-        showUnselectedLabels: true,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.sports),
-            label: 'Gymkhana',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
-            label: 'Notifications',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.more_horiz),
-            label: 'More',
+  class _HomePageState extends State<HomePage> {
+    int _selectedIndex = 0;
+
+    late final List<Widget> _pages = [
+      HomeDashboard(userName: widget.userName),
+      GymkhanaPage(),
+      NotificationsPage(),
+      MorePage(),
+    ];
+
+    void _onItemTapped(int index) {
+      setState(() {
+        _selectedIndex = index;
+      });
+    }
+    Widget _buildGlowingIcon(IconData icon, bool isActive) {
+      return Container(
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          boxShadow: isActive
+              ? [
+            BoxShadow(
+              color: Colors.white.withOpacity(0.3),
+              blurRadius: 10,
+              spreadRadius: 1,
+            ),
+          ]
+              : [],
+        ),
+        child: Icon(
+          icon,
+          color: isActive ? Colors.white : Colors.grey.shade600,
+        ),
+      );
+    }
+
+    @override
+    Widget build(BuildContext context) {
+      return Scaffold(
+        body: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 400),
+          transitionBuilder: (child, animation) =>
+              FadeTransition(opacity: animation, child: child),
+          child: _pages[_selectedIndex],
+        ),
+        bottomNavigationBar: Container(
+      decoration: BoxDecoration(
+      color: Colors.black,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.6),
+            blurRadius: 10,
+            offset: Offset(0, -2),
           ),
         ],
       ),
-    );
+      padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+      child: SalomonBottomBar(
+      currentIndex: _selectedIndex,
+      onTap: _onItemTapped,
+      backgroundColor: Colors.transparent,
+      selectedItemColor: Colors.white,
+      unselectedItemColor: Colors.grey.shade600,
+      duration: Duration(milliseconds: 400),
+      items: [
+      /// Home
+      SalomonBottomBarItem(
+      icon: _buildGlowingIcon(Icons.home, _selectedIndex == 0),
+      title: Text("Home"),
+      selectedColor: Colors.white,
+      unselectedColor: Colors.grey.shade600,
+      ),
+
+      /// Gymkhana
+      SalomonBottomBarItem(
+      icon: _buildGlowingIcon(Icons.sports, _selectedIndex == 1),
+      title: Text("Gymkhana"),
+      selectedColor: Colors.white,
+      unselectedColor: Colors.grey.shade600,
+      ),
+
+      /// Notifications
+      SalomonBottomBarItem(
+      icon: _buildGlowingIcon(Icons.notifications, _selectedIndex == 2),
+      title: Text("Notifications"),
+      selectedColor: Colors.white,
+      unselectedColor: Colors.grey.shade600,
+      ),
+
+      /// More
+      SalomonBottomBarItem(
+      icon: _buildGlowingIcon(Icons.more_horiz, _selectedIndex == 3),
+      title: Text("More"),
+      selectedColor: Colors.white,
+      unselectedColor: Colors.grey.shade600,
+      ),
+      ],
+      ),
+      ),
+
+      );
+    }
   }
-}
