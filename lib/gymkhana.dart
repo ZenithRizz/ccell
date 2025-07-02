@@ -1,9 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:login_page/cosha.dart';
 import 'package:login_page/cultural.dart';
+import 'package:login_page/fest_card.dart';
 import 'package:login_page/sports.dart';
 import 'package:login_page/technology.dart';
-import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class GymkhanaPage extends StatelessWidget {
   const GymkhanaPage({super.key});
@@ -20,90 +22,49 @@ class GymkhanaPage extends StatelessWidget {
             children: [
               Text(
                 'STUDENT GYMKHANA',
-                textAlign:TextAlign.center,
-                style: GoogleFonts.lilitaOne(
-                  color: Color.fromRGBO(255, 255, 255, 1),
+                textAlign: TextAlign.center,
+                style: GoogleFonts.poppins(
+                  color: Colors.white,
                   fontSize: 40,
-                )
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const SizedBox(height: 40),
               Text(
                 "Every college works on the efforts that its student masses put in it to make the college for the students, of the students, and by the students. The LNMIIT Students’ Gymkhana, under the Director of the Institute's patronage, acts as a communication service and facilitates decision-making in the greater interest of the students on The LNMIIT",
-                style: GoogleFonts.poppins(color: Color.fromRGBO(255, 255, 255, 1))
+                style: GoogleFonts.inter(color: Colors.white),
               ),
               const SizedBox(height: 36),
-              Container(
-                height: 80,
-                width: 380,
-                padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  gradient: const LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [Color.fromRGBO(53, 63, 84, 1), Color.fromRGBO(34, 40, 52, 1)],
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.white,
-                      offset: Offset(-1, -1),
-                      blurRadius: 1
-                    ),
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.7),
-                      blurRadius: 12,
-                      offset: Offset(6, 6),
-                    ),
-                  ]
-                ),
-                child: Center(
-                  child: Text(
-                    'PRESIDENTIAL COUNCIL',
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.lilitaOne(color: Color.fromRGBO(255, 255, 255, 1), fontSize: 24)
-                  ),
-                ),
-              ),
+              presidentTile("Mr. President", "President", "", ""),
+              presidentTile("Mr. Vice President", "Vice-President", "", ""),
+              presidentTile("Mr. Finance Convener", "Finance Convener", "", ""),
+              const SizedBox(height: 20),
+              buildSectionTitle("PRESIDENTIAL COUNCIL"),
               const SizedBox(height: 16),
               GridView.count(
                 shrinkWrap: true,
                 crossAxisCount: 2,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
-                childAspectRatio: 0.85,
+                childAspectRatio: 0.75,
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
-                  squareCard(
-                    "Cultural Council",
-                    context,
-                    const CulturalCouncil(),
-                  ),
-                  squareCard(
-                    "Science & Technology Council",
-                    context,
-                    const TechnologyCouncil(),
-                  ),
-                  squareCard(
-                    "Sports Council",
-                    context,
-                    const SportsCouncil(),
-                  ),
-                  squareCard(
-                    "COSHA Committee",
-                    context,
-                    const COSHAScreen(),
-                  ),
+                  squareCard("Cultural Council", 'assets/images/ccell_logo.png', context, const CulturalCouncil()),
+                  squareCard("Science & Technology Council", 'assets/images/ccell_logo.png', context, const TechnologyCouncil()),
+                  squareCard("Sports Council", 'assets/images/ccell_logo.png', context, const SportsCouncil()),
+                  squareCard("COSHA Committee", "assets/images/cosha_logo.jpg", context, COSHAScreen()),
                 ],
               ),
               const SizedBox(height: 40),
               Text(
                 'STUDENT FESTS',
-                style: GoogleFonts.lilitaOne(
+                style: GoogleFonts.poppins(
                   color: Color.fromRGBO(255, 255, 255, 1),
-                  fontSize: 26
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold
                 )
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20),
               GridView.count(
                 shrinkWrap: true,
                 crossAxisCount: 2,
@@ -114,27 +75,56 @@ class GymkhanaPage extends StatelessWidget {
                 children: [
                   squareCard(
                     "Desportivos",
+                    "assets/images/despo_logo.jpeg",
                     context,
-                    const StudentEventScreen(),
+                    const StudentEventScreen(
+                      imageUrl: "assets/images/despo_logo.jpeg",
+                      description: "",
+                      festHeads: [{"name": "Head 1"}, {"name": "Head 2"}],
+                      galleryImages: [],
+                      instaUrl: 'https://www.instagram.com/desportivos.lnmiit/',
+                      emailUrl: "desportivos@lnmiit.ac.in",
+                      youtubeUrl: "https://www.youtube.com/@desportivoslnmiit2733",
+                    ),
                   ),
                   squareCard(
                     "Plinth",
+                    "assets/images/plinth_logo.jpg",
                     context,
-                    const StudentEventScreen(),
-                  ),
-                  squareCard(
-                    "Vivacity",
-                    context,
-                    const StudentEventScreen(),
+                    const StudentEventScreen(
+                      imageUrl: "assets/images/plinth_logo.jpg",
+                      description: "",
+                      festHeads: [{"name": "Head 1"}, {"name": "Head 2"}],
+                      galleryImages: [],
+                      instaUrl: 'https://www.instagram.com/plinth.lnmiit/',
+                      emailUrl: "plinth@lnmiit.ac.in",
+                      youtubeUrl: "https://www.youtube.com/@plinth.lnmiit",
+                    ),
                   ),
                 ],
               ),
+              SizedBox(height: 15),
+              squareCard(
+                    "Vivacity",
+                    'assets/images/viva_logo.png',
+                    context,
+                    const StudentEventScreen(
+                      imageUrl: "assets/images/viva_logo.png",
+                      description: "",
+                      festHeads: [{"name": "Head 1"}, {"name": "Head 2"}],
+                      galleryImages: [],
+                      instaUrl: 'https://www.instagram.com/vivacity_lnmiit/',
+                      emailUrl: "vivacity@lnmiit.ac.in",
+                      youtubeUrl: "https://www.youtube.com/@VivacityLNMIIT",
+                    ),
+                  ),
               const SizedBox(height: 40),
               Text(
                 'STUDENT EVENTS',
-                style: GoogleFonts.lilitaOne(
+                style: GoogleFonts.poppins(
                   color: Color.fromRGBO(255, 255, 255, 1),
-                  fontSize: 26
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold
                 )
               ),
               const SizedBox(height: 16),
@@ -148,17 +138,35 @@ class GymkhanaPage extends StatelessWidget {
                 children: [
                   squareCard(
                     "TEDX LNMIIT",
+                    'assets/images/ted_logo.jpg',
                     context,
-                    const StudentEventScreen(),
+                    const StudentEventScreen(
+                      imageUrl: "assets/images/ted_logo.jpg",
+                      description: "",
+                      festHeads: [],
+                      galleryImages: [],
+                      instaUrl: 'https://www.instagram.com/tedxlnmiit/',
+                      emailUrl: "",
+                      youtubeUrl: "",
+                    ),
                   ),
                   squareCard(
                     "E-Summit",
+                    'assets/images/esummit_logo.jpg',
                     context,
-                    const StudentEventScreen(),
+                    const StudentEventScreen(
+                      imageUrl: "assets/images/esummit_logo.jpg",
+                      description: "",
+                      festHeads: [],
+                      galleryImages: [],
+                      instaUrl: '',
+                      emailUrl: "",
+                      youtubeUrl: "",
+                    ),
                   ),
                 ],
               ),
-              SizedBox(height: 64,)
+              const SizedBox(height: 64),
             ],
           ),
         ),
@@ -167,8 +175,16 @@ class GymkhanaPage extends StatelessWidget {
   }
 }
 
-// Square Card Widget
-Widget squareCard(String label, BuildContext context, Widget targetScreen) {
+// Square card with safe image loading
+Widget squareCard(String label, String imageUrl, BuildContext context, Widget targetScreen) {
+  ImageProvider imageProvider;
+  try {
+    imageProvider = AssetImage(imageUrl);
+  } catch (e) {
+    print("Image load error: $e");
+    imageProvider = const AssetImage('assets/images/ccell_logo.png'); // Add fallback if needed
+  }
+
   return Material(
     elevation: 6,
     borderRadius: BorderRadius.circular(16),
@@ -182,26 +198,35 @@ Widget squareCard(String label, BuildContext context, Widget targetScreen) {
       },
       child: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color.fromRGBO(123, 127, 139, 1),
-              //Color(0xFFC7C6C6).withOpacity(0.8),
-              Colors.black,
-            ],
+          gradient: const LinearGradient(
+            colors: [Color.fromRGBO(123, 127, 139, 1), Color(0xFF001219)],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            ),
+          ),
           borderRadius: BorderRadius.circular(12),
         ),
-        width: 100,
-        height: 100,
+        width: 195,
+        height: 225,
         padding: const EdgeInsets.all(8),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const CircleAvatar(radius: 24, backgroundColor: Colors.white),
+            CircleAvatar(
+              backgroundImage: imageProvider,
+              radius: 50,
+              backgroundColor: Colors.white,
+            ),
             const SizedBox(height: 15),
-            Text(label, textAlign: TextAlign.center, style: GoogleFonts.lilitaOne(color: Color.fromRGBO(255, 255, 255, 1), fontSize: 20, height: 1.1)),
+            Text(
+              label,
+              textAlign: TextAlign.center,
+              style: GoogleFonts.poppins(
+                color: Colors.white,
+                fontSize: 20,
+                height: 1.2,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ],
         ),
       ),
@@ -209,185 +234,79 @@ Widget squareCard(String label, BuildContext context, Widget targetScreen) {
   );
 }
 
-// Triangle Card Widget
-Widget triangleCard({
-  required Gradient color,
-  required bool isInverted,
-  required double size,
-  required String label,
-  required BuildContext context,
-  required Widget targetScreen,
-}) {
-  return GestureDetector(
-    onTap: () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (_) => targetScreen),
-      );
-    },
-    child: ClipPath(
-      clipper: EquilateralTriangleClipper(
-        inverted: isInverted,
-        cornerRadius: 12,
+Widget buildSectionTitle(String title) {
+  return Container(
+    height: 80,
+    width: 380,
+    padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(20),
+      gradient: const LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [Color.fromRGBO(53, 63, 84, 1), Color.fromRGBO(34, 40, 52, 1)],
       ),
-      child: Container(
-        width: size,
-        height: size,
-        decoration: BoxDecoration(
-          gradient: color,
-        ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const CircleAvatar(radius: 20, backgroundColor: Colors.white),
-              const SizedBox(height: 8),
-              Text(label, style: const TextStyle(color: Colors.white, fontSize: 12)),
-            ],
-          ),
-        ),
+      boxShadow: [
+        const BoxShadow(color: Colors.white, offset: Offset(-1, -1), blurRadius: 1),
+        BoxShadow(color: Colors.black.withOpacity(0.7), blurRadius: 12, offset: const Offset(6, 6)),
+      ],
+    ),
+    child: Center(
+      child: Text(
+        title,
+        textAlign: TextAlign.center,
+        style: GoogleFonts.poppins(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold),
       ),
     ),
   );
 }
 
-// Triangle Clipper
-class EquilateralTriangleClipper extends CustomClipper<Path> {
-  final bool inverted;
-  final double cornerRadius;
-
-  EquilateralTriangleClipper({this.inverted = false, this.cornerRadius = 12});
-
-  @override
-  Path getClip(Size size) {
-    final Path path = Path();
-
-    final double height = size.height;
-    final double width = size.width;
-
-    if (inverted) {
-      path.moveTo(width / 2, height);
-      path.lineTo(0, 0);
-      path.lineTo(width, 0);
-    } else {
-      path.moveTo(width / 2, 0);
-      path.lineTo(0, height);
-      path.lineTo(width, height);
-    }
-
-    path.close();
-    return path;
-  }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
+// President Tile Widget
+Widget presidentTile(String name, String post, String phoneUrl, String mailUrl) {
+  return Container(
+    decoration: BoxDecoration(
+      color: const Color(0xFF1C2834),
+      borderRadius: BorderRadius.circular(12),
+    ),
+    margin: const EdgeInsets.only(bottom: 12),
+    child: ListTile(
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      title: Text(
+        name,
+        style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 17),
+      ),
+      subtitle: Text(
+        post,
+        style: GoogleFonts.inter(color: Colors.grey[400], fontSize: 12),
+      ),
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          IconButton(
+            icon: const Icon(Icons.phone, color: Colors.greenAccent),
+            onPressed: () => _launchPhone(phoneUrl),
+          ),
+          IconButton(
+            icon: const Icon(Icons.email, color: Colors.lightBlueAccent),
+            onPressed: () => _launchEmail(mailUrl),
+          ),
+        ],
+      ),
+    ),
+  );
 }
 
-// Dummy Target Screens
-class BlueFestScreen extends StatelessWidget {
-  const BlueFestScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Blue Fest")),
-      body: const Center(child: Text("Welcome to Blue Fest")),
-    );
+// Launchers
+void _launchPhone(String phone) async {
+  final Uri uri = Uri.parse('tel:$phone');
+  if (await canLaunchUrl(uri)) {
+    await launchUrl(uri);
   }
 }
 
-class GreyFestScreen extends StatelessWidget {
-  const GreyFestScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Grey Fest")),
-      body: const Center(child: Text("Welcome to Grey Fest")),
-    );
+void _launchEmail(String email) async {
+  final Uri uri = Uri(scheme: 'mailto', path: email);
+  if (await canLaunchUrl(uri)) {
+    await launchUrl(uri);
   }
 }
-
-class RedFestScreen extends StatelessWidget {
-  const RedFestScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Red Fest")),
-      body: const Center(child: Text("Welcome to Red Fest")),
-    );
-  }
-}
-
-class PresidentialCouncilScreen extends StatelessWidget {
-  const PresidentialCouncilScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Presidential Council")),
-      body: const Center(child: Text("Welcome to Presidential Council")),
-    );
-  }
-}
-
-class StudentEventScreen extends StatelessWidget {
-  const StudentEventScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Student Event")),
-      body: const Center(child: Text("Welcome to Student Event")),
-    );
-  }
-}
-
-// Positioned(
-//                       left: 40,
-//                       top: 0,
-//                       child: triangleCard(
-//                         color: const LinearGradient(
-//                           colors: [Color(0xFF6CD4F3), Color(0xFF0E90B8)],
-//                           begin: Alignment.topCenter,
-//                           end: Alignment.bottomCenter,
-//                         ),
-//                         isInverted: true,
-//                         size: 120,
-//                         label: 'name',
-//                         context: context,
-//                         targetScreen: const BlueFestScreen(),
-//                       ),
-//                     ),
-//                     Positioned(
-//                       right: 40,
-//                       top: 0,
-//                       child: triangleCard(
-//                         color: const LinearGradient(
-//                           colors: [Color(0xFFEDE6DB), Color(0xFFB7ADA3)],
-//                           begin: Alignment.topCenter,
-//                           end: Alignment.bottomCenter,
-//                         ),
-//                         isInverted: true,
-//                         size: 120,
-//                         label: 'name',
-//                         context: context,
-//                         targetScreen: const GreyFestScreen(),
-//                       ),
-//                     ),
-//                     Positioned(
-//                       bottom: 0,
-//                       child: triangleCard(
-//                         color: const LinearGradient(
-//                           colors: [Color(0xFFD45A5A), Color(0xFF8A3E3E)],
-//                           begin: Alignment.topCenter,
-//                           end: Alignment.bottomCenter,
-//                         ),
-//                         isInverted: false,
-//                         size: 120,
-//                         label: 'name',
-//                         context: context,
-//                         targetScreen: const RedFestScreen(),
-//                       ),
-//                     ),

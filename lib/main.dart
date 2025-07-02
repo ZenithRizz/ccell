@@ -102,8 +102,8 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
   static final List<Widget> _pages = <Widget>[
-    HomeDashboard(userName: 'User'),
-    const GymkhanaPage(),
+    const SimplePage(title: 'Home Page'),
+    const GymkhanaPage(), 
     const SimplePage(title: 'Notifications Page'),
     MorePage()
   ];
@@ -143,7 +143,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 currentIndex: _selectedIndex,
                 onTap: _onItemTapped,
                 type: BottomNavigationBarType.fixed,
-                backgroundColor: Colors.black,
+                backgroundColor: Colors.black, 
                 selectedItemColor: Colors.white,
                 unselectedItemColor: Colors.grey,
                 showUnselectedLabels: true,

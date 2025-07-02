@@ -30,7 +30,7 @@ class MemberCard extends StatelessWidget {
       width: 150,
       height: 200,
       decoration: BoxDecoration(
-        color: Colors.white70,
+        color: Colors.white,
         borderRadius: BorderRadius.circular(18),
       ),
       child: Column(

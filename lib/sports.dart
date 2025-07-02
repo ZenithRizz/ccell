@@ -1,8 +1,8 @@
 import 'package:google_fonts/google_fonts.dart';
 import 'package:login_page/council.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-import 'council.dart';
 
 class SportsCouncil extends StatelessWidget {
   const SportsCouncil({super.key});
@@ -17,28 +17,36 @@ class SportsCouncil extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Text(
+              Text(
+                textAlign: TextAlign.center,
                 'SPORTS COUNCIL',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
+                style: GoogleFonts.poppins(
                   color: Colors.white,
-                ),
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold
+                )
               ),
               const SizedBox(height: 8),
               CircleAvatar(),
               SizedBox(height: 20),
-              Text("About the COUNCIL", style: TextStyle(color: Colors.white),),
+              Text(
+                "About the COUNCIL", 
+                style: GoogleFonts.inter(
+                  color: Colors.white,
+                  fontSize: 12
+                ) 
+              ),
               SizedBox(height: 20,),
-              _buildGSecTile("name", "General Secretary"),
+              _buildGSecTile("G Sec", "General Secretary", "", ""),
               SizedBox(height: 12,),
-              _buildGSecTile("name", "Associate General Secretary"),
+              _buildGSecTile("A GSec", "Associate General Secretary", "", ""),
               SizedBox(height: 12,),
               GridView.count(
                 shrinkWrap: true,
                 crossAxisCount: 2,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
+                childAspectRatio: 0.90,
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
                   squareCard(
@@ -80,20 +88,21 @@ class SportsCouncil extends StatelessWidget {
                     'https://www.instagram.com/lnmiit_basketball/'
                   ),
                   squareCard(
-                    "",
+                    "assets/images/sports/chess/chess_logo.jpg",
                     "Chess",
                     context,
-                    "",
+                    "The Chess Club brings together students who share an interest in chess. It’s a space for strategic thinking, friendly competition, and continuous learning. Open to all skill levels, the club promotes a love for the game and a sense of community.",
                     [
-                      "https://example.com/gallery1.jpg",
-                      "https://example.com/gallery2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/chess/chess1.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/chess/chess2.jpg",
                     ],
                     [
-                      {"name": "Cordie 1"},
-                      {"name": "Cordie 2"},
-                      {"name": "Cordie 3"},
+                      {"name": "Akshat Pandey", "phone": "8303253024", "email": "23ucc512@lnmiit.ac.in"},
+                      {"name": "Aditya Shukla", "phone": "9023502669", "email": "23ucc508@lnmiit.ac.in"},
+                      {"name": "Kapil Rajpurohit ", "phone": "9589454999", "email": "23ucs606@lnmiit.ac.in"},
+                      {"name": "Kriti Bhambhani", "phone": "8076707955", "email": "23ucs624@lnmiit.ac.in"},
                     ],
-                    ""
+                    "https://www.instagram.com/chess_lnmiit/"
                   ),
                   squareCard(
                     "assets/images/sports/cricket/cricket_logo.jpeg",
@@ -174,18 +183,18 @@ class SportsCouncil extends StatelessWidget {
                     ""
                   ),
                   squareCard(
-                    "",
+                    "assets/images/sports/squash/squash_logo.jpeg",
                     "Squash",
                     context,
-                    "",
+                    "The Squash Club is a fun and energetic space for anyone who loves the game or wants to try something new. We play regularly, help each other improve, and enjoy a bit of friendly competition along the way. Whether you're just starting out or have been playing for years, you're always welcome to join us. It's all about staying active, meeting people, and having a great time on court!",
                     [
-                      "https://example.com/gallery1.jpg",
-                      "https://example.com/gallery2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/squash/squash1.jpeg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/squash/squash2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/squash/squash3.jpg",
                     ],
                     [
-                      {"name": "Cordie 1"},
-                      {"name": "Cordie 2"},
-                      {"name": "Cordie 3"},
+                      {"name": "Prasann Dewan", "phone": "9116640830", "email": "23ume539@lnmiit.ac.in"},
+                      {"name": "Rohit Bondada", "phone": "9618112529", "email": "23ucs558@lnmiit.ac.in"},
                     ],
                     ""
                   ),
@@ -211,22 +220,26 @@ class SportsCouncil extends StatelessWidget {
                     ""
                   ),
                   squareCard(
-                    "",
+                    "assets/images/sports/volleyball/volleyball_logo.jpg",
                     "Volleyball",
                     context,
-                    "",
+                    "The Volleyball Club at LNMIIT is a vibrant and competitive community for sports enthusiasts who are passionate about the game. As one of the institute's official sports clubs, we aim to promote physical fitness, teamwork, and sportsmanship through regular practice sessions, friendly matches, and participation in inter-college tournaments. Whether you're a beginner or an experienced player, the club welcomes everyone with a love for volleyball. Join us to bump, set, and spike your way into a spirited sports culture!",
                     [
-                      "https://example.com/gallery1.jpg",
-                      "https://example.com/gallery2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/volleyball/volley1.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/volleyball/volley2.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/volleyball/volley5.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/volleyball/volley6.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/volleyball/volley7.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/sports/volleyball/volley9.jpg",
                     ],
                     [
-                      {"name": "Anisha Khandelwal"},
-                      {"name": "Anvesh Gupta", "phone": "9045488096"},
-                      {"name": "Priyanshi Kadian"},
-                      {"name": "Saurav Rathi", "phone": "9821723636"},
-                      {"name": "Vishesh Jain"},
+                      {"name": "Anisha Khandelwal", "phone": "9828881138", "email": "23ucs536@lnmiit.ac.in"},
+                      {"name": "Anvesh Gupta", "phone": "9045488096", "email": "23ucc517@lnmiit.ac.in"},
+                      {"name": "Priyanshi Kadian", "phone": "8950016880", "email": "23uec594@lnmiit.ac.in"},
+                      {"name": "Saurav Rathi", "phone": "9821723636", "email": "23ucc597@lnmiit.ac.in"},
+                      {"name": "Vishesh Jain", "phone": "7742567202", "email": "23ucs738@lnmiit.ac.in"},
                     ],
-                    ""
+                    "https://www.instagram.com/lnmiit.volleyball/"
                   ),
                 ],
               ),
@@ -280,7 +293,15 @@ Widget squareCard(String logoUrl, String label, BuildContext context, String des
           children: [
             CircleAvatar(backgroundImage: AssetImage(logoUrl), radius: 50, backgroundColor: Colors.transparent),
             const SizedBox(height: 8),
-            Text(label, textAlign: TextAlign.center, style: GoogleFonts.lilitaOne(color: Colors.white, fontSize: 22)),
+            Text(
+              label, 
+              textAlign: TextAlign.center, 
+              style: GoogleFonts.poppins(
+                color: Colors.white, 
+                fontSize: 20, 
+                fontWeight: FontWeight.bold
+              )
+            ),
           ],
         ),
       ),
@@ -288,19 +309,25 @@ Widget squareCard(String logoUrl, String label, BuildContext context, String des
   );
 }
 
-class PresidentialCouncilScreen extends StatelessWidget {
-  const PresidentialCouncilScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Presidential Council")),
-      body: const Center(child: Text("Welcome to Presidential Council")),
-    );
+  void _launchPhone(String phone) async {
+    final Uri uri = Uri.parse('tel:$phone');
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    }
   }
-}
 
-Widget _buildGSecTile(String name, String post) {
+  void _launchEmail(String email) async {
+    final Uri uri = Uri(
+      scheme: 'mailto',
+      path: email,
+    );
+
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    }
+  }
+
+Widget _buildGSecTile(String name, String post, String phoneUrl, String mailUrl) {
   return Container(
     decoration: BoxDecoration(
       color: const Color(0xFF1C2834),
@@ -311,42 +338,28 @@ Widget _buildGSecTile(String name, String post) {
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       title: Text(
         name,
-        style: const TextStyle(
+        style: GoogleFonts.inter(
           color: Colors.white,
-          fontWeight: FontWeight.bold,
-        ),
+          fontWeight: FontWeight.bold
+        )
       ),
       subtitle: Text(
         post,
-        style: const TextStyle(
-          fontSize: 12,
-          color: Color.fromARGB(133, 255, 255, 255),
-        ),
+        style: GoogleFonts.inter(
+          color: Color.fromARGB(255, 192, 190, 190),
+          fontSize: 10
+        )
       ),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           IconButton(
-            icon: const Icon(Icons.phone, color: Colors.white),
-            onPressed: () async {
-              // final Uri url = Uri.parse('tel:${cordie['phone']}');
-              // if (await canLaunchUrl(url)) {
-              //   await launchUrl(url);
-              // } else {
-              //   throw 'Could not launch $url';
-              // }
-            },
+            icon: const Icon(Icons.phone, color: Colors.greenAccent),
+            onPressed: () => _launchPhone(phoneUrl),
           ),
           IconButton(
-            icon: const Icon(Icons.email, color: Colors.white),
-            onPressed: () async {
-              // final Uri url = Uri.parse('mailto:${cordie['email']}');
-              // if (await canLaunchUrl(url)) {
-              //   await launchUrl(url);
-              // } else {
-              //   throw 'Could not launch $url';
-              // }
-            },
+            icon: const Icon(Icons.email, color: Colors.lightBlueAccent),
+            onPressed: () => _launchEmail(mailUrl)
           ),
         ],
       ),

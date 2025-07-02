@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:login_page/council.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CulturalCouncil extends StatelessWidget {
   const CulturalCouncil({super.key});
@@ -15,28 +16,36 @@ class CulturalCouncil extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Text(
+              Text(
+                textAlign: TextAlign.center,
                 'CULTURAL COUNCIL',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
+                style: GoogleFonts.poppins(
                   color: Colors.white,
-                ),
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold
+                )
               ),
               const SizedBox(height: 8),
               CircleAvatar(),
               SizedBox(height: 20),
-              Text("About the COUNCIL", style: TextStyle(color: Colors.white),),
+              Text(
+                "About the COUNCIL", 
+                style: GoogleFonts.inter(
+                  color: Colors.white,
+                  fontSize: 12
+                ) 
+              ),
               SizedBox(height: 20,),
-              _buildGSecTile("name", "General Secretary"),
+              _buildGSecTile("GSec", "General Secretary", "", ""),
               SizedBox(height: 12,),
-              _buildGSecTile("name", "Associate General Secretary"),
+              _buildGSecTile("A GSec", "Associate General Secretary", "", ""),
               SizedBox(height: 12,),
               GridView.count(
                 shrinkWrap: true,
                 crossAxisCount: 2,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
+                childAspectRatio: 0.90,
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
                   squareCard(
@@ -107,16 +116,27 @@ class CulturalCouncil extends StatelessWidget {
                     "https://www.instagram.com/eminence.lnmiit/"
                   ),
                   squareCard(
-                    "",
+                    "assets/images/cultural/fundoo/fundoo_logo.jpg",
                     "Fundoo Club",
                     context,
-                    "",
-                    [],
-                    [],
-                    ''
+                    "FUNDOO : Cultivating a Home Away from Home. From sparkling Diwali nights to the craziest Holi bashes, the events of the Fundoo club are more than just spectacles. They are immersive experiences, inviting you to dance, laugh, and savor the rich palette of world cultures",
+                    [
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/fundoo/fundoo1.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/fundoo/fundoo3.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/fundoo/fundoo4.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/fundoo/fundoo6.jpg",
+                      "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/cultural/fundoo/fundoo7.jpg",
+                    ],
+                    [
+                      {"name": "Ansh Dubey", "phone": "9555078768", "email": "23uec517@lnmiit.ac.in"},
+                      {"name": "Sanvi Mittal", "phone": "7428261097", "email": "23uec614@lnmiit.ac.in"},
+                      {"name": "Satvik Gupta", "phone": "7727001785", "email": "23ucs698@lnmiit.ac.in"},
+                      {"name": "Yuvika Gupta", "phone": "9216746454", "email": "23ume560@lnmiit.ac.in"},
+                    ],
+                    'https://www.instagram.com/fundoo.lnmiit/'
                   ),
                   squareCard(
-                    "assets/images/cultural/imagination/imagination_logo.jpeg",
+                    "assets/images/cultural/imagination/imagi_logo.jpg",
                     "Imagination",
                     context,
                     "IMAGINATION is the creative photography and cinematography club of The LNM Institute of Information Technology. It is a vibrant community of passionate individuals who explore the world through lenses, pixels, and ideas — turning vision into impactful visuals.",
@@ -236,7 +256,7 @@ class CulturalCouncil extends StatelessWidget {
                     "https://www.instagram.com/sankalp.lnmiit/"
                   ),
                   squareCard(
-                    "assets/images/cultural/vignette/vignette_logo.png",
+                    "assets/images/cultural/vignette/vignette_logo.jpg",
                     "Vignette, The Art Club",
                     context,
                     "Vignette - the Art and Craft Club of LNMIIT, is the creative heart of the campus. It's vibrant artworks bring the campus to life, adding color, energy, and character to every corner. From sketching on sheets to painting walls and even faces, it’s a space where imagination feels at home. With a canvas, a piece of fabric, or just an idea, you're free to create, in your own way.",
@@ -312,7 +332,7 @@ Widget squareCard(String logoUrl, String label, BuildContext context, String des
           children: [
             CircleAvatar(backgroundImage: AssetImage(logoUrl), radius: 50, backgroundColor: Colors.transparent),
             const SizedBox(height: 8),
-            Text(label, textAlign: TextAlign.center, style: GoogleFonts.lilitaOne(color: Colors.white, fontSize: 18)),
+            Text(label, textAlign: TextAlign.center, style: GoogleFonts.poppins(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
           ],
         ),
       ),
@@ -320,19 +340,25 @@ Widget squareCard(String logoUrl, String label, BuildContext context, String des
   );
 }
 
-class PresidentialCouncilScreen extends StatelessWidget {
-  const PresidentialCouncilScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Presidential Council")),
-      body: const Center(child: Text("Welcome to Presidential Council")),
-    );
+  void _launchPhone(String phone) async {
+    final Uri uri = Uri.parse('tel:$phone');
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    }
   }
-}
 
-Widget _buildGSecTile(String name, String post) {
+  void _launchEmail(String email) async {
+    final Uri uri = Uri(
+      scheme: 'mailto',
+      path: email,
+    );
+
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    }
+  }
+
+Widget _buildGSecTile(String name, String post, String phoneUrl, String mailUrl) {
   return Container(
     decoration: BoxDecoration(
       color: const Color(0xFF1C2834),
@@ -343,42 +369,28 @@ Widget _buildGSecTile(String name, String post) {
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       title: Text(
         name,
-        style: const TextStyle(
+        style: GoogleFonts.inter(
           color: Colors.white,
-          fontWeight: FontWeight.bold,
-        ),
+          fontWeight: FontWeight.bold
+        )
       ),
       subtitle: Text(
         post,
-        style: const TextStyle(
-          fontSize: 12,
-          color: Color.fromARGB(133, 255, 255, 255),
-        ),
+        style: GoogleFonts.inter(
+          color: Color.fromARGB(255, 192, 190, 190),
+          fontSize: 10
+        )
       ),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           IconButton(
-            icon: const Icon(Icons.phone, color: Colors.white),
-            onPressed: () async {
-              // final Uri url = Uri.parse('tel:${cordie['phone']}');
-              // if (await canLaunchUrl(url)) {
-              //   await launchUrl(url);
-              // } else {
-              //   throw 'Could not launch $url';
-              // }
-            },
+            icon: const Icon(Icons.phone, color: Colors.greenAccent),
+            onPressed: () => _launchPhone(phoneUrl),
           ),
           IconButton(
-            icon: const Icon(Icons.email, color: Colors.white),
-            onPressed: () async {
-              // final Uri url = Uri.parse('mailto:${cordie['email']}');
-              // if (await canLaunchUrl(url)) {
-              //   await launchUrl(url);
-              // } else {
-              //   throw 'Could not launch $url';
-              // }
-            },
+            icon: const Icon(Icons.email, color: Colors.lightBlueAccent),
+            onPressed: () => _launchEmail(mailUrl)
           ),
         ],
       ),

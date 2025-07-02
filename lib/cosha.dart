@@ -1,163 +1,83 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class COSHAScreen extends StatelessWidget {
-  const COSHAScreen({super.key});
+  
+  void _launchPhone(String phone) async {
+    final Uri uri = Uri.parse('tel:$phone');
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    }
+  }
+
+  void _launchEmail(String email) async {
+    final Uri uri = Uri(
+      scheme: 'mailto',
+      path: email,
+    );
+
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF0E1A23),
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF0E1A23),
-        elevation: 0,
-        title: const Text(
-          'Presidential Council',
-          style: TextStyle(color: Colors.white),
-        ),
-        centerTitle: true,
-        iconTheme: const IconThemeData(color: Colors.white),
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            // Circle Avatar
-            const CircleAvatar(
-              radius: 50,
-              backgroundImage: AssetImage('assets/president_profile.jpg'), // replace with your image
-              backgroundColor: Colors.white,
-            ),
-            const SizedBox(height: 16),
-
-            // Gallery Card with arrows
-            Container(
-              decoration: BoxDecoration(
-                color: const Color(0xFF1C2834),
-                borderRadius: BorderRadius.circular(16),
+      backgroundColor: Color(0xFF001219),
+      body: Container(
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              const SizedBox(height: 50),
+              CircleAvatar(radius: 80, backgroundImage: AssetImage("assets/images/cosha_logo.jpg"), backgroundColor: Colors.transparent,),
+              const SizedBox(height: 15),
+              Padding(
+                padding: const EdgeInsets.only(left: 10, right: 10),
+                child: Text(
+                  "A college is composed of many things: students, professors, academic blocks, hostels, mess etc. For the proper functioning of everything lying beneath the biosphere of Hostels, Mess and Canteen, Committee of Students for Hostel Affairs (COSHA) is the way to go. COSHA supervises all matters of common interest to the Hostels, whilst handling queries, complaints and suggestions regarding Mess and Canteen. Be it improving the mess menu, lodging a complaint regarding canteen shops, or raising a query related to the habitable conditions of hostels; Cosha is inculcated with the responsibility of being the voice of students and relaying their valid concerns to the higher authorities. A meeting of COSHA is chaired by the President, and consists of the Convenor of COSHA, Hall Representatives and Chief Warden/Wardens. In a meeting, COSHA puts forward the students’ candid views and tries to establish a common ground. COSHA believes in eliminating all complaints, relaying constructive suggestions and maintaining transparency at all fronts.", 
+                  style: GoogleFonts.poppins(color: Colors.white, fontSize: 12), 
+                ),
               ),
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Arrows + gallery area
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      // Left arrow button
-                      IconButton(
-                        icon: Container(
-                          padding: const EdgeInsets.all(6),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            gradient: const LinearGradient(
-                              colors: [Color(0xFF6A85F1), Color(0xFF7AC5FF)],
-                            ),
-                          ),
-                          child: const Icon(Icons.arrow_left, color: Colors.white),
-                        ),
-                        onPressed: () {
-                          // Handle left arrow
-                        },
-                      ),
-
-                      // Gallery placeholder box
-                      Expanded(
-                        child: Container(
-                          height: 120,
-                          margin: const EdgeInsets.symmetric(horizontal: 8),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFF2B3948),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: const Center(
-                            child: Text(
-                              'Gallery',
-                              style: TextStyle(
-                                color: Colors.white70,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-
-                      // Right arrow button
-                      IconButton(
-                        icon: Container(
-                          padding: const EdgeInsets.all(6),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            gradient: const LinearGradient(
-                              colors: [Color(0xFF6A85F1), Color(0xFF7AC5FF)],
-                            ),
-                          ),
-                          child: const Icon(Icons.arrow_right, color: Colors.white),
-                        ),
-                        onPressed: () {
-                          // Handle right arrow
-                        },
-                      ),
-                    ],
+              SizedBox(height: 20,),
+              Padding(
+                padding: const EdgeInsets.all(12),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Color(0xFF1C2834),
+                    borderRadius: BorderRadius.circular(12)
                   ),
-                ],
-              ),
-            ),
-
-            const SizedBox(height: 24),
-
-            // Cordies list
-            _buildCordieTile('Cordie 1'),
-            const SizedBox(height: 12),
-            _buildCordieTile('Cordie 2'),
-            const SizedBox(height: 12),
-            _buildCordieTile('Cordie 3'),
-          ],
+                  child: ListTile(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                    title: Text(
+                      "HEAD",
+                      style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.bold,),
+                    ),
+                    subtitle: Text(
+                      "COSHA Head",
+                      style: GoogleFonts.poppins(color: const Color.fromARGB(255, 192, 190, 190), fontSize: 10)
+                    ),
+                    trailing: Wrap(
+                      spacing: 12,
+                      children: [
+                        IconButton(
+                          onPressed: () => _launchPhone(""), 
+                          icon: Icon(Icons.call, color: Colors.greenAccent,)
+                        ),
+                        IconButton(
+                          onPressed: () => _launchEmail("cosha@lnmiit.ac.in"), 
+                          icon: Icon(Icons.mail, color: Colors.lightBlueAccent,)
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              )                            
+            ]
+          ),
         ),
-      ),
-    );
-  }
-
-  // Reusable cordie tile
-  Widget _buildCordieTile(String name) {
-    return Container(
-      decoration: BoxDecoration(
-        color: const Color(0xFF1C2834),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          // Cordie name
-          Text(
-            name,
-            style: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
-            ),
-          ),
-
-          // Phone + Mail icons
-          Row(
-            children: [
-              IconButton(
-                icon: const Icon(Icons.phone, color: Colors.white),
-                onPressed: () {
-                  // Add phone action
-                },
-              ),
-              const SizedBox(width: 8),
-              IconButton(
-                icon: const Icon(Icons.email, color: Colors.white),
-                onPressed: () {
-                  // Add email action
-                },
-              ),
-            ],
-          ),
-        ],
       ),
     );
   }

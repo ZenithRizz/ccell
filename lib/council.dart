@@ -56,7 +56,7 @@ class CouncilDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF001219),
+      backgroundColor: Color(0xFF0E1A23),
       body: Container(
         child: SingleChildScrollView(
           child: Column(
@@ -66,16 +66,10 @@ class CouncilDetailScreen extends StatelessWidget {
               const SizedBox(height: 15),
               Padding(
                 padding: const EdgeInsets.only(left: 10, right: 10),
-                child: Text(description, style: GoogleFonts.poppins(color: Colors.white, fontSize: 12), ),
+                child: Text(description, style: GoogleFonts.inter(color: Colors.white, fontSize: 12), ),
               ),
               SizedBox(height: 20,),
               // Gallery Carousel
-              GalleryCarousel(galleryImages: galleryImages),
-          
-              const SizedBox(height: 16),
-              const Divider(color: Colors.white38),
-          
-              // Cordies List
               ListView.builder(
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
@@ -93,7 +87,7 @@ class CouncilDetailScreen extends StatelessWidget {
                       contentPadding: const EdgeInsets.symmetric(horizontal: 16),
                       title: Text(
                         cordie['name'] ?? '',
-                        style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.bold),
+                        style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.bold),
                       ),
                       trailing: Wrap(
                         spacing: 12,
@@ -112,6 +106,11 @@ class CouncilDetailScreen extends StatelessWidget {
                   );
                 },
               ),
+              
+              const Divider(color: Colors.white38),
+              const SizedBox(height: 16),
+              GalleryCarousel(galleryImages: galleryImages),
+              SizedBox(height: 50,),
               if (instaUrl.trim().isNotEmpty)
                 ...[
                   Padding(
@@ -187,60 +186,51 @@ class _GalleryCarouselState extends State<GalleryCarousel> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 250,
-      decoration: BoxDecoration(
-        color: const Color(0xFF1C2834),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+    return Center(
+      child: Stack(
+        clipBehavior: Clip.none,
+        alignment: Alignment.center,
         children: [
-          // Arrows + gallery area
-          Row(
-            //mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              // Left arrow button
-              IconButton(
-                icon: Container(
-                  padding: const EdgeInsets.all(6),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    gradient: const LinearGradient(
-                      colors: [Color(0xFF6A85F1), Color(0xFF7AC5FF)],
-                    ),
-                  ),
-                  child: const Icon(Icons.arrow_left, color: Colors.white),
-                ),
-                onPressed: _goToPrevious,
+          // Card with image carousel
+          Container(
+            width: 370,
+            height: 250,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Color.fromRGBO(53, 63, 84, 1),
+                  Color.fromRGBO(34, 40, 52, 1)
+                ]
               ),
-
-              // Gallery image display
-              Expanded(
-                child: Container(
-                  height: 210,
-                  margin: const EdgeInsets.symmetric(horizontal: 8),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF2B3948),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: PageView.builder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Stack(
+                children: [
+                  // PageView
+                  PageView.builder(
                     controller: _pageController,
                     itemCount: widget.galleryImages.length,
                     itemBuilder: (context, index) {
-                      return ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: Image.network(
-                          widget.galleryImages[index],
-                          fit: BoxFit.cover,
-                          loadingBuilder: (context, child, progress) {
-                            if (progress == null) return child;
-                            return const Center(child: CircularProgressIndicator(color: Colors.white,));
-                          },
-                          errorBuilder: (context, error, stackTrace) =>
-                              const Center(child: Icon(Icons.broken_image, color: Colors.white)),
-                        ),
+                      return Stack(
+                        fit: StackFit.expand,
+                        children: [
+                          Image.network(
+                            widget.galleryImages[index],
+                            fit: BoxFit.cover,
+                            loadingBuilder: (context, child, progress) {
+                              if (progress == null) return child;
+                              return const Center(
+                                  child: CircularProgressIndicator(color: Colors.white));
+                            },
+                            errorBuilder: (context, error, stackTrace) =>
+                                const Center(child: Icon(Icons.broken_image, color: Colors.white)),
+                          ),
+                          Container(
+                            color: Colors.black.withOpacity(0.35),
+                          ),
+                        ],
                       );
                     },
                     onPageChanged: (index) {
@@ -249,24 +239,71 @@ class _GalleryCarouselState extends State<GalleryCarousel> {
                       });
                     },
                   ),
-                ),
-              ),
 
-              // Right arrow button
-              IconButton(
-                icon: Container(
-                  padding: const EdgeInsets.all(6),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    gradient: const LinearGradient(
-                      colors: [Color(0xFF6A85F1), Color(0xFF7AC5FF)],
+                  // Gallery label
+                  Positioned(
+                    left: 16,
+                    bottom: 6,
+                    child: Text(
+                      'Gallery',
+                      style: GoogleFonts.poppins(
+                        color: Colors.white.withOpacity(0.6),
+                        fontSize: 26,
+                        fontWeight: FontWeight.bold
+                      )
                     ),
                   ),
-                  child: const Icon(Icons.arrow_right, color: Colors.white),
-                ),
-                onPressed: _goToNext,
+                ],
               ),
-            ],
+            ),
+          ),
+
+          // Left Arrow - Overlapping
+          Positioned(
+            left: -20,
+            child: GestureDetector(
+              onTap: () => _goToPrevious(),
+              child: Container(
+                height: 40,
+                width: 40,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color.fromRGBO(142, 151, 253, 1),
+                      Color.fromRGBO(72, 49, 157, 1)
+                    ]
+                  )
+                ),
+                child: Icon(Icons.keyboard_arrow_left_sharp, color: Colors.white, size: 30,)
+              )
+            ),
+          ),
+
+          // Right Arrow - Overlapping
+          Positioned(
+            right: -20,
+            child: GestureDetector(
+              onTap: () => _goToNext(),
+              child: Container(
+                height: 40,
+                width: 40,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color.fromRGBO(142, 151, 253, 1),
+                      Color.fromRGBO(72, 49, 157, 1)
+                    ]
+                  )
+                ),
+                child: Icon(Icons.keyboard_arrow_right_sharp, color: Colors.white, size: 30,)
+              )
+            ),
           ),
         ],
       ),
