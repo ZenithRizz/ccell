@@ -79,7 +79,6 @@ class HomeDashboard extends StatelessWidget {
 
 class _ButtonHomeScreen extends StatelessWidget {
   const _ButtonHomeScreen({
-    super.key,
     required this.title,
     required this.imageName,
     this.url,
