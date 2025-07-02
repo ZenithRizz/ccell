@@ -4,6 +4,16 @@ import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+
+import 'package:login_page/login_page.dart';
+
+
+const double basePadding = 16;
+const double userDetailFraction = .60;
+const double offset = 0.04;
+const double contentFraction = userDetailFraction - offset;
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -23,7 +33,6 @@ class _ProfilePageState extends State<ProfilePage> {
   String? email;
   String? degree;
 
-  // Branch shortcodes to full name
   final Map<String, String> branchName = {
     'ucs': 'Computer Science and Engineering',
     'ucc': 'Communication and Computer Engineering',
@@ -33,7 +42,6 @@ class _ProfilePageState extends State<ProfilePage> {
     'dec': 'Electronics and Communication Engineering',
   };
 
-  // Degree mapping
   final Map<String, String> degreeType = {
     'ucs': 'B.Tech',
     'ucc': 'B.Tech',
@@ -51,10 +59,8 @@ class _ProfilePageState extends State<ProfilePage> {
     if (email != null) extractUsername(email!);
   }
 
-  // Extract user details from LNMIIT email pattern
   void extractUsername(String email) {
     final username = email.split('@').first;
-
     if (username.length >= 8) {
       roll = username;
       final code = username.substring(2, 5);
@@ -68,7 +74,6 @@ class _ProfilePageState extends State<ProfilePage> {
     }
   }
 
-  // Load saved profile image from disk
   Future<void> _loadSavedImage() async {
     final prefs = await SharedPreferences.getInstance();
     final path = prefs.getString(_imageKey);
@@ -79,7 +84,6 @@ class _ProfilePageState extends State<ProfilePage> {
     }
   }
 
-  // Image picker logic
   Future<void> _profilePicker() async {
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
@@ -93,89 +97,234 @@ class _ProfilePageState extends State<ProfilePage> {
       });
     }
   }
+  Future<void> signOutUser() async {
+    final GoogleSignIn googleSignIn = GoogleSignIn();
+
+    try {
+      // First sign out from Google
+      await googleSignIn.signOut();
+
+      // Then sign out from Firebase
+      await FirebaseAuth.instance.signOut();
+
+      print("User signed out successfully.");
+    } catch (e) {
+      print("Error signing out: $e");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    final double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 0, 18, 25),
-      body: Center(
-        child: Column(
+      backgroundColor: const Color(0xFF001219),
+      body: SizedBox(
+        width: double.infinity,
+        child: Stack(
           children: [
-            const SizedBox(height: 65),
-            // Title bar with back button
-            Row(
-              children: [
-                const SizedBox(width: 10),
-                IconButton(
-                  onPressed: () => Navigator.pop(context),
-                  icon: const Icon(Icons.arrow_back),
-                  style: IconButton.styleFrom(
-                    backgroundColor: Colors.lightBlueAccent,
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                  ),
-                ),
-                const SizedBox(width: 40),
-                Text(
-                  'Profile Page',
-                  style: GoogleFonts.lilitaOne(
-                    fontSize: 40,
-                    color: Colors.white,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 60),
-
-            // Profile Image Component
-            ProfileImage(
-              pickedImage: _profileImagePicked,
-              onPressed: _profilePicker,
-            ),
-            const SizedBox(height: 60),
-
-            // Information card
             Container(
-              decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [
-                    Color.fromARGB(255, 82, 180, 243),
-                    Color.fromARGB(255, 69, 107, 210),
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
+              height: height * userDetailFraction,
+              decoration: const BoxDecoration(
+                color: Colors.black,
+                image: DecorationImage(
+                  image: NetworkImage(
+                      "https://raw.githubusercontent.com/Ronak99/majestic-ui-flutter/refs/heads/master/assets/background-pattern.jpg"),
+                  fit: BoxFit.cover,
                 ),
-                borderRadius: BorderRadius.circular(30),
               ),
-              child: Card(
-                elevation: 4,
-                color: Colors.transparent,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+              child: SafeArea(
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: DefaultTextStyle(
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
+                  padding: const EdgeInsets.symmetric(horizontal: basePadding),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Row(
+                            children: [
+                              IconButton(
+                                onPressed: () => Navigator.pop(context),
+                                icon: const Icon(Icons.arrow_back, color: Colors.white),
+                                style: IconButton.styleFrom(
+                                  backgroundColor: Colors.black45,
+                                  shape: const CircleBorder(),
+                                ),
+                              ),
+                              SizedBox(width: 10),
+                              Text(
+                                "Profile",
+                                style: GoogleFonts.poppins(
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.white,
+                                  fontSize: 24,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      const Spacer(),
+                      ProfileImage(
+                        pickedImage: _profileImagePicked,
+                        onPressed: _profilePicker,
+                      ),
+                      const SizedBox(height: 12),
+                      Text(
+                        FirebaseAuth.instance.currentUser?.displayName ?? 'Avatar',
+                        style: GoogleFonts.poppins(
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                          fontSize: 24,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        email ?? 'Avatar',
+                        style: GoogleFonts.poppins(
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white70,
+                          fontSize: 16,
+                        ),
+                      ),
+                      const SizedBox(height: 4,),
+                      Text(
+                        branch?? 'Avatar',
+                        style: GoogleFonts.poppins(
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white70,
+                          fontSize: 16,
+                        ),
+                      ),
+                      SizedBox(
+                        height: (height * offset)*3.5,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                SizedBox(
+                  height: height * contentFraction,
+                  width: MediaQuery.of(context).size.width,
+                ),
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          Color(0xFF0F172A), // Dark slate (deep blue-gray)
+                          Color(0xFF1E293B), // Slightly lighter slate
+                          Color(0xFF334155), // Soft bluish-gray bottom // Coral/orange highlight
+                        ],
+                      ),
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(
+                        color: Colors.white.withOpacity(0.2),
+                        width: 2,
+                      ),
+
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 24,
+                      horizontal: 40,
                     ),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        Text('Email: ${email ?? 'Not Available'}'),
+                        Text(
+                          'MY ACCOUNT',
+                          style: GoogleFonts.poppins(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 25,
+                            color: Colors.white,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                        const SizedBox(height: 24),
+                        Text(
+                            'Email: ${email ?? 'Not Available'}',
+                          style: GoogleFonts.inter(
+                            color: Colors.white,
+                          ),
+                          textAlign: TextAlign.left,
+                        ),
                         const SizedBox(height: 5),
-                        Text('Roll No: ${roll ?? 'Not Available'}'),
+                        Text(
+                          'Roll No: ${roll ?? 'Not Available'}',
+                          style: GoogleFonts.inter(
+                            color: Colors.white,
+                          ),
+                          textAlign: TextAlign.left,
+                        ),
                         const SizedBox(height: 5),
-                        Text('Branch: ${branch ?? 'Not Available'}'),
+                        Text(
+                            'Branch: ${branch ?? 'Not Available'}',
+                          style: GoogleFonts.inter(
+                            color: Colors.white,
+                          ),
+                          textAlign: TextAlign.left,
+                        ),
                         const SizedBox(height: 5),
-                        Text('Degree: ${degree ?? 'Not Available'}'),
+                        Text(
+                            'Degree: ${degree ?? 'Not Available'}',
+                          style: GoogleFonts.inter(
+                            color: Colors.white,
+                          ),
+                          textAlign: TextAlign.left,
+                        ),
                         const SizedBox(height: 5),
-                        Text('Batch: ${batch ?? 'Not Available'}'),
+                        Text(
+                            'Batch: ${batch ?? 'Not Available'}',
+                          style: GoogleFonts.inter(
+                            color: Colors.white,
+                          ),
+                          textAlign: TextAlign.left,
+                        ),
+
+                        const SizedBox(height: 30),
+                        const Divider(
+                          color: Colors.white24, // subtle line for dark background
+                          thickness: 1.5,
+                          indent: 20,
+                          endIndent: 20,
+                        ),
+                        const SizedBox(height: 30),
+
+                        ElevatedButton(onPressed: () async {
+                          await signOutUser();
+                          Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (_) => const LoginPage()),
+                          );
+                        },
+                            style: ElevatedButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 24),
+                              backgroundColor: const Color(0xFF2E3548), // matches gradient tone
+                              foregroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              elevation: 4,
+                              shadowColor: Colors.black.withOpacity(0.3),
+                            ),
+                            child: Text(
+                                'Sign-Out',
+                              style: GoogleFonts.inter(
+                                color: Colors.white,
+                                fontSize: 16,
+                                letterSpacing: 0.5,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            )
+                        ),
                       ],
                     ),
                   ),
                 ),
-              ),
+              ],
             ),
           ],
         ),
@@ -183,7 +332,6 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 }
-
 
 class ProfileImage extends StatelessWidget {
   const ProfileImage({
@@ -214,15 +362,15 @@ class ProfileImage extends StatelessWidget {
       children: [
         Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(75),
             border: Border.all(color: Colors.blueGrey, width: 3),
           ),
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(75),
             child: Image(
               image: imageProvider,
-              width: 200,
-              height: 200,
+              width: 150,
+              height: 150,
               fit: BoxFit.cover,
             ),
           ),
