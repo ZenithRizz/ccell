@@ -3,7 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:login_page/gymkhana.dart';
 import 'package:login_page/more_page.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'main.dart';
+import 'package:login_page/notifications_screen.dart';
+
 
 class HomeDashboard extends StatelessWidget {
   HomeDashboard({super.key, required this.userName});
@@ -172,7 +173,7 @@ class _HomePageState extends State<HomePage> {
   late final List<Widget> _pages = [
     HomeDashboard(userName: widget.userName),
     const GymkhanaPage(),
-    const SimplePage(title: 'Notifications Page'),
+    NotificationsPage(),
     MorePage(),
   ];
 
