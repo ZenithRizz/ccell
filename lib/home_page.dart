@@ -172,7 +172,7 @@ class _HomePageState extends State<HomePage> {
 
   late final List<Widget> _pages = [
     HomeDashboard(userName: widget.userName),
-    const GymkhanaPage(),
+    GymkhanaPage(),
     NotificationsPage(),
     MorePage(),
   ];

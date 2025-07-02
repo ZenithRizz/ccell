@@ -59,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   static final List<Widget> _pages = <Widget>[
     const SimplePage(title: 'Home Page'),
-    const GymkhanaPage(), // Actual Gymkhana page
+    const GymkhanaPage(), 
     const SimplePage(title: 'Notifications Page'),
     MorePage()
   ];
@@ -99,9 +99,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 currentIndex: _selectedIndex,
                 onTap: _onItemTapped,
                 type: BottomNavigationBarType.fixed,
-                backgroundColor: Colors.black, // black nav bar like your image
-                selectedItemColor: Colors.white, // white selected icon
-                unselectedItemColor: Colors.grey, // grey unselected
+                backgroundColor: Colors.black, 
+                selectedItemColor: Colors.white,
+                unselectedItemColor: Colors.grey,
                 showUnselectedLabels: true,
                 items: const [
                   BottomNavigationBarItem(

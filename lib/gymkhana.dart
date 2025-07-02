@@ -1,10 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:login_page/cosha.dart';
 import 'package:login_page/cultural.dart';
 import 'package:login_page/fest_card.dart';
 import 'package:login_page/sports.dart';
 import 'package:login_page/technology.dart';
-import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class GymkhanaPage extends StatelessWidget {
@@ -22,55 +22,24 @@ class GymkhanaPage extends StatelessWidget {
             children: [
               Text(
                 'STUDENT GYMKHANA',
-                textAlign:TextAlign.center,
+                textAlign: TextAlign.center,
                 style: GoogleFonts.poppins(
-                  color: Color.fromRGBO(255, 255, 255, 1),
+                  color: Colors.white,
                   fontSize: 40,
-                  fontWeight: FontWeight.bold
-                )
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const SizedBox(height: 40),
               Text(
                 "Every college works on the efforts that its student masses put in it to make the college for the students, of the students, and by the students. The LNMIIT Students’ Gymkhana, under the Director of the Institute's patronage, acts as a communication service and facilitates decision-making in the greater interest of the students on The LNMIIT",
-                style: GoogleFonts.inter(color: Color.fromRGBO(255, 255, 255, 1))
+                style: GoogleFonts.inter(color: Colors.white),
               ),
               const SizedBox(height: 36),
               presidentTile("Mr. President", "President", "", ""),
               presidentTile("Mr. Vice President", "Vice-President", "", ""),
               presidentTile("Mr. Finance Convener", "Finance Convener", "", ""),
-              SizedBox(height: 20,),
-              Container(
-                height: 80,
-                width: 380,
-                padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  gradient: const LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [Color.fromRGBO(53, 63, 84, 1), Color.fromRGBO(34, 40, 52, 1)],
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.white,
-                      offset: Offset(-1, -1),
-                      blurRadius: 1
-                    ),
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.7),
-                      blurRadius: 12,
-                      offset: Offset(6, 6),
-                    ),
-                  ]
-                ),
-                child: Center(
-                  child: Text(
-                    'PRESIDENTIAL COUNCIL',
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.poppins(color: Color.fromRGBO(255, 255, 255, 1), fontSize: 22, fontWeight: FontWeight.bold)
-                  ),
-                ),
-              ),
+              const SizedBox(height: 20),
+              buildSectionTitle("PRESIDENTIAL COUNCIL"),
               const SizedBox(height: 16),
               GridView.count(
                 shrinkWrap: true,
@@ -80,30 +49,10 @@ class GymkhanaPage extends StatelessWidget {
                 childAspectRatio: 0.75,
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
-                  squareCard(
-                    "Cultural Council",
-                    '',
-                    context,
-                    const CulturalCouncil(),
-                  ),
-                  squareCard(
-                    "Science & Technology Council",
-                    '',
-                    context,
-                    const TechnologyCouncil(),
-                  ),
-                  squareCard(
-                    "Sports Council",
-                    '',
-                    context,
-                    const SportsCouncil(),
-                  ),
-                  squareCard(
-                    "COSHA Committee",
-                    "assets/images/cosha_logo.jpg",
-                    context,
-                    COSHAScreen(),
-                  ),
+                  squareCard("Cultural Council", 'assets/images/ccell_logo.png', context, const CulturalCouncil()),
+                  squareCard("Science & Technology Council", 'assets/images/ccell_logo.png', context, const TechnologyCouncil()),
+                  squareCard("Sports Council", 'assets/images/ccell_logo.png', context, const SportsCouncil()),
+                  squareCard("COSHA Committee", "assets/images/cosha_logo.jpg", context, COSHAScreen()),
                 ],
               ),
               const SizedBox(height: 40),
@@ -115,7 +64,7 @@ class GymkhanaPage extends StatelessWidget {
                   fontWeight: FontWeight.bold
                 )
               ),
-              SizedBox(height: 20,),
+              const SizedBox(height: 20),
               GridView.count(
                 shrinkWrap: true,
                 crossAxisCount: 2,
@@ -131,10 +80,7 @@ class GymkhanaPage extends StatelessWidget {
                     const StudentEventScreen(
                       imageUrl: "assets/images/despo_logo.jpeg",
                       description: "",
-                      festHeads: [
-                        {"name": "Head 1"},
-                        {"name": "Head 2"},
-                      ],
+                      festHeads: [{"name": "Head 1"}, {"name": "Head 2"}],
                       galleryImages: [],
                       instaUrl: 'https://www.instagram.com/desportivos.lnmiit/',
                       emailUrl: "desportivos@lnmiit.ac.in",
@@ -148,10 +94,7 @@ class GymkhanaPage extends StatelessWidget {
                     const StudentEventScreen(
                       imageUrl: "assets/images/plinth_logo.jpg",
                       description: "",
-                      festHeads: [
-                        {"name": "Head 1"},
-                        {"name": "Head 2"},
-                      ],
+                      festHeads: [{"name": "Head 1"}, {"name": "Head 2"}],
                       galleryImages: [],
                       instaUrl: 'https://www.instagram.com/plinth.lnmiit/',
                       emailUrl: "plinth@lnmiit.ac.in",
@@ -160,26 +103,21 @@ class GymkhanaPage extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 15,),
-              Positioned(
-                child: squareCard(
-                      "Vivacity",
-                      'assets/images/viva_logo.png',
-                      context,
-                      const StudentEventScreen(
-                        imageUrl: "assets/images/viva_logo.png",
-                        description: "",
-                        festHeads: [
-                          {"name": "Head 1"},
-                          {"name": "Head 2"},
-                        ],
-                        galleryImages: [],
-                        instaUrl: 'https://www.instagram.com/vivacity_lnmiit/',
-                        emailUrl: "vivacity@lnmiit.ac.in",
-                        youtubeUrl: "https://www.youtube.com/@VivacityLNMIIT",
-                      ),
+              SizedBox(height: 15),
+              squareCard(
+                    "Vivacity",
+                    'assets/images/viva_logo.png',
+                    context,
+                    const StudentEventScreen(
+                      imageUrl: "assets/images/viva_logo.png",
+                      description: "",
+                      festHeads: [{"name": "Head 1"}, {"name": "Head 2"}],
+                      galleryImages: [],
+                      instaUrl: 'https://www.instagram.com/vivacity_lnmiit/',
+                      emailUrl: "vivacity@lnmiit.ac.in",
+                      youtubeUrl: "https://www.youtube.com/@VivacityLNMIIT",
                     ),
-              ),
+                  ),
               const SizedBox(height: 40),
               Text(
                 'STUDENT EVENTS',
@@ -228,7 +166,7 @@ class GymkhanaPage extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 64,)
+              const SizedBox(height: 64),
             ],
           ),
         ),
@@ -237,8 +175,16 @@ class GymkhanaPage extends StatelessWidget {
   }
 }
 
-// Square Card Widget
+// Square card with safe image loading
 Widget squareCard(String label, String imageUrl, BuildContext context, Widget targetScreen) {
+  ImageProvider imageProvider;
+  try {
+    imageProvider = AssetImage(imageUrl);
+  } catch (e) {
+    print("Image load error: $e");
+    imageProvider = const AssetImage('assets/images/ccell_logo.png'); // Add fallback if needed
+  }
+
   return Material(
     elevation: 6,
     borderRadius: BorderRadius.circular(16),
@@ -252,15 +198,11 @@ Widget squareCard(String label, String imageUrl, BuildContext context, Widget ta
       },
       child: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color.fromRGBO(123, 127, 139, 1),
-              //Color(0xFFC7C6C6).withOpacity(0.8),
-            const Color(0xFF001219)
-            ],
+          gradient: const LinearGradient(
+            colors: [Color.fromRGBO(123, 127, 139, 1), Color(0xFF001219)],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            ),
+          ),
           borderRadius: BorderRadius.circular(12),
         ),
         width: 195,
@@ -269,33 +211,57 @@ Widget squareCard(String label, String imageUrl, BuildContext context, Widget ta
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CircleAvatar(backgroundImage: AssetImage(imageUrl), radius: 50, backgroundColor: Colors.white),
+            CircleAvatar(
+              backgroundImage: imageProvider,
+              radius: 50,
+              backgroundColor: Colors.white,
+            ),
             const SizedBox(height: 15),
-            Text(label, textAlign: TextAlign.center, style: GoogleFonts.poppins(color: Color.fromRGBO(255, 255, 255, 1), fontSize: 20, height: 1.2, fontWeight: FontWeight.bold)),
+            Text(
+              label,
+              textAlign: TextAlign.center,
+              style: GoogleFonts.poppins(
+                color: Colors.white,
+                fontSize: 20,
+                height: 1.2,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ],
         ),
       ),
     ),
   );
 }
-  void _launchPhone(String phone) async {
-    final Uri uri = Uri.parse('tel:$phone');
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
-    }
-  }
 
-  void _launchEmail(String email) async {
-    final Uri uri = Uri(
-      scheme: 'mailto',
-      path: email,
-    );
+Widget buildSectionTitle(String title) {
+  return Container(
+    height: 80,
+    width: 380,
+    padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(20),
+      gradient: const LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [Color.fromRGBO(53, 63, 84, 1), Color.fromRGBO(34, 40, 52, 1)],
+      ),
+      boxShadow: [
+        const BoxShadow(color: Colors.white, offset: Offset(-1, -1), blurRadius: 1),
+        BoxShadow(color: Colors.black.withOpacity(0.7), blurRadius: 12, offset: const Offset(6, 6)),
+      ],
+    ),
+    child: Center(
+      child: Text(
+        title,
+        textAlign: TextAlign.center,
+        style: GoogleFonts.poppins(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold),
+      ),
+    ),
+  );
+}
 
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
-    }
-  }
-
+// President Tile Widget
 Widget presidentTile(String name, String post, String phoneUrl, String mailUrl) {
   return Container(
     decoration: BoxDecoration(
@@ -307,29 +273,22 @@ Widget presidentTile(String name, String post, String phoneUrl, String mailUrl) 
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       title: Text(
         name,
-        style: GoogleFonts.inter(
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-          fontSize: 17
-        )
+        style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 17),
       ),
       subtitle: Text(
         post,
-        style: GoogleFonts.inter(
-          color: const Color.fromARGB(255, 193, 191, 191),
-          fontSize: 12
-        )
+        style: GoogleFonts.inter(color: Colors.grey[400], fontSize: 12),
       ),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           IconButton(
             icon: const Icon(Icons.phone, color: Colors.greenAccent),
-            onPressed: () => _launchPhone(phoneUrl)
+            onPressed: () => _launchPhone(phoneUrl),
           ),
           IconButton(
             icon: const Icon(Icons.email, color: Colors.lightBlueAccent),
-            onPressed: () => _launchEmail(mailUrl)
+            onPressed: () => _launchEmail(mailUrl),
           ),
         ],
       ),
@@ -337,3 +296,17 @@ Widget presidentTile(String name, String post, String phoneUrl, String mailUrl) 
   );
 }
 
+// Launchers
+void _launchPhone(String phone) async {
+  final Uri uri = Uri.parse('tel:$phone');
+  if (await canLaunchUrl(uri)) {
+    await launchUrl(uri);
+  }
+}
+
+void _launchEmail(String email) async {
+  final Uri uri = Uri(scheme: 'mailto', path: email);
+  if (await canLaunchUrl(uri)) {
+    await launchUrl(uri);
+  }
+}
