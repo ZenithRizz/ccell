@@ -54,7 +54,7 @@ class _NotificationInputScreenState extends State<NotificationInputScreen> {
         datePosted: 'now',
       );
 
-      await postNotification(notification);
+      await postNotification(notification, "24ucs202@lnmiit.ac.in");
 
       setState(() => isPosting = false);
       ScaffoldMessenger.of(context).showSnackBar(

@@ -1,17 +1,20 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'notification_model.dart';
+import 'package:login_page/profile_page.dart';
 
-Future<void> postNotification(NotificationModel notification) async {
+Future<void> postNotification(NotificationModel notification, String email) async {
   final url = Uri.parse('https://ccell-notification-api.onrender.com/api/notifications'); // Replace with your real URL
 
   try {
+
     final response = await http.post(
       url,
       headers: {
         "Content-Type": "application/json",
-        'Authorization': '24ucs202@lnmiit.ac.in',
+        'X-User-Email': ?FirebaseAuth.instance.currentUser?.email,
       },
       body: jsonEncode(notification.toJson()),
     );

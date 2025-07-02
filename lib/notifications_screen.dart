@@ -60,13 +60,13 @@ class _NotificationPageState extends State<NotificationsPage> {
         child: SafeArea(
           child: Column(
             children: [
-              const SizedBox(height: 20),
+              const SizedBox(height: 30),
               Center(
                 child: Text(
-                  'NOTIFICATIONS',
+                  'NOTIFICATION DASHBOARD',
                   style: GoogleFonts.poppins(
-                    fontSize: 38,
-                    color: Colors.white70,
+                    fontSize: 34,
+                    color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),
                   textAlign: TextAlign.center,
