@@ -29,15 +29,15 @@ class GymkhanaPage extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 40),
+              const SizedBox(height: 15),
               Text(
-                "Every college works on the efforts that its student masses put in it to make the college for the students, of the students, and by the students. The LNMIIT Students’ Gymkhana, under the Director of the Institute's patronage, acts as a communication service and facilitates decision-making in the greater interest of the students on The LNMIIT",
-                style: GoogleFonts.inter(color: Colors.white),
+                "The Students' Gymkhana is the official student-governing body of The LNMIIT, Jaipur, dedicated to representing and advancing the interests of the student community. Established in 2006, it plays a vital role in nurturing leadership, promoting dialogue, and building a participatory campus culture. \nUnder the guidance of the Institute's Director, the Gymkhana acts as a bridge between the administration and the students, enabling communication, decision-making, and policy participation that directly impacts student life.",
+                style: GoogleFonts.inter(color: Colors.white, fontSize: 13),
               ),
-              const SizedBox(height: 36),
-              presidentTile("Mr. President", "President", "", ""),
-              presidentTile("Mr. Vice President", "Vice-President", "", ""),
-              presidentTile("Mr. Finance Convener", "Finance Convener", "", ""),
+              const SizedBox(height: 30),
+              presidentTile("Mr. President", "President", "", "gym.president@lnmiit.ac.in"),
+              presidentTile("Mr. Chirag Mehta", "Vice-President", "", "gym.vicepresident@lnmiit.ac.in"),
+              presidentTile("Mr. Finance Convener", "Finance Convener", "", "gym.financeconvenor@lnmiit.ac.in"),
               const SizedBox(height: 20),
               buildSectionTitle("PRESIDENTIAL COUNCIL"),
               const SizedBox(height: 16),
@@ -50,8 +50,8 @@ class GymkhanaPage extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
                   squareCard("Cultural Council", 'assets/images/ccell_logo.png', context, const CulturalCouncil()),
-                  squareCard("Science & Technology Council", 'assets/images/ccell_logo.png', context, const TechnologyCouncil()),
-                  squareCard("Sports Council", 'assets/images/ccell_logo.png', context, const SportsCouncil()),
+                  squareCard("Science & Technology Council", 'assets/images/tech_logo.jpg', context, const TechnologyCouncil()),
+                  squareCard("Sports Council", 'assets/images/sports_logo.jpg', context, const SportsCouncil()),
                   squareCard("COSHA Committee", "assets/images/cosha_logo.jpg", context, COSHAScreen()),
                 ],
               ),
@@ -75,10 +75,10 @@ class GymkhanaPage extends StatelessWidget {
                 children: [
                   squareCard(
                     "Desportivos",
-                    "assets/images/despo_logo.jpeg",
+                    "assets/images/despo/despo_logo.jpeg",
                     context,
                     const StudentEventScreen(
-                      imageUrl: "assets/images/despo_logo.jpeg",
+                      imageUrl: "assets/images/despo/despo_logo.jpeg",
                       description: "",
                       festHeads: [{"name": "Head 1"}, {"name": "Head 2"}],
                       galleryImages: [],
@@ -89,10 +89,10 @@ class GymkhanaPage extends StatelessWidget {
                   ),
                   squareCard(
                     "Plinth",
-                    "assets/images/plinth_logo.jpg",
+                    "assets/images/plinth/plinth_logo.jpg",
                     context,
                     const StudentEventScreen(
-                      imageUrl: "assets/images/plinth_logo.jpg",
+                      imageUrl: "assets/images/plinth/plinth_logo.jpg",
                       description: "",
                       festHeads: [{"name": "Head 1"}, {"name": "Head 2"}],
                       galleryImages: [],
@@ -106,10 +106,10 @@ class GymkhanaPage extends StatelessWidget {
               SizedBox(height: 15),
               squareCard(
                     "Vivacity",
-                    'assets/images/viva_logo.png',
+                    'assets/images/viva/viva_logo.png',
                     context,
                     const StudentEventScreen(
-                      imageUrl: "assets/images/viva_logo.png",
+                      imageUrl: "assets/images/viva/viva_logo.png",
                       description: "",
                       festHeads: [{"name": "Head 1"}, {"name": "Head 2"}],
                       galleryImages: [],

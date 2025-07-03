@@ -147,14 +147,16 @@ flutter:
       - assets/images/sports/chess/chess_logo.jpg
       - assets/images/cultural/fundoo/fundoo_logo.jpg
       - assets/images/sports/volleyball/volleyball_logo.jpg
-      - assets/images/plinth_logo.jpg
-      - assets/images/despo_logo.jpeg
-      - assets/images/viva_logo.png
+      - assets/images/plinth/plinth_logo.jpg
+      - assets/images/despo/despo_logo.jpeg
+      - assets/images/viva/viva_logo.png
       - assets/images/ted_logo.jpg
       - assets/images/esummit_logo.jpg
       - assets/images/cosha_logo.jpg
       - assets/images/youtube_logo.png
       - assets/images/tech/cybros/cybros_logo.jpg
+      - assets/images/tech_logo.jpg
+      - assets/images/sports_logo.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
