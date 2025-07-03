@@ -1,24 +1,29 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:login_page/gymkhana.dart';
-import 'package:login_page/more_page.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:login_page/notifications_screen.dart';
-import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
-import 'package:fluid_background/fluid_background.dart';
+
+class HomePage extends StatelessWidget {
+  final String userName;
+  const HomePage({super.key, required this.userName});
+
+  @override
+  Widget build(BuildContext context) {
+    return HomeDashboard(userName: userName);
+  }
+}
 
 class HomeDashboard extends StatelessWidget {
-  HomeDashboard({super.key, required this.userName});
-
   final String userName;
+
+  HomeDashboard({super.key, required this.userName});
 
   final Map<String, Map<String, dynamic>> buttonData = {
     'Academic Calendar': {
       'image': 'academic_calender.png',
-      'url': 'https://lnmiit.ac.in/academics/academic-documents/#pdf-academic-calendar-2025/1/',
+      'url':
+      'https://lnmiit.ac.in/academics/academic-documents/#pdf-academic-calendar-2025/1/',
     },
     'Lost & Found': {
       'image': 'lost_found.png',
@@ -28,11 +33,13 @@ class HomeDashboard extends StatelessWidget {
     },
     'Bus Timetable': {
       'image': 'bus_timetable.png',
-      'url': 'https://raw.githubusercontent.com/Counselling-Cell-LNMIIT/appResources/main/pdf/Bus_Time_Table.pdf',
+      'url':
+      'https://raw.githubusercontent.com/Counselling-Cell-LNMIIT/appResources/main/pdf/Bus_Time_Table.pdf',
     },
     'Mess Menu': {
       'image': 'mess_menu.png',
-      'url': 'https://raw.githubusercontent.com/Counselling-Cell-LNMIIT/appResources/main/pdf/Mess_Menu.pdf',
+      'url':
+      'https://raw.githubusercontent.com/Counselling-Cell-LNMIIT/appResources/main/pdf/Mess_Menu.pdf',
     },
     'Profile': {
       'image': 'profile.png',
@@ -82,112 +89,6 @@ class HomeDashboard extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class HomePage extends StatefulWidget {
-  final String userName;
-  const HomePage({super.key, required this.userName});
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 0;
-
-  late final List<Widget> _pages = [
-    HomeDashboard(userName: widget.userName),
-    GymkhanaPage(),
-    NotificationsPage(),
-    MorePage(),
-  ];
-
-  void _onItemTapped(int index) {
-    HapticFeedback.lightImpact();
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  Widget _buildGlowingIcon(IconData icon, bool isActive) {
-    return Container(
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        boxShadow: isActive
-            ? [
-          BoxShadow(
-            color: Colors.white.withOpacity(0.3),
-            blurRadius: 10,
-            spreadRadius: 1,
-          ),
-        ]
-            : [],
-      ),
-      child: Icon(
-        icon,
-        color: isActive ? Colors.white : Colors.grey.shade600,
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 400),
-        transitionBuilder: (child, animation) =>
-            FadeTransition(opacity: animation, child: child),
-        child: _pages[_selectedIndex],
-      ),
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          color: Colors.black,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.6),
-              blurRadius: 10,
-              offset: const Offset(0, -2),
-            ),
-          ],
-        ),
-        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-        child: SalomonBottomBar(
-          currentIndex: _selectedIndex,
-          onTap: _onItemTapped,
-          backgroundColor: Colors.transparent,
-          selectedItemColor: Colors.white,
-          unselectedItemColor: Colors.grey.shade600,
-          duration: const Duration(milliseconds: 400),
-          items: [
-            SalomonBottomBarItem(
-              icon: _buildGlowingIcon(Icons.home, _selectedIndex == 0),
-              title: const Text("Home"),
-              selectedColor: Colors.white,
-              unselectedColor: Colors.grey.shade600,
-            ),
-            SalomonBottomBarItem(
-              icon: _buildGlowingIcon(Icons.sports, _selectedIndex == 1),
-              title: const Text("Gymkhana"),
-              selectedColor: Colors.white,
-              unselectedColor: Colors.grey.shade600,
-            ),
-            SalomonBottomBarItem(
-              icon: _buildGlowingIcon(Icons.notifications, _selectedIndex == 2),
-              title: const Text("Notifications"),
-              selectedColor: Colors.white,
-              unselectedColor: Colors.grey.shade600,
-            ),
-            SalomonBottomBarItem(
-              icon: _buildGlowingIcon(Icons.more_horiz, _selectedIndex == 3),
-              title: const Text("More"),
-              selectedColor: Colors.white,
-              unselectedColor: Colors.grey.shade600,
-            ),
-          ],
-        ),
       ),
     );
   }

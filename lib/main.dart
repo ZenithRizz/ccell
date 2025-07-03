@@ -1,13 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:login_page/login_page.dart';
 import 'package:login_page/more_page.dart';
 import 'package:login_page/home_page.dart';
+import 'package:login_page/notifications_screen.dart';
 import 'package:login_page/profile_page.dart';
 import 'package:login_page/welcome_screen.dart';
 import 'package:login_page/hostel_registration.dart';
 import 'package:login_page/loading_screen.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'gymkhana.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -102,95 +105,83 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
   static final List<Widget> _pages = <Widget>[
-    const SimplePage(title: 'Home Page'),
+    HomePage(userName: FirebaseAuth.instance.currentUser!.displayName!),
     const GymkhanaPage(), 
-    const SimplePage(title: 'Notifications Page'),
+    const NotificationsPage(),
     MorePage()
   ];
 
   void _onItemTapped(int index) {
+    HapticFeedback.lightImpact();
     setState(() {
       _selectedIndex = index;
     });
   }
 
+  Widget _buildGlowingIcon(IconData icon, bool isActive) {
+    return Container(
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        boxShadow: isActive
+            ? [
+          BoxShadow(
+            color: Colors.white.withOpacity(0.3),
+            blurRadius: 10,
+            spreadRadius: 1,
+          ),
+        ]
+            : [],
+      ),
+      child: Icon(
+        icon,
+        color: isActive ? Colors.white : Colors.grey.shade600,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          AnimatedSwitcher(
-            duration: const Duration(milliseconds: 300),
-            child: _pages[_selectedIndex],
+      body: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 300),
+        child: _pages[_selectedIndex],
+      ),
+      bottomNavigationBar: SalomonBottomBar(
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        backgroundColor: Colors.black,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.grey.shade600,
+        duration: const Duration(milliseconds: 400),
+        items: [
+          SalomonBottomBarItem(
+            icon: _buildGlowingIcon(Icons.home, _selectedIndex == 0),
+            title: const Text("Home"),
+            selectedColor: Colors.white,
+            unselectedColor: Colors.grey.shade600,
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                border: const Border(
-                  top: BorderSide(color: Colors.grey, width: 0.5),
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 5,
-                    spreadRadius: 1,
-                  ),
-                ],
-              ),
-              child: BottomNavigationBar(
-                currentIndex: _selectedIndex,
-                onTap: _onItemTapped,
-                type: BottomNavigationBarType.fixed,
-                backgroundColor: Colors.black, 
-                selectedItemColor: Colors.white,
-                unselectedItemColor: Colors.grey,
-                showUnselectedLabels: true,
-                items: const [
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.home),
-                    label: 'Home',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.sports),
-                    label: 'Gymkhana',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.notifications),
-                    label: 'Notifications',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.more_horiz),
-                    label: 'More',
-                  ),
-                ],
-              ),
-            ),
+          SalomonBottomBarItem(
+            icon: _buildGlowingIcon(Icons.sports, _selectedIndex == 1),
+            title: const Text("Gymkhana"),
+            selectedColor: Colors.white,
+            unselectedColor: Colors.grey.shade600,
+          ),
+          SalomonBottomBarItem(
+            icon: _buildGlowingIcon(Icons.notifications, _selectedIndex == 2),
+            title: const Text("Notifications"),
+            selectedColor: Colors.white,
+            unselectedColor: Colors.grey.shade600,
+          ),
+          SalomonBottomBarItem(
+            icon: _buildGlowingIcon(Icons.more_horiz, _selectedIndex == 3),
+            title: const Text("More"),
+            selectedColor: Colors.white,
+            unselectedColor: Colors.grey.shade600,
           ),
         ],
       ),
     );
+
   }
 }
 
-class SimplePage extends StatelessWidget {
-  final String title;
-  const SimplePage({super.key, required this.title});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-      ),
-      body: Center(
-        child: Text(
-          title,
-          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
-      ),
-    );
-  }
-}
