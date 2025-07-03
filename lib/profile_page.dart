@@ -292,7 +292,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           indent: 20,
                           endIndent: 20,
                         ),
-                        const SizedBox(height: 30),
+                        const SizedBox(height: 15),
 
                         ElevatedButton(onPressed: () async {
                           await signOutUser();
@@ -318,7 +318,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 letterSpacing: 0.5,
                                 fontWeight: FontWeight.w600,
                               ),
-                            )
+                            ),
                         ),
                       ],
                     ),

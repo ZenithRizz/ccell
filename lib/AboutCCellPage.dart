@@ -8,7 +8,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import 'member.dart';
 
-
 class AboutCCellPage extends StatelessWidget {
   const AboutCCellPage({super.key});
 
@@ -143,22 +142,21 @@ class AboutCCellPage extends StatelessWidget {
             const SizedBox(height: 20),
 
             TeamMentors(
-               title: "Team Mentors Y-22",
+              title: "Team Mentors Y-22",
               members: [
                 NewMember(
                   name: "Harshita Sharma",
-                  imagePath: 'assets/images/Harshita.jpg'
+                  imagePath: 'assets/images/Harshita.jpg',
                 ),
 
                 NewMember(
                   name: "Arpit Joshi",
-                  imagePath: 'assets/images/arpit_joshi.jpg'
+                  imagePath: 'assets/images/arpit_joshi.jpg',
                 ),
                 NewMember(
                   name: "Naman Agarwal",
                   imagePath: 'assets/images/naman.jpg',
                 ),
-                
               ],
             ),
 
@@ -183,15 +181,12 @@ class AboutCCellPage extends StatelessWidget {
             ),
 
             const SizedBox(height: 20),
-
           ],
         ),
       ),
     );
   }
 }
-
-
 
 class NewSection extends StatelessWidget {
   final String title;
@@ -215,136 +210,141 @@ class NewSection extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Container(
-    width: 150,
-    padding: EdgeInsets.all(12),
-    decoration: BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(16),
-    ),
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 10,
-                          vertical: 4,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Color(0xFF48cae4),
-                          borderRadius: BorderRadius.circular(18),
-                        ),
-                        child: Text(
-                          'Team Mentor',
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                          ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Container(
+                height: 200,
+                width: 150,
+                padding: EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 4,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Color(0xFF48cae4),
+                        borderRadius: BorderRadius.circular(18),
+                      ),
+                      child: Text(
+                        'Team Mentor',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
                         ),
                       ),
-                      SizedBox(height: 10,),
-        CircleAvatar(
-          radius: 35,
-          backgroundImage: AssetImage('assets/images/mudit_img.jpg'),
-        ),
-        SizedBox(height: 8),
-        Text(
-          'Mudit Choudhary',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 14,
-          ),
-        ),
-      ],
-    ),
-  ),
-        ),
-      
-          Padding(
-          padding: const EdgeInsets.only(right: 16.0),
-          child: Container(
-    width: 150,
-    padding: EdgeInsets.all(12),
-    decoration: BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(16),
-    ),
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 10,
-                          vertical: 4,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Color(0xFF48cae4),
-                          borderRadius: BorderRadius.circular(18),
-                        ),
-                        child: Text(
-                          'Team Mentor',
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                          ),
-                        ),
+                    ),
+                    SizedBox(height: 10),
+                    CircleAvatar(
+                      radius: 35,
+                      backgroundImage: AssetImage(
+                        'assets/images/mudit_img.jpg',
                       ),
-                      SizedBox(height: 10,),
-        CircleAvatar(
-          radius: 35,
-          backgroundImage: AssetImage('assets/images/yash_raj.jpg'),
-        ),
-        SizedBox(height: 8),
-        Text(
-          'Yash Raj',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 14,
-          ),
-        ),
-      ],
-    ),
-  ),
-        ),
+                    ),
+                    SizedBox(height: 8),
+                    Text(
+                      'Mudit Choudhary',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
 
- 
-        ],),
+            Padding(
+              padding: const EdgeInsets.only(right: 16.0),
+              child: Container(
+                height: 200,
+                width: 150,
+                padding: EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 4,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Color(0xFF48cae4),
+                        borderRadius: BorderRadius.circular(18),
+                      ),
+                      child: Text(
+                        'Team Mentor',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    CircleAvatar(
+                      radius: 35,
+                      backgroundImage: AssetImage('assets/images/yash_raj.jpg'),
+                    ),
+                    SizedBox(height: 8),
+                    Text(
+                      'Yash Raj',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
 
         SizedBox(height: 16),
-       Column(
-  children: [
-    Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        developerCard("Praneel", "assets/images/praneel.jpg"),
-        SizedBox(width: 16),
-        developerCard("Nikhila S Hari", "assets/images/nikhila.jpg"),
-      ],
-    ),
-    SizedBox(height: 16),
-    Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        developerCard("Panth Moradiya", "assets/images/panth_moradiya.jpg"),
-        SizedBox(width: 16),
-        developerCard("Ishita Agarwal", "assets/images/ishita.jpg"),
-      ],
-    ),
-    SizedBox(height: 16),
-    Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        developerCard("Armaan Jain", "assets/images/armaan.png"),
-      ],
-    ),
-  ],
-),
-
+        Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                developerCard("Praneel", "assets/images/praneel.jpg"),
+                SizedBox(width: 16),
+                developerCard("Nikhila S Hari", "assets/images/nikhila.jpg"),
+              ],
+            ),
+            SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                developerCard(
+                  "Panth Moradia",
+                  "assets/images/panth_moradiya.jpg",
+                ),
+                SizedBox(width: 16),
+                developerCard("Ishita Agarwal", "assets/images/ishita.jpg"),
+              ],
+            ),
+            SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                developerCard("Armaan Jain", "assets/images/armaan.png"),
+              ],
+            ),
+          ],
+        ),
       ],
     );
   }
@@ -386,6 +386,7 @@ class NewCard extends StatelessWidget {
 
 Widget developerCard(String name, String imagePath) {
   return Container(
+    height: 160,
     width: 150,
     padding: EdgeInsets.all(12),
     decoration: BoxDecoration(
@@ -393,23 +394,17 @@ Widget developerCard(String name, String imagePath) {
       borderRadius: BorderRadius.circular(16),
     ),
     child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: [
-        CircleAvatar(
-          radius: 35,
-          backgroundImage: AssetImage(imagePath),
-        ),
+        CircleAvatar(radius: 35, backgroundImage: AssetImage(imagePath)),
         SizedBox(height: 8),
         Text(
           name,
           textAlign: TextAlign.center,
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 14,
-          ),
+          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
         ),
       ],
     ),
   );
 }
-

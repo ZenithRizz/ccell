@@ -275,15 +275,13 @@ Widget squareCard(String logoUrl, String label, BuildContext context, String des
       },
       child: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color.fromRGBO(123, 127, 139, 1),
-              Colors.black,
-            ],
+          gradient: const LinearGradient(
+            colors: [Color(0xFF353F54),Color(0xFF222834),],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: Colors.white.withOpacity(0.2), width: 2)
         ),
         width: 100,
         height: 100,
@@ -299,7 +297,7 @@ Widget squareCard(String logoUrl, String label, BuildContext context, String des
               style: GoogleFonts.poppins(
                 color: Colors.white, 
                 fontSize: 20, 
-                fontWeight: FontWeight.bold
+                fontWeight: FontWeight.w600
               )
             ),
           ],
@@ -332,6 +330,7 @@ Widget _buildGSecTile(String name, String post, String phoneUrl, String mailUrl)
     decoration: BoxDecoration(
       color: const Color(0xFF1C2834),
       borderRadius: BorderRadius.circular(12),
+      border: Border.all(color: Colors.white.withOpacity(0.2), width: 2)
     ),
     margin: const EdgeInsets.only(bottom: 12),
     child: ListTile(

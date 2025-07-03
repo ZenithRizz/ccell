@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:login_page/main.dart';
 
 import 'home_page.dart';
 
@@ -37,7 +38,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => HomePage(userName: widget.userName),
+              builder: (context) => MyHomePage(),
             ),
           );
         });

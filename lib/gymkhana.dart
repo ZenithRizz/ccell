@@ -257,11 +257,12 @@ Widget squareCard(String label, String imageUrl, BuildContext context, Widget ta
       child: Container(
         decoration: BoxDecoration(
           gradient: const LinearGradient(
-            colors: [Color.fromRGBO(123, 127, 139, 1), Color(0xFF001219)],
+            colors: [Color(0xFF353F54),Color(0xFF222834),],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
           borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: Colors.white.withOpacity(0.2), width: 2)
         ),
         width: 195,
         height: 225,
@@ -282,7 +283,7 @@ Widget squareCard(String label, String imageUrl, BuildContext context, Widget ta
                 color: Colors.white,
                 fontSize: 20,
                 height: 1.2,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w600,
               ),
             ),
           ],
