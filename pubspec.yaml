@@ -157,6 +157,9 @@ flutter:
       - assets/images/tech/cybros/cybros_logo.jpg
       - assets/images/tech_logo.jpg
       - assets/images/sports_logo.jpg
+      - assets/images/linkedin_logo.png
+      - assets/images/facebook.png
+      - assets/images/x.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

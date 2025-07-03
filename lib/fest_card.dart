@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -11,6 +12,10 @@ class StudentEventScreen extends StatelessWidget {
   final String description;
   final String emailUrl;
   final String youtubeUrl;
+  final String linkedinUrl;
+  final String facebookUrl;
+  final String xUrl;
+  final String label;
 
   const StudentEventScreen({
     super.key,
@@ -20,7 +25,11 @@ class StudentEventScreen extends StatelessWidget {
     required this.instaUrl,
     required this.description,
     required this.emailUrl,
-    required this.youtubeUrl
+    required this.youtubeUrl,
+    required this.linkedinUrl,
+    required this.facebookUrl,
+    required this.xUrl,
+    required this.label,
   });  
 
   void _launchPhone(String phone) async {
@@ -85,6 +94,52 @@ class StudentEventScreen extends StatelessWidget {
   }
 }
 
+  Future<void> _launchLinkedIn(String url) async {
+  if (url.trim().isEmpty) {
+    debugPrint('LinkedIn URL is empty.');
+    return;
+  }
+
+  final Uri linkedinUri = Uri.parse(url);
+
+  if (await canLaunchUrl(linkedinUri)) {
+    await launchUrl(linkedinUri, mode: LaunchMode.externalApplication);
+  } else {
+    debugPrint('Could not launch $linkedinUri');
+  }
+}
+
+Future<void> _launchFacebook(String url) async {
+  if (url.trim().isEmpty) {
+    debugPrint('Facebook URL is empty.');
+    return;
+  }
+
+  final Uri fbUri = Uri.parse(url);
+
+  if (await canLaunchUrl(fbUri)) {
+    await launchUrl(fbUri, mode: LaunchMode.externalApplication);
+  } else {
+    debugPrint('Could not launch $fbUri');
+  }
+}
+
+Future<void> _launchX(String url) async {
+  if (url.trim().isEmpty) {
+    debugPrint('X URL is empty.');
+    return;
+  }
+
+  final Uri xUri = Uri.parse(url);
+
+  if (await canLaunchUrl(xUri)) {
+    await launchUrl(xUri, mode: LaunchMode.externalApplication);
+  } else {
+    debugPrint('Could not launch $xUri');
+  }
+}
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,16 +153,9 @@ class StudentEventScreen extends StatelessWidget {
               const SizedBox(height: 15),
               Padding(
                 padding: const EdgeInsets.only(left: 10, right: 10),
-                child: Text(description, style: GoogleFonts.inter(color: Colors.white, fontSize: 12), ),
+                child: Text(description, style: GoogleFonts.inter(color: Colors.white, fontSize: 10), ),
               ),
               SizedBox(height: 20,),
-              // Gallery Carousel
-              GalleryCarousel(galleryImages: galleryImages),
-          
-              const SizedBox(height: 16),
-              const Divider(color: Colors.white38),
-          
-              // Cordies List
               ListView.builder(
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
@@ -128,7 +176,7 @@ class StudentEventScreen extends StatelessWidget {
                         style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.bold),
                       ),
                       subtitle: Text(
-                        "Fest Head",
+                        label.trim().toLowerCase() == "tedx lnmiit" ? "Organiser" : "Fest Head",
                         style: GoogleFonts.inter(color: Color.fromARGB(255, 192, 190, 190), fontSize: 10),
                       ),
                       trailing: Wrap(
@@ -149,9 +197,16 @@ class StudentEventScreen extends StatelessWidget {
                 },
               ),
               
+              Divider(color: Colors.white38),
+              SizedBox(height: 16,),
+              GalleryCarousel(galleryImages: galleryImages),
+              SizedBox(height: 50,),
     if (instaUrl.trim().isNotEmpty ||
     emailUrl.trim().isNotEmpty ||
-    youtubeUrl.trim().isNotEmpty)
+    youtubeUrl.trim().isNotEmpty ||
+    linkedinUrl.trim().isNotEmpty ||
+    facebookUrl.trim().isNotEmpty ||
+    xUrl.trim().isNotEmpty)
   ...[
     Padding(
       padding: const EdgeInsets.all(8.0),
@@ -164,74 +219,138 @@ class StudentEventScreen extends StatelessWidget {
         ),
       ),
     ),
-    Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        if (instaUrl.trim().isNotEmpty)
-          GestureDetector(
-            onTap: () async {
-              try {
-                await _launchInstagram();
-              } catch (e) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Unable to open Instagram')),
-                );
-              }
-            },
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Image.asset(
-                'assets/images/Instagram.png',
-                width: 60,
-                height: 60,
+    SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          if (instaUrl.trim().isNotEmpty)
+            GestureDetector(
+              onTap: () async {
+                try {
+                  await _launchInstagram();
+                } catch (e) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Unable to open Instagram')),
+                  );
+                }
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Image.asset(
+                  'assets/images/Instagram.png',
+                  width: 55,
+                  height: 55,
+                ),
               ),
             ),
-          ),
-
-        if (emailUrl.trim().isNotEmpty)
-          GestureDetector(
-            onTap: () async {
-              try {
-                await _launchGmail(emailUrl);
-              } catch (e) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Unable to open Gmail')),
-                );
-              }
-            },
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+      
+          if (emailUrl.trim().isNotEmpty)
+            GestureDetector(
+              onTap: () async {
+                try {
+                  await _launchGmail(emailUrl);
+                } catch (e) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Unable to open Gmail')),
+                  );
+                }
+              },
               child: Image.asset(
                 'assets/images/gmail.png',
                 width: 40,
                 height: 40,
               ),
             ),
-          ),
-
-        if (youtubeUrl.trim().isNotEmpty)
-          GestureDetector(
-            onTap: () async {
-              try {
-                await _launchYouTube(youtubeUrl);
-              } catch (e) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Unable to open YouTube')),
-                );
-              }
-            },
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Image.asset(
-                'assets/images/youtube_logo.png',
-                width: 50,
-                height: 50,
+      
+          if (youtubeUrl.trim().isNotEmpty)
+            GestureDetector(
+              onTap: () async {
+                try {
+                  await _launchYouTube(youtubeUrl);
+                } catch (e) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Unable to open YouTube')),
+                  );
+                }
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20, right: 10),
+                child: Image.asset(
+                  'assets/images/youtube_logo.png',
+                  width: 45,
+                  height: 45,
+                ),
               ),
             ),
-          ),
-      ],
+          if (linkedinUrl.trim().isNotEmpty)
+        GestureDetector(
+      onTap: () async {
+        try {
+          await _launchLinkedIn(linkedinUrl);
+        } catch (e) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Unable to open LinkedIn')),
+          );
+        }
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Image.asset(
+          'assets/images/linkedin_logo.png', 
+          width: 40,
+          height: 40,
+        ),
+      ),
+        ),
+      
+      if (facebookUrl.trim().isNotEmpty)
+        GestureDetector(
+      onTap: () async {
+        try {
+          await _launchFacebook(facebookUrl);
+        } catch (e) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Unable to open Facebook')),
+          );
+        }
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Image.asset(
+          'assets/images/facebook.png', // 👈 Add this asset
+          width: 40,
+          height: 40,
+        ),
+      ),
+        ),
+      
+      if (xUrl.trim().isNotEmpty)
+        GestureDetector(
+      onTap: () async {
+        try {
+          await _launchX(xUrl);
+        } catch (e) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Unable to open X')),
+          );
+        }
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Image.asset(
+          'assets/images/x.png', 
+          width: 45,
+          height: 45,
+          
+        ),
+      ),
+        ),
+      
+        ],
+      ),
     ),
-    const SizedBox(height: 30),
+    const SizedBox(height: 50),
   ],
 
             ]
