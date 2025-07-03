@@ -13,7 +13,6 @@ import 'package:login_page/loading_screen.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'gymkhana.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
