@@ -69,7 +69,12 @@ class _ProfilePageState extends State<ProfilePage> {
 
       final year = int.tryParse(username.substring(0, 2));
       if (year != null) {
-        batch = '20$year - 20${year + 4}';
+
+        if(branch == 'dec'||branch == 'dcs'){
+          batch = '20$year - 20${year + 5}';
+        }
+        } else {
+        batch = '20$year - 20${year! + 4}';
       }
     }
   }
@@ -362,15 +367,15 @@ class ProfileImage extends StatelessWidget {
       children: [
         Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(75),
+            borderRadius: BorderRadius.circular(200),
             border: Border.all(color: Colors.blueGrey, width: 3),
           ),
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(75),
+            borderRadius: BorderRadius.circular(200),
             child: Image(
               image: imageProvider,
-              width: 150,
-              height: 150,
+              width: 200,
+              height: 200,
               fit: BoxFit.cover,
             ),
           ),
