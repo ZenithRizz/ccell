@@ -208,19 +208,20 @@ class NewSection extends StatelessWidget {
         ),
 
         Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          
           children: [
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Container(
                 height: 200,
                 width: 150,
-                padding: EdgeInsets.all(12),
+                padding: EdgeInsets.all(18),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
@@ -266,15 +267,16 @@ class NewSection extends StatelessWidget {
               child: Container(
                 height: 200,
                 width: 150,
-                padding: EdgeInsets.all(12),
+                padding: EdgeInsets.all(18),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                 
                   mainAxisSize: MainAxisSize.min,
                   children: [
+                    SizedBox(height: 5,),
                     Container(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 10,

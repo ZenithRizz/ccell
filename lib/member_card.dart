@@ -14,11 +14,8 @@ class MemberCard extends StatelessWidget {
     }
   }
 
-   void _launchEmail() async {
-    final Uri uri = Uri(
-      scheme: 'mailto',
-      path: member.email,
-    );
+  void _launchEmail() async {
+    final Uri uri = Uri(scheme: 'mailto', path: member.email);
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
     }
@@ -26,9 +23,13 @@ class MemberCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+
+    double cardWidth = screenWidth * 0.45; 
+
     return Container(
-      width: 150,
-      height: 200,
+      width: cardWidth,
+      height: 220,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(18),
@@ -40,13 +41,21 @@ class MemberCard extends StatelessWidget {
             radius: 50,
             backgroundImage: AssetImage(member.imagePath),
             backgroundColor: Colors.grey.shade300,
-            
           ),
           const SizedBox(height: 10),
-          Text(
-            member.name,
-            style: const TextStyle(color: Colors.black, fontSize: 16),
-            textAlign: TextAlign.center,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Text(
+              member.name,
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+              ),
+              textAlign: TextAlign.center,
+              maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            ),
           ),
           const SizedBox(height: 10),
           Row(
