@@ -67,41 +67,19 @@ class LoginPage extends StatelessWidget {
                       onTap: () {
                         signInWithCollegeGoogleAccount(context);
                       },
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              'assets/images/google_logo.png',
-                              height: 32,
-                              fit: BoxFit.contain,
-                            ),
-                            const SizedBox(width: 10),
-                            Flexible(
-                              child: Text(
-                                'Login with your College Account',
-                                style: GoogleFonts.poppins(
-                                  color: Colors.black,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                          ],
-                        ),
+                      child: Image.asset(
+                        'assets/images/google_logo.png',
+                        fit: BoxFit.fill,
                       ),
                     ),
                   ),
                 ),
-                const SizedBox(height: 10),
-                TextButton(
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (_) => MyHomePage()));
-                  },
-                  child: const Text("Click for quick access"),
-                ),
+                const SizedBox(height: 30),
+                Text("Only use your College ID to Sign in",
+                    style: GoogleFonts.inter(
+                      color: Colors.white
+                    )),
+                const SizedBox(height: 110,),
                 TextButton(
                   onPressed: () {},
                   style: TextButton.styleFrom(
