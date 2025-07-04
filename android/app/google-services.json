@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "655780948496",
+    "firebase_url": "https://ccell-b8c42-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "ccell-b8c42",
     "storage_bucket": "ccell-b8c42.firebasestorage.app"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "655780948496-atid6a3ul2tvc6iqttsqlhk4j058rmqn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.login_page",
+            "certificate_hash": "d5727a1f9587773f824bc745bdc01d1ecc8ce775"
+          }
+        },
         {
           "client_id": "655780948496-epqaldeld17dgltjbhsl2fspcb3pnrum.apps.googleusercontent.com",
           "client_type": 1,
@@ -35,6 +44,22 @@
           "android_info": {
             "package_name": "com.example.login_page",
             "certificate_hash": "3951abf56c47303c9d31b13a533b82cf39ef1a65"
+          }
+        },
+        {
+          "client_id": "655780948496-rmnh7qgje3ma38hcag9b0hjkqa9m950k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.login_page",
+            "certificate_hash": "639a4c73e6fda5b67b6312a83c425db5bb360cd3"
+          }
+        },
+        {
+          "client_id": "655780948496-sf0j1n8fg8gftd4gt2ltdnrhbh226ik4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.login_page",
+            "certificate_hash": "d06cfb2b5b4649fe60072b813d80ac3c6d83472e"
           }
         },
         {
