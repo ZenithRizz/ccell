@@ -13,6 +13,7 @@ import 'package:login_page/loading_screen.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'gymkhana.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'lnm_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -108,6 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
     HomePage(userName: FirebaseAuth.instance.currentUser!.displayName!),
     const GymkhanaPage(), 
     const NotificationsPage(),
+    const LNMPage(),
     MorePage()
   ];
 
@@ -173,7 +175,13 @@ class _MyHomePageState extends State<MyHomePage> {
             unselectedColor: Colors.grey.shade600,
           ),
           SalomonBottomBarItem(
-            icon: _buildGlowingIcon(Icons.more_horiz, _selectedIndex == 3),
+            icon: _buildGlowingIcon(Icons.account_balance, _selectedIndex == 3),
+            title: const Text("About LNMIIT"),
+            selectedColor: Colors.white,
+            unselectedColor: Colors.grey.shade600,
+          ),
+          SalomonBottomBarItem(
+            icon: _buildGlowingIcon(Icons.more_horiz, _selectedIndex == 4),
             title: const Text("More"),
             selectedColor: Colors.white,
             unselectedColor: Colors.grey.shade600,
