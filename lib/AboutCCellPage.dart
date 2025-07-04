@@ -208,8 +208,9 @@ class NewSection extends StatelessWidget {
         ),
 
         Row(
-          
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Container(
@@ -321,7 +322,7 @@ class NewSection extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                developerCard("Praneel", "assets/images/praneel.jpg"),
+                developerCard("Praneel Dev", "assets/images/praneel.jpg"),
                 SizedBox(width: 16),
                 developerCard("Nikhila S Hari", "assets/images/nikhila.jpg"),
               ],
