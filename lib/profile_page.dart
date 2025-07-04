@@ -72,9 +72,9 @@ class _ProfilePageState extends State<ProfilePage> {
 
         if(branch == 'dec'||branch == 'dcs'){
           batch = '20$year - 20${year + 5}';
-        }
         } else {
-        batch = '20$year - 20${year! + 4}';
+          batch = '20$year - 20${year! + 4}';
+        }
       }
     }
   }
