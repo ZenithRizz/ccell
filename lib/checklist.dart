@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:ui'; // For BackdropFilter
 import 'hostel_registration.dart';
 import 'document_verification.dart';
 import 'implocations.dart';
@@ -94,6 +95,18 @@ class _ChecklistScreenState extends State<ChecklistScreen> {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
+            const Padding(
+              padding: EdgeInsets.only(bottom: 16.0),
+              child: Text(
+                'Click on each option for detailed instructions',
+                style: TextStyle(
+                  color: Colors.white70,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w400,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
             Expanded(
               child: ListView.separated(
                 itemCount: steps.length,
@@ -101,44 +114,57 @@ class _ChecklistScreenState extends State<ChecklistScreen> {
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () => _navigateToStep(index),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF003049),
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: _done[index] ? Colors.green : Colors.transparent,
-                          width: 2,
-                        ),
-                      ),
-                      padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 16),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              steps[index].title,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
-                              ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.13),
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                              color: _done[index] ? Colors.green : Colors.white.withOpacity(0.3),
+                              width: 2,
                             ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.08),
+                                blurRadius: 12,
+                                offset: const Offset(0, 6),
+                              ),
+                            ],
                           ),
-                          Checkbox(
-                            value: _done[index],
-                            onChanged: (val) {
-                              _setDone(index, val ?? false);
-                            },
-                            activeColor: Colors.green,
-                            checkColor: Colors.white,
+                          padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 16),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  steps[index].title,
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                              Checkbox(
+                                value: _done[index],
+                                onChanged: (val) {
+                                  _setDone(index, val ?? false);
+                                },
+                                activeColor: Colors.green,
+                                checkColor: Colors.white,
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
                     ),
                   );
                 },
               ),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 8), // Reduced space before the button
             if (!allDone)
               SizedBox(
                 width: double.infinity,
