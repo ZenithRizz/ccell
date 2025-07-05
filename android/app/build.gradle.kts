@@ -1,6 +1,9 @@
 import java.io.FileInputStream
 import java.util.Properties
 
+import com.android.build.gradle.internal.api.BaseVariantOutputImpl
+
+
 val keystoreProperties = Properties()
 val keystorePropertiesFile = rootProject.file("key.properties")
 
@@ -62,6 +65,20 @@ android {
                 "proguard-rules.pro"
             )
             signingConfig = signingConfigs.getByName("release")
+        }
+    }
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            val appName = "C-Cell App"
+            val buildType = variant.buildType.name
+            val versionName = variant.versionName
+            val versionCode = variant.versionCode
+
+            // Check if output is BaseVariantOutputImpl to safely cast
+            if (output is com.android.build.gradle.internal.api.BaseVariantOutputImpl) {
+                val fileName = "${appName}-${buildType}-v${versionName}(${versionCode}).aab"
+                output.outputFileName = fileName
+            }
         }
     }
 }

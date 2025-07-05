@@ -35,11 +35,12 @@ class _LoadingScreenState extends State<LoadingScreen> {
         });
 
         Future.delayed(const Duration(milliseconds: 400), () {
-          Navigator.pushReplacement(
+          Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
               builder: (context) => MyHomePage(),
             ),
+            (Route<dynamic> route) => false,
           );
         });
       } else {
