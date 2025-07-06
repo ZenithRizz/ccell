@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:login_page/NewMember.dart';
 
 import 'package:login_page/TeamMentors.dart';
@@ -47,11 +48,11 @@ class AboutCCellPage extends StatelessWidget {
 
             const SizedBox(height: 50),
 
-            const Padding(
+            Padding(
               padding: EdgeInsets.all(16.0),
               child: Text(
                 "The LNM Institute of Information Technology",
-                style: TextStyle(
+                style: GoogleFonts.poppins(
                   color: Colors.white,
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
@@ -61,11 +62,11 @@ class AboutCCellPage extends StatelessWidget {
 
             const SizedBox(height: 10),
 
-            const Padding(
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
                 "The Counseling Cell at LNMIIT fosters mental well-being and provides support through peer mentorship, professional guidance, and proactive outreach initiatives.",
-                style: TextStyle(color: Colors.white),
+                style: GoogleFonts.inter(color: Colors.white),
               ),
             ),
 
@@ -200,125 +201,25 @@ class NewSection extends StatelessWidget {
       children: [
         Text(
           title,
-          style: const TextStyle(
+          style: GoogleFonts.poppins(
             color: Colors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
+            fontSize: 24,
+            fontWeight: FontWeight.w500,
           ),
-        ),
-
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Container(
-                height: 200,
-                width: 150,
-                padding: EdgeInsets.all(18),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 4,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Color(0xFF48cae4),
-                        borderRadius: BorderRadius.circular(18),
-                      ),
-                      child: Text(
-                        'Team Mentor',
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    CircleAvatar(
-                      radius: 35,
-                      backgroundImage: AssetImage(
-                        'assets/images/mudit_img.jpg',
-                      ),
-                    ),
-                    SizedBox(height: 8),
-                    Text(
-                      'Mudit Choudhary',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 14,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.only(right: 16.0),
-              child: Container(
-                height: 200,
-                width: 150,
-                padding: EdgeInsets.all(18),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Column(
-                 
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SizedBox(height: 5,),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 4,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Color(0xFF48cae4),
-                        borderRadius: BorderRadius.circular(18),
-                      ),
-                      child: Text(
-                        'Team Mentor',
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    CircleAvatar(
-                      radius: 35,
-                      backgroundImage: AssetImage('assets/images/yash_raj.jpg'),
-                    ),
-                    SizedBox(height: 8),
-                    Text(
-                      'Yash Raj',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 14,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
         ),
 
         SizedBox(height: 16),
         Column(
           children: [
+             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                developerCard("Mudit Choudhary", "assets/images/mudit_img.jpg"),
+                SizedBox(width: 16),
+                developerCard("Yash Raj", "assets/images/yash_raj.jpg"),
+              ],
+            ),
+            SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -353,61 +254,42 @@ class NewSection extends StatelessWidget {
   }
 }
 
-class NewCard extends StatelessWidget {
-  final NewMember member;
-
-  const NewCard({super.key, required this.member});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 150,
-      height: 200,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(18),
-      ),
-      child: Column(
-        children: [
-          const SizedBox(height: 20),
-          CircleAvatar(
-            radius: 50,
-            backgroundImage: AssetImage(member.imagePath),
-            backgroundColor: Colors.grey.shade300,
-          ),
-          const SizedBox(height: 10),
-          Text(
-            member.name,
-            style: const TextStyle(color: Colors.black, fontSize: 16),
-            textAlign: TextAlign.center,
-          ),
-        ],
-      ),
-    );
-  }
-}
 
 Widget developerCard(String name, String imagePath) {
-  return Container(
-    height: 160,
-    width: 150,
-    padding: EdgeInsets.all(12),
-    decoration: BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(16),
-    ),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        CircleAvatar(radius: 35, backgroundImage: AssetImage(imagePath)),
-        SizedBox(height: 8),
-        Text(
-          name,
-          textAlign: TextAlign.center,
-          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
+  
+  
+  return LayoutBuilder(
+    builder: (context,constraints) {
+       double screenWidth = MediaQuery.of(context).size.width;
+    double cardWidth = screenWidth / 2.5; // tweak this factor for balance
+    double cardHeight = cardWidth * 1.1; // adjust ratio to your liking
+      return Container(
+        height: cardHeight,
+        width: cardWidth,
+        padding: EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            colors: [Color(0xFF353F54),Color(0xFF222834),],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: Colors.white.withOpacity(0.2), width: 2)
         ),
-      ],
-    ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            CircleAvatar(radius: 35, backgroundImage: AssetImage(imagePath)),
+            SizedBox(height: 8),
+            Text(
+              name,
+              textAlign: TextAlign.center,
+              style: GoogleFonts.inter(color: Colors.white, fontSize: 17),
+            ),
+          ],
+        ),
+      );
+    }
   );
 }

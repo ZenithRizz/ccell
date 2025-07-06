@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'member.dart';
 
@@ -24,16 +25,21 @@ class MemberCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-
+   double screenHeight = MediaQuery.of(context).size.width;
     double cardWidth = screenWidth * 0.45; 
-
+  double cardHeight = screenWidth * 0.45; 
     return Container(
       width: cardWidth,
-      height: 220,
+      height: cardHeight,
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(18),
-      ),
+          gradient: const LinearGradient(
+            colors: [Color(0xFF353F54),Color(0xFF222834),],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: Colors.white.withOpacity(0.2), width: 2)
+        ),
       child: Column(
         children: [
           const SizedBox(height: 20),
@@ -47,13 +53,9 @@ class MemberCard extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Text(
               member.name,
-              style: const TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-              ),
+              style: GoogleFonts.inter(color: Colors.white, fontSize: 17),
               textAlign: TextAlign.center,
-              maxLines: 2,
+              maxLines: 1,
             overflow: TextOverflow.ellipsis,
             ),
           ),

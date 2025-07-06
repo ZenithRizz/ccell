@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class convenerMessageSection extends StatelessWidget {
   const convenerMessageSection({super.key});
@@ -12,11 +13,11 @@ class convenerMessageSection extends StatelessWidget {
         children: [
           Text(
             "Convener's Message",
-            style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
-            color: Colors.white
-            ),
+            style : GoogleFonts.poppins(
+            color: Colors.white,
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
           ),
           SizedBox(height: 16),
           Column(

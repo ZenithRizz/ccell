@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:login_page/NewMember.dart';
 
 class TeamMentors extends StatelessWidget {
@@ -14,10 +15,10 @@ class TeamMentors extends StatelessWidget {
       children: [
         Text(
           title,
-          style: const TextStyle(
+          style: GoogleFonts.poppins(
             color: Colors.white,
             fontSize: 20,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w500,
           ),
         ),
       
@@ -47,13 +48,22 @@ class MentorCard  extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+   double screenHeight = MediaQuery.of(context).size.width;
+    double cardWidth = screenWidth * 0.45; 
+  double cardHeight = screenWidth * 0.4; 
     return Container(
-      width: 150,
-      height: 200,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(18),
-      ),
+      width: cardWidth,
+      height: cardHeight,
+     decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            colors: [Color(0xFF353F54),Color(0xFF222834),],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: Colors.white.withOpacity(0.2), width: 2)
+        ),
       child: Column(
         children: [
           const SizedBox(height: 20),
@@ -65,7 +75,7 @@ class MentorCard  extends StatelessWidget {
           const SizedBox(height: 10),
           Text(
             member.name,
-            style: const TextStyle(color: Colors.black, fontSize: 16),
+           style: GoogleFonts.inter(color: Colors.white, fontSize: 17),
             textAlign: TextAlign.center,
           ),
         ],
