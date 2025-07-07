@@ -1,9 +1,6 @@
 import java.io.FileInputStream
 import java.util.Properties
 
-import com.android.build.gradle.internal.api.BaseVariantOutputImpl
-
-
 val keystoreProperties = Properties()
 val keystorePropertiesFile = rootProject.file("key.properties")
 
@@ -35,7 +32,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.login_page"
+        applicationId = "com.lnmiit.ccell"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = 23
@@ -44,17 +41,17 @@ android {
         versionName = flutter.versionName
     }
     signingConfigs {
-    create("release") {
-        val storeFilePath = keystoreProperties["storeFile"]?.toString()
-        if (storeFilePath != null) {
-            storeFile = file(storeFilePath)
-        }
+        create("release") {
+            val storeFilePath = keystoreProperties["storeFile"]?.toString()
+            if (storeFilePath != null) {
+                storeFile = file(storeFilePath)
+            }
 
-        storePassword = keystoreProperties["storePassword"]?.toString()
-        keyAlias = keystoreProperties["keyAlias"]?.toString()
-        keyPassword = keystoreProperties["keyPassword"]?.toString()
+            storePassword = keystoreProperties["storePassword"]?.toString()
+            keyAlias = keystoreProperties["keyAlias"]?.toString()
+            keyPassword = keystoreProperties["keyPassword"]?.toString()
+        }
     }
-}
 
     buildTypes {
         getByName("release") {
@@ -65,20 +62,6 @@ android {
                 "proguard-rules.pro"
             )
             signingConfig = signingConfigs.getByName("release")
-        }
-    }
-    applicationVariants.all { variant ->
-        variant.outputs.all { output ->
-            val appName = "C-Cell App"
-            val buildType = variant.buildType.name
-            val versionName = variant.versionName
-            val versionCode = variant.versionCode
-
-            // Check if output is BaseVariantOutputImpl to safely cast
-            if (output is com.android.build.gradle.internal.api.BaseVariantOutputImpl) {
-                val fileName = "${appName}-${buildType}-v${versionName}(${versionCode}).aab"
-                output.outputFileName = fileName
-            }
         }
     }
 }

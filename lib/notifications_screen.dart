@@ -81,9 +81,15 @@ class _NotificationPageState extends State<NotificationsPage> {
                       return const Center(child: CircularProgressIndicator(color: Colors.white));
                     } else if (snapshot.hasError) {
                       return Center(
-                        child: Text(
-                          '❌ Failed to load notifications',
-                          style: GoogleFonts.inter(color: Colors.white70),
+                        child: TextButton(
+                          onPressed: () {setState(() {
+                            futureNotifications = fetchNotifications();
+                          });
+                            },
+                          child: Text(
+                            '❌ Failed to load notifications. Click to Retry',
+                            style: GoogleFonts.inter(color: Colors.white70),
+                          ),
                         ),
                       );
                     } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
