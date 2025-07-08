@@ -8,55 +8,58 @@ class TechnologyCouncil extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final width = size.width;
+    final height = size.height;
+
     return Scaffold(
       backgroundColor: const Color(0xFF0E1A23),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+          padding: EdgeInsets.symmetric(
+            horizontal: width * 0.04,
+            vertical: height * 0.02,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                'SCIENCE & TECHNOLOGY COUNCIL',
-                textAlign: TextAlign.center,
-                style: GoogleFonts.poppins(
-                  color: Colors.white,
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold
-                )
+              SizedBox(height: height * 0.01),
+              CircleAvatar(
+                backgroundImage: AssetImage("assets/images/tech_logo.jpg"),
+                radius: width * 0.15,
               ),
-              const SizedBox(height: 8),
-              CircleAvatar(),
-              SizedBox(height: 20),
+              SizedBox(height: height * 0.025),
               Text(
-                "About the COUNCIL", 
+                "The LNMIIT Student Science and Technology Council is meticulously designed to foster and promote a vibrant culture of scientific inquiry, technological innovation, and hands-on technical skill development among the student community. It acts as a central hub, orchestrating and amplifying the efforts of various student technical clubs and activities. Beyond mere coordination, the Council actively cultivates an environment ripe for intellectual curiosity and practical application, empowering students to translate theoretical knowledge into tangible solutions.",
                 style: GoogleFonts.inter(
                   color: Colors.white,
-                  fontSize: 12
-                ) 
+                  fontSize: width * 0.030,
+                ),
               ),
-              SizedBox(height: 20,),
-              _buildGSecTile("GSec", "General Secretary", "", ""),
-              SizedBox(height: 12,),
-              _buildGSecTile("A GSec", "Associate General Secretary", "", ""),
-              SizedBox(height: 12,),
+              SizedBox(height: height * 0.025),
+              _buildGSecTile(
+                "Mr. Shivansh Porwal",
+                "General Secretary",
+                "8765457211",
+                "gsec.science@lnmiit.ac.in",
+                width,
+              ),
+              _buildGSecTile(
+                "Ms. Hiya Jain",
+                "Associate General Secretary",
+                "9701234550",
+                "agsec.science@lnmiit.ac.in",
+                width,
+              ),
               GridView.count(
                 shrinkWrap: true,
                 crossAxisCount: 2,
-                crossAxisSpacing: 16,
-                mainAxisSpacing: 16,
+                crossAxisSpacing: width * 0.04,
+                mainAxisSpacing: height * 0.02,
                 childAspectRatio: 0.85,
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
-                  squareCard(
-                    "",
-                    "Astronomy",
-                    context,
-                    "",
-                    [],
-                    [],
-                    ''
-                  ),
+                  squareCard("", "Astronomy", context, "", [], [], '', width),
                   squareCard(
                     "assets/images/tech/cipherclub/cipher_logo.png",
                     "Cipher",
@@ -68,11 +71,24 @@ class TechnologyCouncil extends StatelessWidget {
                       "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/cipherclub/cipher3.jpeg",
                     ],
                     [
-                      {"name": "Lakshya Jain", "phone": "7568245339", "email": "23ucs633@lnmiit.ac.in"},
-                      {"name": "Amartya Vikram Singh", "phone": "6268818288", "email": "23ume513@lnmiit.ac.in"},
-                      {"name": "Siddhartha Swarnkar", "phone": "9831224418", "email": "23dcs510@lnmiit.ac.in"},
+                      {
+                        "name": "Lakshya Jain",
+                        "phone": "7568245339",
+                        "email": "23ucs633@lnmiit.ac.in",
+                      },
+                      {
+                        "name": "Amartya Vikram Singh",
+                        "phone": "6268818288",
+                        "email": "23ume513@lnmiit.ac.in",
+                      },
+                      {
+                        "name": "Siddhartha Swarnkar",
+                        "phone": "9831224418",
+                        "email": "23dcs510@lnmiit.ac.in",
+                      },
                     ],
-                    "https://www.instagram.com/cipher.lnmiit/"
+                    "https://www.instagram.com/cipher.lnmiit/",
+                    width,
                   ),
                   squareCard(
                     "assets/images/tech/cybros/cybros_logo.jpg",
@@ -89,29 +105,22 @@ class TechnologyCouncil extends StatelessWidget {
                       "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/cybros/cybros7.jpg",
                     ],
                     [
-                      {"name": "Naman Jain", "phone": "8890061881", "email": "22ucs133@lnmiit.ac.in"},
-                      {"name": "Romit Sovakar", "phone": "8436915546", "email": "22ucs168@lnmiit.ac.in"},
+                      {
+                        "name": "Naman Jain",
+                        "phone": "8890061881",
+                        "email": "22ucs133@lnmiit.ac.in",
+                      },
+                      {
+                        "name": "Romit Sovakar",
+                        "phone": "8436915546",
+                        "email": "22ucs168@lnmiit.ac.in",
+                      },
                     ],
-                    'https://www.instagram.com/cybros_lnmiit/'
+                    'https://www.instagram.com/cybros_lnmiit/',
+                    width,
                   ),
-                  squareCard(
-                    "",
-                    "Debsoc",
-                    context,
-                    "",
-                    [],
-                    [],
-                    ''
-                  ),
-                  squareCard(
-                    "",
-                    "E Cell",
-                    context,
-                    "",
-                    [],
-                    [],
-                    ''
-                  ),
+                  squareCard("", "Debsoc", context, "", [], [], '', width),
+                  squareCard("", "E Cell", context, "", [], [], '', width),
                   squareCard(
                     "assets/images/tech/phoenix/phoenix_logo.png",
                     "Phoenix",
@@ -129,17 +138,30 @@ class TechnologyCouncil extends StatelessWidget {
                       "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/phoenix/phoenix9.jpg",
                     ],
                     [
-                      {"name": "Akshat Mehta", "phone": "9521593891", "email": "23ucs525@lnmiit.ac.in"},
-                      {"name": "Dhruv Gupta", "phone": "8005681519", "email": "23ume519@lnmiit.ac.in"},
-                      {"name": "Utkarsh Kumar", "phone": "8840566896", "email": "23uec637@lnmiit.ac.in"},
+                      {
+                        "name": "Akshat Mehta",
+                        "phone": "9521593891",
+                        "email": "23ucs525@lnmiit.ac.in",
+                      },
+                      {
+                        "name": "Dhruv Gupta",
+                        "phone": "8005681519",
+                        "email": "23ume519@lnmiit.ac.in",
+                      },
+                      {
+                        "name": "Utkarsh Kumar",
+                        "phone": "8840566896",
+                        "email": "23uec637@lnmiit.ac.in",
+                      },
                     ],
-                    "https://www.instagram.com/phoenix.lnmiit/"
+                    "https://www.instagram.com/phoenix.lnmiit/",
+                    width,
                   ),
                   squareCard(
                     "assets/images/tech/quizzinga/quizzinga_logo.jpg",
                     "Quizzinga",
                     context,
-                    "We are Quizzinga, The official quizzing club of LNMIIT. Some consider us a cult of nerds (may or may not be true), while others call us a buzzing hivemind of trivia enthusiasts. If you like trivia nights, auctions or winning big prizes, Quizzinga might just be your turf. VENI VIDI VICI!!!",
+                    "We are Quizzinga, The official quizzing club of LNMIIT...",
                     [
                       "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/quizzinga/quizzinga1.jpg",
                       "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/quizzinga/quizzinga2.jpg",
@@ -152,15 +174,28 @@ class TechnologyCouncil extends StatelessWidget {
                       "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/quizzinga/quizzinga9.jpg",
                     ],
                     [
-                      {"name": "Akshit Bansal", "phone": "8604944254", "email": "23ucs529@lnmiit.ac.in"},
-                      {"name": "Shubh Shresth", "phone": "8887922448", "email": "23ucs746@lnmiit.ac.in"},
-                      {"name": "Toshit P. Kumar", "phone": "8107733891", "email": "23uec632@lnmiit.ac.in"},
+                      {
+                        "name": "Akshit Bansal",
+                        "phone": "8604944254",
+                        "email": "23ucs529@lnmiit.ac.in",
+                      },
+                      {
+                        "name": "Shubh Shresth",
+                        "phone": "8887922448",
+                        "email": "23ucs746@lnmiit.ac.in",
+                      },
+                      {
+                        "name": "Toshit P. Kumar",
+                        "phone": "8107733891",
+                        "email": "23uec632@lnmiit.ac.in",
+                      },
                     ],
-                    "https://www.instagram.com/quizzingalnm/"
+                    "https://www.instagram.com/quizzingalnm/",
+                    width,
                   ),
                 ],
               ),
-              const SizedBox(height: 24),
+              SizedBox(height: height * 0.03),
             ],
           ),
         ),
@@ -169,8 +204,16 @@ class TechnologyCouncil extends StatelessWidget {
   }
 }
 
-// Square Card Widget
-Widget squareCard(String logoUrl, String label, BuildContext context, String description, List<String> galleryImages, List<Map<String, String>> cordies, String instaUrl) {
+Widget squareCard(
+  String logoUrl,
+  String label,
+  BuildContext context,
+  String description,
+  List<String> galleryImages,
+  List<Map<String, String>> cordies,
+  String instaUrl,
+  double width,
+) {
   return Material(
     elevation: 6,
     borderRadius: BorderRadius.circular(16),
@@ -181,83 +224,107 @@ Widget squareCard(String logoUrl, String label, BuildContext context, String des
           context,
           MaterialPageRoute(
             builder: (context) => CouncilDetailScreen(
-                imageUrl: logoUrl,
-                galleryImages: galleryImages,
-                cordies: cordies,
-                instaUrl: instaUrl,
-                description: description,
+              imageUrl: logoUrl,
+              galleryImages: galleryImages,
+              cordies: cordies,
+              instaUrl: instaUrl,
+              description: description,
             ),
           ),
         );
       },
-      child: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color.fromRGBO(123, 127, 139, 1),
-              Colors.black,
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-          borderRadius: BorderRadius.circular(16),
-        ),
-        width: 100,
-        height: 100,
-        padding: const EdgeInsets.all(8),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CircleAvatar(backgroundImage: AssetImage(logoUrl), radius: 50, backgroundColor: Colors.transparent),
-            const SizedBox(height: 10),
-            Text(label, textAlign: TextAlign.center, style: GoogleFonts.poppins(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
-          ],
-        ),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final cardWidth = constraints.maxWidth;
+          return Container(
+            decoration: BoxDecoration(
+              gradient: const LinearGradient(
+                colors: [Color.fromRGBO(123, 127, 139, 1), Colors.black],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            padding: EdgeInsets.all(width * 0.02),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircleAvatar(
+                  backgroundImage: logoUrl.isNotEmpty
+                      ? AssetImage(logoUrl)
+                      : null,
+                  radius: cardWidth * 0.3,
+                  backgroundColor: Colors.transparent,
+                  child: logoUrl.isEmpty
+                      ? const Icon(Icons.group, size: 40, color: Colors.white)
+                      : null,
+                ),
+                SizedBox(height: width * 0.025),
+                Text(
+                  label,
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.poppins(
+                    color: Colors.white,
+                    fontSize: cardWidth * 0.1,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
       ),
     ),
   );
 }
 
-  void _launchPhone(String phone) async {
-    final Uri uri = Uri.parse('tel:$phone');
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
-    }
+void _launchPhone(String phone) async {
+  final Uri uri = Uri.parse('tel:$phone');
+  if (await canLaunchUrl(uri)) {
+    await launchUrl(uri);
   }
+}
 
-  void _launchEmail(String email) async {
-    final Uri uri = Uri(
-      scheme: 'mailto',
-      path: email,
-    );
+void _launchEmail(String email) async {
+  final Uri uri = Uri(scheme: 'mailto', path: email);
 
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
-    }
+  if (await canLaunchUrl(uri)) {
+    await launchUrl(uri);
   }
+}
 
-Widget _buildGSecTile(String name, String post, String phoneUrl, String mailUrl) {
+Widget _buildGSecTile(
+  String name,
+  String post,
+  String phoneUrl,
+  String mailUrl,
+  double width,
+) {
   return Container(
     decoration: BoxDecoration(
       color: const Color(0xFF1C2834),
       borderRadius: BorderRadius.circular(12),
     ),
-    margin: const EdgeInsets.only(bottom: 12),
+    margin: EdgeInsets.only(bottom: width * 0.03),
     child: ListTile(
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      contentPadding: EdgeInsets.symmetric(
+        horizontal: width * 0.04,
+        vertical: width * 0.01,
+      ),
       title: Text(
         name,
         style: GoogleFonts.inter(
           color: Colors.white,
-          fontWeight: FontWeight.bold
-        )
+          fontWeight: FontWeight.bold,
+          fontSize: width * 0.04,
+        ),
       ),
       subtitle: Text(
         post,
         style: GoogleFonts.inter(
-          color: Color.fromARGB(255, 192, 190, 190),
-          fontSize: 10
-        )
+          color: const Color.fromARGB(255, 192, 190, 190),
+          fontSize: width * 0.03,
+        ),
       ),
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
@@ -268,7 +335,7 @@ Widget _buildGSecTile(String name, String post, String phoneUrl, String mailUrl)
           ),
           IconButton(
             icon: const Icon(Icons.email, color: Colors.lightBlueAccent),
-            onPressed: () => _launchEmail(mailUrl)
+            onPressed: () => _launchEmail(mailUrl),
           ),
         ],
       ),
