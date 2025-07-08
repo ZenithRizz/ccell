@@ -125,7 +125,7 @@ class _CredentialCollectionScreenState extends State<CredentialCollectionScreen>
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
+                  Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(builder: (context) => const AntiRaggingScreen()),
                   );
