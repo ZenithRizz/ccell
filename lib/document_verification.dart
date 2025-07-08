@@ -119,7 +119,7 @@ class _DocumentVerificationScreenState extends State<DocumentVerificationScreen>
               const SizedBox(height: 45), // Add space above the Next button
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
+                  Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(builder: (context) => const BiometricScreen()),
                   );
