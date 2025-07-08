@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:ui'; // For BackdropFilter
+
 import 'hostel_registration.dart';
 import 'document_verification.dart';
 import 'implocations.dart';
@@ -17,7 +18,6 @@ class ChecklistScreen extends StatefulWidget {
 }
 
 class _ChecklistScreenState extends State<ChecklistScreen> {
-  // Checklist steps
   final List<_ChecklistStep> steps = [
     _ChecklistStep(
       title: 'Hostel Registration',
@@ -86,7 +86,7 @@ class _ChecklistScreenState extends State<ChecklistScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Student Onboarding Checklist'),
+        title: const Text('Onboarding Checklist'),
         backgroundColor: const Color(0xFF001219),
         foregroundColor: Colors.white,
       ),
@@ -101,7 +101,7 @@ class _ChecklistScreenState extends State<ChecklistScreen> {
                 'Click on each option for detailed instructions',
                 style: TextStyle(
                   color: Colors.white70,
-                  fontSize: 15,
+                  fontSize: 17,
                   fontWeight: FontWeight.w400,
                 ),
                 textAlign: TextAlign.center,
@@ -120,15 +120,15 @@ class _ChecklistScreenState extends State<ChecklistScreen> {
                         filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.13),
+                            color: const Color(0x21FFFFFF), // better than withOpacity(0.13)
                             borderRadius: BorderRadius.circular(12),
                             border: Border.all(
-                              color: _done[index] ? Colors.green : Colors.white.withOpacity(0.3),
+                              color: _done[index] ? Colors.green : Colors.white.withAlpha(80),
                               width: 2,
                             ),
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.black.withOpacity(0.08),
+                                color: const Color(0xFF001219).withOpacity(0.08),
                                 blurRadius: 12,
                                 offset: const Offset(0, 6),
                               ),
@@ -147,13 +147,20 @@ class _ChecklistScreenState extends State<ChecklistScreen> {
                                   ),
                                 ),
                               ),
-                              Checkbox(
-                                value: _done[index],
-                                onChanged: (val) {
-                                  _setDone(index, val ?? false);
-                                },
-                                activeColor: Colors.green,
-                                checkColor: Colors.white,
+                              Transform.scale(
+                                scale: 1.4, // Increase size here
+                                child: Checkbox(
+                                  value: _done[index],
+                                  onChanged: (val) {
+                                    _setDone(index, val ?? false);
+                                  },
+                                  activeColor: Colors.green,
+                                  checkColor: Colors.white,
+                                  side: const BorderSide(
+                                    width: 2,
+                                    color: Colors.white, // Outline color
+                                  ),
+                                ),
                               ),
                             ],
                           ),
@@ -164,7 +171,7 @@ class _ChecklistScreenState extends State<ChecklistScreen> {
                 },
               ),
             ),
-            const SizedBox(height: 8), // Reduced space before the button
+            const SizedBox(height: 8),
             if (!allDone)
               SizedBox(
                 width: double.infinity,
