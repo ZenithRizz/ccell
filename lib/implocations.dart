@@ -58,7 +58,7 @@ class ImplocationsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFF001219),
       appBar: AppBar(
-        title: const Text('Important Locations'),
+        title: const Text('Important Locations & Links'),
         backgroundColor: const Color(0xFF001219),
         foregroundColor: const Color.fromARGB(255, 255, 255, 255),
         elevation: 0,
