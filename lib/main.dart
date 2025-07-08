@@ -14,10 +14,14 @@ import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'gymkhana.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'lnm_page.dart';
+import 'firebase_options.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -26,20 +30,25 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'LNMIIT C-Cell App',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        textTheme: GoogleFonts.interTextTheme(), // Set Inter as default
+    return ScreenUtilInit(
+      designSize: const Size(360, 690),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      child: MaterialApp(
+        title: 'LNMIIT C-Cell App',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          textTheme: GoogleFonts.interTextTheme(), // Set Inter as default
+        ),
+        routes: {
+          '/profile': (context) => const ProfilePage(),
+          '/home': (context) => const MyHomePage(),
+          '/welcome': (context) => const WelcomeScreen(),
+          '/hostel_registration': (context) => const HostelRegistrationScreen(),
+          '/login': (context) => const LoginPage(),
+        },
+        home: const AuthLoadingScreen(),
       ),
-      routes: {
-        '/profile': (context) => const ProfilePage(),
-        '/home': (context) => const MyHomePage(),
-        '/welcome': (context) => const WelcomeScreen(),
-        '/hostel_registration': (context) => const HostelRegistrationScreen(),
-        '/login': (context) => const LoginPage(),
-      },
-      home: const AuthLoadingScreen(),
     );
   }
 }
@@ -144,17 +153,23 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(
-        index: _selectedIndex,
-        children: _pages,
+      body: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 400),
+        child: IndexedStack(
+          index: _selectedIndex,
+          children: _pages,
+        ),
       ),
       bottomNavigationBar: SalomonBottomBar(
+        margin: EdgeInsets.all(15.0),
         currentIndex: _selectedIndex,
+        itemShape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(90)),
         onTap: _onItemTapped,
         backgroundColor: Colors.black,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.grey.shade600,
         duration: const Duration(milliseconds: 400),
+        curve: Curves.linear,
         items: [
           SalomonBottomBarItem(
             icon: _buildGlowingIcon(Icons.home, _selectedIndex == 0),
@@ -165,25 +180,25 @@ class _MyHomePageState extends State<MyHomePage> {
           SalomonBottomBarItem(
             icon: _buildGlowingIcon(Icons.sports, _selectedIndex == 1),
             title: const Text("Gymkhana"),
-            selectedColor: Colors.white,
+            selectedColor: Colors.cyanAccent,
             unselectedColor: Colors.grey.shade600,
           ),
           SalomonBottomBarItem(
             icon: _buildGlowingIcon(Icons.notifications, _selectedIndex == 2),
             title: const Text("Notifications"),
-            selectedColor: Colors.white,
+            selectedColor: Colors.lightGreenAccent,
             unselectedColor: Colors.grey.shade600,
           ),
           SalomonBottomBarItem(
             icon: _buildGlowingIcon(Icons.account_balance, _selectedIndex == 3),
-            title: const Text("About LNMIIT"),
-            selectedColor: Colors.white,
+            title: const Text("LNMIIT"),
+            selectedColor: Colors.redAccent,
             unselectedColor: Colors.grey.shade600,
           ),
           SalomonBottomBarItem(
             icon: _buildGlowingIcon(Icons.more_horiz, _selectedIndex == 4),
             title: const Text("More"),
-            selectedColor: Colors.white,
+            selectedColor: Colors.purpleAccent,
             unselectedColor: Colors.grey.shade600,
           ),
         ],

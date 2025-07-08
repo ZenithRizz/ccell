@@ -70,7 +70,8 @@ class _MorePageState extends State<MorePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return _isAuthorized
+      ?Scaffold(
       backgroundColor: const Color(0xFF001219),
       body: Center(
         child: Column(
@@ -113,6 +114,7 @@ class _MorePageState extends State<MorePage> {
           ],
         ),
       ),
-    );
+    )
+        :AboutCCellPage();
   }
 }

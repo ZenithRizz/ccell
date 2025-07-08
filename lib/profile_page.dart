@@ -1,13 +1,16 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'dart:io';
-import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import 'package:login_page/login_page.dart';
+import 'dart:io' show File;
+import 'package:flutter/foundation.dart' show kIsWeb, Uint8List;
+import 'package:image_picker/image_picker.dart';
+
+
 
 
 const double basePadding = 16;
@@ -24,7 +27,8 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   File? _profileImagePicked;
-  static const _imageKey = 'profile_image_path';
+  static const String  _imageKey = 'profile_image_path';
+  Uint8List? _webImageBytes;
 
   // Student details
   String? roll;
@@ -73,7 +77,7 @@ class _ProfilePageState extends State<ProfilePage> {
         if(branch == 'dec'||branch == 'dcs'){
           batch = '20$year - 20${year + 5}';
         } else {
-          batch = '20$year - 20${year! + 4}';
+          batch = '20$year - 20${year + 4}';
         }
       }
     }
@@ -81,27 +85,50 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Future<void> _loadSavedImage() async {
     final prefs = await SharedPreferences.getInstance();
-    final path = prefs.getString(_imageKey);
-    if (path != null && File(path).existsSync()) {
-      setState(() {
-        _profileImagePicked = File(path);
-      });
+    final saved = prefs.getString(_imageKey);
+
+    if (saved != null) {
+      if (kIsWeb) {
+        _webImageBytes = base64Decode(saved);
+        print("🌐 Loaded image for Web");
+      } else if (File(saved).existsSync()) {
+        _profileImagePicked = File(saved);
+        print("📱 Loaded image from path: $saved");
+      }
+      setState(() {});
     }
   }
+
+
 
   Future<void> _profilePicker() async {
-    final picker = ImagePicker();
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      final imageFile = File(pickedFile.path);
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.setString(_imageKey, imageFile.path);
+    final ImagePicker picker = ImagePicker();
+    final XFile? pickedFile = await picker.pickImage(source: ImageSource.gallery);
 
-      setState(() {
-        _profileImagePicked = imageFile;
-      });
+    if (pickedFile != null) {
+      final prefs = await SharedPreferences.getInstance();
+
+      if (kIsWeb) {
+        // On Web: store image as base64 or bytes (here using bytes in memory)
+        final bytes = await pickedFile.readAsBytes();
+        _webImageBytes = bytes;
+        await prefs.setString(_imageKey, base64Encode(bytes));
+        print("🌐 Web image picked");
+      } else {
+        // On Android/iOS
+        final path = pickedFile.path;
+        _profileImagePicked = File(path);
+        await prefs.setString(_imageKey, path);
+        print("📱 Mobile image picked: $path");
+      }
+
+      setState(() {}); // To update UI
+    } else {
+      print("❌ No image selected");
     }
   }
+
+
   Future<void> signOutUser() async {
     final GoogleSignIn googleSignIn = GoogleSignIn();
 
@@ -170,6 +197,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       const Spacer(),
                       ProfileImage(
                         pickedImage: _profileImagePicked,
+                        webImageBytes: _webImageBytes,
                         onPressed: _profilePicker,
                       ),
                       const SizedBox(height: 12),
@@ -251,7 +279,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                         const SizedBox(height: 24),
                         Text(
-                            'Email: ${email ?? 'Not Available'}',
+                          'Email: ${email ?? 'Not Available'}',
                           style: GoogleFonts.inter(
                             color: Colors.white,
                           ),
@@ -267,7 +295,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                         const SizedBox(height: 5),
                         Text(
-                            'Branch: ${branch ?? 'Not Available'}',
+                          'Branch: ${branch ?? 'Not Available'}',
                           style: GoogleFonts.inter(
                             color: Colors.white,
                           ),
@@ -275,7 +303,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                         const SizedBox(height: 5),
                         Text(
-                            'Degree: ${degree ?? 'Not Available'}',
+                          'Degree: ${degree ?? 'Not Available'}',
                           style: GoogleFonts.inter(
                             color: Colors.white,
                           ),
@@ -283,7 +311,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                         const SizedBox(height: 5),
                         Text(
-                            'Batch: ${batch ?? 'Not Available'}',
+                          'Batch: ${batch ?? 'Not Available'}',
                           style: GoogleFonts.inter(
                             color: Colors.white,
                           ),
@@ -305,25 +333,25 @@ class _ProfilePageState extends State<ProfilePage> {
                             MaterialPageRoute(builder: (_) => const LoginPage()),
                           );
                         },
-                            style: ElevatedButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 24),
-                              backgroundColor: const Color(0xFF2E3548), // matches gradient tone
-                              foregroundColor: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              elevation: 4,
-                              shadowColor: Colors.black.withOpacity(0.3),
+                          style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 24),
+                            backgroundColor: const Color(0xFF2E3548), // matches gradient tone
+                            foregroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
                             ),
-                            child: Text(
-                                'Sign-Out',
-                              style: GoogleFonts.inter(
-                                color: Colors.white,
-                                fontSize: 16,
-                                letterSpacing: 0.5,
-                                fontWeight: FontWeight.w600,
-                              ),
+                            elevation: 4,
+                            shadowColor: Colors.black.withOpacity(0.3),
+                          ),
+                          child: Text(
+                            'Sign-Out',
+                            style: GoogleFonts.inter(
+                              color: Colors.white,
+                              fontSize: 16,
+                              letterSpacing: 0.5,
+                              fontWeight: FontWeight.w600,
                             ),
+                          ),
                         ),
                       ],
                     ),
@@ -338,14 +366,17 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 }
 
+
 class ProfileImage extends StatelessWidget {
   const ProfileImage({
     super.key,
     required this.pickedImage,
+    required this.webImageBytes,
     required this.onPressed,
   });
 
-  final File? pickedImage;
+  final File? pickedImage;         // For Android/iOS
+  final Uint8List? webImageBytes;  // For Web
   final VoidCallback onPressed;
 
   @override
@@ -354,7 +385,10 @@ class ProfileImage extends StatelessWidget {
     final photoUrl = user?.photoURL ?? '';
 
     ImageProvider imageProvider;
-    if (pickedImage != null) {
+
+    if (kIsWeb && webImageBytes != null) {
+      imageProvider = MemoryImage(webImageBytes!);
+    } else if (!kIsWeb && pickedImage != null) {
       imageProvider = FileImage(pickedImage!);
     } else if (photoUrl.isNotEmpty) {
       imageProvider = NetworkImage(photoUrl);
