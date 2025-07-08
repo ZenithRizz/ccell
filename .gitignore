@@ -52,3 +52,6 @@ android/key.properties
 android/local.properties
 android/app/my-release-key.jks
 
+
+# Local Netlify folder
+.netlify
