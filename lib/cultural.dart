@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:login_page/council.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -8,53 +9,44 @@ class CulturalCouncil extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     return Scaffold(
       backgroundColor: const Color(0xFF0E1A23),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(
-            horizontal: size.width * 0.04,
-            vertical: size.height * 0.02,
-          ),
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: size.height * 0.01),
-              CircleAvatar(radius: size.width * 0.15),
-              SizedBox(height: size.height * 0.025),
+              CircleAvatar(backgroundImage: AssetImage("assets/images/tech_logo.jpg"), radius: 60.r),
+              SizedBox(height: 20.h),
               Text(
                 "The Cultural Council at LNMIIT stands as a vibrant cornerstone of the Student Gymkhana, dedicated to nurturing and showcasing the rich tapestry of arts and traditions within the student community...",
                 style: GoogleFonts.inter(
                   color: Colors.white,
-                  fontSize: size.width * 0.03,
+                  fontSize: 10.sp,
                 ),
               ),
-              SizedBox(height: size.height * 0.025),
+              SizedBox(height: 20.h),
               _buildGSecTile(
                 "Mr. Prateek Lakhotia",
                 "General Secretary",
                 "9461179236",
                 "gsec.cultural@lnmiit.ac.in ",
-                size,
               ),
-              SizedBox(height: size.height * 0.015),
               _buildGSecTile(
                 "Ms. Manasvi Sharma ",
                 "Associate General Secretary",
                 "7878177413",
                 "agsec.cultural@lnmiit.ac.in",
-                size,
               ),
-              SizedBox(height: size.height * 0.015),
+              SizedBox(height: 10.h,),
               GridView.count(
                 shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
                 crossAxisCount: 2,
-                crossAxisSpacing: size.width * 0.04,
-                mainAxisSpacing: size.height * 0.015,
-                childAspectRatio: 0.90,
-                physics: const NeverScrollableScrollPhysics(),
+                crossAxisSpacing: 16.w,
+                mainAxisSpacing: 16.h,
+                childAspectRatio: 0.9,
                 children: [
                   squareCard(
                     "assets/images/cultural/aaveg/aaveg_logo.png",
@@ -435,9 +427,9 @@ class CulturalCouncil extends StatelessWidget {
                     ],
                     "https://www.instagram.com/vignette_lnmiit/",
                   ),
-                ],
+                ]
               ),
-              SizedBox(height: size.height * 0.03),
+              SizedBox(height: 24.h),
             ],
           ),
         ),
@@ -446,7 +438,6 @@ class CulturalCouncil extends StatelessWidget {
   }
 }
 
-// Square Card Widget
 Widget squareCard(
   String logoUrl,
   String label,
@@ -456,13 +447,11 @@ Widget squareCard(
   List<Map<String, String>> cordies,
   String instaUrl,
 ) {
-  final size = MediaQuery.of(context).size;
-
   return Material(
     elevation: 6,
-    borderRadius: BorderRadius.circular(size.width * 0.04),
+    borderRadius: BorderRadius.circular(16.r),
     child: InkWell(
-      borderRadius: BorderRadius.circular(size.width * 0.04),
+      borderRadius: BorderRadius.circular(16.r),
       onTap: () {
         Navigator.push(
           context,
@@ -478,35 +467,80 @@ Widget squareCard(
         );
       },
       child: Container(
+        width: 100.w,
+        height: 100.h,
+        padding: EdgeInsets.all(8.r),
         decoration: BoxDecoration(
           gradient: const LinearGradient(
-            colors: [Color.fromRGBO(123, 127, 139, 1), Colors.black],
+            colors: [Color(0xFF353F54), Color(0xFF222834)],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
-          borderRadius: BorderRadius.circular(size.width * 0.04),
+          borderRadius: BorderRadius.circular(12.r),
+          border: Border.all(color: Colors.white.withOpacity(0.2), width: 2.w),
         ),
-        padding: EdgeInsets.all(size.width * 0.02),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CircleAvatar(
               backgroundImage: AssetImage(logoUrl),
-              radius: size.width * 0.12,
+              radius: 40.r,
               backgroundColor: Colors.transparent,
             ),
-            SizedBox(height: size.height * 0.01),
+            SizedBox(height: 8.h),
             Text(
               label,
               textAlign: TextAlign.center,
               style: GoogleFonts.poppins(
                 color: Colors.white,
-                fontSize: size.width * 0.035,
-                fontWeight: FontWeight.bold,
+                fontSize: 16.sp,
+                fontWeight: FontWeight.w600,
               ),
             ),
           ],
         ),
+      ),
+    ),
+  );
+}
+
+Widget _buildGSecTile(String name, String post, String phoneUrl, String mailUrl) {
+  return Container(
+    margin: EdgeInsets.only(bottom: 12.h),
+    decoration: BoxDecoration(
+      color: const Color(0xFF1C2834),
+      borderRadius: BorderRadius.circular(12.r),
+      border: Border.all(color: Colors.white.withOpacity(0.2), width: 2.w),
+    ),
+    child: ListTile(
+      contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 4.h),
+      title: Text(
+        name,
+        style: GoogleFonts.inter(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+          fontSize: 14.sp,
+        ),
+      ),
+      subtitle: Text(
+        post,
+        style: GoogleFonts.inter(
+          color: Color.fromARGB(255, 192, 190, 190),
+          fontSize: 10.sp,
+        ),
+      ),
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          IconButton(
+            icon: Icon(Icons.phone, color: Colors.greenAccent, size: 20.sp),
+            onPressed: () => _launchPhone(phoneUrl),
+          ),
+          IconButton(
+            icon: Icon(Icons.email, color: Colors.lightBlueAccent, size: 20.sp),
+            onPressed: () => _launchEmail(mailUrl),
+          ),
+        ],
       ),
     ),
   );
@@ -524,54 +558,4 @@ void _launchEmail(String email) async {
   if (await canLaunchUrl(uri)) {
     await launchUrl(uri);
   }
-}
-
-Widget _buildGSecTile(
-  String name,
-  String post,
-  String phoneUrl,
-  String mailUrl,
-  Size size,
-) {
-  return Container(
-    decoration: BoxDecoration(
-      color: const Color(0xFF1C2834),
-      borderRadius: BorderRadius.circular(size.width * 0.03),
-    ),
-    margin: EdgeInsets.only(bottom: size.height * 0.015),
-    child: ListTile(
-      contentPadding: EdgeInsets.symmetric(
-        horizontal: size.width * 0.04,
-        vertical: size.height * 0.01,
-      ),
-      title: Text(
-        name,
-        style: GoogleFonts.inter(
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-          fontSize: size.width * 0.04,
-        ),
-      ),
-      subtitle: Text(
-        post,
-        style: GoogleFonts.inter(
-          color: Color.fromARGB(255, 192, 190, 190),
-          fontSize: size.width * 0.03,
-        ),
-      ),
-      trailing: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          IconButton(
-            icon: const Icon(Icons.phone, color: Colors.greenAccent),
-            onPressed: () => _launchPhone(phoneUrl),
-          ),
-          IconButton(
-            icon: const Icon(Icons.email, color: Colors.lightBlueAccent),
-            onPressed: () => _launchEmail(mailUrl),
-          ),
-        ],
-      ),
-    ),
-  );
 }
