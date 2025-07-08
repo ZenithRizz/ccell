@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -62,7 +63,7 @@ class HomeDashboard extends StatelessWidget {
                 Text(
                   'Hi $userName!',
                   style: GoogleFonts.poppins(
-                    fontSize: 36,
+                    fontSize: 30.sp,
                     fontWeight: FontWeight.w600,
                     letterSpacing: 1.2,
                     color: Colors.white,
@@ -141,11 +142,11 @@ class _FancyButtonState extends State<FancyButton> {
           }
         },
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 150),
+          duration: const Duration(milliseconds: 300),
           curve: Curves.easeOut,
           transform: Matrix4.identity()..scale(_isPressed ? 0.97 : 1.0),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(24),
+            borderRadius: BorderRadius.circular(24.r),
             gradient: _isHovered
                 ? LinearGradient(
               colors: [
@@ -172,11 +173,11 @@ class _FancyButtonState extends State<FancyButton> {
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
               child: Container(
-                width: 166,
-                height: 166,
+                width: 166.w,
+                height: 166.h,
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.05),
-                  borderRadius: BorderRadius.circular(24),
+                  borderRadius: BorderRadius.circular(24.r),
                   border: Border.all(
                     color: Colors.white.withOpacity(0.2),
                   ),
@@ -186,8 +187,8 @@ class _FancyButtonState extends State<FancyButton> {
                   children: [
                     Image.asset(
                       'assets/images/${widget.imageName}',
-                      width: 100,
-                      height: 100,
+                      width: 80.w,
+                      height: 80.h,
                       fit: BoxFit.contain,
                     ),
                     const SizedBox(height: 8),
