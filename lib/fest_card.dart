@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -143,218 +144,138 @@ Future<void> _launchX(String url) async {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF0E1A23),
-      body: Container(
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              const SizedBox(height: 50),
-              CircleAvatar(radius: 80, backgroundImage: AssetImage(imageUrl), backgroundColor: Colors.transparent,),
-              const SizedBox(height: 15),
-              Padding(
-                padding: const EdgeInsets.only(left: 10, right: 10),
-                child: Text(description, style: GoogleFonts.inter(color: Colors.white, fontSize: 10), ),
+      backgroundColor: const Color(0xFF0E1A23),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            SizedBox(height: 50.h),
+            CircleAvatar(
+              radius: 60.r,
+              backgroundImage: AssetImage(imageUrl),
+              backgroundColor: Colors.transparent,
+            ),
+            SizedBox(height: 15.h),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.w),
+              child: Text(
+                description,
+                style: GoogleFonts.inter(color: Colors.white, fontSize: 9.sp),
               ),
-              SizedBox(height: 20,),
-              ListView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                padding: const EdgeInsets.all(12),
-                itemCount: festHeads.length,
-                itemBuilder: (context, index) {
-                  final cordie = festHeads[index];
-                  return Container(
-                    margin: const EdgeInsets.only(bottom: 12),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF1C2834),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: ListTile(
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 16),
-                      title: Text(
-                        cordie['name'] ?? '',
-                        style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.bold),
-                      ),
-                      subtitle: Text(
-                        label.trim().toLowerCase() == "tedx lnmiit" ? "Organiser" : "Fest Head",
-                        style: GoogleFonts.inter(color: Color.fromARGB(255, 192, 190, 190), fontSize: 10),
-                      ),
-                      trailing: Wrap(
-                        spacing: 12,
-                        children: [
-                          IconButton(
-                            icon: const Icon(Icons.call, color: Colors.greenAccent),
-                            onPressed: () => _launchPhone(cordie['phone'] ?? ''),
-                          ),
-                          IconButton(
-                            icon: const Icon(Icons.mail, color: Colors.lightBlueAccent),
-                            onPressed: () => _launchEmail(cordie['email'] ?? ''),
-                          ),
-                        ],
+            ),
+            SizedBox(height: 20.h),
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              padding: EdgeInsets.all(10.w),
+              itemCount: festHeads.length,
+              itemBuilder: (context, index) {
+                final cordie = festHeads[index];
+                return Container(
+                  margin: EdgeInsets.only(bottom: 12.h),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF1C2834),
+                    borderRadius: BorderRadius.circular(12.r),
+                  ),
+                  child: ListTile(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 16.w),
+                    title: Text(
+                      cordie['name'] ?? '',
+                      style: GoogleFonts.inter(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14.sp,
                       ),
                     ),
-                  );
-                },
-              ),
-              
-              Divider(color: Colors.white38),
-              SizedBox(height: 16,),
-              GalleryCarousel(galleryImages: galleryImages),
-              SizedBox(height: 50,),
-    if (instaUrl.trim().isNotEmpty ||
-    emailUrl.trim().isNotEmpty ||
-    youtubeUrl.trim().isNotEmpty ||
-    linkedinUrl.trim().isNotEmpty ||
-    facebookUrl.trim().isNotEmpty ||
-    xUrl.trim().isNotEmpty)
-  ...[
-    Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Text(
-        "Connect with us",
-        style: GoogleFonts.poppins(
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-          fontSize: 26,
-        ),
-      ),
-    ),
-    SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          if (instaUrl.trim().isNotEmpty)
-            GestureDetector(
-              onTap: () async {
-                try {
-                  await _launchInstagram();
-                } catch (e) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Unable to open Instagram')),
-                  );
-                }
+                    subtitle: Text(
+                      label.trim().toLowerCase() == "tedx lnmiit" ? "Organiser" : "Fest Head",
+                      style: GoogleFonts.inter(
+                          color: const Color.fromARGB(255, 192, 190, 190), fontSize: 10.sp),
+                    ),
+                    trailing: Wrap(
+                      spacing: 12.w,
+                      children: [
+                        IconButton(
+                          icon: const Icon(Icons.call, color: Colors.greenAccent),
+                          onPressed: () => _launchPhone(cordie['phone'] ?? ''),
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.mail, color: Colors.lightBlueAccent),
+                          onPressed: () => _launchEmail(cordie['email'] ?? ''),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
               },
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Image.asset(
-                  'assets/images/Instagram.png',
-                  width: 55,
-                  height: 55,
-                ),
-              ),
             ),
-      
-          if (emailUrl.trim().isNotEmpty)
-            GestureDetector(
-              onTap: () async {
-                try {
-                  await _launchGmail(emailUrl);
-                } catch (e) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Unable to open Gmail')),
-                  );
-                }
-              },
-              child: Image.asset(
-                'assets/images/gmail.png',
-                width: 40,
-                height: 40,
+            Divider(color: Colors.white38),
+            SizedBox(height: 16.h),
+            GalleryCarousel(galleryImages: galleryImages),
+            SizedBox(height: 40.h),
+            if ([
+              instaUrl,
+              emailUrl,
+              youtubeUrl,
+              linkedinUrl,
+              facebookUrl,
+              xUrl
+            ].any((url) => url.trim().isNotEmpty))
+              Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(8.0.w),
+                    child: Text(
+                      "Connect with us",
+                      style: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20.sp,
+                      ),
+                    ),
+                  ),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        if (instaUrl.trim().isNotEmpty)
+                          _buildSocialIcon('assets/images/Instagram.png', 50, _launchInstagram),
+                        if (emailUrl.trim().isNotEmpty)
+                          _buildSocialIcon('assets/images/gmail.png', 35, () => _launchGmail(emailUrl)),
+                        if (youtubeUrl.trim().isNotEmpty)
+                          _buildSocialIcon('assets/images/youtube_logo.png', 40, () => _launchYouTube(youtubeUrl)),
+                        if (linkedinUrl.trim().isNotEmpty)
+                          _buildSocialIcon('assets/images/linkedin_logo.png', 30, () => _launchLinkedIn(linkedinUrl)),
+                        if (facebookUrl.trim().isNotEmpty)
+                          _buildSocialIcon('assets/images/facebook.png', 30, () => _launchFacebook(facebookUrl)),
+                        if (xUrl.trim().isNotEmpty)
+                          _buildSocialIcon('assets/images/x.png', 35, () => _launchX(xUrl)),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-            ),
-      
-          if (youtubeUrl.trim().isNotEmpty)
-            GestureDetector(
-              onTap: () async {
-                try {
-                  await _launchYouTube(youtubeUrl);
-                } catch (e) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Unable to open YouTube')),
-                  );
-                }
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(left: 20, right: 10),
-                child: Image.asset(
-                  'assets/images/youtube_logo.png',
-                  width: 45,
-                  height: 45,
-                ),
-              ),
-            ),
-          if (linkedinUrl.trim().isNotEmpty)
-        GestureDetector(
-      onTap: () async {
-        try {
-          await _launchLinkedIn(linkedinUrl);
-        } catch (e) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Unable to open LinkedIn')),
-          );
-        }
-      },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: Image.asset(
-          'assets/images/linkedin_logo.png', 
-          width: 40,
-          height: 40,
+            SizedBox(height: 50.h),
+          ],
         ),
       ),
-        ),
-      
-      if (facebookUrl.trim().isNotEmpty)
-        GestureDetector(
-      onTap: () async {
-        try {
-          await _launchFacebook(facebookUrl);
-        } catch (e) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Unable to open Facebook')),
-          );
-        }
-      },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: Image.asset(
-          'assets/images/facebook.png', // 👈 Add this asset
-          width: 40,
-          height: 40,
-        ),
-      ),
-        ),
-      
-      if (xUrl.trim().isNotEmpty)
-        GestureDetector(
-      onTap: () async {
-        try {
-          await _launchX(xUrl);
-        } catch (e) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Unable to open X')),
-          );
-        }
-      },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: Image.asset(
-          'assets/images/x.png', 
-          width: 45,
-          height: 45,
-          
-        ),
-      ),
-        ),
-      
-        ],
-      ),
-    ),
-    const SizedBox(height: 50),
-  ],
+    );
+  }
 
-            ]
-          ),
+  Widget _buildSocialIcon(String path, double size, Function() onTap) {
+    return GestureDetector(
+      onTap: () async {
+        try {
+          await onTap();
+        } catch (e) {
+          // fallback
+        }
+      },
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 10.w),
+        child: Image.asset(
+          path,
+          width: size.w,
+          height: size.h,
         ),
       ),
     );
@@ -363,7 +284,6 @@ Future<void> _launchX(String url) async {
 
 class GalleryCarousel extends StatefulWidget {
   final List<String> galleryImages;
-
   const GalleryCarousel({super.key, required this.galleryImages});
 
   @override
@@ -377,11 +297,8 @@ class _GalleryCarouselState extends State<GalleryCarousel> {
   void _goToPrevious() {
     if (_currentIndex > 0) {
       _currentIndex--;
-      _pageController.animateToPage(
-        _currentIndex,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
+      _pageController.animateToPage(_currentIndex,
+          duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
       setState(() {});
     }
   }
@@ -389,11 +306,8 @@ class _GalleryCarouselState extends State<GalleryCarousel> {
   void _goToNext() {
     if (_currentIndex < widget.galleryImages.length - 1) {
       _currentIndex++;
-      _pageController.animateToPage(
-        _currentIndex,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
+      _pageController.animateToPage(_currentIndex,
+          duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
       setState(() {});
     }
   }
@@ -402,27 +316,25 @@ class _GalleryCarouselState extends State<GalleryCarousel> {
   Widget build(BuildContext context) {
     return Center(
       child: Stack(
-        clipBehavior: Clip.none,
         alignment: Alignment.center,
+        clipBehavior: Clip.none,
         children: [
-          // Card with image carousel
           Container(
-            width: 370,
-            height: 250,
+            width: 310.w,
+            height: 180.h,
             decoration: BoxDecoration(
-              gradient: LinearGradient(
+              gradient: const LinearGradient(
                 colors: [
                   Color.fromRGBO(53, 63, 84, 1),
                   Color.fromRGBO(34, 40, 52, 1)
-                ]
+                ],
               ),
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(20.r),
             ),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(20.r),
               child: Stack(
                 children: [
-                  // PageView
                   PageView.builder(
                     controller: _pageController,
                     itemCount: widget.galleryImages.length,
@@ -453,73 +365,51 @@ class _GalleryCarouselState extends State<GalleryCarousel> {
                       });
                     },
                   ),
-
-                  // Gallery label
                   Positioned(
-                    left: 16,
-                    bottom: 6,
+                    left: 16.w,
+                    bottom: 6.h,
                     child: Text(
                       'Gallery',
                       style: GoogleFonts.poppins(
                         color: Colors.white.withOpacity(0.6),
-                        fontSize: 26,
-                        fontWeight: FontWeight.bold
-                      )
+                        fontSize: 26.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
           ),
-
-          // Left Arrow - Overlapping
-          Positioned(
-            left: -20,
-            child: GestureDetector(
-              onTap: () => _goToPrevious(),
-              child: Container(
-                height: 40,
-                width: 40,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      Color.fromRGBO(142, 151, 253, 1),
-                      Color.fromRGBO(72, 49, 157, 1)
-                    ]
-                  )
-                ),
-                child: Icon(Icons.keyboard_arrow_left_sharp, color: Colors.white, size: 30,)
-              )
-            ),
-          ),
-
-          // Right Arrow - Overlapping
-          Positioned(
-            right: -20,
-            child: GestureDetector(
-              onTap: () => _goToNext(),
-              child: Container(
-                height: 40,
-                width: 40,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      Color.fromRGBO(142, 151, 253, 1),
-                      Color.fromRGBO(72, 49, 157, 1)
-                    ]
-                  )
-                ),
-                child: Icon(Icons.keyboard_arrow_right_sharp, color: Colors.white, size: 30,)
-              )
-            ),
-          ),
+          _buildArrow(_goToPrevious, Icons.keyboard_arrow_left_sharp, Alignment.centerLeft, -15.w),
+          _buildArrow(_goToNext, Icons.keyboard_arrow_right_sharp, Alignment.centerRight, -15.w),
         ],
+      ),
+    );
+  }
+
+  Widget _buildArrow(VoidCallback onTap, IconData icon, Alignment align, double offset) {
+    return Positioned(
+      left: align == Alignment.centerLeft ? offset : null,
+      right: align == Alignment.centerRight ? offset : null,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          height: 33.h,
+          width: 33.w,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.r),
+            gradient: const LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Color.fromRGBO(142, 151, 253, 1),
+                Color.fromRGBO(72, 49, 157, 1)
+              ],
+            ),
+          ),
+          child: Icon(icon, color: Colors.white, size: 23.sp),
+        ),
       ),
     );
   }
