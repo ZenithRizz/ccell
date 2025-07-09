@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:login_page/google_sign_in.dart';
-import 'package:login_page/main.dart';
 import 'package:login_page/welcome_screen.dart'; // <-- Import WelcomeScreen
 
 class LoginPage extends StatelessWidget {
@@ -39,31 +39,30 @@ class LoginPage extends StatelessWidget {
                         alignment: Alignment.topCenter,
                         child: Image.asset(
                           'assets/images/ccell_logo_dark.png',
-                          height: 300,
+                          height: 300.h,
                           fit: BoxFit.contain,
                         ),
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 10),
+                SizedBox(height: 10.h),
                 Text(
                   'WELCOME!',
                   style: GoogleFonts.lilitaOne(
-                    fontSize: 30,
+                    fontSize: 30.sp,
                     fontWeight: FontWeight.normal,
                     color: Colors.white,
                   ),
                 ),
-                const SizedBox(height: 10),
-                const SizedBox(height: 10),
+                SizedBox(height: 20.h),
                 SizedBox(
-                  width: 300,
+                  width: 300.w,
                   child: Material(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(45),
+                    borderRadius: BorderRadius.circular(45.r),
                     child: InkWell(
-                      borderRadius: BorderRadius.circular(45),
+                      borderRadius: BorderRadius.circular(45.r),
                       onTap: () {
                         signInWithCollegeGoogleAccount(context);
                       },
@@ -74,12 +73,12 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 30),
+                SizedBox(height: 30.h),
                 Text("Only use your College ID to Sign in",
                     style: GoogleFonts.inter(
                       color: Colors.white
                     )),
-                const SizedBox(height: 110,),
+                SizedBox(height: 110.h),
                 TextButton(
                   onPressed: () {},
                   style: TextButton.styleFrom(
@@ -92,7 +91,7 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 10),
+                SizedBox(height: 10.h),
               ],
             ),
           ),
