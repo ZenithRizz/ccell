@@ -55,7 +55,7 @@ class HomeDashboard extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 70.h),
+          SizedBox(height: 70),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30),
             child: Column(
@@ -72,7 +72,7 @@ class HomeDashboard extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: 60.h),
+          SizedBox(height: 60),
           Expanded(
             child: GridView.count(
               crossAxisCount: 2,

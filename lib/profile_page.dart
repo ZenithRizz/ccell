@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -16,8 +15,8 @@ import 'package:image_picker/image_picker.dart';
 
 const double basePadding = 16;
 const double userDetailFraction = .60;
-double offset = 0.04.h;
-double contentFraction = userDetailFraction - offset;
+const double offset = 0.04;
+const double contentFraction = userDetailFraction - offset;
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -182,13 +181,13 @@ class _ProfilePageState extends State<ProfilePage> {
                                   shape: const CircleBorder(),
                                 ),
                               ),
-                              SizedBox(width: 10.w),
+                              SizedBox(width: 10),
                               Text(
                                 "Profile",
                                 style: GoogleFonts.poppins(
                                   fontWeight: FontWeight.w700,
                                   color: Colors.white,
-                                  fontSize: 24.sp,
+                                  fontSize: 24,
                                 ),
                               ),
                             ],
@@ -201,35 +200,35 @@ class _ProfilePageState extends State<ProfilePage> {
                         webImageBytes: _webImageBytes,
                         onPressed: _profilePicker,
                       ),
-                      SizedBox(height: 12.h),
+                      const SizedBox(height: 12),
                       Text(
                         FirebaseAuth.instance.currentUser?.displayName ?? 'Avatar',
                         style: GoogleFonts.poppins(
                           fontWeight: FontWeight.w700,
                           color: Colors.white,
-                          fontSize: 24.sp,
+                          fontSize: 24,
                         ),
                       ),
-                      SizedBox(height: 4.h),
+                      const SizedBox(height: 4),
                       Text(
                         email ?? 'Avatar',
                         style: GoogleFonts.poppins(
                           fontWeight: FontWeight.w500,
                           color: Colors.white70,
-                          fontSize: 16.sp,
+                          fontSize: 16,
                         ),
                       ),
-                      SizedBox(height: 4.h),
+                      const SizedBox(height: 4,),
                       Text(
                         branch?? 'Avatar',
                         style: GoogleFonts.poppins(
                           fontWeight: FontWeight.w500,
                           color: Colors.white70,
-                          fontSize: 16.sp,
+                          fontSize: 16,
                         ),
                       ),
                       SizedBox(
-                        height: (height * offset)*3.5.h,
+                        height: (height * offset)*3.5,
                       ),
                     ],
                   ),
@@ -240,7 +239,7 @@ class _ProfilePageState extends State<ProfilePage> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 SizedBox(
-                  height: (height * contentFraction).h,
+                  height: height * contentFraction,
                   width: MediaQuery.of(context).size.width,
                 ),
                 Expanded(
@@ -255,16 +254,16 @@ class _ProfilePageState extends State<ProfilePage> {
                           Color(0xFF334155), // Soft bluish-gray bottom // Coral/orange highlight
                         ],
                       ),
-                      borderRadius: BorderRadius.circular(20.r),
+                      borderRadius: BorderRadius.circular(20),
                       border: Border.all(
                         color: Colors.white.withOpacity(0.2),
-                        width: 2.w,
+                        width: 2,
                       ),
 
                     ),
-                    padding: EdgeInsets.symmetric(
-                      vertical: 24.h,
-                      horizontal: 40.w ,
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 24,
+                      horizontal: 40,
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -273,12 +272,12 @@ class _ProfilePageState extends State<ProfilePage> {
                           'MY ACCOUNT',
                           style: GoogleFonts.poppins(
                             fontWeight: FontWeight.w700,
-                            fontSize: 25.sp,
+                            fontSize: 25,
                             color: Colors.white,
                           ),
                           textAlign: TextAlign.center,
                         ),
-                        SizedBox(height: 24.h),
+                        const SizedBox(height: 24),
                         Text(
                           'Email: ${email ?? 'Not Available'}',
                           style: GoogleFonts.inter(
@@ -286,7 +285,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                           textAlign: TextAlign.left,
                         ),
-                        SizedBox(height: 5.h),
+                        const SizedBox(height: 5),
                         Text(
                           'Roll No: ${roll ?? 'Not Available'}',
                           style: GoogleFonts.inter(
@@ -294,7 +293,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                           textAlign: TextAlign.left,
                         ),
-                        SizedBox(height: 5.h),
+                        const SizedBox(height: 5),
                         Text(
                           'Branch: ${branch ?? 'Not Available'}',
                           style: GoogleFonts.inter(
@@ -302,7 +301,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                           textAlign: TextAlign.left,
                         ),
-                        SizedBox(height: 5.h),
+                        const SizedBox(height: 5),
                         Text(
                           'Degree: ${degree ?? 'Not Available'}',
                           style: GoogleFonts.inter(
@@ -310,7 +309,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                           textAlign: TextAlign.left,
                         ),
-                        SizedBox(height: 5.h),
+                        const SizedBox(height: 5),
                         Text(
                           'Batch: ${batch ?? 'Not Available'}',
                           style: GoogleFonts.inter(
@@ -319,14 +318,14 @@ class _ProfilePageState extends State<ProfilePage> {
                           textAlign: TextAlign.left,
                         ),
 
-                        SizedBox(height: 30.h),
+                        const SizedBox(height: 30),
                         const Divider(
                           color: Colors.white24, // subtle line for dark background
                           thickness: 1.5,
                           indent: 20,
                           endIndent: 20,
                         ),
-                        SizedBox(height: 15.h),
+                        const SizedBox(height: 15),
 
                         ElevatedButton(onPressed: () async {
                           await signOutUser();
@@ -339,7 +338,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             backgroundColor: const Color(0xFF2E3548), // matches gradient tone
                             foregroundColor: Colors.white,
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12.r),
+                              borderRadius: BorderRadius.circular(12),
                             ),
                             elevation: 4,
                             shadowColor: Colors.black.withOpacity(0.3),
@@ -348,7 +347,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             'Sign-Out',
                             style: GoogleFonts.inter(
                               color: Colors.white,
-                              fontSize: 16.sp,
+                              fontSize: 16,
                               letterSpacing: 0.5,
                               fontWeight: FontWeight.w600,
                             ),
@@ -402,15 +401,15 @@ class ProfileImage extends StatelessWidget {
       children: [
         Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(200).r,
+            borderRadius: BorderRadius.circular(200),
             border: Border.all(color: Colors.blueGrey, width: 3),
           ),
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(200).r,
+            borderRadius: BorderRadius.circular(200),
             child: Image(
               image: imageProvider,
-              width: 200.w,
-              height: 200.h,
+              width: 200,
+              height: 200,
               fit: BoxFit.cover,
             ),
           ),

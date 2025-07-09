@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "655780948496-02h6tn5tvophecsc1n67t7q2dqsvntsd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lnmiit.ccell",
+            "certificate_hash": "31cc932461ff03e1cc321c8f9286ec2fd821265d"
+          }
+        },
+        {
           "client_id": "655780948496-1amr9acd8p80h7b62s3kl4c3bj5sgjr8.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -94,6 +102,13 @@
             {
               "client_id": "655780948496-rdnivgkgi7f439ghl55s80vatiq8m6cb.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "655780948496-bqmn6dtahm162ul19u6bie4ogstd99ig.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.loginPage"
+              }
             }
           ]
         }
