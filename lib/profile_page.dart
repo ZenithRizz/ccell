@@ -330,7 +330,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ElevatedButton(onPressed: () async {
                           await signOutUser();
                           Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: (_) => const LoginPage()),
+                            MaterialPageRoute(builder: (_) => LoginPage()),
                           );
                         },
                           style: ElevatedButton.styleFrom(
