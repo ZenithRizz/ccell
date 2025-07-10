@@ -48,11 +48,45 @@ class CouncilDetailScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            SizedBox(height: 50.h),
-            CircleAvatar(
-              radius: 60.r,
-              backgroundImage: AssetImage(imageUrl),
-              backgroundColor: Colors.transparent,
+            SizedBox(height: 25.h),
+            SizedBox(
+              height: 140.h,
+              width: double.infinity,
+              child: Stack(
+                children: [
+                  Align(
+                    alignment: Alignment.center,
+                    child: CircleAvatar(
+                      radius: 60.r,
+                      backgroundImage: AssetImage(imageUrl),
+                      backgroundColor: Colors.transparent,
+                    ),
+                  ),
+                  Positioned(
+                    top: 10.h,
+                    left: 15.w,
+                    child: GestureDetector(
+                      onTap: () => Navigator.of(context).pop(),
+                      child: Container(
+                        padding: EdgeInsets.all(4.w),
+                        decoration: BoxDecoration(
+                          color: Color(0xFF1C2834),
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: Colors.white.withOpacity(0.2),
+                            width: 2,
+                          ),
+                        ),
+                        child: Icon(
+                          Icons.keyboard_arrow_left,
+                          color: Colors.white,
+                          size: 30.sp,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
             SizedBox(height: 15.h),
             Padding(
