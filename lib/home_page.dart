@@ -55,7 +55,7 @@ class HomeDashboard extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 70),
+          SizedBox(height: 70),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30),
             child: Column(
@@ -72,7 +72,7 @@ class HomeDashboard extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 60),
+          SizedBox(height: 60),
           Expanded(
             child: GridView.count(
               crossAxisCount: 2,
@@ -161,8 +161,8 @@ class _FancyButtonState extends State<FancyButton> {
                 ? [
               BoxShadow(
                 color: Colors.blueAccent.withOpacity(0.4),
-                blurRadius: 20,
-                spreadRadius: 1,
+                blurRadius: 20.r,
+                spreadRadius: 1.r,
                 offset: const Offset(0, 4),
               ),
             ]
@@ -191,9 +191,9 @@ class _FancyButtonState extends State<FancyButton> {
                       height: 80.h,
                       fit: BoxFit.contain,
                     ),
-                    const SizedBox(height: 8),
+                    SizedBox(height: 8.h),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      padding: EdgeInsets.symmetric(horizontal: 8.w),
                       child: Text(
                         widget.title.toUpperCase(),
                         textAlign: TextAlign.center,
@@ -204,8 +204,8 @@ class _FancyButtonState extends State<FancyButton> {
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
                           shadows: [
-                            const Shadow(
-                              blurRadius: 6,
+                            Shadow(
+                              blurRadius: 6.r,
                               color: Colors.black38,
                               offset: Offset(0, 2),
                             ),

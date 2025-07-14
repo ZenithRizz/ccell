@@ -144,7 +144,7 @@ class _AntiRaggingScreenState extends State<AntiRaggingScreen> {
                   if (allDone) {
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => const LoginPage()),
+                      MaterialPageRoute(builder: (context) => LoginPage()),
                     );
                   } else {
                     Navigator.pushReplacement(

@@ -6,6 +6,9 @@ import 'dart:convert';
 import 'package:login_page/AboutCCellPage.dart';
 import 'package:login_page/notifications_api/post_screen.dart';
 
+import 'AboutCCellPage.dart';
+import 'notifications_api/post_screen.dart';
+
 class MorePage extends StatefulWidget {
   const MorePage({super.key});
 
