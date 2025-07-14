@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CouncilDetailScreen extends StatelessWidget {
@@ -26,130 +27,155 @@ class CouncilDetailScreen extends StatelessWidget {
   }
 
   void _launchEmail(String email) async {
-    final Uri uri = Uri(
-      scheme: 'mailto',
-      path: email,
-    );
-
+    final Uri uri = Uri(scheme: 'mailto', path: email);
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
     }
   }
 
-
   Future<void> _launchInstagram() async {
-  if (instaUrl.trim().isEmpty) {
-    debugPrint('Instagram URL is empty.');
-    return;
+    if (instaUrl.trim().isEmpty) return;
+    final Uri url = Uri.parse(instaUrl);
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url, mode: LaunchMode.externalApplication);
+    }
   }
-
-  final Uri url = Uri.parse(instaUrl);
-
-  if (await canLaunchUrl(url)) {
-    await launchUrl(url, mode: LaunchMode.externalApplication);
-  } else {
-    debugPrint('Could not launch $url');
-  }
-}
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF0E1A23),
-      body: Container(
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              const SizedBox(height: 50),
-              CircleAvatar(radius: 80, backgroundImage: AssetImage(imageUrl), backgroundColor: Colors.transparent,),
-              const SizedBox(height: 15),
-              Padding(
-                padding: const EdgeInsets.only(left: 10, right: 10),
-                child: Text(description, style: GoogleFonts.inter(color: Colors.white, fontSize: 12), ),
-              ),
-              SizedBox(height: 20,),
-              // Gallery Carousel
-              ListView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                padding: const EdgeInsets.all(12),
-                itemCount: cordies.length,
-                itemBuilder: (context, index) {
-                  final cordie = cordies[index];
-                  return Container(
-                    margin: const EdgeInsets.only(bottom: 12),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF1C2834),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: ListTile(
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 16),
-                      title: Text(
-                        cordie['name'] ?? '',
-                        style: GoogleFonts.inter(color: Colors.white, fontWeight: FontWeight.bold),
-                      ),
-                      trailing: Wrap(
-                        spacing: 12,
-                        children: [
-                          IconButton(
-                            icon: const Icon(Icons.call, color: Colors.greenAccent),
-                            onPressed: () => _launchPhone(cordie['phone'] ?? ''),
-                          ),
-                          IconButton(
-                            icon: const Icon(Icons.mail, color: Colors.lightBlueAccent),
-                            onPressed: () => _launchEmail(cordie['email'] ?? ''),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              ),
-              
-              const Divider(color: Colors.white38),
-              const SizedBox(height: 16),
-              GalleryCarousel(galleryImages: galleryImages),
-              SizedBox(height: 50,),
-              if (instaUrl.trim().isNotEmpty)
-                ...[
-                  Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    "Connect with us",
-                    style: GoogleFonts.poppins(
-                      color: Color.fromRGBO(255, 255, 255, 1),
-                      fontWeight: FontWeight.bold,
-                      fontSize: 26
+      backgroundColor: const Color(0xFF0E1A23),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            SizedBox(height: 25.h),
+            SizedBox(
+              height: 140.h,
+              width: double.infinity,
+              child: Stack(
+                children: [
+                  Align(
+                    alignment: Alignment.center,
+                    child: CircleAvatar(
+                      radius: 60.r,
+                      backgroundImage: AssetImage(imageUrl),
+                      backgroundColor: Colors.transparent,
                     ),
                   ),
+                  Positioned(
+                    top: 10.h,
+                    left: 15.w,
+                    child: GestureDetector(
+                      onTap: () => Navigator.of(context).pop(),
+                      child: Container(
+                        padding: EdgeInsets.all(4.w),
+                        decoration: BoxDecoration(
+                          color: Color(0xFF1C2834),
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: Colors.white.withOpacity(0.2),
+                            width: 2,
+                          ),
+                        ),
+                        child: Icon(
+                          Icons.keyboard_arrow_left,
+                          color: Colors.white,
+                          size: 30.sp,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 15.h),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.w),
+              child: Text(
+                description,
+                style: GoogleFonts.inter(
+                  color: Colors.white,
+                  fontSize: 10.sp,
                 ),
-                GestureDetector(
-                  onTap: () async {
-                    try {
-                      await _launchInstagram();
-                    } catch (e) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Unable to open Instagram'))
-                      );
-                    }
-                  },
-                  child: Image.asset('assets/images/Instagram.png'),
+              ),
+            ),
+            SizedBox(height: 20.h),
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              padding: EdgeInsets.all(12.w),
+              itemCount: cordies.length,
+              itemBuilder: (context, index) {
+                final cordie = cordies[index];
+                return Container(
+                  margin: EdgeInsets.only(bottom: 12.h),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF1C2834),
+                    borderRadius: BorderRadius.circular(12.r),
+                  ),
+                  child: ListTile(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 16.w),
+                    title: Text(
+                      cordie['name'] ?? '',
+                      style: GoogleFonts.inter(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14.sp,
+                      ),
+                    ),
+                    trailing: Wrap(
+                      spacing: 12.w,
+                      children: [
+                        IconButton(
+                          icon: const Icon(Icons.call, color: Colors.greenAccent),
+                          onPressed: () => _launchPhone(cordie['phone'] ?? ''),
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.mail, color: Colors.lightBlueAccent),
+                          onPressed: () => _launchEmail(cordie['email'] ?? ''),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+            Divider(color: Colors.white38, thickness: 1.h),
+            SizedBox(height: 16.h),
+            GalleryCarousel(galleryImages: galleryImages),
+            SizedBox(height: 40.h),
+            if (instaUrl.trim().isNotEmpty) ...[
+              Padding(
+                padding: EdgeInsets.all(8.w),
+                child: Text(
+                  "Connect with us",
+                  style: GoogleFonts.poppins(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 26.sp,
+                  ),
                 ),
-                SizedBox(height: 30,)
-              ],
-              SizedBox(height: 50,)
-            ]
-          ),
+              ),
+              GestureDetector(
+                onTap: _launchInstagram,
+                child: Image.asset(
+                  'assets/images/Instagram.png',
+                  width: 60.w,
+                  height: 60.w,
+                ),
+              ),
+            ],
+            SizedBox(height: 30.h),
+          ],
         ),
       ),
     );
   }
 }
 
+
 class GalleryCarousel extends StatefulWidget {
   final List<String> galleryImages;
-
   const GalleryCarousel({super.key, required this.galleryImages});
 
   @override
@@ -157,7 +183,7 @@ class GalleryCarousel extends StatefulWidget {
 }
 
 class _GalleryCarouselState extends State<GalleryCarousel> {
-  final PageController _pageController = PageController(viewportFraction: 1.0);
+  final PageController _pageController = PageController();
   int _currentIndex = 0;
 
   void _goToPrevious() {
@@ -191,121 +217,91 @@ class _GalleryCarouselState extends State<GalleryCarousel> {
         clipBehavior: Clip.none,
         alignment: Alignment.center,
         children: [
-          // Card with image carousel
           Container(
-            width: 370,
-            height: 250,
+            width: 310.w,
+            height: 180.h,
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color.fromRGBO(53, 63, 84, 1),
-                  Color.fromRGBO(34, 40, 52, 1)
-                ]
+              gradient: const LinearGradient(
+                colors: [Color(0xFF353F54), Color(0xFF222834)],
               ),
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(20.r),
             ),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(20.r),
               child: Stack(
                 children: [
-                  // PageView
                   PageView.builder(
                     controller: _pageController,
                     itemCount: widget.galleryImages.length,
-                    itemBuilder: (context, index) {
-                      return Stack(
-                        fit: StackFit.expand,
-                        children: [
-                          Image.network(
-                            widget.galleryImages[index],
-                            fit: BoxFit.cover,
-                            loadingBuilder: (context, child, progress) {
-                              if (progress == null) return child;
-                              return const Center(
-                                  child: CircularProgressIndicator(color: Colors.white));
-                            },
-                            errorBuilder: (context, error, stackTrace) =>
-                                const Center(child: Icon(Icons.broken_image, color: Colors.white)),
-                          ),
-                          Container(
-                            color: Colors.black.withOpacity(0.35),
-                          ),
-                        ],
-                      );
-                    },
+                    itemBuilder: (context, index) => Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        Image.network(
+                          widget.galleryImages[index],
+                          fit: BoxFit.cover,
+                          loadingBuilder: (context, child, progress) {
+                            if (progress == null) return child;
+                            return const Center(
+                              child: CircularProgressIndicator(color: Colors.white),
+                            );
+                          },
+                          errorBuilder: (context, error, stackTrace) =>
+                              const Center(child: Icon(Icons.broken_image, color: Colors.white)),
+                        ),
+                        Container(color: Colors.black.withOpacity(0.35)),
+                      ],
+                    ),
                     onPageChanged: (index) {
                       setState(() {
                         _currentIndex = index;
                       });
                     },
                   ),
-
-                  // Gallery label
                   Positioned(
-                    left: 16,
-                    bottom: 6,
+                    left: 16.w,
+                    bottom: 6.h,
                     child: Text(
                       'Gallery',
                       style: GoogleFonts.poppins(
-                        color: Colors.white.withOpacity(0.6),
-                        fontSize: 26,
-                        fontWeight: FontWeight.bold
-                      )
+                        color: Colors.white.withOpacity(0.5),
+                        fontSize: 26.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
           ),
-
-          // Left Arrow - Overlapping
+          // Arrows
           Positioned(
-            left: -20,
-            child: GestureDetector(
-              onTap: () => _goToPrevious(),
-              child: Container(
-                height: 40,
-                width: 40,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      Color.fromRGBO(142, 151, 253, 1),
-                      Color.fromRGBO(72, 49, 157, 1)
-                    ]
-                  )
-                ),
-                child: Icon(Icons.keyboard_arrow_left_sharp, color: Colors.white, size: 30,)
-              )
-            ),
+            left: -15.w,
+            child: _arrowButton(Icons.keyboard_arrow_left_sharp, _goToPrevious),
           ),
-
-          // Right Arrow - Overlapping
           Positioned(
-            right: -20,
-            child: GestureDetector(
-              onTap: () => _goToNext(),
-              child: Container(
-                height: 40,
-                width: 40,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      Color.fromRGBO(142, 151, 253, 1),
-                      Color.fromRGBO(72, 49, 157, 1)
-                    ]
-                  )
-                ),
-                child: Icon(Icons.keyboard_arrow_right_sharp, color: Colors.white, size: 30,)
-              )
-            ),
+            right: -15.w,
+            child: _arrowButton(Icons.keyboard_arrow_right_sharp, _goToNext),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _arrowButton(IconData icon, VoidCallback onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 33.h,
+        width: 33.w,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10.r),
+          gradient: const LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Color(0xFF8E97FD), Color(0xFF48319D)],
+          ),
+        ),
+        child: Icon(icon, color: Colors.white, size: 23.sp),
       ),
     );
   }
