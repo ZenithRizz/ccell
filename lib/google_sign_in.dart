@@ -1,10 +1,99 @@
+import 'dart:convert';
+
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:http/http.dart' as http;
 import 'package:login_page/loading_screen.dart';
+import 'package:login_page/notifications_api/notification_state.dart';
 
+
+
+
+Future<void> initializeFCM(String userId) async {
+  final FirebaseMessaging messaging = FirebaseMessaging.instance;
+
+  // Request notification permissions (iOS + Web)
+  final NotificationSettings settings = await messaging.requestPermission(
+    alert: true,
+    announcement: false,
+    badge: true,
+    sound: true,
+    carPlay: false,
+    criticalAlert: false,
+    provisional: false,
+  );
+
+
+  if (kDebugMode) {
+    print("🔔 User permission: ${settings.authorizationStatus}");
+  }
+
+  // Subscribe to global topic
+  try {
+    await messaging.subscribeToTopic("all-users");
+    if (kDebugMode) {
+      print("📌 Subscribed to all-users topic");
+    }
+  } catch (e) {
+    if (kDebugMode) {
+      print("⚠️ Failed to subscribe to topic: $e");
+    }
+  }
+
+
+  // Get FCM token (use vapidKey for web)
+  String? token;
+  try {
+    token = await messaging.getToken(
+      vapidKey: kIsWeb
+          ? "BO1lGHgcWJXK1vANSjKKMAScw5CEXFfzFKUZlfufe1MrKSTa5pUET-wPxUxx0O2UcAxZj2fjmSx_Nog8hNu6EEM"
+          : null,
+    );
+    if (kDebugMode) {
+      print('✅ FCM Token: $token');
+    }
+
+    if (kDebugMode) {
+      print("📤 Sending token registration:");
+      print("userId: '$userId'");
+      print("token: '$token'");
+    }
+
+    // Send token to backend
+    final response = await http.post(
+      Uri.parse('https://ccell-notification-api.onrender.com/api/tokens/register'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'userId': userId, 'token': token}),
+    );
+
+    if (response.statusCode == 200) {
+      if (kDebugMode) {
+        print("✅ Token registered with backend");
+      }
+    } else {
+      if (kDebugMode) {
+        print("❌ Failed to register token: ${response.body}");
+      }
+    }
+    } catch (e) {
+    if (kDebugMode) {
+      print("❌ Error while retrieving or sending FCM token: $e");
+    }
+  }
+}
 Future<void> signInWithCollegeGoogleAccount(BuildContext context) async {
   final GoogleSignIn googleSignIn = GoogleSignIn();
+
+  Future<void> requestNotificationPermission() async {
+
+      final settings = await FirebaseMessaging.instance.requestPermission();
+      NotificationState.permissionGranted =
+          settings.authorizationStatus == AuthorizationStatus.authorized;
+
+  }
 
   try {
     // Sign out previous sessions just in case
@@ -62,6 +151,17 @@ Future<void> signInWithCollegeGoogleAccount(BuildContext context) async {
     UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
     final String userName = userCredential.user?.displayName ?? 'User';
 
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      await initializeFCM(user.email ?? user.uid);
+      NotificationState.permissionGranted = true;
+      requestNotificationPermission();
+    } else {
+      if (kDebugMode) {
+        print("❌ Firebase user not logged in");
+      }
+    }
+
     // Navigate to loading screen, then to home screen
     Navigator.pushReplacement(
       context,
@@ -70,7 +170,9 @@ Future<void> signInWithCollegeGoogleAccount(BuildContext context) async {
       ),
     );
   } catch (e) {
-    print('Sign-in failed: $e');
+    if (kDebugMode) {
+      print('Sign-in failed: $e');
+    }
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text('Login failed. Please try again.'),

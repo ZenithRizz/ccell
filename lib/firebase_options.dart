@@ -67,7 +67,7 @@ class DefaultFirebaseOptions {
     projectId: 'ccell-b8c42',
     databaseURL: 'https://ccell-b8c42-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'ccell-b8c42.firebasestorage.app',
-    androidClientId: '655780948496-17gugeg2acqfd4j1ou572ofuia0hio58.apps.googleusercontent.com',
+    androidClientId: '655780948496-02h6tn5tvophecsc1n67t7q2dqsvntsd.apps.googleusercontent.com',
     iosClientId: '655780948496-bqmn6dtahm162ul19u6bie4ogstd99ig.apps.googleusercontent.com',
     iosBundleId: 'com.example.loginPage',
   );
@@ -79,7 +79,7 @@ class DefaultFirebaseOptions {
     projectId: 'ccell-b8c42',
     databaseURL: 'https://ccell-b8c42-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'ccell-b8c42.firebasestorage.app',
-    androidClientId: '655780948496-17gugeg2acqfd4j1ou572ofuia0hio58.apps.googleusercontent.com',
+    androidClientId: '655780948496-02h6tn5tvophecsc1n67t7q2dqsvntsd.apps.googleusercontent.com',
     iosClientId: '655780948496-bqmn6dtahm162ul19u6bie4ogstd99ig.apps.googleusercontent.com',
     iosBundleId: 'com.example.loginPage',
   );
@@ -94,4 +94,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'ccell-b8c42.firebasestorage.app',
     measurementId: 'G-8BCR065BXF',
   );
+
 }

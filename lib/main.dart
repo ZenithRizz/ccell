@@ -1,10 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:login_page/login_page.dart';
 import 'package:login_page/more_page.dart';
 import 'package:login_page/home_page.dart';
+import 'package:login_page/notifications_api/notification_state.dart';
 import 'package:login_page/notifications_screen.dart';
 import 'package:login_page/profile_page.dart';
 import 'package:login_page/welcome_screen.dart';
@@ -16,14 +19,76 @@ import 'package:google_fonts/google_fonts.dart';
 import 'lnm_page.dart';
 import 'firebase_options.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+
+@pragma('vm:entry-point')
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  print("Handling a background message: ${message.messageId}");
+}
+
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+  FlutterLocalNotificationsPlugin();
+
+  const AndroidInitializationSettings initializationSettingsAndroid =
+  AndroidInitializationSettings('@mipmap/ic_launcher');
+
+  const InitializationSettings initializationSettings =
+  InitializationSettings(android: initializationSettingsAndroid);
+
+  await flutterLocalNotificationsPlugin.initialize(initializationSettings);
+
+  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    RemoteNotification? notification = message.notification;
+
+    if (notification != null) {
+      if (kDebugMode) {
+        print("🔥 Foreground push received!");
+        print("Title: ${message.notification?.title}");
+        print("Body: ${message.notification?.body}");
+      }
+      if (!kIsWeb) {
+        flutterLocalNotificationsPlugin.show(
+         notification.hashCode,
+         notification.title,
+         notification.body,
+         NotificationDetails(
+           android: AndroidNotificationDetails(
+             'channelId',
+             'General',
+             importance: Importance.high,
+             priority: Priority.max,
+             color: Color(0xFF143FA6),
+             enableLights: true,
+             enableVibration: true,
+             largeIcon: FilePathAndroidBitmap('assets/images/ccell_logo.png'),
+             visibility: NotificationVisibility.public,
+           ),
+         ),
+       );}
+
+    }
+  });
+
+  // 👇 Call your FCM init function (make sure to replace with actual userId)
+
+
   runApp(const MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
