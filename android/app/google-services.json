@@ -87,6 +87,14 @@
           }
         },
         {
+          "client_id": "655780948496-v9lm0jmm2lpqtdj0b99rjbgmmj5fsb40.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lnmiit.ccell",
+            "certificate_hash": "bd34cfe98e4d65a8b32111fc35870abfb61f0aa6"
+          }
+        },
+        {
           "client_id": "655780948496-rdnivgkgi7f439ghl55s80vatiq8m6cb.apps.googleusercontent.com",
           "client_type": 3
         }
