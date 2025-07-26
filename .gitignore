@@ -55,3 +55,5 @@ android/app/my-release-key.jks
 
 # Local Netlify folder
 .netlify
+
+.vercel

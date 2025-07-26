@@ -78,7 +78,7 @@ Future<void> initializeFCM(String userId) async {
         print("❌ Failed to register token: ${response.body}");
       }
     }
-    } catch (e) {
+  } catch (e) {
     if (kDebugMode) {
       print("❌ Error while retrieving or sending FCM token: $e");
     }
@@ -89,9 +89,9 @@ Future<void> signInWithCollegeGoogleAccount(BuildContext context) async {
 
   Future<void> requestNotificationPermission() async {
 
-      final settings = await FirebaseMessaging.instance.requestPermission();
-      NotificationState.permissionGranted =
-          settings.authorizationStatus == AuthorizationStatus.authorized;
+    final settings = await FirebaseMessaging.instance.requestPermission();
+    NotificationState.permissionGranted =
+        settings.authorizationStatus == AuthorizationStatus.authorized;
 
   }
 
@@ -175,7 +175,7 @@ Future<void> signInWithCollegeGoogleAccount(BuildContext context) async {
     }
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text('Login failed. Please try again.'),
+        content: Text('Login failed. Please Refresh and Try Again'),
         backgroundColor: Colors.red,
       ),
     );
