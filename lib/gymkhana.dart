@@ -40,7 +40,7 @@ class GymkhanaPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(width: 16),
+                   SizedBox(width: 14.w),
                   Expanded(
                     child: Text(
                       'STUDENT GYMKHANA',
@@ -94,7 +94,7 @@ class GymkhanaPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(width: 16.w),
+                  SizedBox(width: 14.w),
                   Expanded(
                     child: Text(
                       'PRESIDENTIAL COUNCIL',
@@ -102,7 +102,7 @@ class GymkhanaPage extends StatelessWidget {
                         color: Colors.white,
                         fontSize: 20.sp,
                         fontWeight: FontWeight.w800,
-                        height: 1.1,
+                        height: 0.9.h,
                       ),
                     ),
                   ),

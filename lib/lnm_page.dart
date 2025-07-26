@@ -21,13 +21,37 @@ class LNMPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'FACULTIES',
-                style: GoogleFonts.poppins(
-                  color: Colors.white,
-                  fontSize: 20.sp,
-                  fontWeight: FontWeight.bold,
-                ),
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: 4.w),
+                    child: Container(
+                      padding: EdgeInsets.all(10.h),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [Color(0xFF353F54), Color(0xFF222834)],
+                        ),
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: Icon(
+                        Icons.group,
+                        color: Colors.white,
+                        size: 32.r,
+                      ),
+                    ),
+                  ),
+                   SizedBox(width: 14.w),
+                  Expanded(
+                    child: Text(
+                      'FACULTIES',
+                      style: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontSize: 20.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
               ),
               SizedBox(height: 16),
               _buildCardGrid([
@@ -53,13 +77,37 @@ class LNMPage extends StatelessWidget {
                 }),
               ]),
               SizedBox(height: 28.h),
-              Text(
-                'MISCELLANEOUS',
-                style: GoogleFonts.poppins(
-                  color: Colors.white,
-                  fontSize: 20.sp,
-                  fontWeight: FontWeight.bold,
-                ),
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: 4.w),
+                    child: Container(
+                      padding: EdgeInsets.all(10.h),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [Color(0xFF353F54), Color(0xFF222834)],
+                        ),
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: Icon(
+                        Icons.category,
+                        color: Colors.white,
+                        size: 32.r,
+                      ),
+                    ),
+                  ),
+                   SizedBox(width: 14.w),
+                  Expanded(
+                    child: Text(
+                      'MISCELLANEOUS',
+                      style: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontSize: 20.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
               ),
               SizedBox(height: 14.h),
               _buildCardGrid([
@@ -103,14 +151,37 @@ class LNMPage extends StatelessWidget {
                 }),
               ]),
               SizedBox(height: 28.h),
-              Text(
-                'DIRECTOR\'S MESSAGE',
-                style: GoogleFonts.poppins(
-                  color: Colors.white,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1.2,
-                ),
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: 4.w),
+                    child: Container(
+                      padding: EdgeInsets.all(10.h),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [Color(0xFF353F54), Color(0xFF222834)],
+                        ),
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: Icon(
+                        Icons.message,
+                        color: Colors.white,
+                        size: 32.r,
+                      ),
+                    ),
+                  ),
+                   SizedBox(width: 14.w),
+                  Expanded(
+                    child: Text(
+                      "DIRECTOR'S MESSAGE",
+                      style: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontSize: 20.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(height: 16),
               _buildDirectorMessage(),
