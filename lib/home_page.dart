@@ -136,9 +136,9 @@ class _HomeDashboardState extends State<HomeDashboard>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _buildWelcomeSection(),
-                const SizedBox(height: 32),
+                SizedBox(height: 32.h),
                 _buildStatsGrid(),
-                const SizedBox(height: 32),
+                 SizedBox(height: 32.h),
                 _buildServicesGrid(),
               ],
             ),
@@ -183,7 +183,7 @@ class _HomeDashboardState extends State<HomeDashboard>
                       Color(0xFF222834),
                       ]
                   ),
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(20.r),
                     boxShadow: [
                     BoxShadow(
                     color: const Color(0xFF6366F1).withOpacity(0.2),
@@ -216,13 +216,13 @@ class _HomeDashboardState extends State<HomeDashboard>
                       borderRadius: BorderRadius.circular(12),
                       child: Image.asset(
                         "assets/images/ccell_logo_dark.png",
-                        width: 80,
-                        height: 80,
+                        width: 70.w,
+                        height: 70.h,
                         fit: BoxFit.contain,
                       ),
                     ),
                   ),
-                   const SizedBox(width: 16),
+                   SizedBox(width: 14.w),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -230,28 +230,28 @@ class _HomeDashboardState extends State<HomeDashboard>
                       Text(
                         'Welcome back,',
                         style: GoogleFonts.inter(
-                          fontSize: 16,
+                          fontSize: 13.sp,
                           color: Colors.white.withOpacity(0.9),
                           fontWeight: FontWeight.w400,
                           letterSpacing: 0.5
                         ),
                       ),
-                      const SizedBox(height: 6),
+                      SizedBox(height: 6.h),
                       Text(
                         widget.userName,
                         style: GoogleFonts.poppins(
-                          fontSize: 26,
+                          fontSize: 23.sp,
                           fontWeight: FontWeight.w700,
                           letterSpacing: -0.3,
                           height: 1.2,
                           color: Colors.white,
                         ),
                       ),
-                      const SizedBox(height: 6),
+                      SizedBox(height: 6.h),
                       Text(
                         'Your gateway to campus life',
                         style: GoogleFonts.inter(
-                          fontSize: 14,
+                          fontSize: 12.sp,
                           color: Colors.white.withOpacity(0.8),
                           fontWeight: FontWeight.w400,
                         ),
@@ -276,20 +276,58 @@ class _HomeDashboardState extends State<HomeDashboard>
       subtitle: 'Student organizations',
       icon: Icons.groups_rounded,
       color: const Color(0xFF3B82F6),
-      onTap: () => Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => MainNavigationWrapper(initialIndex: 1)),
-      )),
+      onTap: () {
+        Navigator.pushReplacement(
+          context,
+          PageRouteBuilder(
+            transitionDuration: const Duration(milliseconds: 500), // Slower transition
+            pageBuilder: (_, __, ___) => MainNavigationWrapper(initialIndex: 1),
+            transitionsBuilder: (_, animation, __, child) {
+              return FadeTransition(
+                opacity: animation,
+                child: ScaleTransition(
+                  scale: Tween<double>(begin: 0.9, end: 1.0).animate(
+                    CurvedAnimation(
+                      parent: animation,
+                      curve: Curves.easeIn, // Spring-like effect
+                    ),
+                  ),
+                  child: child,
+                ),
+              );
+            },
+          ),
+        );
+      },),
       _StatData(
         title: 'Departments',
         value: '7',
         subtitle: 'Explore Academics',
         icon: Icons.school_rounded,
         color: const Color(0xFF10B981),
-        onTap: () => Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => MainNavigationWrapper(initialIndex: 3)),
-        ),
+        onTap: () {
+          Navigator.pushReplacement(
+            context,
+            PageRouteBuilder(
+              transitionDuration: const Duration(milliseconds: 500), // Slower transition
+              pageBuilder: (_, __, ___) => MainNavigationWrapper(initialIndex: 3),
+              transitionsBuilder: (_, animation, __, child) {
+                return FadeTransition(
+                  opacity: animation,
+                  child: ScaleTransition(
+                    scale: Tween<double>(begin: 0.9, end: 1.0).animate(
+                      CurvedAnimation(
+                        parent: animation,
+                        curve: Curves.easeIn, // Spring-like effect
+                      ),
+                    ),
+                    child: child,
+                  ),
+                );
+              },
+            ),
+          );
+        },
       ),
       _StatData(
           title: 'Notifications',
@@ -297,10 +335,29 @@ class _HomeDashboardState extends State<HomeDashboard>
           subtitle: 'Unread messages',
           icon: Icons.notifications_active_rounded,
           color: const Color(0xFFF59E0B),
-          onTap: () => Navigator.push(
+        onTap: () {
+          Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => MainNavigationWrapper(initialIndex: 2)),
-          )),
+            PageRouteBuilder(
+              transitionDuration: const Duration(milliseconds: 500), // Slower transition
+              pageBuilder: (_, __, ___) => MainNavigationWrapper(initialIndex: 2),
+              transitionsBuilder: (_, animation, __, child) {
+                return FadeTransition(
+                  opacity: animation,
+                  child: ScaleTransition(
+                    scale: Tween<double>(begin: 0.9, end: 1.0).animate(
+                      CurvedAnimation(
+                        parent: animation,
+                        curve: Curves.easeIn, // Spring-like effect
+                      ),
+                    ),
+                    child: child,
+                  ),
+                );
+              },
+            ),
+          );
+        },),
           _StatData(
             title: 'Quick Services',
             value: '6',
@@ -404,7 +461,7 @@ class _HomeDashboardState extends State<HomeDashboard>
     color: stat.color,
     ),
     ),
-    const SizedBox(height: 4),
+    SizedBox(height: 3.h),
     Text(
     stat.title,
     style: GoogleFonts.poppins(
@@ -413,7 +470,7 @@ class _HomeDashboardState extends State<HomeDashboard>
     color: Colors.white,
     ),
     ),
-    const SizedBox(height: 2),
+    SizedBox(height: 2.h),
     Text(
     stat.subtitle,
     style: GoogleFonts.inter(
