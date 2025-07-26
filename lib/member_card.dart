@@ -59,18 +59,18 @@ class MemberCard extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             ),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 12),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               GestureDetector(
                 onTap: _launchPhone,
-                child: Image.asset('assets/images/phone_icon.png', width: 30),
+                child: Icon(Icons.call, color: Colors.white,)
               ),
               const SizedBox(width: 16),
               GestureDetector(
                 onTap: _launchEmail,
-                child: Image.asset('assets/images/gmail.png', width: 30),
+                child: Icon(Icons.mail, color: Colors.white,)
               ),
             ],
           ),

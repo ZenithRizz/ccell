@@ -36,7 +36,7 @@ class AboutCCellPage extends StatelessWidget {
                   left: 16,
                   bottom: -40,
                   child: CircleAvatar(
-                    radius: 40,
+                    radius: 50,
                     backgroundColor: Colors.white,
                     backgroundImage: AssetImage(
                       'assets/images/ccell_logo_c.png',
@@ -65,7 +65,7 @@ class AboutCCellPage extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
-                "The Counseling Cell at LNMIIT fosters mental well-being and provides support through peer mentorship, professional guidance, and proactive outreach initiatives.",
+                "The Counselling and Guidance Cell at LNMIIT fosters mental well-being and provides support through peer mentorship, professional guidance, and proactive outreach initiatives.",
                 style: GoogleFonts.inter(color: Colors.white),
               ),
             ),
@@ -73,7 +73,7 @@ class AboutCCellPage extends StatelessWidget {
             const SizedBox(height: 20),
 
             MemberSection(
-              title: "Coordinators Y-23",
+              title: "Coordinators",
               members: [
                 Member(
                   name: "Aditya Kansal",
@@ -99,7 +99,7 @@ class AboutCCellPage extends StatelessWidget {
             const SizedBox(height: 20),
 
             MemberSection(
-              title: "Associate Coordinators Y-23",
+              title: "Associate Coordinators",
               members: [
                 Member(
                   name: "Atharv Shah",
@@ -143,7 +143,7 @@ class AboutCCellPage extends StatelessWidget {
             const SizedBox(height: 20),
 
             TeamMentors(
-              title: "Team Mentors Y-22",
+              title: "Team Mentors",
               members: [
                 NewMember(
                   name: "Harshita Sharma",
@@ -225,17 +225,19 @@ class NewSection extends StatelessWidget {
               children: [
                 developerCard("Praneel Dev", "assets/images/praneel.jpg"),
                 SizedBox(width: 16),
-                developerCard("Nikhila S Hari", "assets/images/nikhila.jpg"),
+                developerCard(
+                  "Panth Moradia",
+                  "assets/images/panth_moradiya.jpg",
+                ),
+
               ],
             ),
             SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                developerCard(
-                  "Panth Moradia",
-                  "assets/images/panth_moradiya.jpg",
-                ),
+
+                developerCard("Nikhila S Hari", "assets/images/nikhila.jpg"),
                 SizedBox(width: 16),
                 developerCard("Ishita Agarwal", "assets/images/ishita.jpg"),
               ],
@@ -256,8 +258,8 @@ class NewSection extends StatelessWidget {
 
 
 Widget developerCard(String name, String imagePath) {
-  
-  
+
+
   return LayoutBuilder(
     builder: (context,constraints) {
        double screenWidth = MediaQuery.of(context).size.width;
@@ -280,7 +282,7 @@ Widget developerCard(String name, String imagePath) {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
-            CircleAvatar(radius: 35, backgroundImage: AssetImage(imagePath)),
+            CircleAvatar(radius: 45, backgroundImage: AssetImage(imagePath)),
             SizedBox(height: 8),
             Text(
               name,
