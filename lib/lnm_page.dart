@@ -278,7 +278,7 @@ class LNMPage extends StatelessWidget {
           Text(
             'Welcome to The LNM Institute of Information Technology (LNMIIT), Jaipur! The LNMIIT is an institution of higher learning focused in select areas of Computing, Communication, ICT, Electronics and carefully chosen traditional engineering and sciences with an innovative blend of interdisciplinary flavor and contemporary relevance.',
             style: GoogleFonts.inter(
-              color: Color(0xFFB0B0B0),
+              color: Colors.white,
               fontSize: 11.sp,
               height: 1.1.h,
             ),
@@ -330,7 +330,7 @@ class LNMPage extends StatelessWidget {
           Text(
             'The Institute, in spite of being young (founded in 2002, jointly by the Government of Rajasthan and the Lakshmi & Usha Mittal Foundation in the public-private partnership mode) is considered as one of the best institutions in its chosen areas of higher learning, both in the state and the country. In addition to having been accredited by the National Assessment & Accreditation Council (NAAC) as an "A" grade institution, the LNMIIT has been ranked fairly high by many different agencies in the recent past as may be noticed elsewhere on the official web-portal.',
             style: TextStyle(
-              color: Color(0xFFB0B0B0),
+              color: Colors.white,
               fontSize: 11.sp,
               height: 1.1.h,
             ),
@@ -339,7 +339,7 @@ class LNMPage extends StatelessWidget {
           Text(
             'The Institute takes pride in its eco-system that aims to groom incoming students into academically strong yet well-rounded personality based professionals who could adapt themselves to the challenges posed by the ever-changing world and working environments.',
             style: GoogleFonts.inter(
-              color: Color(0xFFB0B0B0),
+              color: Colors.white,
               fontSize: 11.sp,
               height: 1.1.h,
             ),
@@ -348,7 +348,7 @@ class LNMPage extends StatelessWidget {
           Text(
             'If you are an aspiring student, we welcome you to take a good look at our website and preferably consider visiting the campus for getting to know it even better by getting the first hand feel of its ambience and interacting with faculty and students so that you could take a well-informed decision. If you have already applied to the LNMIIT, have been offered an admission and accepted the offer, Congratulations and Welcome to this new home of yours for next few years!',
             style: GoogleFonts.inter(
-              color: Color(0xFFB0B0B0),
+              color: Colors.white,
               fontSize: 11.sp,
               height: 1.1.h,
             ),
