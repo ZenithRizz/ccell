@@ -23,5 +23,12 @@ messaging.onBackgroundMessage(function(payload) {
     body: body,
     icon: 'web-app-manifest-192x192.png',
     image: image,
+    vibrate: [200, 100, 100],
+    requireInteraction: true,
+  });
+
+  self.addEventListener('notificationclick', (event) => {
+    event.notification.close();
+    clients.openWindow('https://yourdomain.com/notifications');
   });
 });

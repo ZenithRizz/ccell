@@ -7,12 +7,12 @@ import 'package:flutter/services.dart';
 import 'package:login_page/login_page.dart';
 import 'package:login_page/more_page.dart';
 import 'package:login_page/home_page.dart';
-import 'package:login_page/notifications_api/notification_state.dart';
 import 'package:login_page/notifications_screen.dart';
 import 'package:login_page/profile_page.dart';
 import 'package:login_page/welcome_screen.dart';
 import 'package:login_page/hostel_registration.dart';
 import 'package:login_page/loading_screen.dart';
+import 'package:pwa_install/pwa_install.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'gymkhana.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -21,13 +21,14 @@ import 'firebase_options.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  print("Handling a background message: ${message.messageId}");
+  if (kDebugMode) {
+    print("Handling a background message: ${message.messageId}");
+  }
 }
 
 
@@ -51,6 +52,17 @@ Future<void> main() async {
 
   await flutterLocalNotificationsPlugin.initialize(initializationSettings);
 
+  const AndroidNotificationChannel channel = AndroidNotificationChannel(
+    'c-cell-notifs', // Must match the ID used in AndroidNotificationDetails
+    'C-Cell', // User-visible name
+    description: 'This channel is used for notifications from the C-Cell, LNMIIT.', // User-visible description
+    importance: Importance.high,
+  );
+
+  await flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
+      ?.createNotificationChannel(channel);
+
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
     RemoteNotification? notification = message.notification;
 
@@ -67,7 +79,7 @@ Future<void> main() async {
          notification.body,
          NotificationDetails(
            android: AndroidNotificationDetails(
-             'channelId',
+               'c-cell-notifs',
              'General',
              importance: Importance.high,
              priority: Priority.max,
@@ -82,9 +94,6 @@ Future<void> main() async {
 
     }
   });
-
-  // 👇 Call your FCM init function (make sure to replace with actual userId)
-
 
   runApp(const MyApp());
 }
