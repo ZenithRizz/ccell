@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter/services.dart';
-import 'dart:io';
+import 'package:login_page/pdfviewer.dart';
 
 class CurriculumPage extends StatelessWidget {
   const CurriculumPage({super.key});
@@ -29,67 +27,13 @@ class CurriculumPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildButtonGrid([
-                _ButtonData('B.Tech CSE', () async {
-                  const url = 'https://example.com';
-                  if (await canLaunchUrl(Uri.parse(url))) {
-                    await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Could not open PDF')),
-                    );
-                  }
-                }),
-                _ButtonData('M.Tech CSE', () async {
-                  const url = 'https://example.com';
-                  if (await canLaunchUrl(Uri.parse(url))) {
-                    await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Could not open PDF')),
-                    );
-                  }
-                }),
-                _ButtonData('B.Tech ECE', () async {
-                  const url = 'https://example.com';
-                  if (await canLaunchUrl(Uri.parse(url))) {
-                    await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Could not open PDF')),
-                    );
-                  }
-                }),
-                _ButtonData('M.Tech ECE', () async {
-                  const url = 'https://example.com';
-                  if (await canLaunchUrl(Uri.parse(url))) {
-                    await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Could not open PDF')),
-                    );
-                  }
-                }),
-                _ButtonData('CCE', () async {
-                  const url = 'https://example.com';
-                  if (await canLaunchUrl(Uri.parse(url))) {
-                    await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Could not open PDF')),
-                    );
-                  }
-                }),
-                _ButtonData('MME', () async {
-                  const url = 'https://example.com';
-                  if (await canLaunchUrl(Uri.parse(url))) {
-                    await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Could not open PDF')),
-                    );
-                  }
-                }),
+              _buildButtonGrid(context, [
+                _ButtonData('B.Tech CSE', 'https://raw.githubusercontent.com/ccell2026/ccell/master/assets/pdfs/btech_cse.pdf'),
+                _ButtonData('M.Tech CSE', 'https://raw.githubusercontent.com/ccell2026/ccell/master/assets/pdfs/mtech_cse.pdf'),
+                _ButtonData('B.Tech ECE', 'https://raw.githubusercontent.com/ccell2026/ccell/master/assets/pdfs/btech_ece.pdf'),
+                _ButtonData('M.Tech ECE', 'https://raw.githubusercontent.com/ccell2026/ccell/master/assets/pdfs/mtech_ece.pdf'),
+                _ButtonData('CCE', 'https://raw.githubusercontent.com/ccell2026/ccell/master/assets/pdfs/cce.pdf'),
+                _ButtonData('MME', 'https://raw.githubusercontent.com/ccell2026/ccell/master/assets/pdfs/mme.pdf'),
               ]),
             ],
           ),
@@ -98,7 +42,7 @@ class CurriculumPage extends StatelessWidget {
     );
   }
 
-  Widget _buildButtonGrid(List<_ButtonData> buttons) {
+  Widget _buildButtonGrid(BuildContext context, List<_ButtonData> buttons) {
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -112,7 +56,17 @@ class CurriculumPage extends StatelessWidget {
       itemBuilder: (context, index) {
         final button = buttons[index];
         return GestureDetector(
-          onTap: button.onTap,
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => PDFViewerPage(
+                  title: button.title,
+                  pdfUrl: button.url,
+                ),
+              ),
+            );
+          },
           child: Container(
             decoration: BoxDecoration(
               gradient: const LinearGradient(
@@ -159,7 +113,7 @@ class CurriculumPage extends StatelessWidget {
 
 class _ButtonData {
   final String title;
-  final VoidCallback onTap;
+  final String url;
 
-  _ButtonData(this.title, this.onTap);
+  _ButtonData(this.title, this.url);
 }
