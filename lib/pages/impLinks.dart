@@ -226,17 +226,17 @@ class LinksPage extends StatelessWidget {
               const SizedBox(height: 12),
               _buildLinkCard(
                 title: 'Scholarship Policy',
-                url: 'https://example.com',
+                url: 'https://lnmiit.ac.in/scholarships-assistantships/',
               ),
               const SizedBox(height: 12),
               _buildLinkCard(
                 title: 'Fee Structure - UG Admissions',
-                url: 'https://example.com',
+                url: 'https://lnmiit.ac.in/admissions/ug/regular-mode/',
               ),
               const SizedBox(height: 12),
               _buildLinkCard(
                 title: 'Training and Placement Cell',
-                url: 'https://example.com',
+                url: 'https://placements.lnmiit.ac.in/',
               ),
               const SizedBox(height: 12),
               _buildLinkCard(

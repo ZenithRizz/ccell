@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ImportantContactsPage extends StatelessWidget {
@@ -9,13 +11,11 @@ class ImportantContactsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFF0E1A23), // Same dark blue background
       appBar: AppBar(
-        title: const Text(
+        title: Text(
             'IMPORTANT CONTACTS',
-          style: TextStyle(
+          style: GoogleFonts.poppins(
             color: Colors.white,
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 0.9,
+            fontSize: 20.sp,
           ),
         ),
         backgroundColor: const Color(0xFF0E1A23),
