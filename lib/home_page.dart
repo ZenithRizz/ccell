@@ -292,7 +292,7 @@ class _HomeDashboardState extends State<HomeDashboard>
         ),
       ),
       _StatData(
-          title: 'New Notifications',
+          title: 'Notifications',
           value: '8',
           subtitle: 'Unread messages',
           icon: Icons.notifications_active_rounded,
