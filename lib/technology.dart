@@ -188,7 +188,10 @@ class TechnologyCouncil extends StatelessWidget {
                       context,
                       "",
                       [
-                        ""
+                        "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/debsoc/deb1.jpg",
+                        "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/debsoc/deb2.jpg",
+                        "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/debsoc/deb3.jpg",
+                        "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/debsoc/deb4.jpg"
                       ],
                       [
                         {
@@ -207,7 +210,7 @@ class TechnologyCouncil extends StatelessWidget {
                           "email": "22ucc112@lnmiit.ac.in"
                         }
                       ],
-                      'https://www.instagram.com/cybros_lnmiit?igsh=YjY0OGVjMWU4NW54',
+                      'https://www.instagram.com/thedebatesocietylnmiit/',
                     ),
                     squareCard(
                       "",
