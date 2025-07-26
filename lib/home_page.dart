@@ -1,13 +1,19 @@
+import 'dart:io';
 import 'dart:ui';
 
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:login_page/lnm_page.dart';
+import 'package:login_page/profile_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:login_page/gymkhana.dart';
 import 'package:login_page/notifications_screen.dart';
+
+import 'main.dart';
 
 class HomePage extends StatelessWidget {
   final String userName;
@@ -33,6 +39,11 @@ class _HomeDashboardState extends State<HomeDashboard>
   late AnimationController _statsController;
   late List<AnimationController> _buttonControllers;
 
+  File? pickedImage;
+  Uint8List? webImageBytes;
+
+
+
   final Map<String, Map<String, dynamic>> buttonData = {
     'Academic Calendar': {
       'image': 'academic_calender.png',
@@ -40,9 +51,9 @@ class _HomeDashboardState extends State<HomeDashboard>
       'icon': Icons.calendar_today,
       'description': 'View academic calendar and important dates',
     },
-    'Lost & Found': {
+    'PYQs': {
       'image': 'lost_found.png',
-      'icon': Icons.search,
+      'icon': Icons.library_books_outlined,
       'description': 'Report lost items or find lost belongings',
     },
     'Find the Location': {
@@ -138,6 +149,21 @@ class _HomeDashboardState extends State<HomeDashboard>
   }
 
   Widget _buildWelcomeSection() {
+
+    final user = FirebaseAuth.instance.currentUser;
+    final photoUrl = user?.photoURL ?? '';
+
+    ImageProvider imageProvider;
+
+    if (kIsWeb && webImageBytes != null) {
+      imageProvider = MemoryImage(webImageBytes!);
+    } else if (!kIsWeb && pickedImage != null) {
+      imageProvider = FileImage(pickedImage!);
+    } else if (photoUrl.isNotEmpty) {
+      imageProvider = NetworkImage(photoUrl);
+    } else {
+      imageProvider = const AssetImage('assets/images/profile.png');
+    }
     return AnimatedBuilder(
       animation: _welcomeController,
       builder: (context, child) {
@@ -165,35 +191,74 @@ class _HomeDashboardState extends State<HomeDashboard>
                 offset: const Offset(0, 8),
         )],
               ),
-              child: Column(
+              child: Row(
                 children: [
-                  Text(
-                    'Welcome back,',
-                    style: GoogleFonts.inter(
-                      fontSize: 16,
-                      color: Colors.white.withOpacity(0.9),
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    widget.userName,
-                    style: GoogleFonts.poppins(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w700,
-                      letterSpacing: -0.5,
+                  Container(
+                    decoration: BoxDecoration(
                       color: Colors.white,
+                      borderRadius: BorderRadius.circular(16),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 10,
+                          spreadRadius: 2,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
+                      border: Border.all(
+                        color: Colors.white.withOpacity(0.3),
+                        width: 1.5,
+                      )
+
+                    ),
+                    padding: const EdgeInsets.all(3),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Image.asset(
+                        "assets/images/ccell_logo_dark.png",
+                        width: 80,
+                        height: 80,
+                        fit: BoxFit.contain,
+                      ),
                     ),
                   ),
-                  const SizedBox(height: 12),
-                  Text(
-                    'Your gateway to campus life',
-                    style: GoogleFonts.inter(
-                      fontSize: 14,
-                      color: Colors.white.withOpacity(0.8),
-                      fontWeight: FontWeight.w400,
-                    ),
+                   const SizedBox(width: 16),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Welcome back,',
+                        style: GoogleFonts.inter(
+                          fontSize: 16,
+                          color: Colors.white.withOpacity(0.9),
+                          fontWeight: FontWeight.w400,
+                          letterSpacing: 0.5
+                        ),
+                      ),
+                      const SizedBox(height: 6),
+                      Text(
+                        widget.userName,
+                        style: GoogleFonts.poppins(
+                          fontSize: 26,
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: -0.3,
+                          height: 1.2,
+                          color: Colors.white,
+                        ),
+                      ),
+                      const SizedBox(height: 6),
+                      Text(
+                        'Your gateway to campus life',
+                        style: GoogleFonts.inter(
+                          fontSize: 14,
+                          color: Colors.white.withOpacity(0.8),
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
                   ),
+
                 ],
               ),
             ),
@@ -211,9 +276,9 @@ class _HomeDashboardState extends State<HomeDashboard>
       subtitle: 'Student organizations',
       icon: Icons.groups_rounded,
       color: const Color(0xFF3B82F6),
-      onTap: () => Navigator.push(
+      onTap: () => Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const GymkhanaPage()),
+        MaterialPageRoute(builder: (context) => MainNavigationWrapper(initialIndex: 1)),
       )),
       _StatData(
         title: 'Departments',
@@ -223,18 +288,18 @@ class _HomeDashboardState extends State<HomeDashboard>
         color: const Color(0xFF10B981),
         onTap: () => Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const LNMPage()),
+          MaterialPageRoute(builder: (context) => MainNavigationWrapper(initialIndex: 3)),
         ),
       ),
       _StatData(
-          title: 'New Notifications',
+          title: 'Notifications',
           value: '8',
           subtitle: 'Unread messages',
           icon: Icons.notifications_active_rounded,
           color: const Color(0xFFF59E0B),
           onTap: () => Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const NotificationsPage()),
+            MaterialPageRoute(builder: (context) => MainNavigationWrapper(initialIndex: 2)),
           )),
           _StatData(
             title: 'Quick Services',

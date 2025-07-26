@@ -98,6 +98,90 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 
+// ... (keep all your existing imports and Firebase setup code)
+
+class MainScaffold extends StatelessWidget {
+  final Widget body;
+  final int currentIndex;
+  final Function(int) onItemTapped;
+
+  const MainScaffold({
+    required this.body,
+    required this.currentIndex,
+    required this.onItemTapped,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 400),
+        child: body,
+      ),
+      bottomNavigationBar: SalomonBottomBar(
+        margin: const EdgeInsets.all(15.0),
+        currentIndex: currentIndex,
+        itemShape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(90),
+        ),
+        onTap: onItemTapped,
+        backgroundColor: Colors.black,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.grey.shade600,
+        duration: const Duration(milliseconds: 400),
+        curve: Curves.linear,
+        items: [
+          SalomonBottomBarItem(
+            icon: _buildGlowingIcon(Icons.home, currentIndex == 0),
+            title: const Text("Home"),
+            selectedColor: Colors.white,
+          ),
+          SalomonBottomBarItem(
+            icon: _buildGlowingIcon(Icons.sports, currentIndex == 1),
+            title: const Text("Gymkhana"),
+            selectedColor: Colors.cyanAccent,
+          ),
+          SalomonBottomBarItem(
+            icon: _buildGlowingIcon(Icons.notifications, currentIndex == 2),
+            title: const Text("Notifications"),
+            selectedColor: Colors.lightGreenAccent,
+          ),
+          SalomonBottomBarItem(
+            icon: _buildGlowingIcon(Icons.account_balance, currentIndex == 3),
+            title: const Text("LNMIIT"),
+            selectedColor: Colors.redAccent,
+          ),
+          SalomonBottomBarItem(
+            icon: _buildGlowingIcon(Icons.more_horiz, currentIndex == 4),
+            title: const Text("More"),
+            selectedColor: Colors.purpleAccent,
+          ),
+        ],
+      ),
+    );
+  }
+
+  static Widget _buildGlowingIcon(IconData icon, bool isActive) {
+    return Container(
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        boxShadow: isActive
+            ? [
+          BoxShadow(
+            color: Colors.white.withOpacity(0.3),
+            blurRadius: 10,
+            spreadRadius: 1,
+          ),
+        ]
+            : [],
+      ),
+      child: Icon(
+        icon,
+        color: isActive ? Colors.white : Colors.grey.shade600,
+      ),
+    );
+  }
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -112,11 +196,11 @@ class MyApp extends StatelessWidget {
         title: 'LNMIIT C-Cell App',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          textTheme: GoogleFonts.interTextTheme(), // Set Inter as default
+          textTheme: GoogleFonts.interTextTheme(),
         ),
         routes: {
           '/profile': (context) => const ProfilePage(),
-          '/home': (context) => const MyHomePage(),
+          '/home': (context) => const MainNavigationWrapper(),
           '/welcome': (context) => const WelcomeScreen(),
           '/hostel_registration': (context) => const HostelRegistrationScreen(),
           '/login': (context) => LoginPage(),
@@ -126,6 +210,57 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+class MainNavigationWrapper extends StatefulWidget {
+  final int initialIndex;
+
+  const MainNavigationWrapper({
+    super.key,
+    this.initialIndex = 0,
+  });
+
+  @override
+  State<MainNavigationWrapper> createState() => _MainNavigationWrapperState();
+}
+
+class _MainNavigationWrapperState extends State<MainNavigationWrapper> {
+  late int _selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedIndex = widget.initialIndex;  // Initialize with the passed index
+  }
+
+  final List<Widget> _pages = <Widget>[
+    HomePage(userName: FirebaseAuth.instance.currentUser?.displayName ?? 'User'),
+    const GymkhanaPage(),
+    const NotificationsPage(),
+    const LNMPage(),
+    MorePage(),
+  ];
+
+  void _onItemTapped(int index) {
+    HapticFeedback.lightImpact();
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MainScaffold(
+      body: IndexedStack(
+        index: _selectedIndex,
+        children: _pages,
+      ),
+      currentIndex: _selectedIndex,
+      onItemTapped: _onItemTapped,
+    );
+  }
+}
+
+// ... (keep your existing AuthLoadingScreen and other classes)
 
 // =====================
 // AuthLoadingScreen
