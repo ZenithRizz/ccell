@@ -283,36 +283,49 @@ class LNMPage extends StatelessWidget {
               height: 1.1.h,
             ),
           ),
-          SizedBox(height: 14.h),
-          Row(
-            children: [
-              Container(
-                width: 60.w,
-                height: 60.h,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: const Color(0xFF3A4B57),
-                  image: const DecorationImage(
-                    image: AssetImage(
-                      'assets/pages/faces/rahul_banerjee_2.jpg',
+          SizedBox(height: 20.h),
+      Container(
+        padding: EdgeInsets.all(12.sp),
+        decoration: BoxDecoration(
+          color: Color(0xFF3A4B57).withOpacity(0.5),
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: Colors.white.withOpacity(0.1)),
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: 70.w,
+              height: 60.h,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: Colors.white.withOpacity(0.3), width: 1),
+                image: DecorationImage(
+                  image: AssetImage('assets/pages/faces/rahul_banerjee_2.jpg'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            SizedBox(width: 15.w),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Prof. Rahul Banerjee',
+                    style: GoogleFonts.poppins(
+                      color: Colors.white,
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w500,
                     ),
-                    fit: BoxFit.cover,
                   ),
-                ),
+                  
+                ],
               ),
-              SizedBox(width: 12.w),
-              Expanded(
-                child: Text(
-                  'Prof. Rahul Banerjee',
-                  style: GoogleFonts.poppins(
-                    color: Colors.white,
-                    fontSize: 15.sp,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
+        ),
+      ),
+      
           SizedBox(height: 14.h),
           Text(
             'The Institute, in spite of being young (founded in 2002, jointly by the Government of Rajasthan and the Lakshmi & Usha Mittal Foundation in the public-private partnership mode) is considered as one of the best institutions in its chosen areas of higher learning, both in the state and the country. In addition to having been accredited by the National Assessment & Accreditation Council (NAAC) as an "A" grade institution, the LNMIIT has been ranked fairly high by many different agencies in the recent past as may be noticed elsewhere on the official web-portal.',
