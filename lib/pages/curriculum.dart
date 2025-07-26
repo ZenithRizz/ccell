@@ -28,7 +28,7 @@ class CurriculumPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _buildButtonGrid(context, [
-                _ButtonData('B.Tech CSE', 'https://raw.githubusercontent.com/ccell2026/ccell/master/assets/pdfs/btech_cse.pdf'),
+                _ButtonData('B.Tech CSE', 'https://raw.githubusercontent.com/ccell2026/ccell/master/assets/pdfs/acadsmap/cse.pdf'),
                 _ButtonData('M.Tech CSE', 'https://raw.githubusercontent.com/ccell2026/ccell/master/assets/pdfs/mtech_cse.pdf'),
                 _ButtonData('B.Tech ECE', 'https://raw.githubusercontent.com/ccell2026/ccell/master/assets/pdfs/btech_ece.pdf'),
                 _ButtonData('M.Tech ECE', 'https://raw.githubusercontent.com/ccell2026/ccell/master/assets/pdfs/mtech_ece.pdf'),
