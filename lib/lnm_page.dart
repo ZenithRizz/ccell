@@ -133,13 +133,9 @@ class LNMPage extends StatelessWidget {
               gradient: const LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                colors: [
-                  Color(0xFF3A4B57),
-                  Color(0xFF2A3B47),
-                  Color(0xFF1A2B37),
-                ],
-                stops: [0.0, 0.5, 1.0],
+                colors: [Color(0xFF353F54), Color(0xFF222834)],
               ),
+              border: Border.all(color: Colors.white.withOpacity(0.2), width: 2),
               borderRadius: BorderRadius.circular(16),
               boxShadow: [
                 BoxShadow(
