@@ -183,12 +183,30 @@ class TechnologyCouncil extends StatelessWidget {
                       'https://www.instagram.com/cybros_lnmiit/',
                     ),
                     squareCard(
-                      "",
+                      "assets/images/tech/debsoc/debsoc_logo.jpg",
                       "Debsoc",
                       context,
                       "",
-                      [],
-                      [],
+                      [
+                        ""
+                      ],
+                      [
+                        {
+                          "name": "Chirag Mehta",
+                          "phone": "9810133673",
+                          "email": "22ucc030@lnmiit.ac.in"
+                        },
+                        {
+                          "name": "Devansh Rawal",
+                          "phone": "9928565121",
+                          "email": "22ucc034@lnmiit.ac.in"
+                        },
+                        {
+                          "name": "Vaibhav Agrawal",
+                          "phone": "6376897192",
+                          "email": "22ucc112@lnmiit.ac.in"
+                        }
+                      ],
                       'https://www.instagram.com/cybros_lnmiit?igsh=YjY0OGVjMWU4NW54',
                     ),
                     squareCard(
