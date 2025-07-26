@@ -32,19 +32,24 @@ class LNMPage extends StatelessWidget {
               SizedBox(height: 16),
               _buildCardGrid([
                 _CardData('Important\nContacts', Icons.contact_phone, () {
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (context) => const ImportantContactsPage(),
-                  ));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ImportantContactsPage(),
+                    ),
+                  );
                 }),
                 _CardData('HODs', Icons.person, () {
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (context) => HODsPage(),
-                  ));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HODsPage()),
+                  );
                 }),
                 _CardData('Hostel\nContacts', Icons.home, () {
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (context) => const HostelPage(),
-                  ));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const HostelPage()),
+                  );
                 }),
               ]),
               SizedBox(height: 28.h),
@@ -83,14 +88,18 @@ class LNMPage extends StatelessWidget {
                   );
                 }),
                 _CardData('Curriculum', Icons.book, () {
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (context) => const CurriculumPage(),
-                  ));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const CurriculumPage(),
+                    ),
+                  );
                 }),
                 _CardData('Important\nLinks', Icons.link, () {
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (context) => const LinksPage(),
-                  ));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const LinksPage()),
+                  );
                 }),
               ]),
               SizedBox(height: 28.h),
@@ -135,7 +144,10 @@ class LNMPage extends StatelessWidget {
                 end: Alignment.bottomRight,
                 colors: [Color(0xFF353F54), Color(0xFF222834)],
               ),
-              border: Border.all(color: Colors.white.withOpacity(0.2), width: 2),
+              border: Border.all(
+                color: Colors.white.withOpacity(0.2),
+                width: 2,
+              ),
               borderRadius: BorderRadius.circular(16),
               boxShadow: [
                 BoxShadow(
@@ -151,21 +163,17 @@ class LNMPage extends StatelessWidget {
               ],
             ),
             child: Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding: EdgeInsets.all(10.sp),
               child: Row(
                 children: [
-                  Icon(
-                    card.icon,
-                    size: 24,
-                    color: Colors.white,
-                  ),
-                  const SizedBox(width: 8),
+                  Icon(card.icon, size: 18.sp, color: Colors.white),
+                  SizedBox(width: 6.w),
                   Flexible(
                     child: Text(
                       card.title.replaceAll('\n', ' '),
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: Colors.white,
-                        fontSize: 14,
+                        fontSize: 13.sp,
                         fontWeight: FontWeight.w500,
                       ),
                       overflow: TextOverflow.ellipsis,
@@ -183,29 +191,82 @@ class LNMPage extends StatelessWidget {
 
   Widget _buildDirectorMessage() {
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(15.sp),
       decoration: BoxDecoration(
-        color: const Color(0xFF2A3B47),
+        gradient: LinearGradient(
+          colors: [Color(0xFF353F54), Color(0xFF222834)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        border: Border.all(color: Colors.white.withOpacity(0.2), width: 2),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
+        children: [
           Text(
-            'Welcome Message',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.w600,
+            'Welcome to The LNM Institute of Information Technology (LNMIIT), Jaipur! The LNMIIT is an institution of higher learning focused in select areas of Computing, Communication, ICT, Electronics and carefully chosen traditional engineering and sciences with an innovative blend of interdisciplinary flavor and contemporary relevance.',
+            style: GoogleFonts.inter(
+              color: Color(0xFFB0B0B0),
+              fontSize: 11.sp,
+              height: 1.1.h,
             ),
           ),
-          SizedBox(height: 8),
+          SizedBox(height: 14.h),
+          Row(
+            children: [
+              Container(
+                width: 60.w,
+                height: 60.h,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: const Color(0xFF3A4B57),
+                  image: const DecorationImage(
+                    image: AssetImage(
+                      'assets/pages/faces/rahul_banerjee_2.jpg',
+                    ),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              SizedBox(width: 12.w),
+              Expanded(
+                child: Text(
+                  'Prof. Rahul Banerjee',
+                  style: GoogleFonts.poppins(
+                    color: Colors.white,
+                    fontSize: 15.sp,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 14.h),
           Text(
-            'Welcome to The LNM Institute of Information Technology (LNMIIT), Jaipur!...',
+            'The Institute, in spite of being young (founded in 2002, jointly by the Government of Rajasthan and the Lakshmi & Usha Mittal Foundation in the public-private partnership mode) is considered as one of the best institutions in its chosen areas of higher learning, both in the state and the country. In addition to having been accredited by the National Assessment & Accreditation Council (NAAC) as an "A" grade institution, the LNMIIT has been ranked fairly high by many different agencies in the recent past as may be noticed elsewhere on the official web-portal.',
             style: TextStyle(
               color: Color(0xFFB0B0B0),
-              fontSize: 14,
-              height: 1.5,
+              fontSize: 11.sp,
+              height: 1.1.h,
+            ),
+          ),
+          SizedBox(height: 14.h),
+          Text(
+            'The Institute takes pride in its eco-system that aims to groom incoming students into academically strong yet well-rounded personality based professionals who could adapt themselves to the challenges posed by the ever-changing world and working environments.',
+            style: GoogleFonts.inter(
+              color: Color(0xFFB0B0B0),
+              fontSize: 11.sp,
+              height: 1.1.h,
+            ),
+          ),
+          SizedBox(height: 14.h),
+          Text(
+            'If you are an aspiring student, we welcome you to take a good look at our website and preferably consider visiting the campus for getting to know it even better by getting the first hand feel of its ambience and interacting with faculty and students so that you could take a well-informed decision. If you have already applied to the LNMIIT, have been offered an admission and accepted the offer, Congratulations and Welcome to this new home of yours for next few years!',
+            style: GoogleFonts.inter(
+              color: Color(0xFFB0B0B0),
+              fontSize: 11.sp,
+              height: 1.1.h,
             ),
           ),
         ],
