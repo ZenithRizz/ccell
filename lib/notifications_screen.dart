@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
@@ -62,14 +63,39 @@ class _NotificationPageState extends State<NotificationsPage> {
             children: [
               const SizedBox(height: 30),
               Center(
-                child: Text(
-                  'NOTIFICATION DASHBOARD',
-                  style: GoogleFonts.poppins(
-                    fontSize: 34,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  textAlign: TextAlign.center,
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(left: 4.w),
+                      child: Container(
+                        padding: EdgeInsets.all(10.h),
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [Color(0xFF353F54), Color(0xFF222834)],
+                          ),
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Icon(
+                          Icons.notifications_active,
+                          color: Colors.white,
+                          size: 32.r,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: Text(
+                        'NOTIFICATIONS',
+                        style: GoogleFonts.poppins(
+                          color: Colors.white,
+                          fontSize: 25.sp,
+                          fontWeight: FontWeight.w800,
+                          //letterSpacing: -1,
+                          height: 1.1,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(height: 20),
