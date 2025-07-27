@@ -348,7 +348,18 @@ class GymkhanaPage extends StatelessWidget {
                       imageUrl: "assets/images/esummit_logo.jpg",
                       description:
                           "E-Summit is LNMIIT Jaipur’s flagship celebration of entrepreneurship, innovation, and enterprise, bringing together some of the brightest young minds from across India. Designed to empower the next generation of changemakers, the summit sparks powerful conversations between budding entrepreneurs, venture capitalists, founders, and industry veterans.\nMore than just a startup conclave, E-Summit is a launchpad where ideas evolve into ventures, and raw potential meets expert mentorship. At the heart of E-Summit lies a mission to nurture entrepreneurial talent within the student community and inspire participants to tackle real-world problems through innovation. With top institutes and emerging startups in attendance, the event offers unmatched networking opportunities, bridging the academic, corporate, and startup ecosystems./nWhether you're a founder in the making, a problem-solver with an idea, or someone curious about the startup world, E-Summit  promises a platform to learn, connect, and lead. ",
-                      festHeads: [],
+                      festHeads: [
+                        {
+                          "name": "Aashrith Boppudi",
+                          "phone": "6302713914",
+                          "email": "22ucs051@lnmiit.ac.in",
+                        },
+                        {
+                          "name": "Mayank Rathi",
+                          "phone": "8824528009",
+                          "email": "22uec078@lnmiit.ac.in",
+                        },
+                      ],
                       galleryImages: [],
                       instaUrl: '',
                       emailUrl: "",
