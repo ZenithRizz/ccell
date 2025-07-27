@@ -40,7 +40,7 @@ class GymkhanaPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                   SizedBox(width: 14.w),
+                  SizedBox(width: 14.w),
                   Expanded(
                     child: Text(
                       'STUDENT GYMKHANA',
@@ -360,7 +360,12 @@ class GymkhanaPage extends StatelessWidget {
                           "email": "22uec078@lnmiit.ac.in",
                         },
                       ],
-                      galleryImages: [],
+                      galleryImages: [
+                        "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/esummit/esummit1.jpg",
+                        "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/esummit/esummit1.jpg",
+                        "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/esummit/esummit1.jpg",
+                        "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/esummit/esummit1.jpg",
+                      ],
                       instaUrl: '',
                       emailUrl: "",
                       youtubeUrl: "",
