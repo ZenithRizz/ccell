@@ -96,7 +96,7 @@ class TechnologyCouncil extends StatelessWidget {
                   childAspectRatio: 0.9,
                   children: [
                     squareCard(
-                      "",
+                      "assets/images/tech/astronomy/astro_logo.jpg",
                       "Astronomy",
                       context,
                       "",
@@ -201,19 +201,19 @@ class TechnologyCouncil extends StatelessWidget {
                       ],
                       [
                         {
-                          "name": "Chirag Mehta",
-                          "phone": "9810133673",
-                          "email": "22ucc030@lnmiit.ac.in"
+                          "name": "Adarsh Dwivedi",
+                          "phone": "9305597756",
+                          "email": "23ucs509@lnmiit.ac.in"
                         },
                         {
-                          "name": "Devansh Rawal",
-                          "phone": "9928565121",
-                          "email": "22ucc034@lnmiit.ac.in"
+                          "name": "Sukanya Singh Kirad",
+                          "phone": "9522580431",
+                          "email": "23uec629@lnmiit.ac.in"
                         },
                         {
-                          "name": "Vaibhav Agrawal",
-                          "phone": "6376897192",
-                          "email": "22ucc112@lnmiit.ac.in"
+                          "name": "Ujjawal Khatri",
+                          "phone": "9660546607",
+                          "email": "23uec635@lnmiit.ac.in"
                         }
                       ],
                       'https://www.instagram.com/thedebatesocietylnmiit/',
