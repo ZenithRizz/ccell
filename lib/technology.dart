@@ -102,6 +102,10 @@ class TechnologyCouncil extends StatelessWidget {
                       "",
                       [
                         "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/astronomy/astro1.jpg",
+                        "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/astronomy/astro2.jpg",
+                        "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/astronomy/astro3.JPG",
+                        "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/astronomy/astro4.JPG",
+                        "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/astronomy/astro5.jpg",
                       ],
                       [
                         {
