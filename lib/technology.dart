@@ -223,7 +223,12 @@ class TechnologyCouncil extends StatelessWidget {
                       "E Cell",
                       context,
                       "",
-                      [],
+                      [
+                        "https://raw.githubusercontent.com/ccell2026/ccell/22fb5cfe2d93314c1d13b56ced87da6cdcec5fe4/assets/images/tech/ecell/ecell1.jpg",
+                        "https://raw.githubusercontent.com/ccell2026/ccell/22fb5cfe2d93314c1d13b56ced87da6cdcec5fe4/assets/images/tech/ecell/ecell2.jpg",
+                        "https://raw.githubusercontent.com/ccell2026/ccell/22fb5cfe2d93314c1d13b56ced87da6cdcec5fe4/assets/images/tech/ecell/ecell3.jpg",
+                        "https://raw.githubusercontent.com/ccell2026/ccell/22fb5cfe2d93314c1d13b56ced87da6cdcec5fe4/assets/images/tech/ecell/ecell4.jpg",
+                      ],
                       [
                         {
                           "name": "Jimit Thakrar",
@@ -231,9 +236,19 @@ class TechnologyCouncil extends StatelessWidget {
                           "email": "23uec557@lnmiit.ac.in",
                         },
                         {
-                          "name": "Harsh Koringa",
-                          "phone": "8160552247",
-                          "email": "22ucs088@lnmiit.ac.in",
+                          "name": "Shiviansh Yadav",
+                          "phone": "9264930636",
+                          "email": "23uec623@lnmiit.ac.in",
+                        },
+                        {
+                          "name": "Sakasham Mewada",
+                          "phone": "7597024466",
+                          "email": "23ume543@lnmiit.ac.in",
+                        },
+                        {
+                          "name": "Satyam Shukla",
+                          "phone": "7984786107",
+                          "email": "23ucs753@lnmiit.ac.in",
                         },
                       ],
                       ' https://www.instagram.com/ecell.lnmiit?igsh=NTRsOWF6Y3ZwODJx',
