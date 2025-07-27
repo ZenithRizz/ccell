@@ -20,6 +20,7 @@ import 'lnm_page.dart';
 import 'firebase_options.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:login_page/coming_soon_page.dart';
 
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -204,6 +205,7 @@ class MyApp extends StatelessWidget {
           '/welcome': (context) => const WelcomeScreen(),
           '/hostel_registration': (context) => const HostelRegistrationScreen(),
           '/login': (context) => LoginPage(),
+          '/coming_soon': (context) => const ComingSoonPage(featureName: 'Feature'),
         },
         home: const AuthLoadingScreen(),
       ),

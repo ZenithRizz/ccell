@@ -12,6 +12,7 @@ import 'package:login_page/profile_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:login_page/gymkhana.dart';
 import 'package:login_page/notifications_screen.dart';
+import 'package:login_page/coming_soon_page.dart';
 
 import 'main.dart';
 
@@ -53,11 +54,15 @@ class _HomeDashboardState extends State<HomeDashboard>
     },
     'PYQs': {
       'image': 'lost_found.png',
+      'route': 'coming_soon',
+      'featureName': 'PYQs',
       'icon': Icons.library_books_outlined,
       'description': 'Report lost items or find lost belongings',
     },
     'Find the Location': {
       'image': 'find_location.png',
+      'route': 'coming_soon',
+      'featureName': 'Find the Location',
       'icon': Icons.location_on,
       'description': 'Navigate around campus with interactive maps',
     },
@@ -574,10 +579,30 @@ class _FancyButtonState extends State<FancyButton> {
         onTapDown: (_) => setState(() => _isPressed = true),
         onTapUp: (_) => setState(() => _isPressed = false),
         onTapCancel: () => setState(() => _isPressed = false),
+        // onTap: () async {
+        //   HapticFeedback.lightImpact();
+        //   if (widget.route != null && widget.route!.isNotEmpty) {
+        //     Navigator.pushNamed(context, '/${widget.route}');
+        //   } else if (widget.url != null && widget.url!.isNotEmpty) {
+        //     await _launchUrl(widget.url!);
+        //   }
+        // },
         onTap: () async {
           HapticFeedback.lightImpact();
           if (widget.route != null && widget.route!.isNotEmpty) {
-            Navigator.pushNamed(context, '/${widget.route}');
+            if (widget.route == 'coming_soon') {
+              // Navigate to coming soon page with feature name
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ComingSoonPage(
+                    featureName: widget.title,
+                  ),
+                ),
+              );
+            } else {
+              Navigator.pushNamed(context, '/${widget.route}');
+            }
           } else if (widget.url != null && widget.url!.isNotEmpty) {
             await _launchUrl(widget.url!);
           }
