@@ -100,7 +100,9 @@ class TechnologyCouncil extends StatelessWidget {
                       "Astronomy",
                       context,
                       "",
-                      [],
+                      [
+                        "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/astronomy/astro1.jpg",
+                      ],
                       [
                         {
                           "name": "Mudit Choudhary",
