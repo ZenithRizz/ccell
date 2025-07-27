@@ -219,16 +219,16 @@ class TechnologyCouncil extends StatelessWidget {
                       'https://www.instagram.com/thedebatesocietylnmiit/',
                     ),
                     squareCard(
-                      "",
+                      "assets/images/tech/ecell/ecell_logo.jpg",
                       "E Cell",
                       context,
                       "",
                       [],
                       [
                         {
-                          "name": "Deepanshu Gupta",
-                          "phone": "9145907801",
-                          "email": "22ucs058@lnmiit.ac.in",
+                          "name": "Jimit Thakrar",
+                          "phone": "8780579193",
+                          "email": "23uec557@lnmiit.ac.in",
                         },
                         {
                           "name": "Harsh Koringa",

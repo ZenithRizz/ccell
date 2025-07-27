@@ -189,6 +189,7 @@ flutter:
       - assets/pages/faces/
       - assets/images/tech/debsoc/debsoc_logo.jpg
       - assets/images/tech/astronomy/astro_logo.jpg
+      - assets/images/tech/ecell/ecell_logo.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
