@@ -177,7 +177,7 @@ flutter:
       - assets/images/despo/despo_logo.jpeg
       - assets/images/viva/viva_logo.png
       - assets/images/ted_logo.jpg
-      - assets/images/esummit_logo.jpg
+      - assets/images/esummit/esummit_logo.jpg
       - assets/images/cosha_logo.jpg
       - assets/images/youtube_logo.png
       - assets/images/tech/cybros/cybros_logo.jpg
@@ -191,6 +191,8 @@ flutter:
       - assets/images/tech/astronomy/astro_logo.jpg
       - assets/images/tech/ecell/ecell_logo.jpg
       - assets/images/comingsoon.png
+      - assets/images/campus map.jpg
+      - assets/images/cult_logo.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

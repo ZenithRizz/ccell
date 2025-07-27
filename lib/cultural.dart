@@ -26,7 +26,7 @@ class CulturalCouncil extends StatelessWidget {
                       child: CircleAvatar(
                         radius: 60.r,
                         backgroundImage: AssetImage(
-                          "assets/images/tech_logo.jpg",
+                          "assets/images/cult_logo.jpeg",
                         ),
                         backgroundColor: Colors.transparent,
                       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:login_page/campusmap.dart';
 import 'package:login_page/pdfviewer.dart';
 import 'pages/impContacts.dart';
 import 'pages/hods.dart';
@@ -33,14 +34,10 @@ class LNMPage extends StatelessWidget {
                         ),
                         borderRadius: BorderRadius.circular(16),
                       ),
-                      child: Icon(
-                        Icons.group,
-                        color: Colors.white,
-                        size: 32.r,
-                      ),
+                      child: Icon(Icons.group, color: Colors.white, size: 32.r),
                     ),
                   ),
-                   SizedBox(width: 14.w),
+                  SizedBox(width: 14.w),
                   Expanded(
                     child: Text(
                       'FACULTIES',
@@ -96,7 +93,7 @@ class LNMPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                   SizedBox(width: 14.w),
+                  SizedBox(width: 14.w),
                   Expanded(
                     child: Text(
                       'MISCELLANEOUS',
@@ -115,11 +112,7 @@ class LNMPage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const PDFViewerPage(
-                        title: 'Campus Map',
-                        pdfUrl:
-                            'https://raw.githubusercontent.com/ccell2026/ccell/master/assets/pdfs/CampusMap.pdf',
-                      ),
+                      builder: (context) => const CampusMapPage(),
                     ),
                   );
                 }),
@@ -170,7 +163,7 @@ class LNMPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                   SizedBox(width: 14.w),
+                  SizedBox(width: 14.w),
                   Expanded(
                     child: Text(
                       "DIRECTOR'S MESSAGE",
@@ -284,48 +277,52 @@ class LNMPage extends StatelessWidget {
             ),
           ),
           SizedBox(height: 20.h),
-      Container(
-        padding: EdgeInsets.all(12.sp),
-        decoration: BoxDecoration(
-          color: Color(0xFF3A4B57).withOpacity(0.5),
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: Colors.white.withOpacity(0.1)),
-        ),
-        child: Row(
-          children: [
-            Container(
-              width: 70.w,
-              height: 60.h,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: Colors.white.withOpacity(0.3), width: 1),
-                image: DecorationImage(
-                  image: AssetImage('assets/pages/faces/rahul_banerjee_2.jpg'),
-                  fit: BoxFit.cover,
-                ),
-              ),
+          Container(
+            padding: EdgeInsets.all(12.sp),
+            decoration: BoxDecoration(
+              color: Color(0xFF3A4B57).withOpacity(0.5),
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: Colors.white.withOpacity(0.1)),
             ),
-            SizedBox(width: 15.w),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Prof. Rahul Banerjee',
-                    style: GoogleFonts.poppins(
-                      color: Colors.white,
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w500,
+            child: Row(
+              children: [
+                Container(
+                  width: 70.w,
+                  height: 60.h,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: Colors.white.withOpacity(0.3),
+                      width: 1,
+                    ),
+                    image: DecorationImage(
+                      image: AssetImage(
+                        'assets/pages/faces/rahul_banerjee_2.jpg',
+                      ),
+                      fit: BoxFit.cover,
                     ),
                   ),
-                  
-                ],
-              ),
+                ),
+                SizedBox(width: 15.w),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Prof. Rahul Banerjee',
+                        style: GoogleFonts.poppins(
+                          color: Colors.white,
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
-      
+          ),
+
           SizedBox(height: 14.h),
           Text(
             'The Institute, in spite of being young (founded in 2002, jointly by the Government of Rajasthan and the Lakshmi & Usha Mittal Foundation in the public-private partnership mode) is considered as one of the best institutions in its chosen areas of higher learning, both in the state and the country. In addition to having been accredited by the National Assessment & Accreditation Council (NAAC) as an "A" grade institution, the LNMIIT has been ranked fairly high by many different agencies in the recent past as may be noticed elsewhere on the official web-portal.',
