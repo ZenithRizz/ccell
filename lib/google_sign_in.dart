@@ -1,86 +1,34 @@
-import 'dart:convert';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:http/http.dart' as http;
 import 'package:login_page/loading_screen.dart';
 import 'package:login_page/notifications_api/notification_state.dart';
+import 'package:login_page/utils/guest_id_manager.dart';
+import 'package:provider/provider.dart'; // modified by cursor - added provider import
+import 'notification_repository.dart'; // modified by cursor - added notification repository import
 
 
 
 
-Future<void> initializeFCM(String userId) async {
-  final FirebaseMessaging messaging = FirebaseMessaging.instance;
-
-  // Request notification permissions (iOS + Web)
-  final NotificationSettings settings = await messaging.requestPermission(
-    alert: true,
-    announcement: false,
-    badge: true,
-    sound: true,
-    carPlay: false,
-    criticalAlert: false,
-    provisional: false,
-  );
-
-
-  if (kDebugMode) {
-    print("🔔 User permission: ${settings.authorizationStatus}");
-  }
-
-  // Subscribe to global topic
+// modified by cursor - updated to use NotificationRepository
+Future<void> initializeFCM(BuildContext context, String userId) async {
+  final notificationRepo = Provider.of<NotificationRepository>(context, listen: false);
+  
   try {
-    await messaging.subscribeToTopic("all-users");
+    // Register token using repository
+    await notificationRepo.registerToken(userId: userId);
+    
+    // Subscribe to topics using repository
+    await notificationRepo.subscribeToTopic('all-users');
+    
     if (kDebugMode) {
-      print("📌 Subscribed to all-users topic");
+      print('✅ FCM initialized for user: $userId');
     }
   } catch (e) {
     if (kDebugMode) {
-      print("⚠️ Failed to subscribe to topic: $e");
-    }
-  }
-
-
-  // Get FCM token (use vapidKey for web)
-  String? token;
-  try {
-    token = await messaging.getToken(
-      vapidKey: kIsWeb
-          ? "BO1lGHgcWJXK1vANSjKKMAScw5CEXFfzFKUZlfufe1MrKSTa5pUET-wPxUxx0O2UcAxZj2fjmSx_Nog8hNu6EEM"
-          : null,
-    );
-    if (kDebugMode) {
-      print('✅ FCM Token: $token');
-    }
-
-    if (kDebugMode) {
-      print("📤 Sending token registration:");
-      print("userId: '$userId'");
-      print("token: '$token'");
-    }
-
-    // Send token to backend
-    final response = await http.post(
-      Uri.parse('https://ccell-notification-api.onrender.com/api/tokens/register'),
-      headers: {'Content-Type': 'application/json'},
-      body: jsonEncode({'userId': userId, 'token': token}),
-    );
-
-    if (response.statusCode == 200) {
-      if (kDebugMode) {
-        print("✅ Token registered with backend");
-      }
-    } else {
-      if (kDebugMode) {
-        print("❌ Failed to register token: ${response.body}");
-      }
-    }
-  } catch (e) {
-    if (kDebugMode) {
-      print("❌ Error while retrieving or sending FCM token: $e");
+      print('❌ FCM initialization failed: $e');
     }
   }
 }
@@ -153,7 +101,8 @@ Future<void> signInWithCollegeGoogleAccount(BuildContext context) async {
 
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      await initializeFCM(user.email ?? user.uid);
+      // modified by cursor - use repository-based FCM initialization
+      await initializeFCM(context, user.email ?? user.uid);
       NotificationState.permissionGranted = true;
       requestNotificationPermission();
     } else {
@@ -161,6 +110,9 @@ Future<void> signInWithCollegeGoogleAccount(BuildContext context) async {
         print("❌ Firebase user not logged in");
       }
     }
+
+    // Clear guest ID and merge account if needed
+    await GuestIdManager.clearGuestId();
 
     // Navigate to loading screen, then to home screen
     Navigator.pushReplacement(

@@ -4,15 +4,17 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
 import 'package:login_page/login_page.dart';
 import 'package:login_page/more_page.dart';
 import 'package:login_page/home_page.dart';
 import 'package:login_page/notifications_screen.dart';
 import 'package:login_page/profile_page.dart';
+import 'package:login_page/services/notification_service.dart';
 import 'package:login_page/welcome_screen.dart';
 import 'package:login_page/hostel_registration.dart';
 import 'package:login_page/loading_screen.dart';
-import 'package:pwa_install/pwa_install.dart';
+
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'gymkhana.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -21,6 +23,9 @@ import 'firebase_options.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:login_page/coming_soon_page.dart';
+import 'package:provider/provider.dart'; // modified by cursor - added provider import
+
+import 'notification_repository.dart';
 
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -36,14 +41,81 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  // Initialize Firebase with web-specific config
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  final notificationRepo = NotificationRepository(
+    client: http.Client(),
+    baseUrl: 'https://ccell-notification-api.onrender.com/api', // modified by cursor - updated to correct base URL
+  );
+
+  // Configure notifications differently for web vs mobile using repository
+  if (kIsWeb) {
+    await _setupWebPushNotifications(notificationRepo);
+  } else {
+    await _setupMobilePushNotifications(notificationRepo);
+  }
+
+  runApp(
+    Provider(
+      create: (context) => notificationRepo,
+      child: const MyApp(),
+    ),
+  );
+}
+
+// ================= WEB CONFIGURATION =================
+Future<void> _setupWebPushNotifications(NotificationRepository repo) async {
+  try {
+    // Request browser permission
+    final messaging = FirebaseMessaging.instance;
+    NotificationSettings settings = await messaging.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,
+    );
+
+    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+      if (kDebugMode) {
+        print('✅ User granted web push permission');
+      }
+
+      // Use repository to register token
+      await repo.registerToken(userId: await _getCurrentUserId());
+
+      // Subscribe to default topics
+      await repo.subscribeToTopic('all-users');
+
+      // Handle foreground messages
+      FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+        if (kDebugMode) {
+          print('📱 Web push received while app is open!');
+          print('Title: ${message.notification?.title}');
+          print('Body: ${message.notification?.body}');
+        }
+        _showWebNotification(message);
+      });
+    }
+  } catch (e) {
+    if (kDebugMode) {
+      print('❌ Error configuring web push: $e');
+    }
+  }
+}
+
+// ================= MOBILE CONFIGURATION =================
+Future<void> _setupMobilePushNotifications(NotificationRepository repo) async {
+  // Background handler (must be top-level)
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
-  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-  FlutterLocalNotificationsPlugin();
+  // Initialize local notifications plugin
+  final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
   const AndroidInitializationSettings initializationSettingsAndroid =
   AndroidInitializationSettings('@mipmap/ic_launcher');
@@ -53,10 +125,11 @@ Future<void> main() async {
 
   await flutterLocalNotificationsPlugin.initialize(initializationSettings);
 
+  // Create notification channel (Android)
   const AndroidNotificationChannel channel = AndroidNotificationChannel(
-    'c-cell-notifs', // Must match the ID used in AndroidNotificationDetails
-    'C-Cell', // User-visible name
-    description: 'This channel is used for notifications from the C-Cell, LNMIIT.', // User-visible description
+    'c-cell-notifs',
+    'C-Cell',
+    description: 'Notifications from the C-Cell, LNMIIT',
     importance: Importance.high,
   );
 
@@ -64,39 +137,43 @@ Future<void> main() async {
       .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
       ?.createNotificationChannel(channel);
 
+  // Use repository to register token
+  await repo.registerToken(userId: await _getCurrentUserId());
+
+  // Subscribe to default topics
+  await repo.subscribeToTopic('all-users');
+
+  // Foreground message handler
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
     RemoteNotification? notification = message.notification;
 
     if (notification != null) {
       if (kDebugMode) {
-        print("🔥 Foreground push received!");
-        print("Title: ${message.notification?.title}");
-        print("Body: ${message.notification?.body}");
+        print("📱 Foreground push received!");
+        print("Title: ${notification.title}");
+        print("Body: ${notification.body}");
       }
-      if (!kIsWeb) {
-        flutterLocalNotificationsPlugin.show(
-         notification.hashCode,
-         notification.title,
-         notification.body,
-         NotificationDetails(
-           android: AndroidNotificationDetails(
-               'c-cell-notifs',
-             'General',
-             importance: Importance.high,
-             priority: Priority.max,
-             color: Color(0xFF143FA6),
-             enableLights: true,
-             enableVibration: true,
-             largeIcon: FilePathAndroidBitmap('assets/images/ccell_logo.png'),
-             visibility: NotificationVisibility.public,
-           ),
-         ),
-       );}
 
+      flutterLocalNotificationsPlugin.show(
+        notification.hashCode,
+        notification.title,
+        notification.body,
+        NotificationDetails(
+          android: AndroidNotificationDetails(
+            'c-cell-notifs',
+            'General',
+            importance: Importance.high,
+            priority: Priority.max,
+            color: const Color(0xFF143FA6),
+            enableLights: true,
+            enableVibration: true,
+            largeIcon: const FilePathAndroidBitmap('assets/images/ccell_logo.png'),
+            visibility: NotificationVisibility.public,
+          ),
+        ),
+      );
     }
   });
-
-  runApp(const MyApp());
 }
 
 // ... (keep all your existing imports and Firebase setup code)
@@ -235,7 +312,7 @@ class _MainNavigationWrapperState extends State<MainNavigationWrapper> {
   }
 
   final List<Widget> _pages = <Widget>[
-    HomePage(userName: FirebaseAuth.instance.currentUser?.displayName ?? 'User'),
+    HomePage(userName: FirebaseAuth.instance.currentUser!.displayName!),
     const GymkhanaPage(),
     const NotificationsPage(),
     const LNMPage(),
@@ -326,7 +403,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
   static final List<Widget> _pages = <Widget>[
-    HomePage(userName: FirebaseAuth.instance.currentUser!.displayName!),
+HomePage(userName: FirebaseAuth.instance.currentUser!.displayName!),
     const GymkhanaPage(), 
     const NotificationsPage(),
     const LNMPage(),
@@ -419,3 +496,33 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
+// ================= HELPER FUNCTIONS =================
+// Helper method to get current user ID
+Future<String?> _getCurrentUserId() async {
+  final user = FirebaseAuth.instance.currentUser;
+  return user?.uid;
+}
+
+// Helper method to show web notifications
+void _showWebNotification(RemoteMessage message) {
+  if (kIsWeb && message.notification != null) {
+    if (kDebugMode) {
+      print('📱 Showing web notification: ${message.notification?.title}');
+    }
+
+    // Show browser notification if permission is granted
+    _showBrowserNotification(
+      message.notification!.title ?? 'New Notification',
+      message.notification!.body ?? '',
+    );
+  }
+}
+
+// Show native browser notification
+void _showBrowserNotification(String title, String body) {
+  // This will trigger the browser's native notification system
+  // The actual display is handled by the service worker
+  if (kDebugMode) {
+    print('🔔 Browser notification triggered: $title');
+  }
+}

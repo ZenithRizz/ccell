@@ -39,28 +39,28 @@ class _ChecklistScreenState extends State<ChecklistScreen>
       color: const Color(0xFF10B981),
     ),
     _ChecklistStep(
-      title: 'Biometric Registration',
-      description: 'Complete biometric data registration for ID card',
-      icon: Icons.fingerprint_rounded,
-      route: BiometricScreen(),
-      keyName: 'biometric_done',
-      color: const Color(0xFFEC4899),
-    ),
-    _ChecklistStep(
       title: 'Credential Collection',
-      description: 'Collect your student ID card and login credentials',
+      description: 'Collect your login credentials',
       icon: Icons.badge_rounded,
       route: CredentialCollectionScreen(),
       keyName: 'credential_collection_done',
-      color: const Color(0xFFF59E0B),
+      color: const Color(0xFFEC4899),
     ),
     _ChecklistStep(
       title: 'Anti Ragging Declaration',
-      description: 'Sign the mandatory anti-ragging declaration form',
+      description: 'Sign the mandatory anti-ragging declaration form & ID card verification',
       icon: Icons.security_rounded,
       route: AntiRaggingScreen(),
       keyName: 'anti_ragging_done',
       color: const Color(0xFF8B5CF6),
+    ),
+    _ChecklistStep(
+      title: 'Biometric Registration',
+      description: 'Complete biometric data registration',
+      icon: Icons.fingerprint_rounded,
+      route: BiometricScreen(),
+      keyName: 'biometric_done',
+      color: const Color(0xFFF59E0B0),
     ),
     _ChecklistStep(
       title: 'ID Card Collection',
@@ -185,8 +185,13 @@ class _ChecklistScreenState extends State<ChecklistScreen>
     final size = MediaQuery.of(context).size;
     final isDesktop = size.width >= 1024;
     final isTablet = size.width >= 768 && size.width < 1024;
+    final isMobile = size.width < 768;
     final allDone = _done.every((element) => element);
     final completedCount = _done.where((done) => done).length;
+    
+    // Dynamic scaling factors based on screen size
+    final scaleFactor = isMobile ? 0.85 : (isTablet ? 0.95 : 1.0);
+    final textScaleFactor = MediaQuery.of(context).textScaleFactor.clamp(0.8, 1.2);
 
     return Scaffold(
       body: Container(
@@ -210,8 +215,8 @@ class _ChecklistScreenState extends State<ChecklistScreen>
                 _buildSliverAppBar(isDesktop, completedCount),
                 SliverPadding(
                   padding: EdgeInsets.symmetric(
-                    horizontal: isDesktop ? 48 : (isTablet ? 32 : 20),
-                    vertical: 24,
+                    horizontal: (isDesktop ? 48 : (isTablet ? 32 : 20)) * scaleFactor,
+                    vertical: 24 * scaleFactor,
                   ),
                   sliver: SliverList(
                     delegate: SliverChildListDelegate([
@@ -235,8 +240,12 @@ class _ChecklistScreenState extends State<ChecklistScreen>
   }
 
   Widget _buildSliverAppBar(bool isDesktop, int completedCount) {
+    final size = MediaQuery.of(context).size;
+    final isMobile = size.width < 768;
+    final scaleFactor = isMobile ? 0.85 : (size.width >= 768 && size.width < 1024 ? 0.95 : 1.0);
+    
     return SliverAppBar(
-      expandedHeight: 120,
+      expandedHeight: (120 * scaleFactor).clamp(80.0, 120.0),
       floating: false,
       pinned: true,
       backgroundColor: Colors.transparent,
@@ -266,19 +275,25 @@ class _ChecklistScreenState extends State<ChecklistScreen>
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
-            'Student Onboarding',
-            style: GoogleFonts.poppins(
-              fontSize: isDesktop ? 22 : 20,
-              fontWeight: FontWeight.w700,
-              color: Colors.white,
+          Flexible(
+            child: Text(
+              'Student Onboarding',
+              style: GoogleFonts.poppins(
+                fontSize: ((isDesktop ? 22 : 20) * scaleFactor).clamp(16.0, 22.0),
+                fontWeight: FontWeight.w700,
+                color: Colors.white,
+              ),
+              overflow: TextOverflow.ellipsis,
             ),
           ),
-          Text(
-            '$completedCount of ${steps.length} completed',
-            style: GoogleFonts.inter(
-              fontSize: 12,
-              color: Colors.white70,
+          Flexible(
+            child: Text(
+              '$completedCount of ${steps.length} completed',
+              style: GoogleFonts.inter(
+                fontSize: (12 * scaleFactor).clamp(10.0, 14.0),
+                color: Colors.white70,
+              ),
+              overflow: TextOverflow.ellipsis,
             ),
           ),
         ],
@@ -287,8 +302,12 @@ class _ChecklistScreenState extends State<ChecklistScreen>
   }
 
   Widget _buildProgressSection(bool isDesktop, int completedCount) {
+    final size = MediaQuery.of(context).size;
+    final isMobile = size.width < 768;
+    final scaleFactor = isMobile ? 0.85 : (size.width >= 768 && size.width < 1024 ? 0.95 : 1.0);
+    
     return Container(
-      padding: EdgeInsets.all(isDesktop ? 32 : 24),
+      padding: EdgeInsets.all((isDesktop ? 32 : 24) * scaleFactor),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
@@ -330,17 +349,20 @@ class _ChecklistScreenState extends State<ChecklistScreen>
                     Text(
                       'Progress Overview',
                       style: GoogleFonts.poppins(
-                        fontSize: isDesktop ? 20 : 18,
+                        fontSize: ((isDesktop ? 20 : 18) * scaleFactor).clamp(14.0, 20.0),
                         fontWeight: FontWeight.w700,
                         color: Colors.white,
                       ),
+                      overflow: TextOverflow.ellipsis,
                     ),
                     Text(
                       'Complete all steps to access full student features',
                       style: GoogleFonts.inter(
-                        fontSize: isDesktop ? 14 : 12,
+                        fontSize: ((isDesktop ? 14 : 12) * scaleFactor).clamp(10.0, 14.0),
                         color: Colors.white70,
                       ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
                     ),
                   ],
                 ),
@@ -349,7 +371,7 @@ class _ChecklistScreenState extends State<ChecklistScreen>
                 Text(
                   '${((completedCount / steps.length) * 100).round()}%',
                   style: GoogleFonts.poppins(
-                    fontSize: 24,
+                    fontSize: (24 * scaleFactor).clamp(18.0, 24.0),
                     fontWeight: FontWeight.w800,
                     color: const Color(0xFF8B5CF6),
                   ),
@@ -409,8 +431,12 @@ class _ChecklistScreenState extends State<ChecklistScreen>
   }
 
   Widget _buildInstructions(bool isDesktop) {
+    final size = MediaQuery.of(context).size;
+    final isMobile = size.width < 768;
+    final scaleFactor = isMobile ? 0.85 : (size.width >= 768 && size.width < 1024 ? 0.95 : 1.0);
+    
     return Container(
-      padding: EdgeInsets.all(isDesktop ? 24 : 20),
+      padding: EdgeInsets.all((isDesktop ? 24 : 20) * scaleFactor),
       decoration: BoxDecoration(
         color: const Color(0xFF1E40AF).withOpacity(0.1),
         borderRadius: BorderRadius.circular(16),
@@ -437,10 +463,12 @@ class _ChecklistScreenState extends State<ChecklistScreen>
             child: Text(
               'Tap on each step below to complete your registration process. You can mark steps as complete and track your progress.',
               style: GoogleFonts.inter(
-                fontSize: isDesktop ? 14 : 13,
+                fontSize: ((isDesktop ? 14 : 13) * scaleFactor).clamp(11.0, 14.0),
                 color: const Color(0xFF3B82F6),
                 height: 1.4,
               ),
+              overflow: TextOverflow.visible,
+              maxLines: 3,
             ),
           ),
         ],
@@ -473,6 +501,9 @@ class _ChecklistScreenState extends State<ChecklistScreen>
   Widget _buildChecklistItem(int index, bool isDesktop) {
     final step = steps[index];
     final isCompleted = _done[index];
+    final size = MediaQuery.of(context).size;
+    final isMobile = size.width < 768;
+    final scaleFactor = isMobile ? 0.85 : (size.width >= 768 && size.width < 1024 ? 0.95 : 1.0);
 
     // Use green color when completed, else step color
     final Color boxColor = isCompleted
@@ -498,7 +529,7 @@ class _ChecklistScreenState extends State<ChecklistScreen>
         borderRadius: BorderRadius.circular(20),
         onTap: () => _navigateToStep(index),
         child: Container(
-          padding: EdgeInsets.all(isDesktop ? 24 : 20),
+          padding: EdgeInsets.all((isDesktop ? 24 : 20) * scaleFactor),
           decoration: BoxDecoration(
             color: boxColor,
             borderRadius: BorderRadius.circular(20),
@@ -520,7 +551,7 @@ class _ChecklistScreenState extends State<ChecklistScreen>
                 child: Icon(
                   isCompleted ? Icons.check_rounded : step.icon,
                   color: isCompleted ? Colors.white : step.color,
-                  size: isDesktop ? 24 : 20,
+                  size: ((isDesktop ? 24 : 20) * scaleFactor).clamp(16.0, 24.0),
                 ),
               ),
               const SizedBox(width: 16),
@@ -531,19 +562,23 @@ class _ChecklistScreenState extends State<ChecklistScreen>
                     Text(
                       step.title,
                       style: GoogleFonts.poppins(
-                        fontSize: isDesktop ? 18 : 16,
+                        fontSize: ((isDesktop ? 18 : 16) * scaleFactor).clamp(13.0, 18.0),
                         fontWeight: FontWeight.w600,
                         color: textColor,
                       ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
                     ),
-                    const SizedBox(height: 4),
+                    SizedBox(height: 4 * scaleFactor),
                     Text(
                       step.description,
                       style: GoogleFonts.inter(
-                        fontSize: isDesktop ? 14 : 12,
+                        fontSize: ((isDesktop ? 14 : 12) * scaleFactor).clamp(10.0, 14.0),
                         color: descColor,
                         height: 1.3,
                       ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 3,
                     ),
                   ],
                 ),
@@ -559,7 +594,7 @@ class _ChecklistScreenState extends State<ChecklistScreen>
                       color: isCompleted
                           ? Colors.white
                           : step.color.withOpacity(0.7),
-                      size: isDesktop ? 28 : 24,
+                      size: ((isDesktop ? 28 : 24) * scaleFactor).clamp(20.0, 28.0),
                     ),
                   ),
                   Icon(
@@ -579,12 +614,16 @@ class _ChecklistScreenState extends State<ChecklistScreen>
   }
 
   Widget _buildActionButtons(bool isDesktop, bool allDone) {
+    final size = MediaQuery.of(context).size;
+    final isMobile = size.width < 768;
+    final scaleFactor = isMobile ? 0.85 : (size.width >= 768 && size.width < 1024 ? 0.95 : 1.0);
+    
     return Column(
       children: [
         if (allDone) ...[
           Container(
             width: double.infinity,
-            padding: EdgeInsets.all(isDesktop ? 24 : 20),
+            padding: EdgeInsets.all((isDesktop ? 24 : 20) * scaleFactor),
             decoration: BoxDecoration(
               gradient: const LinearGradient(
                 colors: [Color(0xFF10B981), Color(0xFF059669)],
@@ -610,19 +649,22 @@ class _ChecklistScreenState extends State<ChecklistScreen>
                 Text(
                   'Congratulations!',
                   style: GoogleFonts.poppins(
-                    fontSize: isDesktop ? 24 : 20,
+                    fontSize: ((isDesktop ? 24 : 20) * scaleFactor).clamp(16.0, 24.0),
                     fontWeight: FontWeight.w700,
                     color: Colors.white,
                   ),
+                  overflow: TextOverflow.ellipsis,
                 ),
-                const SizedBox(height: 8),
+                SizedBox(height: 8 * scaleFactor),
                 Text(
                   'You have completed all onboarding steps. You can now sign in with your student account.',
                   textAlign: TextAlign.center,
                   style: GoogleFonts.inter(
-                    fontSize: isDesktop ? 14 : 12,
+                    fontSize: ((isDesktop ? 14 : 12) * scaleFactor).clamp(10.0, 14.0),
                     color: Colors.white.withOpacity(0.9),
                   ),
+                  overflow: TextOverflow.visible,
+                  maxLines: 3,
                 ),
                 const SizedBox(height: 24),
                 ElevatedButton.icon(
@@ -638,8 +680,8 @@ class _ChecklistScreenState extends State<ChecklistScreen>
                     backgroundColor: Colors.white,
                     foregroundColor: const Color(0xFF10B981),
                     padding: EdgeInsets.symmetric(
-                      horizontal: isDesktop ? 32 : 24,
-                      vertical: isDesktop ? 16 : 12,
+                      horizontal: ((isDesktop ? 32 : 24) * scaleFactor).clamp(16.0, 32.0),
+                      vertical: ((isDesktop ? 16 : 12) * scaleFactor).clamp(8.0, 16.0),
                     ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
@@ -665,7 +707,7 @@ class _ChecklistScreenState extends State<ChecklistScreen>
                 foregroundColor: Colors.white70,
                 side: const BorderSide(color: Colors.white30),
                 padding: EdgeInsets.symmetric(
-                  vertical: isDesktop ? 16 : 12,
+                  vertical: ((isDesktop ? 16 : 12) * scaleFactor).clamp(8.0, 16.0),
                 ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),

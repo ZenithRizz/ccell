@@ -231,7 +231,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                    color: const Color(0xFF178582).withValues(alpha: 0.3),
+                    color: const Color(0xFF39E7E3).withValues(alpha: 0.2),
                     blurRadius: 30,
                     spreadRadius: 10,
                   ),
@@ -239,7 +239,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
               ),
               child: Image.asset(
                 'assets/images/ccell_logo_dark.png',
-                height: isDesktop ? 350 : 320,
+                height: isDesktop ? 350 : 280,
                 fit: BoxFit.contain,
               ),
             ),
@@ -477,6 +477,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
         setState(() {
           _isSigningIn = false;
         });
+
       }
     }
   }
