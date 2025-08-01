@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:login_page/idcard.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'login_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -266,7 +267,7 @@ class _AntiRaggingScreenState extends State<AntiRaggingScreen>
                             ),
                           ),
                           Text(
-                            'Final step of your admission process',
+                            'Penultimate step of your admission process',
                             style: GoogleFonts.inter(
                               fontSize: isDesktop ? 16 : 14,
                               color: Colors.white.withOpacity(0.8),
@@ -317,7 +318,7 @@ class _AntiRaggingScreenState extends State<AntiRaggingScreen>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Submit the anti-ragging declaration form at the CP2 Lab to complete your admission.',
+                  'Submit the anti-ragging declaration form at the CP2 Lab.',
                   style: GoogleFonts.poppins(
                     fontSize: isDesktop ? 16 : 14,
                     fontWeight: FontWeight.w600,
@@ -639,14 +640,14 @@ class _AntiRaggingScreenState extends State<AntiRaggingScreen>
       width: double.infinity,
       child: _buildActionButton(
         icon: allDone ? Icons.login_rounded : Icons.arrow_back_rounded,
-        label: allDone ? 'Finish & Proceed to Login' : 'Back to Checklist',
+        label: allDone ? 'Proceed to ID Card Collection' : 'Back to Checklist',
         color: allDone ? const Color(0xFF10B981) : const Color(0xFFF59E0B),
         onTap: () {
           HapticFeedback.lightImpact();
           if (allDone) {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => LoginPage()),
+              MaterialPageRoute(builder: (context) => IdCardScreen()),
             );
           } else {
             Navigator.pushReplacement(

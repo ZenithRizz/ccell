@@ -14,21 +14,54 @@ firebase.initializeApp({
 
 const messaging = firebase.messaging();
 
-// Optional:
+// Background message handler
 messaging.onBackgroundMessage(function(payload) {
   console.log('[firebase-messaging-sw.js] Received background message ', payload);
-  const { title, body, image } = payload.notification;
-
-  self.registration.showNotification(title, {
-    body: body,
-    icon: 'web-app-manifest-192x192.png',
-    image: image,
+  
+  // Extract notification data
+  const notificationTitle = payload.notification?.title || 'C-Cell Notification';
+  const notificationOptions = {
+    body: payload.notification?.body || 'You have a new notification',
+    icon: '/web-app-manifest-192x192.png',
+    badge: '/web-app-manifest-192x192.png',
     vibrate: [200, 100, 100],
     requireInteraction: true,
-  });
+    actions: [
+      {
+        action: 'open',
+        title: 'Open App'
+      }
+    ],
+    data: {
+      url: payload.data?.click_action || '/'
+    }
+  };
 
-  self.addEventListener('notificationclick', (event) => {
-    event.notification.close();
-    clients.openWindow('https://yourdomain.com/notifications');
-  });
+  return self.registration.showNotification(notificationTitle, notificationOptions);
+});
+
+// Handle notification click events
+self.addEventListener('notificationclick', (event) => {
+  console.log('[firebase-messaging-sw.js] Notification clicked', event);
+  
+  event.notification.close();
+  
+  // Open the app when notification is clicked
+  const urlToOpen = event.notification.data?.url || '/';
+  
+  event.waitUntil(
+    clients.matchAll({ type: 'window', includeUncontrolled: true })
+      .then((clientList) => {
+        // Check if there's already a window/tab open with the target URL
+        for (const client of clientList) {
+          if (client.url === urlToOpen && 'focus' in client) {
+            return client.focus();
+          }
+        }
+        // If no window/tab is open, open a new one
+        if (clients.openWindow) {
+          return clients.openWindow(urlToOpen);
+        }
+      })
+  );
 });

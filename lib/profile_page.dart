@@ -9,6 +9,7 @@ import 'package:login_page/login_page.dart';
 import 'dart:io' show File;
 import 'package:flutter/foundation.dart' show kIsWeb, Uint8List;
 import 'package:image_picker/image_picker.dart';
+import 'utils/guest_id_manager.dart'; // modified by cursor - added guest id manager import
 
 
 
@@ -139,9 +140,15 @@ class _ProfilePageState extends State<ProfilePage> {
       // Then sign out from Firebase
       await FirebaseAuth.instance.signOut();
 
-      print("User signed out successfully.");
+      // Clear guest ID and notification data
+      await GuestIdManager.clearGuestId();
+      
+      // Note: The backend will handle token cleanup when user signs out
+      // You might want to add a sign-out endpoint to your backend if needed
+
+      print("✅ User signed out successfully.");
     } catch (e) {
-      print("Error signing out: $e");
+      print("❌ Error signing out: $e");
     }
   }
 
@@ -393,7 +400,7 @@ class ProfileImage extends StatelessWidget {
     } else if (photoUrl.isNotEmpty) {
       imageProvider = NetworkImage(photoUrl);
     } else {
-      imageProvider = const AssetImage('assets/images/profile.png');
+      imageProvider = AssetImage('assets/images/profile.png');
     }
 
     return Stack(

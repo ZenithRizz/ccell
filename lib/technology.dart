@@ -99,7 +99,7 @@ class TechnologyCouncil extends StatelessWidget {
                       "assets/images/tech/astronomy/astro_logo.jpg",
                       "Astronomy",
                       context,
-                      "",
+                      "The Astronomy Club fuels student passion for the wonders of astronomy and space exploration, sparking curiosity about the universe’s endless mysteries. As one of LNMIIT’s most active clubs, we bring together creative and enthusiastic minds to host thrilling, high-energy events that captivate everyone. From stargazing nights to cosmic quizzes, our year-round activities keep the excitement alive—because college life isn’t just about academics, it’s about unforgettable experiences too!",
                       [
                         "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/astronomy/astro1.jpg",
                         "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/astronomy/astro2.jpg",
@@ -192,7 +192,7 @@ class TechnologyCouncil extends StatelessWidget {
                       "assets/images/tech/debsoc/debsoc_logo.jpg",
                       "Debsoc",
                       context,
-                      "",
+                      "Lord Byron once said, “Those who will not reason are bigots, those who cannot are fools, and those who dare not are slaves.” At LNMIIT, we believe true growth comes from questioning, debating, and refining your voice. Enter The Debate Society (DebSoc)—where ideas clash, minds sharpen, and words become power. From fiery MUNs and parliamentary debates to gripping extempores, we cultivate rational thinkers and fearless speakers. Whether you're a seasoned orator or a curious beginner, DebSoc shapes you into a master of persuasion—one argument at a time. Because in a world of noise, the strongest voice wins.",
                       [
                         "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/debsoc/deb1.jpg",
                         "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/debsoc/deb2.jpg",
@@ -222,7 +222,7 @@ class TechnologyCouncil extends StatelessWidget {
                       "assets/images/tech/ecell/ecell_logo.jpg",
                       "E Cell",
                       context,
-                      "",
+                      "Dive into entrepreneurship, crypto, stocks, Web3, and beyond with The Entrepreneurship Club—your hub for mastering the skills that shape tomorrow. From event planning and marketing to management, sponsorships, content creation, and design, we sharpen the tools you need to thrive. We collaborate with top tech colleges across India, bringing you real-world exposure through funding events, startup founder interactions, and deep dives into the startup ecosystem. Here, ideas meet execution—and learners become leaders.",
                       [
                         "https://raw.githubusercontent.com/ccell2026/ccell/22fb5cfe2d93314c1d13b56ced87da6cdcec5fe4/assets/images/tech/ecell/ecell1.jpg",
                         "https://raw.githubusercontent.com/ccell2026/ccell/22fb5cfe2d93314c1d13b56ced87da6cdcec5fe4/assets/images/tech/ecell/ecell2.jpg",
@@ -292,7 +292,7 @@ class TechnologyCouncil extends StatelessWidget {
                       "assets/images/tech/quizzinga/quizzinga_logo.jpg",
                       "Quizzinga",
                       context,
-                      "We are Quizzinga, The official quizzing club of LNMIIT...",
+                      "We are Quizzinga, The official quizzing club of LNMIIT. Some consider us a cult of nerds (may or may not be true), while others call us a buzzing hivemind of trivia enthusiasts. If you like trivia nights, auctions or winning big prizes, Quizzinga might just be your turf. \nVENI VIDI VICI!!!",
                       [
                         "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/quizzinga/quizzinga1.jpg",
                         "https://raw.githubusercontent.com/ccell2026/ccell/refs/heads/master/assets/images/tech/quizzinga/quizzinga2.jpg",
