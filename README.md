@@ -40,16 +40,8 @@ The **C-Cell App** is a Flutter-based mobile application built for students at *
 | `shared_preferences`   | Local storage for checklist      |
 | `url_launcher`         | Open external URLs/Google Maps   |
 | `firebase_core`        | Firebase initialization          |
-| `firebase_messaging`   | Push notifications via FCM       |
+| `firebase_messaging`   | Push notifications               |
 | `provider` / `setState`| State management                 |
 | `Navigator`            | Custom screen transitions        |
 
 ---
-
-## 🛠️ Getting Started
-
-### 1. Clone the Repo
-
-```bash
-git clone https://github.com/your-username/ccell-app.git
-cd ccell-app
