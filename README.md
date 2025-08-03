@@ -1,60 +1,55 @@
 # 📱 C-Cell App
 
-The **C-Cell App** is a Flutter-based mobile application built for students at **LNMIIT**. Originally designed to assist with onboarding, it now supports **your entire college journey** — from admissions to academics to daily campus life.
+The **C-Cell App** is a Flutter-based mobile application built for students at **LNMIIT**. Originally created to streamline onboarding, it has grown into a full-fledged student companion app that supports various aspects of college life — from academics to navigation, support, and beyond.
 
 ---
 
 ## 🚀 Features
 
 - ✅ **Onboarding Checklist**  
-  A step-by-step guide for completing formalities like hostel registration, document verification, biometric setup, and more.
+  A step-by-step tracker for hostel registration, document verification, biometric setup, etc.
 
-- 🧭 **Campus Navigator**  
-  Quickly find key campus locations (Admin Office, Library, Cafeteria, etc.) via Google Maps.
+- 🔐 **Student Login System**  
+  Secure student login to personalize access and save progress.
+
+- 🧭 **Important Locations**  
+  Google Maps integration to guide students to key locations like the Admin Office, Incubation Center, Cafeteria, Library, and more.
 
 - 📚 **PYQs (Past Year Questions)**  
-  Access categorized previous year question papers by course/semester.
+  Organized access to previous year exam papers.
 
-- 📇 **Important Contacts**  
-  Easily find and contact relevant faculty, administration, and student support numbers.
+- ☎️ **Important Contacts**  
+  Directory of faculty, administrative offices, and student help lines.
 
-- 🏛️ **About LNMIIT**  
-  Learn about the institute’s values, campus life, achievements, and facilities.
+- 🏛️ **About LNMIIT & Gymkhana**  
+  Information about the college, clubs, committees, and cultural/technical life.
 
-- 🎯 **Gymkhana & Clubs**  
-  Explore LNMIIT's student-led clubs, Gymkhana committees, and cultural/technical bodies.
+- 🔔 **Push Notifications**  
+  Firebase Cloud Messaging support to notify students of deadlines, events, or announcements.
 
-- 🔐 **Login System**  
-  Seamless login for authenticated student access.
-
-- 💾 **Persistent Progress**  
-  Stores checklist progress locally using `SharedPreferences`.
+- 📬 **Feedback & Support**  
+  In-app links and forms for student queries and suggestions.
 
 ---
 
 ## 🧰 Tech Stack
 
-- **Flutter** & Dart  
-- `shared_preferences` – Local storage  
-- `url_launcher` – External links/maps  
-- `provider` or `setState` – State management  
-- `Navigator` – Custom screen transitions
-
----
-
-## 📸 Screenshots (Preview)
-
-| Checklist | Map & Locations | PYQs | Login |
-|----------|------------------|------|--------|
-| ![](screenshots/checklist.png) | ![](screenshots/map.png) | ![](screenshots/pyqs.png) | ![](screenshots/login.png) |
-
-> Add your screenshots in a `screenshots/` directory.
+| Tool / Library         | Purpose                          |
+|------------------------|----------------------------------|
+| **Flutter & Dart**     | App development framework        |
+| `shared_preferences`   | Local storage for checklist      |
+| `url_launcher`         | Open external URLs/Google Maps   |
+| `firebase_core`        | Firebase initialization          |
+| `firebase_messaging`   | Push notifications via FCM       |
+| `provider` / `setState`| State management                 |
+| `Navigator`            | Custom screen transitions        |
 
 ---
 
 ## 🛠️ Getting Started
 
-1. **Clone the repo**
-   ```bash
-   git clone https://github.com/your-username/ccell-app.git
-   cd ccell-app
+### 1. Clone the Repo
+
+```bash
+git clone https://github.com/your-username/ccell-app.git
+cd ccell-app
