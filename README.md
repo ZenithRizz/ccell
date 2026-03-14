@@ -4,7 +4,7 @@ The **C-Cell App** is a Flutter-based mobile application designed for students a
 
 Originally developed to simplify the **student onboarding process**, the app has evolved into a **comprehensive student companion platform** that helps students navigate academics, campus resources, and student life more efficiently.
 
-🌐 **Website:** https://www.ccellapp.in/  
+🌐 **Web app:** https://www.ccellapp.in/  
 📲 **Play Store:** https://play.google.com/store/apps/details?id=com.lnmiit.ccell&pcampaignid=web_share
 
 ---
