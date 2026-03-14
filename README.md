@@ -1,47 +1,74 @@
 # 📱 C-Cell App
 
-The **C-Cell App** is a Flutter-based mobile application built for students at **LNMIIT**. Originally created to streamline onboarding, it has grown into a full-fledged student companion app that supports various aspects of college life — from academics to navigation, support, and beyond.
+The **C-Cell App** is a Flutter-based mobile application designed for students at **LNMIIT (The LNM Institute of Information Technology)**.  
+
+Originally developed to simplify the **student onboarding process**, the app has evolved into a **comprehensive student companion platform** that helps students navigate academics, campus resources, and student life more efficiently.
+
+🌐 **Website:** https://www.ccellapp.in/  
+📲 **Play Store:** https://play.google.com/store/apps/details?id=com.lnmiit.ccell&pcampaignid=web_share
 
 ---
 
-## 🚀 Features
+# ✨ Features
 
-- ✅ **Onboarding Checklist**  
-  A step-by-step tracker for hostel registration, document verification, biometric setup, etc.
+### 🚀 Student Onboarding
+A structured **onboarding checklist** that guides students through essential tasks such as:
+- Hostel registration
+- Document verification
+- Biometric setup
+- Administrative formalities
 
-- 🔐 **Student Login System**  
-  Secure student login to personalize access and save progress.
+### 🔐 Secure Student Login
+Students can log in securely to:
+- Personalize their experience
+- Save checklist progress
+- Access student-specific resources
 
-- 🧭 **Important Locations**  
-  Google Maps integration to guide students to key locations like the Admin Office, Incubation Center, Cafeteria, Library, and more.
+### 🧭 Campus Navigation
+Integrated **Google Maps support** helps students locate key campus locations such as:
+- Admin Office  
+- Library  
+- Incubation Center  
+- Cafeteria  
+- Academic Blocks  
 
-- 📚 **PYQs (Past Year Questions)**  
-  Organized access to previous year exam papers.
+### 📚 Past Year Question Papers (PYQs)
+Students can easily access **organized collections of previous year exam papers** for academic preparation.
 
-- ☎️ **Important Contacts**  
-  Directory of faculty, administrative offices, and student help lines.
+### ☎️ Important Contacts
+A quick-access **directory of essential contacts**, including:
+- Faculty members  
+- Administrative offices  
+- Student support helplines  
 
-- 🏛️ **About LNMIIT & Gymkhana**  
-  Information about the college, clubs, committees, and cultural/technical life.
+### 🏛️ LNMIIT & Gymkhana Information
+Provides information about:
+- LNMIIT campus life  
+- Student clubs and committees  
+- Cultural and technical activities  
 
-- 🔔 **Push Notifications**  
-  Firebase Cloud Messaging support to notify students of deadlines, events, or announcements.
+### 🔔 Push Notifications
+Using **Firebase Cloud Messaging**, the app sends notifications for:
+- Important deadlines  
+- Campus announcements  
+- Events and activities  
 
-- 📬 **Feedback & Support**  
-  In-app links and forms for student queries and suggestions.
+### 📬 Feedback & Support
+Students can submit feedback or queries directly through the app via integrated forms and support links.
 
 ---
 
-## 🧰 Tech Stack
+# 🛠 Tech Stack
 
-| Tool / Library         | Purpose                          |
-|------------------------|----------------------------------|
-| **Flutter & Dart**     | App development framework        |
-| `shared_preferences`   | Local storage for checklist      |
-| `url_launcher`         | Open external URLs/Google Maps   |
-| `firebase_core`        | Firebase initialization          |
-| `firebase_messaging`   | Push notifications               |
-| `provider` / `setState`| State management                 |
-| `Navigator`            | Custom screen transitions        |
+| Technology | Purpose |
+|-----------|--------|
+| **Flutter** | Cross-platform mobile development |
+| **Dart** | Programming language for Flutter |
+| **Firebase Core** | Firebase initialization and backend integration |
+| **Firebase Messaging** | Push notification service |
+| **shared_preferences** | Local storage for checklist progress |
+| **url_launcher** | Opening external URLs and Google Maps |
+| **Provider / setState** | State management |
+| **Navigator** | Screen routing and transitions |
 
 ---
